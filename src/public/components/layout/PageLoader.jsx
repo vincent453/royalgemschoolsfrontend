@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import logo from '../../assets/img/logo.png'
+import logo from '../../../assets/img/logo.png'
 
 const Loader = () => (
   <div className="fixed inset-0 z-[999] bg-white flex flex-col items-center justify-center gap-6">

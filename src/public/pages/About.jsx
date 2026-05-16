@@ -6,12 +6,12 @@ import owner from '../../assets/img/owner.jpeg'
 import VideoPlayer from "../components/layout/VideoPlayer"
 import videobg from '../../assets/img/video.jpeg'
 import { FaUserGraduate } from "react-icons/fa"
-import StatCard from "../components/layout/ui/RatingCard"
+import StatCard from "../components/ui/RatingCard"
 import MessionVission from "../components/layout/MessionVission"
 import FounderProfile from "../components/layout/FounderProfile"
 import Achievements from "../components/layout/Acheivement"
 import Facilities from "../components/layout/Facilities"
-import Footer from "../../"
+import Footer from "../components/layout/Foooter"
 
 const About = () => {
   const stats = [

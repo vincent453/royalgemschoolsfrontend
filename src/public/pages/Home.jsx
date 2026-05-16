@@ -7,7 +7,7 @@ import VideoPlayer from "../components/layout/VideoPlayer"
 import videobg from '../../assets/img/video.jpeg'
 import OurTeachers from "../components/layout/OurTeachers"
 import Testimonials from "../components/layout/Testimonials"
-import Blog from "../components/layout/g"
+import Blog from "../components/layout/Blog"
 import Footer from "../components/layout/Foooter"
 import shapeimage from '../../assets/img/shape-image.png'
 
