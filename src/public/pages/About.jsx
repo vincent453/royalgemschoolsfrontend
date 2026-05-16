@@ -11,7 +11,7 @@ import MessionVission from "../../components/layout/MessionVission"
 import FounderProfile from "../../components/layout/FounderProfile"
 import Achievements from "../../components/layout/Acheivement"
 import Facilities from "../../components/layout/Facilities"
-import Footer from "../../components/layout/Foooter"
+import Footer from "../../"
 
 const About = () => {
   const stats = [
