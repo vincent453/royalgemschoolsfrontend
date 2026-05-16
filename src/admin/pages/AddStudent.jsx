@@ -56,7 +56,7 @@ const AddStudent = () => {
         formData.append(key, value ?? "");
       });
 
-      const response = await fetch("http://localhost:5000/api/students", {
+      const response = await fetch("https://royalgemschoolsbackend.vercel.app/0/api/students", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

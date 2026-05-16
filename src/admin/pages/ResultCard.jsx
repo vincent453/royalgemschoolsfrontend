@@ -68,8 +68,8 @@ export default function BellaReportCard() {
     setError(null);
     const token = localStorage.getItem("token");
     const url   = id
-      ? `http://localhost:5000/api/results/${id}`
-      : `http://localhost:5000/api/results`;
+      ? `https://royalgemschoolsbackend.vercel.app/0/api/results/${id}`
+      : `https://royalgemschoolsbackend.vercel.app/0/api/results`;
 
     fetch(url, {
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api", // Update with your backend URL
+  baseURL: "https://royalgemschoolsbackend.vercel.app/0/api", // Update with your backend URL
 });
 
 // Attach token automatically

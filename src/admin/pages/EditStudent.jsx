@@ -77,7 +77,7 @@ const handleSubmit = async (e) => {
 
     // ✅ API request
     const response = await fetch(
-      `http://localhost:5000/api/students/${id}`,
+      `https://royalgemschoolsbackend.vercel.app/0/api/students/${id}`,
       {
         method: "PUT",
         headers: {
