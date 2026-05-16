@@ -1,11 +1,5 @@
-// ─────────────────────────────────────────────
-// settingsApi.js  — centralised API service
-// All endpoints hit your REST backend.
-// The base URL is read from your .env file:
-//   VITE_API_URL=http://localhost:5000/api
-// ─────────────────────────────────────────────
 
-const BASE = import.meta.env.VITE_API_URL ?? "/api";
+const BASE = import.meta.env.VITE_API_URL ?? "https://royalgemschoolsbackend.vercel.app//api";
 
 // Helper — always sends the auth token stored at login
 async function request(path, options = {}) {
