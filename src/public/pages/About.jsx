@@ -1,16 +1,16 @@
-import Benefit from "../components/layout/layout/Benefit"
-import Navbar from "../components/layout/layout/Navbar"
-import Section from "../components/layout/layout/Section"
-import AboutUs from "../components/layout/layout/AboutUs"                             
+import Benefit from "../components/layout/Benefit"
+import Navbar from "../components/layout/Navbar"
+import Section from "../components/layout/Section"
+import AboutUs from "../components/layout/AboutUs"                             
 import owner from '../../assets/img/owner.jpeg'
-import VideoPlayer from "../components/layout/layout/VideoPlayer"
+import VideoPlayer from "../components/layout/VideoPlayer"
 import videobg from '../../assets/img/video.jpeg'
 import { FaUserGraduate } from "react-icons/fa"
 import StatCard from "../components/layout/ui/RatingCard"
-import MessionVission from "../components/layout/layout/MessionVission"
-import FounderProfile from "../components/layout/layout/FounderProfile"
-import Achievements from "../components/layout/layout/Acheivement"
-import Facilities from "../components/layout/layout/Facilities"
+import MessionVission from "../components/layout/MessionVission"
+import FounderProfile from "../components/layout/FounderProfile"
+import Achievements from "../components/layout/Acheivement"
+import Facilities from "../components/layout/Facilities"
 import Footer from "../../"
 
 const About = () => {
