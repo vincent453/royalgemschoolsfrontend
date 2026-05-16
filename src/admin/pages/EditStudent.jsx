@@ -1,147 +1,201 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Slidebar from "../components/layout/Slidebar";
 import Topbar from "../components/layout/Topbar";
 import { FaUser, FaCamera } from "react-icons/fa";
 
-const classes = ["JSS 1", "JSS 2", "JSS 3", "SSS 1", "SSS 2", "SSS 3"];
-const genders = ["Male", "Female"];
+const classes     = ["JSS 1", "JSS 2", "JSS 3", "SSS 1", "SSS 2", "SSS 3"];
+const genders     = ["Male", "Female"];
 const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
 const EditStudent = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
+  const { id }     = useParams();
+  const navigate   = useNavigate();
 
-  // Find student from mock data
-const existing = {};
-  const [photo, setPhoto]     = useState(existing?.img || null)
-  const [preview, setPreview] = useState(existing?.img || null)
-  const [form, setForm]       = useState({
-    firstName:   existing?.name?.split(" ")[0] || "",
-    lastName:    existing?.name?.split(" ")[1] || "",
-    email:       existing?.email  || "",
-    phone:       existing?.phone  || "",
-    dob:         existing?.dob    || "",
-    gender:      existing?.gender || "",
-    bloodGroup:  existing?.bloodGroup || "",
-    address:     existing?.address || "",
-    city:        existing?.city   || "",
-    grade:       existing?.grade  || "",
-    studentId:   existing?.studentId || "",
-    parentName:  existing?.parent || "",
-    parentPhone: existing?.parentPhone || "",
-    parentEmail: existing?.parentEmail || "",
-  })
+  const [photo,   setPhoto]   = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [form,    setForm]    = useState({
+    firstName:   "",
+    lastName:    "",
+    email:       "",
+    phone:       "",
+    dob:         "",
+    gender:      "",
+    bloodGroup:  "",
+    address:     "",
+    city:        "",
+    grade:       "",
+    studentId:   "",
+    parentName:  "",
+    parentPhone: "",
+    parentEmail: "",
+  });
 
-  const [loading, setLoading] = useState(false)
+  const [loading,     setLoading]     = useState(false);
+  const [fetching,    setFetching]    = useState(true);   // loading existing data
+  const [fetchError,  setFetchError]  = useState("");
+  const [submitError, setSubmitError] = useState("");
+
+  // ── Fetch existing student data on mount ──
+  useEffect(() => {
+    const fetchStudent = async () => {
+      try {
+        setFetching(true);
+        const token = localStorage.getItem("token");
+        const res   = await fetch(
+          `https://royalgemschoolsbackend.vercel.app/api/students/${id}`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || "Failed to load student");
+
+        // Map API response fields to form fields
+        setForm({
+          firstName:   data.firstName   || "",
+          lastName:    data.lastName    || "",
+          email:       data.email       || "",
+          phone:       data.parentPhone || "",   // phone stored as parentPhone on model
+          dob:         data.dateOfBirth ? data.dateOfBirth.split("T")[0] : "",
+          gender:      data.gender      || "",
+          bloodGroup:  data.bloodGroup  || "",
+          address:     data.address     || "",
+          city:        data.city        || "",
+          grade:       data.classLevel  || "",
+          studentId:   data.regNumber   || "",
+          parentName:  `${data.parentFirstName || ""} ${data.parentLastName || ""}`.trim(),
+          parentPhone: data.parentPhone || "",
+          parentEmail: data.parentEmail || "",
+        });
+
+        // Show existing photo as preview
+        if (data.profilePhoto) {
+          setPreview(data.profilePhoto);
+        }
+      } catch (err) {
+        setFetchError(err.message);
+      } finally {
+        setFetching(false);
+      }
+    };
+
+    fetchStudent();
+  }, [id]);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handlePhoto = (e) => {
-    const file = e.target.files[0]
-    if (!file) return
-    setPhoto(file)
-    setPreview(URL.createObjectURL(file))
-  }
+    const file = e.target.files[0];
+    if (!file) return;
+    setPhoto(file);
+    setPreview(URL.createObjectURL(file));
+  };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setSubmitError("");
 
-  try {
-    const token = localStorage.getItem("token");
+    try {
+      const token    = localStorage.getItem("token");
+      const formData = new FormData();
 
-    // ✅ Create FormData
-    const formData = new FormData();
+      formData.append("firstName",      form.firstName);
+      formData.append("lastName",       form.lastName);
+      formData.append("dateOfBirth",    form.dob);
+      formData.append("gender",         form.gender);
+      formData.append("address",        form.address);
+      formData.append("classLevel",     form.grade);
+      formData.append("regNumber",      form.studentId);
+      formData.append("parentFirstName", form.parentName.split(" ")[0] || form.parentName);
+      formData.append("parentLastName",  form.parentName.split(" ")[1] || "");
+      formData.append("parentPhone",    form.parentPhone);
+      formData.append("parentEmail",    form.parentEmail);
 
-    // ✅ Append all fields
-    formData.append("firstName", form.firstName);
-    formData.append("lastName", form.lastName);
-    formData.append("dateOfBirth", form.dob);
-    formData.append("gender", form.gender);
-    formData.append("address", form.address);
-
-    formData.append("classLevel", form.grade);
-    formData.append("regNumber", form.studentId);
-
-    formData.append("parentFirstName", form.parentName);
-    formData.append("parentPhone", form.parentPhone);
-    formData.append("parentEmail", form.parentEmail);
-
-    // ✅ Append photo if selected
-    if (photo instanceof File) {
-      formData.append("profilePhoto", photo);
-    }
-
-    // ✅ API request
-    const response = await fetch(
-      `https://royalgemschoolsbackend.vercel.app/api/students/${id}`,
-      {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData,
+      if (photo instanceof File) {
+        formData.append("profilePhoto", photo);
       }
-    );
 
-    const data = await response.json();
+      const res = await fetch(
+        `https://royalgemschoolsbackend.vercel.app/api/students/${id}`,
+        {
+          method: "PUT",
+          headers: { Authorization: `Bearer ${token}` },
+          body: formData,
+        }
+      );
 
-    if (!response.ok) {
-      throw new Error(data.message);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Update failed");
+
+      navigate("/admin/students");
+    } catch (err) {
+      setSubmitError(err.message);
+    } finally {
+      setLoading(false);
     }
-
-    console.log(data);
-
-    navigate("/admin/students");
-
-  } catch (err) {
-    console.error(err);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   const inputClass = `w-full border border-gray-200 rounded-lg px-4 py-2.5
                       font-dm-sans text-gray-700 text-sm placeholder-gray-300
                       focus:outline-none focus:border-[#A033A0] bg-white
-                      transition-colors duration-300`
+                      transition-colors duration-300`;
 
-  const labelClass = `font-dm-sans text-[#A033A0] text-sm font-semibold mb-1 block`
+  const labelClass = `font-dm-sans text-[#A033A0] text-sm font-semibold mb-1 block`;
 
-  if (!existing) return (
-    <div className="flex h-screen items-center justify-center">
-      <p className="font-dm-sans text-gray-400">Student not found.</p>
-    </div>
-  )
+  // ── Loading state ──
+  if (fetching) {
+    return (
+      <div className="flex h-screen items-center justify-center bg-[#E6EBEE]">
+        <p className="font-dm-sans text-gray-400 text-sm">Loading student data...</p>
+      </div>
+    );
+  }
+
+  // ── Fetch error state ──
+  if (fetchError) {
+    return (
+      <div className="flex h-screen items-center justify-center bg-[#E6EBEE]">
+        <div className="text-center">
+          <p className="font-dm-sans text-red-400 text-sm mb-3">{fetchError}</p>
+          <button
+            onClick={() => navigate("/admin/students")}
+            className="font-dm-sans text-sm text-[#A033A0] underline"
+          >
+            ← Back to Students
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-screen bg-[#E6EBEE] overflow-hidden">
       <div className="fixed top-1 left-0 h-screen w-64 z-40">
-  <Slidebar />
-</div>
+        <Slidebar />
+      </div>
+
       <div className="flex flex-col flex-1 overflow-hidden">
-        <div className="sticky top-0  z-50 w-full">
+        <div className="sticky top-0 z-50 w-full">
           <Topbar />
         </div>
 
         <main className="flex-1 overflow-scroll ml-64 mt-16">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-6 max-w-5xl mx-auto">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6 max-w-5xl mx-auto p-6">
 
             {/* ── Page Title ── */}
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="font-jost font-bold text-gray-800 text-2xl">Edit Student</h1>
                 <p className="font-dm-sans text-gray-400 text-sm mt-0.5">
-                  Update information for {existing.name}
+                  Update information for {form.firstName} {form.lastName}
                 </p>
               </div>
               <span className={`px-3 py-1 text-xs rounded-full font-dm-sans font-semibold
-                               ${form.grade?.startsWith('JSS')
-                                 ? 'bg-blue-100 text-blue-600'
-                                 : 'bg-purple-100 text-[#A033A0]'}`}>
+                               ${form.grade?.startsWith("JSS")
+                                 ? "bg-blue-100 text-blue-600"
+                                 : "bg-purple-100 text-[#A033A0]"}`}>
                 {form.grade || "No Class"}
               </span>
             </div>
@@ -164,7 +218,6 @@ const handleSubmit = async (e) => {
                         <FaUser className="text-gray-300 text-4xl" />
                       </div>
                     )}
-                    {/* Camera overlay */}
                     <label
                       htmlFor="photo"
                       className="absolute inset-0 bg-black/40 flex items-center justify-center
@@ -173,13 +226,7 @@ const handleSubmit = async (e) => {
                       <FaCamera className="text-white text-xl" />
                     </label>
                   </div>
-                  <input
-                    id="photo"
-                    type="file"
-                    accept="image/*"
-                    onChange={handlePhoto}
-                    className="hidden"
-                  />
+                  <input id="photo" type="file" accept="image/*" onChange={handlePhoto} className="hidden" />
                   <div className="flex gap-2">
                     <label
                       htmlFor="photo"
@@ -192,7 +239,7 @@ const handleSubmit = async (e) => {
                     {preview && (
                       <button
                         type="button"
-                        onClick={() => { setPhoto(null); setPreview(null) }}
+                        onClick={() => { setPhoto(null); setPreview(null); }}
                         className="font-dm-sans text-xs font-semibold px-4 py-1.5 rounded-full
                                    border border-red-300 text-red-400 hover:bg-red-50
                                    transition-colors duration-300"
@@ -266,7 +313,6 @@ const handleSubmit = async (e) => {
               <h2 className="font-jost font-bold text-gray-800 text-lg border-b border-gray-100 pb-3">
                 Academic Details
               </h2>
-
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className={labelClass}>Student ID</label>
@@ -289,7 +335,6 @@ const handleSubmit = async (e) => {
               <h2 className="font-jost font-bold text-gray-800 text-lg border-b border-gray-100 pb-3">
                 Parent / Guardian
               </h2>
-
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="sm:col-span-2">
                   <label className={labelClass}>Parent / Guardian Name *</label>
@@ -308,6 +353,13 @@ const handleSubmit = async (e) => {
                 </div>
               </div>
             </div>
+
+            {/* ── Error ── */}
+            {submitError && (
+              <div className="bg-red-50 border border-red-200 text-red-500 px-4 py-3 rounded-xl text-sm font-dm-sans">
+                {submitError}
+              </div>
+            )}
 
             {/* ── Actions ── */}
             <div className="flex items-center justify-end gap-4 pb-6">
@@ -336,7 +388,7 @@ const handleSubmit = async (e) => {
         </main>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default EditStudent
+export default EditStudent;

@@ -1,58 +1,70 @@
-import { useEffect, useRef } from "react";
-import { performanceData } from "../../context/data/mockdata";
-
-// npm install chart.js  ← run this if not installed
+import { useEffect, useRef, useState } from "react";
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 
 const Performance = () => {
   const canvasRef = useRef(null);
   const chartRef  = useRef(null);
+  const [chartData, setChartData] = useState({ labels: [], averages: [] });
+  const [loading,   setLoading]   = useState(true);
 
   useEffect(() => {
+    const fetchPerformance = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res   = await fetch(
+          "https://royalgemschoolsbackend.vercel.app/api/results",
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        const data = await res.json();
+        if (!res.ok || !Array.isArray(data)) return;
+
+        // Group averages by classLevel
+        const classMap = {};
+        data.forEach(result => {
+          const cls = result.student?.classLevel;
+          if (!cls) return;
+          if (!classMap[cls]) classMap[cls] = { total: 0, count: 0 };
+          classMap[cls].total += Number(result.average) || 0;
+          classMap[cls].count += 1;
+        });
+
+        const labels   = Object.keys(classMap).sort();
+        const averages = labels.map(cls =>
+          parseFloat((classMap[cls].total / classMap[cls].count).toFixed(1))
+        );
+
+        setChartData({ labels, averages });
+      } catch (err) {
+        console.error("Performance fetch failed:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPerformance();
+  }, []);
+
+  useEffect(() => {
+    if (!canvasRef.current || loading) return;
     if (chartRef.current) chartRef.current.destroy();
 
     const ctx = canvasRef.current.getContext("2d");
 
-    // Gradient fills
-    const gradientThis = ctx.createLinearGradient(0, 0, 0, 200);
-    gradientThis.addColorStop(0, "rgba(91,79,233,0.25)");
-    gradientThis.addColorStop(1, "rgba(91,79,233,0)");
-
-    const gradientLast = ctx.createLinearGradient(0, 0, 0, 200);
-    gradientLast.addColorStop(0, "rgba(249,115,22,0.20)");
-    gradientLast.addColorStop(1, "rgba(249,115,22,0)");
+    const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+    gradient.addColorStop(0, "rgba(91,79,233,0.25)");
+    gradient.addColorStop(1, "rgba(91,79,233,0)");
 
     chartRef.current = new Chart(ctx, {
-      type: "line",
+      type: "bar",
       data: {
-        labels: performanceData.labels,
+        labels: chartData.labels.length ? chartData.labels : ["No data"],
         datasets: [
           {
-            label: "This Term",
-            data: performanceData.thisTerm.data,
-            borderColor: "#5B4FE9",
-            backgroundColor: gradientThis,
-            borderWidth: 2.5,
-            pointRadius: 4,
-            pointBackgroundColor: "#5B4FE9",
-            pointBorderColor: "#fff",
-            pointBorderWidth: 2,
-            tension: 0.45,
-            fill: true,
-          },
-          {
-            label: "Last Term",
-            data: performanceData.lastTerm.data,
-            borderColor: "#F97316",
-            backgroundColor: gradientLast,
-            borderWidth: 2.5,
-            pointRadius: 4,
-            pointBackgroundColor: "#F97316",
-            pointBorderColor: "#fff",
-            pointBorderWidth: 2,
-            tension: 0.45,
-            fill: true,
+            label: "Avg Score",
+            data: chartData.averages.length ? chartData.averages : [0],
+            backgroundColor: "#5B4FE9",
+            borderRadius: 6,
+            barThickness: 20,
           },
         ],
       },
@@ -67,57 +79,64 @@ const Performance = () => {
             bodyColor: "rgba(255,255,255,0.7)",
             padding: 10,
             cornerRadius: 10,
+            callbacks: {
+              label: ctx => `Avg: ${ctx.parsed.y}%`,
+            },
           },
         },
         scales: {
           x: {
             grid: { display: false },
-            ticks: { color: "#94a3b8", font: { size: 11, family: "'Plus Jakarta Sans', sans-serif" } },
+            ticks: { color: "#94a3b8", font: { size: 11 } },
             border: { display: false },
           },
           y: {
             grid: { color: "#f1f5f9" },
             ticks: {
               color: "#94a3b8",
-              font: { size: 11, family: "'Plus Jakarta Sans', sans-serif" },
-              callback: (v) => `${v / 1000}k`,
+              font: { size: 11 },
+              callback: v => `${v}%`,
             },
             border: { display: false },
+            min: 0,
+            max: 100,
           },
         },
       },
     });
 
     return () => chartRef.current?.destroy();
-  }, []);
+  }, [chartData, loading]);
+
+  const totalResults  = chartData.averages.reduce((a, b) => a + b, 0);
+  const overallAvg    = chartData.averages.length
+    ? (totalResults / chartData.averages.length).toFixed(1)
+    : "0";
 
   return (
     <div className="bg-white rounded-2xl p-5 shadow-sm flex-1">
-      {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div>
           <h3 className="font-bold text-gray-800 text-[15px]">School Performance</h3>
-          <div className="flex items-center gap-5 mt-2">
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-violet-600 inline-block" />
-              <span className="text-xs text-gray-400">This Term</span>
-              <span className="font-extrabold text-sm text-gray-800">{performanceData.thisTerm.value}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-orange-400 inline-block" />
-              <span className="text-xs text-gray-400">Last Term</span>
-              <span className="font-extrabold text-sm text-gray-800">{performanceData.lastTerm.value}</span>
-            </div>
+          <div className="flex items-center gap-2 mt-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-violet-600 inline-block" />
+            <span className="text-xs text-gray-400">Avg Score by Class</span>
+            <span className="font-extrabold text-sm text-gray-800">{overallAvg}%</span>
           </div>
         </div>
       </div>
 
-      {/* Chart */}
       <div className="h-48">
-        <canvas ref={canvasRef} />
+        {loading ? (
+          <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+            Loading...
+          </div>
+        ) : (
+          <canvas ref={canvasRef} />
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default Performance;
