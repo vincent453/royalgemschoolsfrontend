@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "../pages/public/Home";
-import About from "../pages/public/About";
-import Contact from "../pages/public/Contact";
+import Home from "../public/pages/Home";
+import About from "../public/pages/About";
+import Contact from "../public/pages/Contact";
 import AdminLogin from "../admin/pages/AdminLogin";
 import AdminDashboard from "../admin/pages/AdminDashboard";
 import ProtectedRoute from "./ProtectedRoutes";
@@ -17,7 +17,7 @@ import GeneratePin from "../admin/pages/PinGenatration";
 import Users from "../admin/pages/Users";
 import AddUser from "../admin/pages/AddUsers";
 import ResultCard from "../admin/pages/ResultCard";
-import Admissions from "../pages/Admission";
+import Admissions from "../public/pages/Admission";
 export default function AppRoutes() {
   return (
     <Routes>    
