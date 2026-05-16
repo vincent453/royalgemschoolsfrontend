@@ -1,9 +1,9 @@
-import Navbar from "../../components/layout/Navbar"
-import Section from "../../components/layout/Section"
+import Navbar from "../components/layout/layout/Navbar"
+import Section from "../components/layout/layout/Section"
 import contactimg from '../../assets/img/contactimg.jpeg'
-import ContactInfo from "../../components/ui/ContactInfo"
-import ContactForm from "../../components/ui/ContactForm"
-import Footer from "../../components/layout/Foooter"
+import ContactInfo from "../components/layout/ui/ContactInfo"
+import ContactForm from "../components/layout/ui/ContactForm"
+import Footer from "../components/layout/layout/Foooter"
 const Contact = () => {
   return (
     <div>
