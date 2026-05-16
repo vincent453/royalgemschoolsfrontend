@@ -1,5 +1,5 @@
-import reviewImage1 from '../../assets/img/review.png'
-import robot from '../../assets/img/robot.png'
+import reviewImage1 from '../../../assets/img/review.png'
+import robot from '../../../assets/img/robot.png'
 import ReviewSlider from '../ui/ReviewSlider'
 
 const reviews = [

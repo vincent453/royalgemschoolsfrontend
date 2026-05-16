@@ -1,4 +1,4 @@
-import aboutimg2 from '../../assets/img/aboutimg.jpeg';
+import aboutimg2 from '../../../assets/img/aboutimg.jpeg';
 import SectionHeader from '../ui/SectionHeader';
 
 const Section = ({

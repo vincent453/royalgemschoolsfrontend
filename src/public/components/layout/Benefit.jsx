@@ -1,6 +1,6 @@
 
 import FeatureCard from '../ui/FeatureCard';
-import shape from '../../assets/img/shape-1.png'
+import shape from '../../../assets/img/shape-1.png'
 import SectionHeader from '../ui/SectionHeader';
 const features = [
   {

@@ -1,5 +1,5 @@
 import { navItems } from "../../context/data/mockdata";
-import logo from "../../../assets/img/logo.png";
+import logo from "../../../../assets/logo.png";
 import {  NavLink } from "react-router-dom";
 
 const Slidebar = () => {

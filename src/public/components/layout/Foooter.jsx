@@ -1,6 +1,6 @@
 import { FaTwitter, FaFacebookF, FaInstagram, FaLinkedinIn, FaMapMarkerAlt, FaPhone, FaWhatsapp, FaEnvelope } from 'react-icons/fa'
 import { FiArrowUp } from 'react-icons/fi'
-import logo from '../../assets/img/logo.png'
+import logo from '../../../assets/logo.png'
 import { useEffect, useState } from 'react'
 
 const aboutLinks = [

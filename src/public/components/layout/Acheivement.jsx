@@ -1,5 +1,5 @@
 import { FaTrophy, FaUserGraduate, FaChalkboardTeacher, FaStar, FaBookOpen, FaAward } from 'react-icons/fa'
-import homebg from '../../assets/img/home-bg.jpg'
+import homebg from '../../../assets/img/home-bg.jpg'
 
 const achievements = [
   {

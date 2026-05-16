@@ -1,5 +1,5 @@
-import home from '../../assets/img/home-bg.jpg'
-import student from '../../assets/img/home-img2.png'
+import home from '../../../assets/img/home-bg.jpg'
+import student from '../../../assets/img/home-img2.png'
 import StatCard from '../ui/RatingCard'
 import { FaUserGraduate } from "react-icons/fa";
 

@@ -1,6 +1,6 @@
 import BannerCTA from "../ui/BannerCTA"
-import missionImg from '../../assets/img/mission.jpeg'
-import visionImg from '../../assets/img/vission.jpeg'
+import missionImg from '../../../assets/img/mission.jpeg'
+import visionImg from '../../../assets/img/vission.jpeg'
 const MessionVission = () => {
   return (
     <div className="mt-[3rem] sm:px-0 py:px-9">

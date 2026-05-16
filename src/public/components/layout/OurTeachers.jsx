@@ -1,8 +1,8 @@
 import SectionHeader from "../ui/SectionHeader"
-import teacher1 from '../../assets/img/teacher1.jpg'
-import teacher2 from '../../assets/img/teacher2.webp'
-import teacher3 from '../../assets/img/teacher3.jpg'
-import teacher4 from '../../assets/img/teacher4.jpg'
+import teacher1 from '../../../assets/img/teacher1.jpg'
+import teacher2 from '../../../assets/img/teacher2.webp'
+import teacher3 from '../../../assets/img/teacher3.jpg'
+import teacher4 from '../../../assets/img/teacher4.jpg'
 
 import TeacherCard from "../ui/TeacherCard"
 
