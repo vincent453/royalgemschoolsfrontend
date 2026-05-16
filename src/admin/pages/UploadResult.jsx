@@ -79,7 +79,7 @@ const UploadResult = () => {
       try {
         setLoadingStudents(true)
         const token = localStorage.getItem('token')
-        const res  = await fetch('https://royalgemschoolsbackend.vercel.app/0/api/students', {
+        const res  = await fetch('https://royalgemschoolsbackend.vercel.app/api/students', {
           headers: { Authorization: `Bearer ${token}` },
         })
         const data = await res.json()
@@ -160,7 +160,7 @@ const UploadResult = () => {
         nextTermBegins,
       }
 
-      const res  = await fetch('https://royalgemschoolsbackend.vercel.app/0/api/results', {
+      const res  = await fetch('https://royalgemschoolsbackend.vercel.app/api/results', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify(payload),

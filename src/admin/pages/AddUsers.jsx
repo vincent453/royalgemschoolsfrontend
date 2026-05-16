@@ -104,7 +104,7 @@ const AddUser = () => {
   assignedClass: form.role === "teacher" ? form.assignedClass : null,
       }
 
-      const res = await fetch('https://royalgemschoolsbackend.vercel.app/0/api/users', {
+      const res = await fetch('https://royalgemschoolsbackend.vercel.app/api/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

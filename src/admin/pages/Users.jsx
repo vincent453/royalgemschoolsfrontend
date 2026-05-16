@@ -47,7 +47,7 @@ const Users = () => {
       setLoading(true)
       setError('')
       const token = localStorage.getItem('token')
-      const res = await fetch('https://royalgemschoolsbackend.vercel.app/0/api/users', {
+      const res = await fetch('https://royalgemschoolsbackend.vercel.app/api/users', {
         headers: { Authorization: `Bearer ${token}` },
       })
       const data = await res.json()
@@ -67,7 +67,7 @@ const Users = () => {
     if (!window.confirm(`Delete ${name}? This cannot be undone.`)) return
     try {
       const token = localStorage.getItem('token')
-      const res = await fetch(`https://royalgemschoolsbackend.vercel.app/0/api/users/${id}`, {
+      const res = await fetch(`https://royalgemschoolsbackend.vercel.app/api/users/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       })

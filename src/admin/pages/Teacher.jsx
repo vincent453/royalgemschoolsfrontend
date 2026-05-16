@@ -20,7 +20,7 @@ const Teacher = () => {
 
         const token = localStorage.getItem("token");
 
-        const response = await fetch("https://royalgemschoolsbackend.vercel.app/0/api/users", {
+        const response = await fetch("https://royalgemschoolsbackend.vercel.app/api/users", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

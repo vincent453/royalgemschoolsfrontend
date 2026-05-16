@@ -1,5 +1,5 @@
 export const loginAdmin = async (form) => {
-  const res = await fetch("https://royalgemschoolsbackend.vercel.app/0/api/admin/login", {
+  const res = await fetch("https://royalgemschoolsbackend.vercel.app/api/admin/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
