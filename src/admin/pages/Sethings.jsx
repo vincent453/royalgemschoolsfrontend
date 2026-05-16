@@ -13,7 +13,7 @@ import {
   fetchAccount,
   updateAccount,
   changePassword,
-} from "../services/authService";   // ← adjust path if needed
+} from "../services/sethingsApi";   // ← adjust path if needed
 
 // ─────────────────────────────────────────────────────────────
 // Utility hooks
