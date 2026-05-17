@@ -1,5 +1,5 @@
 
-const BASE = import.meta.env.VITE_API_URL ?? "https://royalgemschoolsbackend.vercel.app//api";
+const BASE = import.meta.env.VITE_API_URL ?? "https://royalgemschoolsbackend.vercel.app/api";
 
 // Helper — always sends the auth token stored at login
 async function request(path, options = {}) {
