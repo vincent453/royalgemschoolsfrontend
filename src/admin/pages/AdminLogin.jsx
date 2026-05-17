@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-import logo from '../../../assets/logo.png'
+import logo from '../../../assets/img/logo.png'
 import loginbanner from '../../assets/img/students.jpeg'
 import { loginAdmin } from '../services/authService'
 import { useEffect } from 'react'

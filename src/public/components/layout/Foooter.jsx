@@ -1,6 +1,6 @@
 import { FaTwitter, FaFacebookF, FaInstagram, FaLinkedinIn, FaMapMarkerAlt, FaPhone, FaWhatsapp, FaEnvelope } from 'react-icons/fa'
 import { FiArrowUp } from 'react-icons/fi'
-import logo from '../../../assets/logo.png'
+import logo from '../../../assets/img/logo.png'
 import { useEffect, useState } from 'react'
 
 const aboutLinks = [
@@ -12,14 +12,7 @@ const aboutLinks = [
   { label: "Contact Us",             href: "#" },
 ]
 
-const courseLinks = [
-  { label: "After School Program",      href: "#" },
-  { label: "Microsoft Excel Training",  href: "#" },
-  { label: "Music Classes",             href: "#" },
-  { label: "Coding Bootcamp",           href: "#" },
-  { label: "Python Programming",        href: "#" },
-  { label: "Graphic Design Course",     href: "#" },
-]
+
 
 const contactInfo = [
   { icon: <FaMapMarkerAlt />, text: "Ikorodu, Lagos State & Abuja, FCT, Nigeria", href: null },
