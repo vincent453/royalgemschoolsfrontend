@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import dark from "../../../assets/dark.svg";
-import { fetchAccount } from "../../services/settingsApi"; // adjust path if needed
+import { fetchAccount } from "../../services/sethingsApi"; // adjust path if needed
 
 const Topbar = () => {
   const navigate = useNavigate();
