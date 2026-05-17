@@ -1,4 +1,4 @@
-import sectionimg2 from '../../assets/img/section-2.jpg'
+import sectionimg2 from '../../../assets/img/section-2.jpg'
 import event from '../../../assets/img/event-list.png'
 import excel from '../../../assets/img/excel.png'
 import music from '../../../assets/img/music.png'

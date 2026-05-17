@@ -1,5 +1,5 @@
 import { FaStar } from 'react-icons/fa'
-import quote from '../../assets/img/quote.png'
+import quote from '../../../assets/img/quote.png'
 const ReviewCard = ({
   review,
   name,
