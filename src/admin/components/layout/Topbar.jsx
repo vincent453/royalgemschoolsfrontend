@@ -11,7 +11,12 @@ const Topbar = () => {
   // Fetch admin
   useEffect(() => {
     fetchAccount()
-      .then(setAdmin)
+      .then((data) => {
+        setAdmin({
+          ...data,
+          avatar: data.avatar?.trim() || null, // normalize empty string to null
+        });
+      })
       .catch(() => {});
   }, []);
 
@@ -29,6 +34,7 @@ const Topbar = () => {
   const displayName = admin?.adminName ?? "Admin";
   const displayEmail = admin?.adminEmail ?? "";
   const displayRole = admin?.role ?? "";
+  const avatarUrl = admin?.avatar || null; // already normalized above
 
   const initials = displayName
     .split(" ")
@@ -72,9 +78,9 @@ const Topbar = () => {
             className="w-10 h-10 rounded-md overflow-hidden flex items-center justify-center"
             title={displayName}
           >
-            {admin?.avatar ? (
+            {avatarUrl ? (
               <img
-                src={admin.avatar}
+                src={avatarUrl}
                 alt={displayName}
                 className="w-full h-full object-cover"
               />
@@ -95,17 +101,15 @@ const Topbar = () => {
                 <div className="flex items-center gap-3">
 
                   <div className="w-9 h-9 rounded-full overflow-hidden bg-[#A033A0] flex items-center justify-center text-white font-bold text-xs">
-
-                    {admin?.avatar ? (
+                    {avatarUrl ? (
                       <img
-                        src={admin.avatar}
+                        src={avatarUrl}
                         alt={displayName}
                         className="w-full h-full object-cover"
                       />
                     ) : (
                       initials
                     )}
-
                   </div>
 
                   <div className="min-w-0">
