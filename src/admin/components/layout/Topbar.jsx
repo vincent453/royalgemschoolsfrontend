@@ -61,13 +61,7 @@ const Topbar = () => {
       {/* Action buttons */}
       <div className="flex items-center gap-2">
         {[
-          { icon: "🔍", label: "Search"        },
-          { icon: "⊞",  label: "Grid"          },
-          { icon: <img src={dark} alt="Theme" />, label: "Theme" },
-          { icon: "⤢",  label: "Expand"        },
-          { icon: "💬",  label: "Chat"          },
-          { icon: "🔔",  label: "Notifications" },
-          { icon: "⚙️",  label: "Settings",     onClick: () => navigate("/settings") },
+          { icon: "⚙️",  label: "Settings",     onClick: () => navigate("settings") },
         ].map(({ icon, label, onClick }) => (
           <button
             key={label}

@@ -13,7 +13,7 @@ import {
   fetchAccount,
   updateAccount,
   changePassword,
-} from "../services/sethingsApi";   // ← adjust path if needed
+} from "../services/settingsApi";   // ← adjust path if needed
 
 // ─────────────────────────────────────────────────────────────
 // Utility hooks
@@ -102,7 +102,7 @@ const SchoolInfoTab = () => {
     fetchAsync.run(async () => {
       const data = await fetchSchoolInfo();
       setSchool(data);
-      if (data.logoUrl) setPreview(data.logoUrl);
+      if (data.logo) setPreview(data.logo); // model field is "logo" not "logoUrl"
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -121,12 +121,11 @@ const SchoolInfoTab = () => {
     setPreview(objectUrl);
     try {
       const { logoUrl } = await logoAsync.run(() => uploadSchoolLogo(file));
-      setSchool((prev) => ({ ...prev, logoUrl }));
+      setSchool((prev) => ({ ...prev, logo: logoUrl })); // store under "logo"
       setPreview(logoUrl);
       showToast("Logo updated!");
     } catch {
-      // Roll back preview on failure
-      setPreview(school?.logoUrl ?? null);
+      setPreview(school?.logo ?? null); // rollback uses "logo"
     }
   };
 
@@ -206,14 +205,14 @@ const SchoolInfoTab = () => {
       {school && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
-            { key: "name",     label: "School Name",      span: 2 },
-            { key: "tagline",  label: "Tagline / Motto",  span: 2 },
-            { key: "email",    label: "Email",            type: "email" },
-            { key: "phone",    label: "Phone" },
-            { key: "address",  label: "Address (Lagos)" },
-            { key: "address2", label: "Address (Abuja)" },
-            { key: "website",  label: "Website" },
-            { key: "session",  label: "Current Session",  placeholder: "e.g. 2024/2025" },
+            { key: "schoolName", label: "School Name",      span: 2 },
+            { key: "tagline",    label: "Tagline / Motto",  span: 2 },
+            { key: "email",      label: "Email",            type: "email" },
+            { key: "phone",      label: "Phone" },
+            { key: "address",    label: "Address (Lagos)" },
+            { key: "address2",   label: "Address (Abuja)" },
+            { key: "website",    label: "Website" },
+            { key: "session",    label: "Current Session",  placeholder: "e.g. 2024/2025" },
           ].map(({ key, label, span, type = "text", placeholder }) => (
             <div key={key} className={span === 2 ? "sm:col-span-2" : ""}>
               <label className={labelClass}>{label}</label>
