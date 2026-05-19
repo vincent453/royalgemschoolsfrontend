@@ -59,3 +59,15 @@ export const changePassword = ({ currentPassword, newPassword }) =>
     method: "POST",
     body: JSON.stringify({ currentPassword, newPassword }),
   });
+
+  export const uploadAvatar = async (file) => {
+  const formData = new FormData();
+  formData.append("avatar", file);
+  const res = await fetch(`${"https://royalgemschoolsbackend.vercel.app/api"}/api/settings/account/avatar`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    body: formData,
+  });
+  if (!res.ok) throw new Error((await res.json()).message);
+  return res.json();
+};
