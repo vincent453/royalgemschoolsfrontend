@@ -51,18 +51,7 @@ const TeacherCard = ({
 
         {/* Divider */}
         <div className="border-t border-gray-100 mt-4 pt-3 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-1.5 text-[#525fe1] hover:text-[#A033A0]
-                                  font-dm-sans text-sm font-medium underline underline-offset-2
-                                  transition-colors duration-300">
-            <FaBookOpen className="text-xs" />
-            {String(courses).padStart(2, '0')} Courses
-          </a>
-          <a href="#" className="flex items-center gap-1.5 text-[#525fe1] hover:text-[#A033A0]
-                                  font-dm-sans text-sm font-medium underline underline-offset-2
-                                  transition-colors duration-300">
-            <FaUserGraduate className="text-xs" />
-            {String(students).padStart(2, '0')} Students
-          </a>
+         
         </div>
       </div>
     </div>

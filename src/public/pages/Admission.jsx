@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import Footer from '../components/layout/Foooter'
 import Navbar from '../components/layout/Navbar'
+import bg from '../../assets/img/vission.jpeg'
 
 /* ── Royal Gem – Admissions Page ──────────────────────────────────────────
    Design matches the homepage screenshot:
@@ -175,7 +176,6 @@ export default function Admissions() {
 
         /* ── Hero ── */
         .hero {
-          background: linear-gradient(135deg, #f8f0ff 0%, #fff9e6 50%, #f3e8ff 100%);
           padding: 80px 5% 60px;
           display: flex; flex-direction: column; align-items: center; text-align: center;
           position: relative; overflow: hidden;
@@ -189,11 +189,11 @@ export default function Admissions() {
         }
         .hero h1 {
           font-family: 'Poppins', sans-serif; font-weight: 800; font-size: clamp(36px, 6vw, 64px);
-          line-height: 1.1; color: #1a1a2e; margin-bottom: 20px;
+          line-height: 1.1;  margin-bottom: 20px;
         }
         .hero h1 span { color: #A033A0; }
         .hero p {
-          font-size: 16px; color: #666; max-width: 560px; line-height: 1.75; margin-bottom: 36px;
+          font-size: 16px;  max-width: 560px; line-height: 1.75; margin-bottom: 36px;
         }
         .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
         .btn-primary {
@@ -328,7 +328,7 @@ export default function Admissions() {
 
         /* ── Dates banner ── */
         .dates-banner {
-          background: linear-gradient(135deg, #A033A0, #7b1fa2);
+          background: linear-gradient(120deg, #A033A0, #7b1fa2);
           border-radius: 24px; padding: 48px 5%; margin: 0 5%;
           display: flex; flex-wrap: wrap; gap: 32px;
           align-items: center; justify-content: space-between;
@@ -385,26 +385,8 @@ export default function Admissions() {
         .cta-section p { font-size: 15px; color: #777; max-width: 480px; margin: 0 auto 36px; line-height: 1.8; }
 
         /* ── Footer ── */
-        footer {
-          background: #1a1a2e; color: #aaa; padding: 56px 5% 28px;
-        }
-        .footer-top {
-          display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 40px;
-          padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-        .footer-brand p { font-size: 13.5px; line-height: 1.8; margin-top: 14px; color: #888; max-width: 240px; }
-        .footer-col h4 {
-          font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px;
-          color: #fff; margin-bottom: 16px;
-        }
-        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-        .footer-col ul li a { font-size: 13.5px; color: #888; text-decoration: none; transition: color .2s; }
-        .footer-col ul li a:hover { color: #A033A0; }
-        .footer-contact-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 13.5px; color: #888; }
-        .footer-bottom {
-          padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: gap;
-          font-size: 12.5px; color: #555;
-        }
+        
+       
 
         /* ── Decorative ── */
         .deco { position: absolute; pointer-events: none; }
@@ -420,31 +402,79 @@ export default function Admissions() {
       <div className='mt-[6rem]'>
         <Navbar />
         </div>
-      {/* ── Hero ── */}
-      <div className="hero">
-        {/* decorative sparkles */}
-        <Sparkle size={20} color="#f5c518" style={{ position:'absolute', top:40, left:'8%' }} />
-        <Sparkle size={12} color="#A033A0" style={{ position:'absolute', top:100, left:'15%' }} />
-        <Sparkle size={24} color="#f5c518" style={{ position:'absolute', top:60, right:'10%' }} />
-        <Sparkle size={14} color="#A033A0" style={{ position:'absolute', bottom:80, right:'18%' }} />
-        <Star style={{ position:'absolute', bottom:60, left:'12%' }} />
+{/* ── Hero ── */}
+<div
+  className="relative hero bg-cover bg-center flex items-center justify-evenly overflow-hidden mt-[2rem]"
+  style={{ backgroundImage: `url(${bg})` }}
+>
 
-        <span className="hero-badge">
-          <svg width="14" height="14" fill="#A033A0" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
-          2025/2026 Admissions — Now Open
-        </span>
+  {/* Dark Overlay */}
+  <div className="absolute inset-0 bg-black/80 z-0"></div>
 
-        <h1>Begin Your Child's<br /><span>Extraordinary Journey</span></h1>
-        <p>
-          Royal Gem Mathematical School offers a nurturing, academically rich environment
-          where every student is empowered to discover their potential and thrive.
-        </p>
-        <div className="hero-btns">
-          <a href="#apply" className="btn-primary">Apply Now</a>
-          <a href="#process" className="btn-outline">See Admission Process</a>
-        </div>
+  {/* Hero Content */}
+  <div className="relative z-10">
 
-        <div className="hero-stats">
+    {/* decorative sparkles */}
+    <Sparkle
+      size={20}
+      color="#f5c518"
+      style={{ position: "absolute", top: 40, left: "8%" }}
+    />
+
+    <Sparkle
+      size={12}
+      color="#A033A0"
+      style={{ position: "absolute", top: 100, left: "15%" }}
+    />
+
+    <Sparkle
+      size={24}
+      color="#f5c518"
+      style={{ position: "absolute", top: 60, right: "10%" }}
+    />
+
+    <Sparkle
+      size={14}
+      color="#A033A0"
+      style={{ position: "absolute", bottom: 80, right: "18%" }}
+    />
+
+    <Star
+      style={{ position: "absolute", bottom: 60, left: "12%" }}
+    />
+
+    <span className="hero-badge">
+      <svg width="14" height="14" fill="#A033A0" viewBox="0 0 24 24">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z" />
+      </svg>
+
+      2025/2026 Admissions — Now Open
+    </span>
+
+    <h1 className="text-[#ffffff]">
+      Begin Your Child's
+      <br />
+      <span className="text-[#A033A0]">
+        Extraordinary Journey
+      </span>
+    </h1>
+
+    <p className="text-[#ffffff]">
+      Royal Gem Mathematical School offers a nurturing,
+      academically rich environment where every student
+      is empowered to discover their potential and thrive.
+    </p>
+
+    <div className="hero-btns">
+      <a href="#apply" className="btn-primary">
+        Apply Now
+      </a>
+
+      <a href="#process" className="btn-outline">
+        See Admission Process
+      </a>
+    </div>
+    <div className="hero-stats">
           {[
             { num: '300+', label: 'Happy Students' },
             { num: '1,200+', label: 'Alumni Network' },
@@ -458,6 +488,9 @@ export default function Admissions() {
           ))}
         </div>
       </div>
+  </div>
+
+    
 
       {/* ── Why Choose Us ── */}
       <section>
@@ -548,7 +581,7 @@ export default function Admissions() {
       </section>
 
       {/* ── Fee Schedule ── */}
-      <section className="bg-yellow" id="fees">
+      {/* <section className="bg-yellow" id="fees">
         <span className="section-tag">School Fees</span>
         <h2 className="section-title">Transparent <span>Fee Structure</span></h2>
         <p className="section-sub">
@@ -576,7 +609,7 @@ export default function Admissions() {
           * Fees exclude uniform, textbooks and optional extracurricular activities.
           Contact the bursary for a full breakdown.
         </p>
-      </section>
+      </section> */}
 
       {/* ── FAQ ── */}
       <section>

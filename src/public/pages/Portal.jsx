@@ -107,7 +107,7 @@ export default function Portal() {
   const isStudent = tab === "student";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#fdf8fd] via-[#f0dff0] to-[#e8cfe8] flex items-center justify-center p-6 relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-gradient-to-br from-[#c4a7c4] via-[#fff7ff] to-[#e8cfe8] flex items-center justify-center p-6 relative overflow-hidden font-sans">
 
       {/* Decorative blobs */}
       <div className="absolute -top-16 -left-20 w-56 h-56 rounded-full bg-[#A033A0]/10 animate-pulse pointer-events-none" />

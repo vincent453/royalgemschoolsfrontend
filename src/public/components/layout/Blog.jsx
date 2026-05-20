@@ -22,7 +22,7 @@ const posts = [
     image:    blog3,
     date:     "May 19, 2026",
     category: "Graduation Ceremony",  
-    title:    "How Mobile Technology is Revolutionizing Painting and Sculpting",
+    title:    "Celebration of Royal Gem Schools Graduation Ceremony",
     href:     "/blog/technology-in-art",
   } 
 
