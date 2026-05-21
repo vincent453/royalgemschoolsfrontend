@@ -5,6 +5,7 @@ import ParentsDetailsForm from "../components/ui/ParentDetailsForm";
 import StudentDetailsForm from "../components/ui/StudentDetailsForm";
 
 const AddStudent = () => {
+    const [sidebarOpen, setSidebarOpen] = useState(false)
   const [studentForm, setStudentForm] = useState({
     firstName: "",
     lastName: "",
@@ -83,13 +84,16 @@ const AddStudent = () => {
     <div className="flex flex-col h-full bg-[#E6EBEE] overflow-hidden">
       {/* Topbar */}
       <div className="sticky top-0 z-50 w-full">
-        <Topbar />
+        <Topbar onMenuToggle={() => setSidebarOpen(p => !p)} />
       </div>
 
       {/* Below topbar: sidebar + content */}
       <div className="flex flex-1 overflow-y-scroll h-full rounded-r-2xl shadow-sm">
         <div className="-mt-16">
-          <Slidebar />
+                    <Slidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
         </div>
 
         <main className="flex-1 overflow-y-auto px-6 py-10 space-y-6">

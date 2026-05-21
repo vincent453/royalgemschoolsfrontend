@@ -101,17 +101,20 @@ const Users = () => {
     { label: 'Inactive',    value: users.filter(u => !u.isActive).length,     color: 'text-red-500'     },
     { label: 'Teachers',    value: users.filter(u => u.role === 'teacher').length, color: 'text-blue-500' },
   ]
-
+    const [sidebarOpen, setSidebarOpen] = useState(false)
   return (
     <div className="flex flex-col h-[100dvh] bg-[#E6EBEE] overflow-x-hidden">
 
       <div className="sticky top-0 z-50 w-full">
-        <Topbar />
+        <Topbar onMenuToggle={() => setSidebarOpen(p => !p)} />
       </div>
 
       <div className="flex flex-1 overflow-hidden">
         <div className="-mt-16">
-          <Slidebar />
+                    <Slidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
         </div>
 
         <main className="w-full overflow-y-auto">

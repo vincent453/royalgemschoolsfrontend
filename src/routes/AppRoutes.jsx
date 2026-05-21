@@ -18,6 +18,8 @@ import Users from "../admin/pages/Users";
 import AddUser from "../admin/pages/AddUsers";
 import ResultCard from "../admin/pages/ResultCard";
 import Admissions from "../public/pages/Admission";
+import Portal from "../public/pages/Portal";
+import Yearbook from "../public/pages/YearBook";
 export default function AppRoutes() {
   return (
     <Routes>    
@@ -25,6 +27,8 @@ export default function AppRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/admissions" element={<Admissions />} />
+        <Route path="/portal" element={<Portal /> }/> 
+        <Route path="/yearbook" element={<Yearbook /> }/> 
         <Route path="/admin/portal" element={<AdminLogin />} />
          <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
         <Route path="/admin/students" element={<ProtectedRoute><Student /></ProtectedRoute>} />

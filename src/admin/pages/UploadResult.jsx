@@ -184,7 +184,7 @@ const UploadResult = () => {
   const labelClass = `font-dm-sans text-[#A033A0] text-sm font-semibold mb-1 block`
   const sectionClass = `bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col gap-4`
   const headingClass = `font-jost font-bold text-gray-800 text-lg border-b border-gray-100 pb-3`
-
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   // ── Rating input (1–5) ──
   const RatingInput = ({ value, onChange }) => (
     <select value={value} onChange={e => onChange(e.target.value)} className={inputClass}>
@@ -215,7 +215,10 @@ const UploadResult = () => {
       <div className="sticky top-0 z-50 w-full"><Topbar /></div>
 
       <div className="flex flex-1 overflow-hidden">
-        <div className="-mt-16"><Slidebar /></div>
+        <div className="-mt-16">          <Slidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      /></div>
 
         <main className="w-full overflow-y-auto">
           <form onSubmit={handleSubmit} className="flex flex-col gap-6 p-6 max-w-5xl mx-auto">

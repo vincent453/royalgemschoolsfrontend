@@ -67,13 +67,13 @@ const GeneratePin = () => {
     setTerm('')
     setSession('')
   }
-
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   return (
     <div className="flex flex-col h-[100dvh] bg-[#E6EBEE] overflow-x-hidden">
 
       {/* Topbar */}
       <div className="sticky top-0 z-50 w-full">
-        <Topbar />
+        <Topbar onMenuToggle={() => setSidebarOpen(p => !p)} />
       </div>
 
       {/* Below topbar: sidebar + content */}
@@ -81,7 +81,10 @@ const GeneratePin = () => {
 
         {/* Sidebar */}
         <div className="-mt-16">
-          <Slidebar />
+                    <Slidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
         </div>
 
         {/* Scrollable content */}

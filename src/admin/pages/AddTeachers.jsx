@@ -2,14 +2,16 @@ import Slidebar from "../components/layout/Slidebar";
 import Topbar from "../components/layout/Topbar";
 import StudentDetailsForm from "../components/ui/StudentDetailsForm";
 import EducationDetailsForm from "../components/ui/EducationDetailsForm";
+import { useState } from "react";
 
 const AddStudent = () => {
+    const [sidebarOpen, setSidebarOpen] = useState(false)
   return (
     <div className="flex flex-col h-full bg-[#E6EBEE] overflow-hidden ">
 
       {/* Topbar — full width across the top */}
       <div className="sticky top-0 z-50 w-full">
-        <Topbar />
+        <Topbar onMenuToggle={() => setSidebarOpen(p => !p)} />
       </div>
 
       {/* Below topbar: sidebar + content side by side */}
@@ -17,7 +19,10 @@ const AddStudent = () => {
 
         {/* Sidebar */}
         <div className="-mt-16 ">
-        <Slidebar />
+                  <Slidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
         </div>
 
         {/* Scrollable content */}

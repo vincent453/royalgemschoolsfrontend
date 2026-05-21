@@ -7,7 +7,7 @@ import Topbar from "../components/layout/Topbar";
 import TeacherCard from "../components/ui/TeachersCard";
 
 const Teacher = () => {
-
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const navigate = useNavigate();
 
   const [teachers, setTeachers] = useState([]);
@@ -50,14 +50,17 @@ const Teacher = () => {
 
       {/* Topbar */}
       <div className="sticky top-0 z-50 w-full">
-        <Topbar />
+        <Topbar onMenuToggle={() => setSidebarOpen(p => !p)} />
       </div>
 
       <div className="flex flex-1 overflow-hidden">
 
         {/* Sidebar */}
         <div className="-mt-16">
-          <Slidebar />
+                    <Slidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
         </div>
 
         {/* Main Content */}
