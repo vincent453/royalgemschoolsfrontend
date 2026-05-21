@@ -2,8 +2,10 @@ import Slidebar from "../components/layout/Slidebar"
 import Topbar from "../components/layout/Topbar"
 import SearchHeader from "../components/ui/SearchHeader"
 import ResultTable  from "../components/ui/ResultTable"
+import { useState } from "react"
 
 const Results = () => {
+    const [sidebarOpen, setSidebarOpen] = useState(false)
   return (
     <div className="flex flex-col h-[100dvh] bg-[#E6EBEE] overflow-x-hidden">
 

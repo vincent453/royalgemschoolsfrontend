@@ -14,25 +14,20 @@ const ResultTable = () => {
   // ── Fetch results from backend ──
   const fetchResults = async () => {
     try {
-      setLoading(true);
-      setError("");
+      setLoading(true); setError("");
       const token = localStorage.getItem("token");
-      const res = await fetch("https://royalgemschoolsbackend.vercel.app/0/api/results", {
+      const res = await fetch("https://royalgemschoolsbackend.vercel.app/api/results", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
       setResults(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+    } catch (err) { setError(err.message); }
+    finally { setLoading(false); }
   };
+ 
+  useEffect(() => { fetchResults(); }, []);
 
-  useEffect(() => {
-    fetchResults();
-  }, []);
 
   // ── Delete result ──
   const handleDelete = async (id) => {
