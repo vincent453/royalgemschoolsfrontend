@@ -517,7 +517,10 @@ const [sidebarOpen, setSidebarOpen] = useState(false);
     <div className="flex flex-col h-[100dvh] bg-[#E6EBEE] overflow-x-hidden">
       <div className="sticky top-0 z-50 w-full">
         {/* Pass avatarUrl so Topbar reflects new photo immediately */}
-        <Topbar avatarOverride={avatarUrl} setSidebarOpen={setSidebarOpen} />
+       <Topbar
+  avatarOverride={avatarUrl}
+  onMenuToggle={() => setSidebarOpen(true)}
+/>
       </div>
 
       <div className="flex flex-1 overflow-hidden">
