@@ -16,7 +16,7 @@ const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
       {/* Sidebar */}
       <aside
         className={`
-          fixed md:static top-0 mt-[3.8rem]  left-0 z-50
+          fixed md:static top-0 mt-[3.5rem]  left-0 z-50
           w-[240px] min-h-screen bg-white border-r border-gray-100
           flex flex-col transition-transform duration-300 ease-in-out
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
