@@ -212,7 +212,8 @@ const UploadResult = () => {
 
   return (
     <div className="flex flex-col h-[100dvh] bg-[#E6EBEE] overflow-x-hidden">
-      <div className="sticky top-0 z-50 w-full"><Topbar /></div>
+      <div className="sticky top-0 z-50 w-full">        <Topbar onMenuToggle={() => setSidebarOpen(p => !p)} />
+</div>
 
       <div className="flex flex-1 overflow-hidden">
         <div className="-mt-16">          <Slidebar

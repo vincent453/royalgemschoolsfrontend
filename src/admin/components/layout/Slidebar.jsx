@@ -14,16 +14,15 @@ const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
       )}
 
       {/* Sidebar */}
-    <aside
-      className={`
-        fixed md:relative top-0 mt-[4rem] left-0 z-50
-        w-full md:w-[240px] h-screen
-        bg-white border-r border-gray-100
-        flex flex-col transition-transform duration-300 ease-in-out
-        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
-        md:translate-x-0
-      `}
-    >
+      <aside
+        className={`
+          fixed md:static top-0 left-0 z-50
+          w-[240px] min-h-screen bg-white border-r border-gray-100
+          flex flex-col transition-transform duration-300 ease-in-out
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+          md:translate-x-0
+        `}
+      >
         {/* Logo */}
         <div className="flex items-center justify-center py-6 border-b border-gray-100">
           <div className="w-16 h-16 rounded-xl bg-[#a13ea1]/10 flex items-center justify-center overflow-hidden">

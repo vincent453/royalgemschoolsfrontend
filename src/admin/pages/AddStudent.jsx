@@ -79,6 +79,7 @@ const AddStudent = () => {
       setLoading(false);
     }
   };
+  
 
   return (
     <div className="flex flex-col h-full bg-[#E6EBEE] overflow-hidden">
