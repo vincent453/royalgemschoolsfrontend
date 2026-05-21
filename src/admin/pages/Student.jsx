@@ -18,7 +18,7 @@ const Student = () => {
         <main className="w-full overflow-y-auto">
           <div className="flex flex-col gap-6 p-6 max-w-6xl mx-auto">
           <SearchHeader   />
-            <div className=" mt-5">
+            <div className=" mt-5"> 
          <StudentTable />
     </div>  
     </div>
@@ -29,3 +29,30 @@ const Student = () => {
 }
 
 export default Student
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

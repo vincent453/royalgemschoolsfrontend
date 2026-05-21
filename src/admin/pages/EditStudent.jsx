@@ -9,6 +9,7 @@ const genders     = ["Male", "Female"];
 const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
 const EditStudent = () => {
+    const [sidebarOpen, setSidebarOpen] = useState(false)
   const { id }     = useParams();
   const navigate   = useNavigate();
 
@@ -173,12 +174,15 @@ const EditStudent = () => {
   return (
     <div className="flex h-screen bg-[#E6EBEE] overflow-hidden">
       <div className="fixed top-1 left-0 h-screen w-64 z-40">
-        <Slidebar />
+                  <Slidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
       </div>
 
       <div className="flex flex-col flex-1 overflow-hidden">
         <div className="sticky top-0 z-50 w-full">
-          <Topbar />
+          <Topbar onMenuToggle={() => setSidebarOpen(p => !p)} />
         </div>
 
         <main className="flex-1 overflow-scroll ml-64 mt-16">

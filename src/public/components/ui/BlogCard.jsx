@@ -9,10 +9,10 @@ const BlogCard = ({
   href = "#",
 }) => {
   return (
-    <div className="bg-white shadow-sm border border-gray-200 overflow-hidden group w-full max-w-[320px]">
+    <div className="bg-white shadow-sm border border-gray-200 overflow-hidden group w-full max-w-[340px]">
 
       {/* Image */}
-      <div className="overflow-hidden h-[220px]">
+      <div className="overflow-hidden h-[300px]">
         <img
           src={image}
           alt={title}

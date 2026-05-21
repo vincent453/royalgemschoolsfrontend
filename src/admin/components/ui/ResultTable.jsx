@@ -17,7 +17,7 @@ const ResultTable = () => {
       setLoading(true);
       setError("");
       const token = localStorage.getItem("token");
-      const res = await fetch("https://royalgemschoolsbackend.vercel.app/api/results", {
+      const res = await fetch("https://royalgemschoolsbackend.vercel.app/0/api/results", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -39,7 +39,7 @@ const ResultTable = () => {
     if (!window.confirm("Are you sure you want to delete this result?")) return;
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`https://royalgemschoolsbackend.vercel.app/api/results/${id}`, {
+      const res = await fetch(`https://royalgemschoolsbackend.vercel.app/0/api/results/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

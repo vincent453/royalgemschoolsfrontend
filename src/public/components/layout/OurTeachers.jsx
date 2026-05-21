@@ -11,8 +11,7 @@ const teachers = [
     image:      teacher1,
     name:       "Mrs. Oluwatoyin Ariyo",
     subject:    "Mathematics Teacher",
-    courses:    4,
-    students:   120,
+  
     twitterUrl: "https://twitter.com/",
     facebookUrl:"https://facebook.com/",
     linkedinUrl:"https://linkedin.com/",
@@ -21,8 +20,7 @@ const teachers = [
     image:      teacher2,
     name:       "Mr. John Doe",
     subject:    "Science Teacher",
-    courses:    3,
-    students:   90,
+
     twitterUrl: "https://twitter.com/",
     facebookUrl:"https://facebook.com/",
     linkedinUrl:"https://linkedin.com/",    
@@ -31,8 +29,7 @@ const teachers = [
     image:      teacher3,
     name:       "Ms. Jane Smith",
     subject:    "English Teacher",
-    courses:    5,
-    students:   150,
+    
     twitterUrl: "https://twitter.com/",
     facebookUrl:"https://facebook.com/",
     linkedinUrl:"https://linkedin.com/",    
@@ -41,8 +38,7 @@ const teachers = [
     image:      teacher4,
     name:       "Mr. David Johnson",
     subject:    "History Teacher",
-    courses:    4,
-    students:   110,
+   
     twitterUrl: "https://twitter.com/",
     facebookUrl:"https://facebook.com/",
     linkedinUrl:"https://linkedin.com/",    

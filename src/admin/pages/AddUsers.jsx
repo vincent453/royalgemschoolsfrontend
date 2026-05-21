@@ -20,6 +20,7 @@ const roles = [
 const classes = ['JSS 1', 'JSS 2', 'JSS 3', 'SSS 1', 'SSS 2', 'SSS 3']
 
 const AddUser = () => {
+    const [sidebarOpen, setSidebarOpen] = useState(false)
   const navigate = useNavigate()
 
   const [form, setForm] = useState({
@@ -147,12 +148,15 @@ const AddUser = () => {
     <div className="flex flex-col h-[100dvh] bg-[#E6EBEE] overflow-x-hidden">
 
       <div className="sticky top-0 z-50 w-full">
-        <Topbar />
+        <Topbar onMenuToggle={() => setSidebarOpen(p => !p)} />
       </div>
 
       <div className="flex flex-1 overflow-hidden">
         <div className="-mt-16">
-          <Slidebar />
+                    <Slidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
         </div>
 
         <main className="w-full overflow-y-auto">

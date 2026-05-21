@@ -1,28 +1,28 @@
 import BlogCard from "../ui/BlogCard"
 import SectionHeader from "../ui/SectionHeader"
-import blog1 from '../../../assets/img/blog1.jpg'
-import blog2 from '../../../assets/img/blog2.jpg'
-import blog3 from '../../../assets/img/blog3.jpg'
+import blog1 from '../../../assets/img/excursion.jpeg'
+import blog2 from '../../../assets/img/blog2.jpeg'
+import blog3 from '../../../assets/img/video.jpeg'
 const posts = [
   {
     image:    blog1,
-    date:     "May 10, 2024",
-    category: "Education",
-    title:    "Professional Mobile Painting and Sculpting",
+    date:     "May 19, 2026",
+    category: "Exploration",
+    title:    "Excursion Trip at Royal Gem Schools",
     href:     "/blog/mobile-painting",
   },
   {
     image:    blog2,
-    date:     "June 5, 2024",
-    category: "Art & Creativity",
-    title:    "The Art of Mobile Sculpting: A New Frontier in Creativity",
+    date:     "May 19, 2026",
+    category: "Education",
+    title:    "Kindly Encourage you to Consistently Monitor both the academic progress and character development of your children",
     href:     "/blog/mobile-sculpting",
   },
     {   
     image:    blog3,
-    date:     "July 20, 2024",
-    category: "Technology in Art",  
-    title:    "How Mobile Technology is Revolutionizing Painting and Sculpting",
+    date:     "May 19, 2026",
+    category: "Graduation Ceremony",  
+    title:    "Celebration of Royal Gem Schools Graduation Ceremony",
     href:     "/blog/technology-in-art",
   } 
 

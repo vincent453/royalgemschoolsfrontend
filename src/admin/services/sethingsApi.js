@@ -59,3 +59,13 @@ export const changePassword = ({ currentPassword, newPassword }) =>
     method: "POST",
     body: JSON.stringify({ currentPassword, newPassword }),
   });
+
+export const uploadAvatar = async (file) => {
+  const fd = new FormData();
+  fd.append("avatar", file);
+
+  return request("/settings/account/avatar", {
+    method: "POST",
+    body: fd,
+  });
+};
