@@ -1,7 +1,7 @@
 import home from '../../../assets/img/trip.jpeg'
 import StatCard from '../ui/RatingCard'
 import { FaUserGraduate } from "react-icons/fa";
-
+import { useNavigate } from "react-router-dom";
 const stats = [
   {
     icon: <FaUserGraduate className="text-[#f26b65]" />,
@@ -26,7 +26,9 @@ const stats = [
 ];
 
 
+
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <div>
 <section
@@ -56,15 +58,21 @@ const Hero = () => {
         Your description or subtitle goes here.
       </p>
 
-      <div className="mt-8 flex gap-4 justify-center lg:justify-start">
-        <button className="bg-[#A033A0] hover:bg-[#525fe1] text-white font-jost font-semibold py-3 px-8 transition-all duration-500">
-          Get Started
-        </button>
+   <div className="mt-8 flex gap-4 justify-center lg:justify-start">
+  <button
+    onClick={() => navigate("/get-started")}
+    className="bg-[#A033A0] hover:bg-[#525fe1] text-white font-jost font-semibold py-3 px-8 transition-all duration-500"
+  >
+    Get Started
+  </button>
 
-        <button className="border border-white text-white font-jost font-semibold py-3 px-8 hover:border-[#A033A0] hover:text-[#A033A0] transition-all duration-300">
-          Learn More
-        </button>
-      </div>
+  <button
+    onClick={() => navigate("/learn-more")}
+    className="border border-white text-white font-jost font-semibold py-3 px-8 hover:border-[#A033A0] hover:text-[#A033A0] transition-all duration-300"
+  >
+    Learn More
+  </button>
+</div>
     </div>
 
 
