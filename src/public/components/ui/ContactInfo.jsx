@@ -37,39 +37,53 @@ const contactCards = [
 ]
 
 const ContactInfoCard = ({ icon, title, lines, bg, iconBg, href }) => (
-  <div className={`${bg} flex flex-col items-center justify-center text-center
-                   gap-5 py-6 px-8 w-full`}>
-
+  <div
+    className={`${bg} flex flex-col items-center justify-center text-center
+                gap-4 sm:gap-5 py-8 px-5 sm:px-8 w-full rounded-2xl`}
+  >
     {/* Icon */}
-    <div className={`w-16 h-16 rounded-xl flex items-center justify-center text-2xl ${iconBg}`}>
+    <div
+      className={`w-14 h-14 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center text-xl sm:text-2xl ${iconBg}`}
+    >
       {icon}
     </div>
 
     {/* Title */}
-    <h3 className="font-jost font-bold text-[#1a1a4b] text-xl">{title}</h3>
+    <h3 className="font-jost font-bold text-[#1a1a4b] text-lg sm:text-xl">
+      {title}
+    </h3>
 
     {/* Lines */}
     <div className="flex flex-col gap-1">
-      {lines.map((line, i) => (
+      {lines.map((line, i) =>
         href ? (
           <a
             key={i}
             href={href}
-            className="font-dm-sans text-gray-500 text-sm hover:text-[#A033A0] transition-colors duration-300"
+            className="font-dm-sans text-gray-500 text-sm sm:text-base break-words hover:text-[#A033A0] transition-colors duration-300"
           >
             {line}
           </a>
         ) : (
-          <p key={i} className="font-dm-sans text-gray-500 text-sm">{line}</p>
+          <p
+            key={i}
+            className="font-dm-sans text-gray-500 text-sm sm:text-base"
+          >
+            {line}
+          </p>
         )
-      ))}
+      )}
     </div>
   </div>
 )
 
 const ContactInfo = () => {
   return (
-    <div className="grid px-[7rem] mt-[5rem] grid-cols-1 sm:grid-cols-3 w-full">
+    <div
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
+                 gap-6 px-4 sm:px-8 md:px-12 lg:px-[7rem]
+                 mt-12 sm:mt-16 w-full"
+    >
       {contactCards.map((card, index) => (
         <ContactInfoCard key={index} {...card} />
       ))}
