@@ -643,8 +643,8 @@ export default function Admissions() {
           Our admissions team is ready to guide you through every step.
         </p>
         <div className="hero-btns">
-          <a href="#" onClick={() => navigate("/about")} className="btn-primary">Download Application Form</a>
-          <a href="#" onClick={() => navigate("/about")} className="btn-outline">Contact Admissions Office</a>
+          <a href="#" onClick={() => navigate("/")} className="btn-primary">Download Application Form</a>
+          <a href="#" onClick={() => navigate("/contact")} className="btn-outline">Contact Admissions Office</a>
         </div>
         <div style={{ marginTop:32, display:'flex', gap:28, justifyContent:'center', flexWrap:'wrap' }}>
           {[
