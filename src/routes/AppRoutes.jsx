@@ -28,6 +28,7 @@ import ResultCard     from "../admin/pages/ResultCard";
 
 // Route guards
 import { AdminRoute, TeacherRoute   } from "./ProtectedRoutes";
+import AddYearbookEntry from "../admin/pages/AddYearBookEntry";
 
 export default function AppRoutes() {
   return (
@@ -56,6 +57,7 @@ export default function AppRoutes() {
       <Route path="/admin/addUsers"          element={<AdminRoute><AddUser /></AdminRoute>} />
       <Route path="/admin/results"           element={<AdminRoute><Result /></AdminRoute>} />
       <Route path="/admin/upload"            element={<AdminRoute><UploadResult /></AdminRoute>} />
+      <Route path="/admin/assyearbookentry"            element={<AdminRoute><AddYearbookEntry /></AdminRoute>} />
       <Route path="/admin/settings"          element={<AdminRoute><Settings /></AdminRoute>} />
       <Route path="/admin/generatepin"       element={<AdminRoute><GeneratePin /></AdminRoute>} />
       <Route path="/admin/results/view/:id"  element={<AdminRoute><ResultCard /></AdminRoute>} />

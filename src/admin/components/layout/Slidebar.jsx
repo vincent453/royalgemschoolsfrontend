@@ -10,6 +10,7 @@ import {
   MdGroup,
   MdUpload,
   MdPin,
+  MdMemory,
 } from "react-icons/md";
 
 // ── Admin sees everything ──
@@ -19,8 +20,9 @@ const adminNavItems = [
   { id: 3, label: "Results",    href: "/admin/results",    icon: <MdBarChart />  },
   { id: 4, label: "Teachers",   href: "/admin/teachers",   icon: <MdPeople />    },
   { id: 5, label: "Users",      href: "/admin/users",      icon: <MdGroup />     },
-  { id: 6, label: "Generate Pin", href: "/admin/generatepin",icon: <MdPin />  },
-  { id: 6, label: "Settings",   href: "/admin/settings",   icon: <MdSettings />  },
+  { id: 6, label: "Add Yearbook Entry",      href: "/admin/addyearbookentry", icon: <MdMemory />     },
+  { id: 7, label: "Generate Pin", href: "/admin/generatepin",icon: <MdPin />  },
+  { id: 8, label: "Settings",   href: "/admin/settings",   icon: <MdSettings />  },
 ];
 
 // ── Teacher sees limited menu ──
