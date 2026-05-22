@@ -15,10 +15,12 @@ const aboutLinks = [
 
 
 const contactInfo = [
-  { icon: <FaMapMarkerAlt />, text: "Ikorodu, Lagos State & Abuja, FCT, Nigeria", href: null },
-  { icon: <FaPhone />,        text: "+234 800 000 0000",                           href: "tel:+2348000000000" },
-  { icon: <FaWhatsapp />,     text: "Contact Whatsapp",                            href: "https://wa.me/2348000000000", colored: true },
-  { icon: <FaEnvelope />,     text: "info@royalgemschools.com",                    href: "mailto:info@royalgemschools.com" },
+  { icon: <FaMapMarkerAlt />, text: "Main address: 15, Royal Gem Avenue, Ayonnusi Estate, off Sagamu Road, Ikorudu, Lagos State", href: null },
+  { icon: <FaMapMarkerAlt />, text: "Annex: 6, Main Street, Suncity Estate, Galadimawa Distict, Abuja, 15, Royal Gem Avenue, Ayok", href: null },
+  { icon: <FaPhone />,        text: "+234 906 565 0959",                           href: "tel:+23407037199498" },
+  { icon: <FaPhone />,        text: "+234 703 719 9498",                           href: "tel:+23407037199498" },
+  { icon: <FaWhatsapp />,     text: "Contact Whatsapp",                            href: "https://wa.me/2347037199498", colored: true },
+  { icon: <FaEnvelope />,     text: "school.royalgem@gmail.com",                    href: "mailto:school.royalgem@gmail.com" },
 ]
 
 const socials = [
