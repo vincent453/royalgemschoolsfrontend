@@ -1,10 +1,11 @@
+import { useEffect } from "react"
 import Benefit from "../components/layout/Benefit"
 import Navbar from "../components/layout/Navbar"
 import Section from "../components/layout/Section"
-import AboutUs from "../components/layout/AboutUs"                             
-import owner from '../../assets/img/owner.jpeg'
+import AboutUs from "../components/layout/AboutUs"
+import owner from "../../assets/img/owner.jpeg"
 import VideoPlayer from "../components/layout/VideoPlayer"
-import videobg from '../../assets/img/video.jpeg'
+import videobg from "../../assets/img/video.jpeg"
 import { FaUserGraduate } from "react-icons/fa"
 import StatCard from "../components/ui/RatingCard"
 import MessionVission from "../components/layout/MessionVission"
@@ -13,7 +14,20 @@ import Achievements from "../components/layout/Acheivement"
 import Facilities from "../components/layout/Facilities"
 import Footer from "../components/layout/Foooter"
 
+import AOS from "aos"
+import "aos/dist/aos.css"
+
 const About = () => {
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: "ease-in-out",
+      offset: 80,
+    })
+  }, [])
+
   const stats = [
     {
       icon: <FaUserGraduate className="text-[#f26b65]" />,
@@ -35,28 +49,67 @@ const About = () => {
       count: "10+",
       label: "Years of Excellence",
     },
-  ];
-  
+  ]
+
   return (
-    <div>
-        <Navbar />
+    <div className="overflow-x-hidden">
+
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Hero Section */}
+      <div data-aos="fade-down">
         <Section />
+      </div>
+
+      {/* Benefits */}
+      <div data-aos="fade-up">
         <Benefit />
+      </div>
+
+      {/* About */}
+      <div data-aos="fade-right">
         <AboutUs image={owner} />
-        <VideoPlayer thumbnailImage={videobg} style={"px-[0rem] md:px-[0rem] py:px-[0rem]"} />
-        <div>
-            <div className="grid grid-cols-1 mt-14 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:-mt-12 z-10 relative px-6 md:px-14">
-  {stats.map((item, index) => (
-    <StatCard
-      key={index}
-      icon={item.icon}
-      count={item.count}
-      label={item.label}
-    />
-  ))}
-</div>
+      </div>
+
+      {/* Video */}
+      <div data-aos="zoom-in">
+        <VideoPlayer
+          thumbnailImage={videobg}
+          style={"px-[0rem] md:px-[0rem] py:px-[0rem]"}
+        />
+      </div>
+
+      {/* Stats */}
+      <div className="relative z-10">
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4
+                     gap-6 mt-14 lg:-mt-12
+                     px-4 sm:px-6 md:px-14"
+        >
+          {stats.map((item, index) => (
+            <div
+              key={index}
+              data-aos="fade-up"
+              data-aos-delay={index * 150}
+            >
+              <StatCard
+                icon={item.icon}
+                count={item.count}
+                label={item.label}
+              />
+            </div>
+          ))}
         </div>
+      </div>
+
+      {/* Mission & Vision */}
+      <div data-aos="fade-left">
         <MessionVission />
+      </div>
+
+      {/* Founder */}
+      <div data-aos="fade-up">
         <FounderProfile
           image={owner}
           name="Dr. Oluwatoyin Ariyo-Ojeme"
@@ -66,9 +119,21 @@ const About = () => {
           students="500+"
           years="20+"
         />
+      </div>
+
+      {/* Achievements */}
+      <div data-aos="zoom-in-up">
         <Achievements />
+      </div>
+
+      {/* Facilities */}
+      <div data-aos="fade-up">
         <Facilities />
-        <Footer />
+      </div>
+
+      {/* Footer */}
+      <Footer />
+
     </div>
   )
 }

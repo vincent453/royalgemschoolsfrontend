@@ -57,7 +57,7 @@ export default function AppRoutes() {
       <Route path="/admin/addUsers"          element={<AdminRoute><AddUser /></AdminRoute>} />
       <Route path="/admin/results"           element={<AdminRoute><Result /></AdminRoute>} />
       <Route path="/admin/upload"            element={<AdminRoute><UploadResult /></AdminRoute>} />
-      <Route path="/admin/assyearbookentry"            element={<AdminRoute><AddYearbookEntry /></AdminRoute>} />
+      <Route path="/admin/addyearbookentry"            element={<AdminRoute><AddYearbookEntry /></AdminRoute>} />
       <Route path="/admin/settings"          element={<AdminRoute><Settings /></AdminRoute>} />
       <Route path="/admin/generatepin"       element={<AdminRoute><GeneratePin /></AdminRoute>} />
       <Route path="/admin/results/view/:id"  element={<AdminRoute><ResultCard /></AdminRoute>} />

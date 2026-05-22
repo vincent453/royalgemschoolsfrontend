@@ -1,3 +1,7 @@
+import { useEffect } from "react"
+import AOS from "aos"
+import "aos/dist/aos.css"
+
 import AboutUs from "../components/layout/AboutUs"
 import Benefit from "../components/layout/Benefit"
 import Hero from "../components/layout/Hero"
@@ -13,21 +17,63 @@ import shapeimage from '../../assets/img/shape-image.png'
 
 
 const Home = () => {
-  return (
-    <div>
+  useEffect(() => {
+    AOS.init({
+      duration: 800,       // animation duration in ms
+      easing: "ease-in-out",
+      once: true,          // animate only once per scroll
+      offset: 80,          // trigger 80px before element enters viewport
+    })
+  }, [])
 
-        <Navbar  />
+  return (
+    <div className="overflow-x-hidden">
+      <Navbar />
+
+      {/* Hero: fade up from bottom on load */}
+      <div data-aos="fade-up">
         <Hero />
-        <div className="mt-20">
+      </div>
+
+      {/* Benefits: fade up with slight delay */}
+      <div className="mt-20" data-aos="fade-up" data-aos-delay="100">
         <Benefit />
-        </div>
-        <AboutUs image={shapeimage}  />
+      </div>
+
+      {/* About Us: slide in from the left */}
+      <div data-aos="fade-right" data-aos-delay="150">
+        <AboutUs image={shapeimage} />
+      </div>
+
+      {/* Popular Category: zoom in from center */}
+      <div data-aos="zoom-in" data-aos-delay="100">
         <PopularCategory />
+      </div>
+
+      {/* Video Player: fade in from bottom */}
+      <div data-aos="fade-up" data-aos-delay="100">
         <VideoPlayer thumbnailImage={videobg} />
+      </div>
+
+      {/* Our Teachers: slide in from the right */}
+      <div data-aos="fade-left" data-aos-delay="100">
         <OurTeachers />
+      </div>
+
+      {/* Testimonials: flip up */}
+      <div data-aos="flip-up" data-aos-delay="100">
         <Testimonials />
+      </div>
+
+      {/* Blog: fade up */}
+      <div data-aos="fade-up" data-aos-delay="100">
         <Blog />
-        <Footer/>
+      </div>
+
+      {/* Footer: subtle fade in */}
+      <div data-aos="fade-in" data-aos-delay="50">
+        <Footer />
+      </div>
     </div>
   )
 }
