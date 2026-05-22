@@ -1,6 +1,6 @@
 import Slidebar from "../components/layout/Slidebar";
 import Topbar from "../components/layout/Topbar";
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaKey, FaCopy, FaDownload, FaRedo, FaCheckCircle } from 'react-icons/fa'
 
 const classes = ['All Classes', 'JSS 1', 'JSS 2', 'JSS 3', 'SSS 1', 'SSS 2', 'SSS 3']
@@ -15,12 +15,7 @@ const sortOptions = [
 ]
 
 // Mock generated PINs for preview
-const mockPins = [
-  { reg: 'JSS1/001', name: 'Adaeze Okonkwo',   class: 'JSS 1', pin: '7X4K-9M2P' },
-  { reg: 'JSS1/002', name: 'Emeka Nwosu',       class: 'JSS 1', pin: '3R8T-6N1Q' },
-  { reg: 'JSS1/003', name: 'Fatima Bello',      class: 'JSS 1', pin: '5W2J-8L4V' },
-  { reg: 'JSS1/004', name: 'Chukwuemeka Eze',  class: 'JSS 1', pin: '1D9H-7C5B' },
-]
+
 
 const GeneratePin = () => {
   const [filterClass, setFilterClass]   = useState('All Classes')
@@ -33,7 +28,56 @@ const GeneratePin = () => {
   const [quantity, setQuantity]         = useState('1')
   const [generated, setGenerated]       = useState(false)
   const [copied, setCopied]             = useState(null)
-  const [pins, setPins]                 = useState([])
+const [pins, setPins] = useState([])
+const [students, setStudents] = useState([])
+const [loadingStudents, setLoadingStudents] = useState(false)
+
+useEffect(() => {
+  const fetchStudents = async () => {
+    try {
+      setLoadingStudents(true)
+
+      const res = await fetch(
+        "https://royalgemschoolsbackend.vercel.app/api/students",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+
+      const data = await res.json()
+
+      setStudents(data.students || data)
+    } catch (err) {
+      console.log(err)
+    } finally {
+      setLoadingStudents(false)
+    }
+  }
+
+  fetchStudents()
+}, [])
+
+const filteredStudents =
+  filterClass === "All Classes"
+    ? students
+    : students.filter((s) => s.className === filterClass)
+const sortedStudents = [...filteredStudents].sort((a, b) => {
+  switch (sortBy) {
+    case "name-desc":
+      return (b.fullName || "").localeCompare(a.fullName || "")
+
+    case "class":
+      return (a.className || "").localeCompare(b.className || "")
+
+    case "reg":
+      return (a.registrationNumber || "").localeCompare(b.registrationNumber || "")
+
+    default:
+      return (a.fullName || "").localeCompare(b.fullName || "")
+  }
+})
 
   const inputClass = `w-full border border-gray-200 rounded-lg px-4 py-2.5
                       font-dm-sans text-gray-700 text-sm placeholder-gray-300
@@ -43,8 +87,19 @@ const GeneratePin = () => {
 
   const handleGenerate = (e) => {
     e.preventDefault()
-    setPins(mockPins)
-    setGenerated(true)
+const selectedStudent = students.find((s) => s._id === student)
+
+if (!selectedStudent) return
+
+setPins([
+  {
+    reg: selectedStudent.registrationNumber,
+    name: selectedStudent.fullName,
+    class: selectedStudent.className,
+    pin: Math.random().toString(36).substring(2, 10).toUpperCase(),
+  },
+]),    
+setGenerated(true)
   }
 
   const handleCopy = (pin, idx) => {
@@ -188,8 +243,21 @@ const GeneratePin = () => {
                       className={inputClass}
                       required
                     >
-                      <option value="">-- Select Student --</option>
-                      <option disabled className="text-gray-400">367 students available</option>
+                    <option value="">-- Select Student --</option>
+                      {loadingStudents ? (
+                        <option disabled>Loading students...</option>
+                      ) : sortedStudents.length === 0 ? (
+                        <option disabled>No students found</option>
+                      ) : (
+                        sortedStudents.map((student) => (
+                          <option
+                            key={student._id}
+                            value={student._id}
+                          >
+                            {student.fullName} ({student.registrationNumber})
+                          </option>
+                        ))
+                      )}
                     </select>
                   </div>
                 )}
