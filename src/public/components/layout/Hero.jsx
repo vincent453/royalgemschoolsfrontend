@@ -60,14 +60,14 @@ const Hero = () => {
 
    <div className="mt-8 flex gap-4 justify-center lg:justify-start">
   <button
-    onClick={() => navigate("/get-started")}
+    onClick={() => navigate("/admissions")}
     className="bg-[#A033A0] hover:bg-[#525fe1] text-white font-jost font-semibold py-3 px-8 transition-all duration-500"
   >
     Get Started
   </button>
 
   <button
-    onClick={() => navigate("/learn-more")}
+    onClick={() => navigate("/about")}
     className="border border-white text-white font-jost font-semibold py-3 px-8 hover:border-[#A033A0] hover:text-[#A033A0] transition-all duration-300"
   >
     Learn More

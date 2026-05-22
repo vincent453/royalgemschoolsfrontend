@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react'
 import Footer from '../components/layout/Foooter'
 import Navbar from '../components/layout/Navbar'
 import bg from '../../assets/img/vission.jpeg'
+import { useNavigate } from "react-router-dom";
+
 
 /* ── Royal Gem – Admissions Page ──────────────────────────────────────────
    Design matches the homepage screenshot:
@@ -135,6 +137,7 @@ export default function Admissions() {
   useEffect(() => {
     faqRefs.current.forEach(r => { if (r) r.style.maxHeight = '0px' })
   }, [])
+  const navigate = useNavigate();
 
   return (
     <>
@@ -640,8 +643,8 @@ export default function Admissions() {
           Our admissions team is ready to guide you through every step.
         </p>
         <div className="hero-btns">
-          <a href="#" className="btn-primary">Download Application Form</a>
-          <a href="#" className="btn-outline">Contact Admissions Office</a>
+          <a href="#" onClick={() => navigate("/about")} className="btn-primary">Download Application Form</a>
+          <a href="#" onClick={() => navigate("/about")} className="btn-outline">Contact Admissions Office</a>
         </div>
         <div style={{ marginTop:32, display:'flex', gap:28, justifyContent:'center', flexWrap:'wrap' }}>
           {[
