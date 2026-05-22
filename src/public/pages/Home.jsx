@@ -15,14 +15,13 @@ import Blog from "../components/layout/Blog"
 import Footer from "../components/layout/Foooter"
 import shapeimage from '../../assets/img/shape-image.png'
 
-
 const Home = () => {
   useEffect(() => {
     AOS.init({
-      duration: 800,       // animation duration in ms
+      duration: 800,
       easing: "ease-in-out",
-      once: true,          // animate only once per scroll
-      offset: 80,          // trigger 80px before element enters viewport
+      once: true,
+      offset: 80,
     })
   }, [])
 
