@@ -56,7 +56,7 @@ const Topbar = ({ avatarOverride, onMenuToggle }) => {
       <div className="flex items-center gap-2">
         <button
           title="Settings"
-          onClick={() => navigate("/settings")}
+          onClick={() => navigate("/admin/settings")}
           className="w-9 h-9 md:w-[42px] md:h-[42px] rounded-md bg-white/15 hover:bg-white/25 text-white text-sm flex items-center justify-center transition-colors"
         >
           ⚙️
@@ -98,7 +98,7 @@ const Topbar = ({ avatarOverride, onMenuToggle }) => {
                 </div>
               </div>
               <div className="py-1">
-                <button onClick={() => { navigate("/settings"); setMenuOpen(false); }} className="flex items-center gap-2 w-full px-4 py-2.5 text-sm text-gray-600 hover:bg-[#fdf8ff] hover:text-[#A033A0]">
+                <button onClick={() => { navigate("/admin/settings/"); setMenuOpen(false); }} className="flex items-center gap-2 w-full px-4 py-2.5 text-sm text-gray-600 hover:bg-[#fdf8ff] hover:text-[#A033A0]">
                   ⚙️ Settings
                 </button>
                 <button onClick={() => { navigate("/settings?tab=account"); setMenuOpen(false); }} className="flex items-center gap-2 w-full px-4 py-2.5 text-sm text-gray-600 hover:bg-[#fdf8ff] hover:text-[#A033A0]">
