@@ -1,6 +1,6 @@
 import Navbar from "../components/layout/Navbar"
 import Section from "../components/layout/Section"
-import contactimg from '../../assets/img/contactimg.jpeg'
+import contactimg from '../../assets/img/blog2.jpeg'
 import ContactInfo from "../components/ui/ContactInfo"
 import ContactForm from "../components/ui/ContactForm"
 import Footer from "../components/layout/Foooter"
