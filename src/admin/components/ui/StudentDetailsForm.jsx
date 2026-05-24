@@ -1,279 +1,193 @@
-import { useState, useEffect } from "react";
-import { Phone, Mail, MoreHorizontal } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useState, useRef } from "react";
 
-const classSegments = [
-  { label: "All",          value: "all"          },
-  { label: "Nursery 1",    value: "Nursery 1"    },
-  { label: "Nursery 2",    value: "Nursery 2"    },
-  { label: "Kindergarten", value: "Kindergarten" },
-  { label: "JSS 1",        value: "JSS 1"        },
-  { label: "JSS 2",        value: "JSS 2"        },
-  { label: "JSS 3",        value: "JSS 3"        },
-  { label: "SSS 1",        value: "SSS 1"        },
-  { label: "SSS 2",        value: "SSS 2"        },
-  { label: "SSS 3",        value: "SSS 3"        },
-];
+export default function StudentDetailsForm({
+  title = "Student Details",
+  form,
+  setForm,
+}) {
+  const fileInputRef = useRef(null);
+  const [photo, setPhoto] = useState(null);
 
-const itemsPerPage = 8;
-
-const StudentTable = ({ isReadOnly = false }) => {
-  const navigate = useNavigate();
-
-  const [students,    setStudents]    = useState([]);
-  const [loading,     setLoading]     = useState(true);
-  const [error,       setError]       = useState("");
-  const [activeClass, setActiveClass] = useState("all");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [openMenuId,  setOpenMenuId]  = useState(null);
-
-  const fetchStudents = async () => {
-    try {
-      setLoading(true);
-      setError("");
-      const token = localStorage.getItem("token");
-      const res   = await fetch("https://royalgemschoolsbackend.vercel.app/api/students", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Failed to fetch students");
-      setStudents(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
+  const handlePhoto = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setPhoto(URL.createObjectURL(file));
+      setForm({ ...form, profilePhoto: file });
     }
   };
 
-  useEffect(() => { fetchStudents(); }, []);
-
-  const handleDelete = async (id, name) => {
-    if (!window.confirm(`Delete ${name}? This cannot be undone.`)) return;
-    try {
-      const token = localStorage.getItem("token");
-      const res   = await fetch(`https://royalgemschoolsbackend.vercel.app/api/students/${id}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message);
-      setStudents(prev => prev.filter(s => s._id !== id));
-      setOpenMenuId(null);
-    } catch (err) {
-      alert(`Delete failed: ${err.message}`);
-    }
+  const handleRemove = () => {
+    setPhoto(null);
+    setForm({ ...form, profilePhoto: null });
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
-  const filtered    = activeClass === "all" ? students : students.filter(s => s.classLevel === activeClass);
-  const totalItems  = filtered.length;
-  const totalPages  = Math.ceil(totalItems / itemsPerPage);
-  const startIndex  = (currentPage - 1) * itemsPerPage;
-  const currentData = filtered.slice(startIndex, startIndex + itemsPerPage);
-
-  const handleClassChange = (value) => {
-    setActiveClass(value);
-    setCurrentPage(1);
-    setOpenMenuId(null);
-  };
-
-  const toggleMenu = (id) => setOpenMenuId(openMenuId === id ? null : id);
-
-  if (loading) {
-    return (
-      <div className="bg-white p-5 rounded-xl shadow-sm flex flex-col gap-4">
-        <div className="flex flex-wrap gap-2 border-b border-gray-100 pb-4">
-          {classSegments.map(s => (
-            <div key={s.value} className="h-8 w-20 rounded-full bg-gray-100 animate-pulse" />
-          ))}
-        </div>
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="h-12 rounded-lg bg-gray-100 animate-pulse" />
-        ))}
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="bg-white p-5 rounded-xl shadow-sm flex flex-col items-center gap-3 py-16">
-        <p className="font-dm-sans text-red-500 text-sm">{error}</p>
-        <button onClick={fetchStudents}
-          className="px-5 py-2 bg-[#A033A0] text-white text-sm rounded-full font-dm-sans font-semibold hover:bg-[#525fe1] transition-colors duration-300">
-          Retry
-        </button>
-      </div>
-    );
-  }
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
-    <div className="bg-white p-5 rounded-xl shadow-sm flex flex-col gap-4">
+    <div className="bg-white rounded-md shadow-sm p-4 sm:p-6 w-full">
+      {/* Title */}
+      <h2 className="text-base font-bold text-gray-800 pb-4 border-b border-gray-100">
+        {title}
+      </h2>
 
-      {/* Class tabs */}
-      <div className="flex flex-wrap gap-2 border-b border-gray-100 pb-4">
-        {classSegments.map(({ label, value }) => {
-          const count = value === "all" ? students.length : students.filter(s => s.classLevel === value).length;
-          return (
-            <button key={value} onClick={() => handleClassChange(value)}
-              className={`px-4 py-1.5 rounded-full text-sm font-dm-sans font-semibold transition-all duration-300
-                          ${activeClass === value
-                            ? "bg-[#A033A0] text-white shadow-sm"
-                            : "bg-gray-100 text-gray-500 hover:bg-[#A033A0]/10 hover:text-[#A033A0]"}`}>
-              {label}
-              <span className={`ml-1.5 text-xs px-1.5 py-0.5 rounded-full
-                                ${activeClass === value ? "bg-white/20 text-white" : "bg-gray-200 text-gray-500"}`}>
-                {count}
-              </span>
-            </button>
-          );
-        })}
-      </div>
+      {/* ── Photo + Fields wrapper ── */}
+      {/* On mobile: stack vertically. On md+: side by side */}
+      <div className="mt-6 flex flex-col md:flex-row gap-6 md:gap-8">
 
-      <div className="flex items-center justify-between">
-        <p className="font-jost font-bold text-gray-700 text-base">
-          {activeClass === "all" ? "All Students" : `${activeClass} Students`}
-        </p>
-        <p className="font-dm-sans text-sm text-gray-400">
-          {totalItems} {totalItems === 1 ? "student" : "students"} found
-        </p>
-      </div>
-
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="text-left text-gray-400 border-b">
-              <th className="py-3"><input type="checkbox" /></th>
-              <th className="py-3 pr-4">Name</th>
-              <th className="py-3 pr-4">Reg No.</th>
-              <th className="py-3 pr-4">Gender</th>
-              <th className="py-3 pr-4">Parent Name</th>
-              <th className="py-3 pr-4">Contact</th>
-              <th className="py-3 pr-4">Class</th>
-              <th className="py-3 pr-4">Session</th>
-              {/* Hide action column for teachers */}
-              {!isReadOnly && <th className="py-3">Action</th>}
-            </tr>
-          </thead>
-          <tbody>
-            {currentData.length > 0 ? (
-              currentData.map((student) => (
-                <tr key={student._id} className="border-b hover:bg-gray-50 transition-colors duration-200">
-                  <td className="py-4"><input type="checkbox" /></td>
-
-                  <td className="py-4 pr-4">
-                    <div className="flex items-center gap-3">
-                      {student.profilePhoto ? (
-                        <img src={student.profilePhoto} alt={student.firstName}
-                          className="w-10 h-10 rounded-full object-cover shrink-0" />
-                      ) : (
-                        <div className="w-10 h-10 rounded-full bg-[#A033A0]/10 flex items-center justify-center shrink-0">
-                          <span className="text-[#A033A0] font-bold text-sm">
-                            {student.firstName?.[0]}{student.lastName?.[0]}
-                          </span>
-                        </div>
-                      )}
-                      <span className="font-medium text-gray-700 whitespace-nowrap">
-                        {student.firstName} {student.lastName}
-                      </span>
-                    </div>
-                  </td>
-
-                  <td className="pr-4 text-[#A033A0] font-medium whitespace-nowrap">{student.regNumber}</td>
-                  <td className="pr-4 text-gray-500 whitespace-nowrap">{student.gender}</td>
-                  <td className="pr-4 text-gray-600 whitespace-nowrap">
-                    {student.parentFirstName
-                      ? `${student.parentFirstName} ${student.parentLastName ?? ""}`
-                      : <span className="text-gray-300">—</span>}
-                  </td>
-
-                  <td className="pr-4">
-                    <div className="flex gap-2">
-                      {student.parentPhone && (
-                        <a href={`tel:${student.parentPhone}`}>
-                          <button className="p-2 bg-[#A033A0]/10 text-[#A033A0] rounded-full hover:bg-[#A033A0] hover:text-white transition-colors duration-300">
-                            <Phone size={14} />
-                          </button>
-                        </a>
-                      )}
-                      {student.parentEmail && (
-                        <a href={`mailto:${student.parentEmail}`}>
-                          <button className="p-2 bg-[#A033A0]/10 text-[#A033A0] rounded-full hover:bg-[#A033A0] hover:text-white transition-colors duration-300">
-                            <Mail size={14} />
-                          </button>
-                        </a>
-                      )}
-                      {!student.parentPhone && !student.parentEmail && (
-                        <span className="text-gray-300 text-xs">—</span>
-                      )}
-                    </div>
-                  </td>
-
-                  <td className="pr-4">
-                    <span className={`px-3 py-1 text-xs rounded-full font-dm-sans font-semibold
-                                      ${student.classLevel?.startsWith("JSS") ? "bg-blue-100 text-blue-600"
-                                      : student.classLevel?.startsWith("SSS") ? "bg-purple-100 text-[#A033A0]"
-                                      : "bg-green-100 text-green-600"}`}>
-                      {student.classLevel}
-                    </span>
-                  </td>
-
-                  <td className="pr-4 text-gray-500 whitespace-nowrap">{student.session}</td>
-
-                  {/* Action menu — admin only */}
-                  {!isReadOnly && (
-                    <td className="relative">
-                      <button onClick={() => toggleMenu(student._id)}>
-                        <MoreHorizontal className="text-gray-400 cursor-pointer hover:text-[#A033A0]" />
-                      </button>
-                      {openMenuId === student._id && (
-                        <div className="absolute right-0 mt-2 w-36 bg-white border border-gray-100 rounded-lg shadow-lg z-50">
-                          <button
-                            onClick={() => { navigate(`/admin/students/edit/${student._id}`); setOpenMenuId(null); }}
-                            className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-50">
-                            Edit
-                          </button>
-                          <button
-                            onClick={() => handleDelete(student._id, `${student.firstName} ${student.lastName}`)}
-                            className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-50">
-                            Delete
-                          </button>
-                        </div>
-                      )}
-                    </td>
-                  )}
-                </tr>
-              ))
+        {/* ── Photo Upload ── */}
+        <div className="flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-3 md:w-36 md:flex-shrink-0">
+          <div className="w-24 h-24 md:w-full md:h-[8rem] rounded-xl border border-gray-200 bg-gray-100 overflow-hidden flex items-center justify-center flex-shrink-0">
+            {photo ? (
+              <img src={photo} alt="Student" className="w-full h-full object-cover" />
             ) : (
-              <tr>
-                <td colSpan={isReadOnly ? 8 : 9} className="py-12 text-center font-dm-sans text-gray-400">
-                  No students found{activeClass !== "all" ? ` in ${activeClass}` : ""}
-                </td>
-              </tr>
+              <svg viewBox="0 0 80 80" className="w-12 h-12 md:w-16 md:h-16 text-gray-400" fill="currentColor">
+                <circle cx="40" cy="30" r="14" />
+                <ellipse cx="40" cy="62" rx="24" ry="14" />
+              </svg>
             )}
-          </tbody>
-        </table>
-      </div>
+          </div>
 
-      {/* Pagination */}
-      <div className="flex justify-between items-center mt-2 text-sm text-gray-500">
-        <p className="font-dm-sans">
-          Showing {totalItems === 0 ? 0 : startIndex + 1} to {Math.min(startIndex + itemsPerPage, totalItems)} of {totalItems} entries
-        </p>
-        <div className="flex items-center gap-1">
-          <button onClick={() => setCurrentPage(p => Math.max(p - 1, 1))} disabled={currentPage === 1}
-            className="px-3 py-1 rounded-lg border border-gray-200 text-gray-500 hover:border-[#A033A0] hover:text-[#A033A0] disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300">‹</button>
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-            <button key={page} onClick={() => setCurrentPage(page)}
-              className={`px-3 py-1 rounded-lg border transition-all duration-300
-                          ${currentPage === page ? "bg-[#A033A0] text-white border-[#A033A0]" : "border-gray-200 text-gray-500 hover:border-[#A033A0] hover:text-[#A033A0]"}`}>
-              {page}
-            </button>
-          ))}
-          <button onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))} disabled={currentPage === totalPages || totalPages === 0}
-            className="px-3 py-1 rounded-lg border border-gray-200 text-gray-500 hover:border-[#A033A0] hover:text-[#A033A0] disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300">›</button>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-semibold text-[#A13EA1] md:hidden">
+              Photo<span className="text-red-500">*</span>
+            </label>
+            <label className="hidden md:block text-sm font-semibold text-[#A13EA1]">
+              Photo<span className="text-red-500">*</span>
+            </label>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className="px-3 py-1.5 bg-[#A13EA1] hover:bg-[#8a328a] text-white text-xs font-semibold rounded-lg transition-colors"
+              >
+                Choose
+              </button>
+              <button
+                type="button"
+                onClick={handleRemove}
+                className="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-400 text-xs font-semibold rounded-lg border border-red-200 transition-colors"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handlePhoto}
+          />
+        </div>
+
+        {/* ── Form Fields ── */}
+        {/* 1 col on mobile, 2 cols on sm+ */}
+        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
+
+          <Field label="First Name" required>
+            <Input name="firstName" placeholder="James" value={form.firstName} onChange={handleChange} />
+          </Field>
+
+          <Field label="Last Name" required>
+            <Input name="lastName" placeholder="Wally" value={form.lastName} onChange={handleChange} />
+          </Field>
+
+          {/* Date & Place of Birth — stacks on mobile */}
+          <Field label="Date & Place of Birth" required>
+            <div className="flex flex-col xs:flex-row gap-2">
+              <Input
+                name="dateOfBirth"
+                type="date"
+                value={form.dateOfBirth}
+                onChange={handleChange}
+                className="flex-1"
+              />
+              <Input
+                name="placeOfBirth"
+                placeholder="City / Country"
+                value={form.placeOfBirth}
+                onChange={handleChange}
+                className="flex-1"
+              />
+            </div>
+          </Field>
+
+          <Field label="Gender" required>
+            <select
+              name="gender"
+              value={form.gender}
+              onChange={handleChange}
+              className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#A13EA1] focus:border-transparent transition"
+            >
+              <option value="">Select gender</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </Field>
+
+          <Field label="Class Level" required>
+            <select
+              name="classLevel"
+              value={form.classLevel}
+              onChange={handleChange}
+              className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#A13EA1] focus:border-transparent transition"
+            >
+              <option value="">Select class</option>
+              <option value="Jss 1">JSS 1</option>
+              <option value="Jss 2">JSS 2</option>
+              <option value="Jss 3">JSS 3</option>
+              <option value="SSs 1">SSS 1</option>
+              <option value="SSs 2">SSS 2</option>
+              <option value="SSs 3">SSS 3</option>
+            </select>
+          </Field>
+
+          <Field label="Session" required>
+            <Input name="session" value={form.session} placeholder="e.g. 2023/2024" onChange={handleChange} />
+          </Field>
+
+          <Field label="Reg. Number" required>
+            <Input name="regNumber" value={form.regNumber} placeholder="e.g. STU/2024/001" onChange={handleChange} />
+          </Field>
+
+          {/* Address — always full width */}
+          <Field label="Address" required className="col-span-1 sm:col-span-2">
+            <textarea
+              name="address"
+              placeholder="Enter full address..."
+              value={form.address}
+              onChange={handleChange}
+              rows={3}
+              className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm text-gray-700 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#A13EA1] focus:border-transparent resize-none transition"
+            />
+          </Field>
+
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default StudentTable;
+function Field({ label, required, children, className = "" }) {
+  return (
+    <div className={`flex flex-col gap-1.5 ${className}`}>
+      <label className="text-sm font-semibold text-[#A13EA1]">
+        {label}
+        {required && <span className="text-red-500">*</span>}
+      </label>
+      {children}
+    </div>
+  );
+}
+
+function Input({ className = "", ...props }) {
+  return (
+    <input
+      {...props}
+      className={`w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm text-gray-700 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#A13EA1] focus:border-transparent transition ${className}`}
+    />
+  );
+}

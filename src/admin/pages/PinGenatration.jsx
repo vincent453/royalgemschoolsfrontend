@@ -20,8 +20,8 @@ const GeneratePin = () => {
   const [generated,       setGenerated]       = useState(false);
   const [copied,          setCopied]          = useState(null);
   const [pins,            setPins]            = useState([]);
-  const [students,        setStudents]        = useState([]);
-  const [loadingStudents, setLoadingStudents] = useState(false);
+  const [allStudents,     setAllStudents]     = useState([]); // all students from API
+  const [loadingStudents, setLoadingStudents] = useState(true);
   const [loading,         setLoading]         = useState(false);
   const [error,           setError]           = useState("");
 
@@ -30,35 +30,33 @@ const GeneratePin = () => {
                       focus:outline-none focus:border-[#A033A0] transition-colors duration-300`;
   const labelClass = `font-dm-sans text-[#A033A0] text-sm font-semibold mb-1 block`;
 
-  // ── Fetch students whenever class filter changes ──
-  // Uses classLevel= to match backend query param name
+  // ── Fetch ALL students once on mount using the existing working endpoint ──
   useEffect(() => {
     const fetchStudents = async () => {
       setLoadingStudents(true);
-      setStudents([]);
       try {
         const token = localStorage.getItem("token");
-        const query =
-          filterClass !== "All Classes"
-            ? `?classLevel=${encodeURIComponent(filterClass)}`
-            : "";
-
-        const res  = await fetch(`${API}/api/pins/students${query}`, {
+        const res   = await fetch(`${API}/api/students`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-
-        if (!res.ok) throw new Error("Failed to fetch students");
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        setStudents(Array.isArray(data) ? data : []);
+        setAllStudents(Array.isArray(data) ? data : []);
       } catch (err) {
-        console.error("fetchStudents error:", err.message);
-        setStudents([]);
+        console.error("Failed to fetch students:", err.message);
+        setAllStudents([]);
       } finally {
         setLoadingStudents(false);
       }
     };
     fetchStudents();
-  }, [filterClass]);
+  }, []);
+
+  // ── Filter students locally based on selected class ──
+  const filteredStudents =
+    filterClass === "All Classes"
+      ? allStudents
+      : allStudents.filter(s => s.classLevel === filterClass);
 
   const handleGenerate = async (e) => {
     e.preventDefault();
@@ -73,10 +71,10 @@ const GeneratePin = () => {
       return;
     }
     if (pinType === "Entire Class" && filterClass === "All Classes") {
-      setError("Please select a specific class to generate PINs for.");
+      setError("Please select a specific class.");
       return;
     }
-    if (pinType === "Entire Class" && students.length === 0) {
+    if (pinType === "Entire Class" && filteredStudents.length === 0) {
       setError("No students found in the selected class.");
       return;
     }
@@ -87,7 +85,7 @@ const GeneratePin = () => {
       const studentIds =
         pinType === "Single Student"
           ? [selectedId]
-          : students.map(s => s._id);
+          : filteredStudents.map(s => s._id);
 
       const res  = await fetch(`${API}/api/pins/generate`, {
         method:  "POST",
@@ -95,12 +93,7 @@ const GeneratePin = () => {
           "Content-Type": "application/json",
           Authorization:  `Bearer ${token}`,
         },
-        body: JSON.stringify({
-          studentIds,
-          term,
-          session,
-          pinLength: Number(pinLength),
-        }),
+        body: JSON.stringify({ studentIds, term, session, pinLength: Number(pinLength) }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Failed to generate PINs");
@@ -129,10 +122,7 @@ const GeneratePin = () => {
 
   const handleDownload = () => {
     const content = pins
-      .map(
-        p =>
-          `Name: ${p.name}\nReg No: ${p.reg}\nClass: ${p.class}\nPIN: ${p.pin}\nTerm: ${p.term}\nSession: ${p.session}\n`
-      )
+      .map(p => `Name: ${p.name}\nReg No: ${p.reg}\nClass: ${p.class}\nPIN: ${p.pin}\nTerm: ${p.term}\nSession: ${p.session}\n`)
       .join("\n---\n");
     const blob = new Blob([content], { type: "text/plain" });
     const url  = URL.createObjectURL(blob);
@@ -167,7 +157,6 @@ const GeneratePin = () => {
         <main className="w-full overflow-y-auto">
           <form onSubmit={handleGenerate} className="flex flex-col gap-6 p-6 max-w-5xl mx-auto">
 
-            {/* Error */}
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm font-dm-sans">
                 {error}
@@ -183,7 +172,7 @@ const GeneratePin = () => {
                 <div className="flex flex-col gap-1 flex-[2] min-w-[180px]">
                   <label className={labelClass}>PIN Type *</label>
                   <select value={pinType}
-                    onChange={e => { setPinType(e.target.value); setGenerated(false); setPins([]); }}
+                    onChange={e => { setPinType(e.target.value); setGenerated(false); setPins([]); setSelectedId(""); }}
                     className={inputClass}>
                     {pinTypes.map(p => <option key={p} value={p}>{p}</option>)}
                   </select>
@@ -201,9 +190,17 @@ const GeneratePin = () => {
 
             {/* ── Section 2: Select Student / Class ── */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col gap-6">
-              <h2 className="font-jost font-bold text-gray-800 text-lg border-b border-gray-100 pb-3">
-                {pinType === "Single Student" ? "Select Student" : "Select Class"}
-              </h2>
+              <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+                <h2 className="font-jost font-bold text-gray-800 text-lg">
+                  {pinType === "Single Student" ? "Select Student" : "Select Class"}
+                </h2>
+                {/* Show total loaded */}
+                <span className="font-dm-sans text-xs text-gray-400">
+                  {loadingStudents
+                    ? "Loading students..."
+                    : `${allStudents.length} student${allStudents.length !== 1 ? "s" : ""} total`}
+                </span>
+              </div>
 
               <div className="flex flex-wrap gap-3">
                 {/* Class filter */}
@@ -212,19 +209,21 @@ const GeneratePin = () => {
                   <select value={filterClass}
                     onChange={e => { setFilterClass(e.target.value); setSelectedId(""); }}
                     className={inputClass}>
-                    {classes.map(c => <option key={c} value={c}>{c}</option>)}
+                    {classes.map(c => (
+                      <option key={c} value={c}>
+                        {c}
+                        {c !== "All Classes" && !loadingStudents
+                          ? ` (${allStudents.filter(s => s.classLevel === c).length})`
+                          : ""}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
                 {/* Single student picker */}
                 {pinType === "Single Student" && (
                   <div className="flex flex-col gap-1 flex-[2] min-w-[200px]">
-                    <label className={labelClass}>
-                      Student *
-                      {loadingStudents && (
-                        <span className="ml-2 text-xs text-gray-400 font-normal">Loading...</span>
-                      )}
-                    </label>
+                    <label className={labelClass}>Student *</label>
                     <select value={selectedId}
                       onChange={e => setSelectedId(e.target.value)}
                       className={inputClass}
@@ -232,11 +231,11 @@ const GeneratePin = () => {
                       <option value="">
                         {loadingStudents
                           ? "Loading students..."
-                          : students.length === 0
-                          ? "No students found"
+                          : filteredStudents.length === 0
+                          ? "No students in this class"
                           : "-- Select Student --"}
                       </option>
-                      {students.map(s => (
+                      {filteredStudents.map(s => (
                         <option key={s._id} value={s._id}>
                           {s.firstName} {s.lastName} — {s.regNumber} ({s.classLevel})
                         </option>
@@ -245,13 +244,13 @@ const GeneratePin = () => {
                   </div>
                 )}
 
-                {/* Entire class info */}
+                {/* Entire class count */}
                 {pinType === "Entire Class" && (
                   <div className="flex items-end pb-1">
                     <p className="font-dm-sans text-sm text-gray-500">
                       {loadingStudents
-                        ? "Loading students..."
-                        : `${students.length} student${students.length !== 1 ? "s" : ""} in ${
+                        ? "Loading..."
+                        : `${filteredStudents.length} student${filteredStudents.length !== 1 ? "s" : ""} in ${
                             filterClass === "All Classes" ? "all classes" : filterClass
                           }`}
                     </p>
@@ -298,9 +297,7 @@ const GeneratePin = () => {
 
                 <div className="hidden md:grid grid-cols-[auto_2fr_1fr_1fr_auto] gap-3">
                   {["Reg No.", "Student Name", "Class", "PIN", ""].map((h, i) => (
-                    <span key={i} className="font-dm-sans text-xs text-gray-400 font-semibold uppercase tracking-wide">
-                      {h}
-                    </span>
+                    <span key={i} className="font-dm-sans text-xs text-gray-400 font-semibold uppercase tracking-wide">{h}</span>
                   ))}
                 </div>
 
@@ -351,7 +348,7 @@ const GeneratePin = () => {
                     className="font-jost font-semibold px-8 py-2.5 rounded-full border border-gray-300 text-gray-600 hover:border-[#A033A0] hover:text-[#A033A0] transition-all duration-300">
                     Cancel
                   </button>
-                  <button type="submit" disabled={loading}
+                  <button type="submit" disabled={loading || loadingStudents}
                     className="flex items-center gap-2 font-jost font-semibold px-8 py-2.5 rounded-full bg-[#A033A0] hover:bg-[#525fe1] text-white transition-colors duration-500 disabled:opacity-50">
                     <FaKey className="text-xs" />
                     {loading ? "Generating..." : "Generate PIN"}

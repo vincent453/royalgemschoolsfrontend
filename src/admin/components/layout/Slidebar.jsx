@@ -11,6 +11,7 @@ import {
   MdUpload,
   MdPin,
   MdMemory,
+  MdKey,
 } from "react-icons/md";
 
 // ── Admin sees everything ──
@@ -21,8 +22,7 @@ const adminNavItems = [
   { id: 4, label: "Teachers",   href: "/admin/teachers",   icon: <MdPeople />    },
   { id: 5, label: "Users",      href: "/admin/users",      icon: <MdGroup />     },
   { id: 6, label: "Add Yearbook Entry",      href: "/admin/addyearbookentry", icon: <MdMemory />     },
-  { id: 7, label: "Generate Pin", href: "/admin/generatepin",icon: <MdPin />  },
-  { id: 8, label: "Settings",   href: "/admin/settings",   icon: <MdSettings />  },
+{ id: 7, label: "Generate PIN", href: "/admin/generatepin", icon: <MdKey /> },  
 ];
 
 // ── Teacher sees limited menu ──
