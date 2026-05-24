@@ -1,46 +1,57 @@
 import { Navigate } from "react-router-dom";
 
-// ── Helper: decode role from JWT ──
 const getRole = () => {
   const token = localStorage.getItem("token");
   if (!token) return null;
-  try {
-    return JSON.parse(atob(token.split(".")[1])).role ?? null;
-  } catch {
-    return null;
-  }
+  try { return JSON.parse(atob(token.split(".")[1])).role ?? null; }
+  catch { return null; }
 };
 
-// ── ProtectedRoute: requires any valid token ──
-// If no token → redirect to login
-// If token exists → allow through (both admin and teacher)
+const getPortalRole = () => {
+  const token = localStorage.getItem("portalToken");
+  if (!token) return null;
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return payload.studentId ? localStorage.getItem("portalRole") : null;
+  } catch { return null; }
+};
+
+// ── Any valid staff token ──
 export const ProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem("token");
-  if (!token) return <Navigate to="/admin/portal" replace />;
+  if (!localStorage.getItem("token")) return <Navigate to="/admin/portal" replace />;
   return children;
 };
 
-// ── AdminRoute: admin only ──
-// Teachers are redirected to their own dashboard
+// ── Admin only — teachers get redirected ──
 export const AdminRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   if (!token) return <Navigate to="/admin/portal" replace />;
-
-  const role = getRole();
-  if (role === "teacher") return <Navigate to="/teacher/dashboard" replace />;
+  if (getRole() === "teacher") return <Navigate to="/teacher/dashboard" replace />;
   return children;
 };
 
-// ── TeacherRoute: teacher only ──
-// Admins are redirected to admin dashboard
+// ── Teacher only — admins get redirected ──
 export const TeacherRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   if (!token) return <Navigate to="/admin/portal" replace />;
-
-  const role = getRole();
-  if (role === "admin") return <Navigate to="/admin/dashboard" replace />;
+  if (getRole() === "admin") return <Navigate to="/admin/dashboard" replace />;
   return children;
 };
 
-// Default export kept for backward compatibility with existing imports
+// ── Student portal ──
+export const StudentPortalRoute = ({ children }) => {
+  const role = getPortalRole();
+  if (!role) return <Navigate to="/portal" replace />;
+  if (role !== "student") return <Navigate to="/parent/dashboard" replace />;
+  return children;
+};
+
+// ── Parent portal ──
+export const ParentPortalRoute = ({ children }) => {
+  const role = getPortalRole();
+  if (!role) return <Navigate to="/portal" replace />;
+  if (role !== "parent") return <Navigate to="/student/dashboard" replace />;
+  return children;
+};
+
 export default ProtectedRoute;
