@@ -4,21 +4,63 @@ import ReviewSlider from '../ui/ReviewSlider'
 
 const reviews = [
   {
-    review: "Royal Gem Schools has transformed my learning experience. The teachers are incredibly supportive, and the curriculum is engaging and relevant.",
-    name: "Jane Doe",
-    company: "Student at Royal Gem Schools",
+    review: "Even though I have been here for a short time, teaching here has been a positive and rewarding experience so far. I work with dedicated staff who have made teaching at Royal Gem Mathematical School truly enjoyable.",
+    name: "Mrs Eunice Okonofua",
+    company: "Staff, Royal Gem Schools",
     avatar: robot
   },
   {
-    review: "I am so grateful for the education I received at Royal Gem Schools. The teachers are passionate and dedicated, and they truly care about their students' success.",
-    name: "John Smith",
-    company: "Student at Royal Gem Schools",
+    review: "My stay in RGMS since joining the workforce has been a wonderful learning experience. I have gained knowledge, support, and valuable teamwork skills. I appreciate the opportunity to grow and contribute to the organization.",
+    name: "Ms Oluwanifemi Bello",
+    company: "Staff, Royal Gem Schools",
     avatar: robot
   },
   {
-    review: "Royal Gem Schools has exceeded my expectations in every way. The teachers are knowledgeable and approachable, and the curriculum is well-rounded and challenging.",
-    name: "Emily Johnson",
-    company: "Student at Royal Gem Schools",
+    review: "My stay in RGNPS has been peaceful and happy. I have gained more patience in handling children and I've grown both as a teacher and as a person. I'm proud to contribute to the development of RG Schools.",
+    name: "Miss Feyisola Deborah",
+    company: "Staff, Royal Gem Schools",
+    avatar: robot
+  },
+  {
+    review: "My stay in RGMS has been a beautiful learning experience so far. I have enjoyed the supportive environment, teamwork, and the opportunity to contribute to the growth of the pupils. I appreciate being part of a school that is committed to excellence and impact.",
+    name: "Miss Oluwagbemisola Ogunleye",
+    company: "Staff, Royal Gem Schools",
+    avatar: robot
+  },
+  {
+    review: "My stay in Royal Gem Nur/Pry School has been filled with growth, learning, and beautiful experiences. Teaching here has been meaningful and impactful in so many ways. The Gems continues to give me reasons to keep sailing with passion and dedication.",
+    name: "Miss Gift AbasiEma",
+    company: "Staff, Royal Gem Schools",
+    avatar: robot
+  },
+  {
+    review: "Working at RGMS has been a truly transformative experience. It has continually challenged me to push beyond my comfort zone, uncover hidden strengths, and develop skills I never knew I possessed. This journey has contributed immensely to both my personal and professional growth.",
+    name: "Mrs Toyin Ajayi",
+    company: "Head of Finance, Royal Gem Schools",
+    avatar: robot
+  },
+  {
+    review: "Being part of RGMS has positively shaped my teaching career and strengthened my skills in classroom management, pupils' development, and working with a good team.",
+    name: "Mrs Adewole",
+    company: "Staff, Royal Gem Schools",
+    avatar: robot
+  },
+  {
+    review: "Working as a team mate in this assignment has been one of the most fulfilling experiences of my life. The parents, the staff, the children have all made me a better person and I look forward to adding more value to this organisation.",
+    name: "Mr. Michael Oyetayo",
+    company: "HOS Ikorodu, Royal Gem Schools",
+    avatar: robot
+  },
+  {
+    review: "I have worked with different schools and amassed a lot of experience, but the way you lead us is different from what I have experienced elsewhere. You have given me room for more improvement and I do not take it for granted. Long live Royal Gem Mathematical School Abuja.",
+    name: "Mr. Jacob Adega",
+    company: "Staff, Royal Gem Schools",
+    avatar: robot
+  },
+  {
+    review: "It has been amazing working at RGMS, where I learn something new every day and get the opportunity to put it into practice. For the first time in my career, I feel truly fulfilled and found peace of mind here. I have gained deeper knowledge in classroom management, effective teamwork, and the use of learning materials that make lessons more engaging.",
+    name: "Miss Mary Attah",
+    company: "Staff, Royal Gem Schools",
     avatar: robot
   }
 ]
