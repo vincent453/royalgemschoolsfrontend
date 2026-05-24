@@ -271,7 +271,29 @@ export default function Admissions() {
           <div data-aos="fade-right" data-aos-delay="100">
             <Sparkle size={14} color="#f5c518" style={{ marginBottom: 12 }} />
             <h2>2025/2026 Key Dates</h2>
-            <p>Mark your calendar — don't miss the application windows for each term of the new academic year.</p>
+            <p>
+            Mark your calendar — don't miss the application windows for each term of the new academic year.
+          </p>
+
+          <p
+            style={{
+              marginTop: '16px',
+              color: 'rgba(255,255,255,0.85)',
+              lineHeight: '1.8',
+              maxWidth: '520px',
+              fontSize: '14px'
+            }}
+          >
+            Royal Gem Mathematical Schools continuously admits learners across various
+            levels, provided they meet the entry requirements and demonstrate readiness
+            to align with the school’s academic and operational standards.
+
+            <br /><br />
+
+            Enrollment for each academic session remains open throughout the year, as
+            we remain committed to nurturing excellence and helping every learner
+            flourish academically and morally.
+          </p>
           </div>
           <div className="dates-grid">
             {[

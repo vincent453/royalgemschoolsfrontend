@@ -171,7 +171,10 @@ export default function BellaReportCard() {
               ROYAL GEM MATHEMATICAL SCHOOL
             </h1>
             <p className="text-[10px] text-black mt-0.5">
-              No. 6, Main Street, Suncity Estate, Galadimawa District, FCT Abuja.
+              Main address: 15, Royal Gem Avenue, Ayonnusi Estate, off Sagamu Road, Ikorudu, Lagos State
+            </p>
+            <p className="text-[10px] text-black mt-0.5">
+              Annex: 6, Main Street, Suncity Estate, Galadimawa Distict, Abuja, 15, Royal Gem Avenue, Ayok
             </p>
             <p className="text-[10px] text-black">
               Http/:royalgemmathsschool.org. Tel No: 07037199498, 08034091055
@@ -259,12 +262,13 @@ export default function BellaReportCard() {
           <div className="border border-black p-2 w-full">
             <p className="text-[11px] font-bold underline mb-0.5">NO. OF SUBJECTS: {noOfSubjects}</p>
             <p className="text-[11px] font-bold italic underline mb-0.5">GRADING:</p>
-            <p className="text-[11px] italic"><span className="font-bold">A</span> 80 – 100 = Excellent;</p>
-            <p className="text-[11px] italic"><span className="font-bold">B</span> 70 – 79 = V.Good;</p>
-            <p className="text-[11px] italic"><span className="font-bold">C</span> 60 – 69 = Good;</p>
+            <p className="text-[11px] italic"><span className="font-bold">A</span> 85 – 100 = Excellent;</p>
+            <p className="text-[11px] italic"><span className="font-bold">B</span> 70 – 84 = V.Good;</p>
+            <p className="text-[11px] italic"><span className="font-bold">B</span> 60 – 69 = Good;</p>
+            <p className="text-[11px] italic"><span className="font-bold">C</span> 50 – 59 = Fair;</p>
             <p className="text-[11px] italic"><span className="font-bold">D</span> 50 – 59 = Fair;</p>
             <p className="text-[11px] italic"><span className="font-bold">E</span> 40 – 49 = Poor</p>
-            <p className="text-[11px] italic"><span className="font-bold">F</span> 0 – 39 =</p>
+            <p className="text-[11px] italic"><span className="font-bold">F</span> 0 – 39 = Fail</p>
           </div>
         </div>
 
