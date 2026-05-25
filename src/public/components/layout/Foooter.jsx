@@ -1,4 +1,4 @@
-import { FaTwitter, FaFacebookF, FaInstagram, FaLinkedinIn, FaMapMarkerAlt, FaPhone, FaWhatsapp, FaEnvelope } from 'react-icons/fa'
+import { FaTwitter, FaFacebookF, FaInstagram, FaLinkedinIn, FaMapMarkerAlt, FaPhone, FaWhatsapp, FaEnvelope, FaYoutube } from 'react-icons/fa'
 import { FiArrowUp } from 'react-icons/fi'
 import logo from '../../../assets/img/logo.png'
 import { useEffect, useState } from 'react'
@@ -24,10 +24,10 @@ const contactInfo = [
 ]
 
 const socials = [
-  { icon: <FaTwitter />,   href: "#" },
-  { icon: <FaFacebookF />, href: "#" },
-  { icon: <FaInstagram />, href: "#" },
-  { icon: <FaLinkedinIn />,href: "#" },
+  { icon: <FaYoutube />,   href: "https://youtube.com/@royalgemschoolseducationalserv?si=R48f2L6yQ4xFBXvJ" },
+  { icon: <FaFacebookF />, href: "https://www.facebook.com/royalgemschools" },
+  { icon: <FaInstagram />, href: "http://www.instagram.com/royalgemschools" },
+  { icon: <FaLinkedinIn />,href: "/" },
 ]
 
 

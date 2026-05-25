@@ -1,5 +1,5 @@
 import SectionHeader from "../ui/SectionHeader"
-import teacher1 from '../../../assets/img/teacher1.jpg'
+import teacher1 from '../../../assets/img/teacher1.jpeg'
 import teacher2 from '../../../assets/img/teacher2.webp'
 import teacher3 from '../../../assets/img/teacher3.jpg'
 import teacher4 from '../../../assets/img/teacher4.jpg'
@@ -12,36 +12,36 @@ const teachers = [
     name:       "Mrs. Oluwatoyin Ariyo",
     subject:    "Mathematics Teacher",
   
-    twitterUrl: "https://twitter.com/",
-    facebookUrl:"https://facebook.com/",
-    linkedinUrl:"https://linkedin.com/",
+    twitterUrl: "/",
+    facebookUrl:"/",
+    linkedinUrl:"/",
   },
 {  
     image:      teacher2,
     name:       "Mr. John Doe",
     subject:    "Science Teacher",
 
-    twitterUrl: "https://twitter.com/",
-    facebookUrl:"https://facebook.com/",
-    linkedinUrl:"https://linkedin.com/",    
+    twitterUrl: "/",
+    facebookUrl:"/",
+    linkedinUrl:"/",    
     },  
     {
     image:      teacher3,
     name:       "Ms. Jane Smith",
     subject:    "English Teacher",
     
-    twitterUrl: "https://twitter.com/",
-    facebookUrl:"https://facebook.com/",
-    linkedinUrl:"https://linkedin.com/",    
+    twitterUrl: "/",
+    facebookUrl:"/",
+    linkedinUrl:"/",    
     },
     {
     image:      teacher4,
     name:       "Mr. David Johnson",
     subject:    "History Teacher",
    
-    twitterUrl: "https://twitter.com/",
-    facebookUrl:"https://facebook.com/",
-    linkedinUrl:"https://linkedin.com/",    
+    twitterUrl: "/",
+    facebookUrl:"/",
+    linkedinUrl:"/",    
     }
 ]
 const OurTeachers = () => {
