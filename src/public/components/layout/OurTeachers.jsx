@@ -1,16 +1,16 @@
 import SectionHeader from "../ui/SectionHeader"
 import teacher1 from '../../../assets/img/teacher1.jpeg'
-import teacher2 from '../../../assets/img/teacher2.webp'
-import teacher3 from '../../../assets/img/teacher3.jpg'
-import teacher4 from '../../../assets/img/teacher4.jpg'
+import teacher2 from '../../../assets/img/testimonial1.jpeg'
+import teacher3 from '../../../assets/img/testimonial2.jpeg'
+import teacher4 from '../../../assets/img/testimonial3.jpeg'
 
 import TeacherCard from "../ui/TeacherCard"
 
 const teachers = [
   {
     image:      teacher1,
-    name:       "Mrs. Oluwatoyin Ariyo",
-    subject:    "Mathematics Teacher",
+    name:       "Mvendaga Jacob ADEGA",
+    subject:    "HOD English Language Department",
   
     twitterUrl: "/",
     facebookUrl:"/",
@@ -18,16 +18,15 @@ const teachers = [
   },
 {  
     image:      teacher2,
-    name:       "Mr. John Doe",
-    subject:    "Science Teacher",
-
+    name:       "Utitofon Ibanga",
+    subject:    "HOD Early Years Section",
     twitterUrl: "/",
     facebookUrl:"/",
     linkedinUrl:"/",    
     },  
     {
     image:      teacher3,
-    name:       "Ms. Jane Smith",
+    name:       "ESTHER CHUKWU ",
     subject:    "English Teacher",
     
     twitterUrl: "/",
@@ -36,8 +35,8 @@ const teachers = [
     },
     {
     image:      teacher4,
-    name:       "Mr. David Johnson",
-    subject:    "History Teacher",
+    name:       "AJANI EMMANUEL OLUSEGUN",
+    subject:    "Examination Committee",
    
     twitterUrl: "/",
     facebookUrl:"/",

@@ -1,4 +1,5 @@
 import reviewImage1 from '../../../assets/img/review.png'
+import teacher1 from '../../../assets/img/teacher1.jpeg'
 import testimonial1 from '../../../assets/img/testimonial1.jpeg'
 import testimonial2 from '../../../assets/img/testimonial2.jpeg'
 import testimonial3 from '../../../assets/img/testimonial3.jpeg'
@@ -69,7 +70,7 @@ const reviews = [
     review: "I have worked with different schools and amassed a lot of experience, but the way you lead us is different from what I have experienced elsewhere. You have given me room for more improvement and I do not take it for granted. Long live Royal Gem Mathematical School Abuja.",
     name: "Mr. Jacob Adega",
     company: "Staff, Royal Gem Schools",
-    avatar: "https://i.pravatar.cc/150?img=6"
+    avatar: teacher1
   },
   {
     review: "It has been amazing working at RGMS, where I learn something new every day and get the opportunity to put it into practice. For the first time in my career, I feel truly fulfilled and found peace of mind here. I have gained deeper knowledge in classroom management, effective teamwork, and the use of learning materials that make lessons more engaging.",
