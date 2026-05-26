@@ -15,7 +15,7 @@ const BannerCTA = ({
     <div className="px-6 md:px-14 py-12">
       <div
         className="relative w-full rounded-2xl overflow-hidden bg-cover bg-center min-h-[320px] flex items-center"
-        style={{ backgroundImage: `url(${image})` }}
+        style={{ backgroundImage: `url(${image})`, backgroundPosition: "top" }}
       >
         {/* Overlay */}
         <div className={`absolute inset-0 ${overlayOpacity}`} />

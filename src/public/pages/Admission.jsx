@@ -3,7 +3,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import Footer from '../components/layout/Foooter'
 import Navbar from '../components/layout/Navbar'
-import bg from '../../assets/img/vission.jpeg'
+import bg from '../../assets/img/musicclass.jpeg'
 import { useNavigate } from "react-router-dom";
 
 const Sparkle = ({ size = 16, color = '#f5c518', style = {} }) => (

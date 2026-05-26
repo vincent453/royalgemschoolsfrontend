@@ -38,6 +38,7 @@ import {
   StudentPortalRoute,
   ParentPortalRoute,
 } from "./ProtectedRoutes";
+import Blog from "../public/pages/Blog";
 
 export default function AppRoutes() {
   return (
@@ -49,6 +50,7 @@ export default function AppRoutes() {
       <Route path="/contact"    element={<Contact />}    />
       <Route path="/admissions" element={<Admissions />} />
       <Route path="/yearbook"   element={<Yearbook />}   />
+      <Route path="/blog"   element={<Blog />}   />
 
       {/* ── Portal login (student + parent) ── */}
       <Route path="/portal" element={<Portal />} />

@@ -9,7 +9,7 @@ const navLinks = [
   { label: "Admissions", href: "/admissions" },
   { label: "Portal", href: "/portal" },
   { label: "YearBook", href: "/yearbook" },
-  { label: "News/Events", href: "/news-events" },
+  { label: "News/Events", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 

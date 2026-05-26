@@ -1,4 +1,5 @@
 import { FiArrowUpRight } from 'react-icons/fi'
+import { FiX } from 'react-icons/fi'
 
 const BlogCard = ({
   image,
@@ -7,17 +8,27 @@ const BlogCard = ({
   categoryColor = "text-[#525fe1]",
   title,
   href = "#",
+  onDelete,
 }) => {
   return (
     <div className="bg-white shadow-sm border border-gray-200 overflow-hidden group w-full max-w-[340px]">
 
       {/* Image */}
-      <div className="overflow-hidden h-[300px]">
+      <div className="overflow-hidden h-[300px] relative">
         <img
-          src={image}
+          src={image || 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80'}
           alt={title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
+        {onDelete && (
+          <button
+            onClick={onDelete}
+            className="absolute top-2 right-2 bg-white/90 hover:bg-red-50 border border-red-200 text-red-500 rounded-full w-8 h-8 flex items-center justify-center transition-colors z-10 cursor-pointer"
+            title="Remove post"
+          >
+            <FiX className="text-sm" />
+          </button>
+        )}
       </div>
 
       {/* Content */}
@@ -31,13 +42,13 @@ const BlogCard = ({
         </div>
 
         {/* Title */}
-        <h3 className="font-jost font-bold text-[#702b70] text-lg leading-snug">
+        <h3 className="font-jost font-bold text-[#702b70] text-lg leading-snug line-clamp-2">
           {title}
         </h3>
 
         {/* Read More Button */}
         <a
-          href={href}
+          href={href || '#'}
           className="inline-flex items-center gap-2 bg-[#A033A0] hover:bg-[#525fe1]
                      text-white font-jost font-semibold text-sm
                      px-5 py-5 w-fit transition-colors duration-300"

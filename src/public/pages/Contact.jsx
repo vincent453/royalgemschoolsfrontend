@@ -20,7 +20,7 @@ const Contact = () => {
   }, [])
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-hidden">
       {/* Navbar: no animation — always visible immediately */}
       <Navbar />
 
