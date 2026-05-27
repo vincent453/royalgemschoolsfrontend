@@ -5,6 +5,7 @@ import {
   FaLock, FaUserShield, FaBell, FaPalette,
   FaSchool, FaEye, FaEyeSlash, FaCamera, FaUser,
   FaSpinner, FaExclamationCircle,
+  FaBlog,
 } from "react-icons/fa";
 import {
   fetchSchoolInfo, updateSchoolInfo, uploadSchoolLogo,
@@ -106,14 +107,34 @@ const SchoolInfoTab = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+    e.preventDefault()
+
     try {
-      const updated = await saveAsync.run(() => updateSchoolInfo(school));
-      setSchool(updated);
-      showToast("School info saved successfully!");
-    } catch { /* error in saveAsync.error */ }
-  };
+      const body = new FormData()
+      body.append("title",    formData.title)
+      body.append("category", formData.category)
+      body.append("date",     new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }))
+      if (formData.content) body.append("content", formData.content)
+      if (formData.image)   body.append("image",   formData.image)
+
+      await createAsync.run(async () => {
+        const res  = await fetch(`${import.meta.env.VITE_API_URL}/api/blog`, {
+          method:  "POST",
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          body,
+        })
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.message ?? "Failed to upload blog")
+        return data
+      })
+
+      showToast("Blog uploaded successfully!")
+      resetForm()
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   if (fetchAsync.loading) {
     return (
@@ -492,6 +513,206 @@ const PasswordTab = () => {
 };
 
 // ─────────────────────────────────────────────────────────────
+// BlogUploadTab
+// ─────────────────────────────────────────────────────────────
+
+const BlogUploadTab = () => {
+  const createAsync = useAsync()
+
+  const [toast, setToast] = useState("")
+  const [preview, setPreview] = useState(null)
+
+  const [formData, setFormData] = useState({
+    title: "",
+    category: "",
+    content: "",
+    image: null,
+  })
+
+  const showToast = (msg) => {
+    setToast(msg)
+    setTimeout(() => setToast(""), 3500)
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const handleImage = (e) => {
+    const file = e.target.files[0]
+
+    if (!file) return
+
+    setFormData((prev) => ({
+      ...prev,
+      image: file,
+    }))
+
+    setPreview(URL.createObjectURL(file))
+  }
+
+  const resetForm = () => {
+    setFormData({
+      title: "",
+      category: "",
+      content: "",
+      image: null,
+    })
+
+    setPreview(null)
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      const body = new FormData()
+
+      body.append("title", formData.title)
+      body.append("category", formData.category)
+      body.append("content", formData.content)
+
+      if (formData.image) {
+        body.append("image", formData.image)
+      }
+
+      const response = await createAsync.run(() =>
+        fetch(`${import.meta.env.VITE_API_URL}/api/blog`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body,
+        })
+      )
+
+      if (!response.ok) {
+        throw new Error("Failed to upload blog")
+      }
+
+      showToast("Blog uploaded successfully!")
+
+      resetForm()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col gap-6"
+    >
+      <div className="border-b border-gray-100 pb-3">
+        <h2 className="font-jost font-bold text-gray-800 text-lg">
+          Upload Blog Post
+        </h2>
+
+        <p className="font-dm-sans text-sm text-gray-400 mt-1">
+          Create and publish a new blog post
+        </p>
+      </div>
+
+      <SuccessBanner message={toast} />
+      <ErrorBanner message={createAsync.error} />
+
+      {/* Blog Image */}
+      <div className="flex flex-col gap-3">
+        <label className={labelClass}>Blog Image</label>
+
+        <div className="border-2 border-dashed border-gray-200 rounded-2xl p-4 bg-gray-50">
+          {preview ? (
+            <img
+              src={preview}
+              alt="Preview"
+              className="w-full h-64 object-cover rounded-xl"
+            />
+          ) : (
+            <div className="h-64 flex flex-col items-center justify-center text-gray-400">
+              <FaCamera className="text-4xl mb-3" />
+              <p className="font-dm-sans text-sm">
+                Upload blog thumbnail
+              </p>
+            </div>
+          )}
+        </div>
+
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImage}
+          className="hidden"
+          id="blog-image"
+        />
+
+        <label
+          htmlFor="blog-image"
+          className="w-fit px-5 py-2 rounded-full bg-[#A033A0] text-white
+                     font-dm-sans text-sm font-semibold cursor-pointer
+                     hover:bg-[#525fe1] transition-colors duration-300"
+        >
+          Choose Image
+        </label>
+      </div>
+
+      {/* Title */}
+      <div>
+        <label className={labelClass}>Blog Title</label>
+
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          placeholder="Enter blog title"
+          className={inputClass}
+          required
+        />
+      </div>
+
+      {/* Category */}
+      <div>
+        <label className={labelClass}>Category</label>
+
+        <input
+          type="text"
+          name="category"
+          value={formData.category}
+          onChange={handleChange}
+          placeholder="e.g Events, Education, News"
+          className={inputClass}
+          required
+        />
+      </div>
+
+      {/* Content */}
+      <div>
+        <label className={labelClass}>Blog Content</label>
+
+        <textarea
+          name="content"
+          value={formData.content}
+          onChange={handleChange}
+          rows={10}
+          placeholder="Write your blog content here..."
+          className={`${inputClass} resize-none`}
+          required
+        />
+      </div>
+
+      <SaveButton
+        loading={createAsync.loading}
+        label="Publish Blog"
+      />
+    </form>
+  )
+}
+// ─────────────────────────────────────────────────────────────
 // Settings root — manages shared avatar state
 // ─────────────────────────────────────────────────────────────
 const tabs = [
@@ -500,6 +721,7 @@ const tabs = [
   { id: "password",  label: "Change Password",  icon: <FaLock />       },
   { id: "notif",     label: "Notifications",    icon: <FaBell />       },
   { id: "appearance",label: "Appearance",       icon: <FaPalette />    },
+  { id: "blog",      label: "Blog Upload",      icon:  <FaBlog />,    },
 ];
 
 const Settings = () => {
@@ -589,6 +811,7 @@ const [sidebarOpen, setSidebarOpen] = useState(false);
                     </p>
                   </div>
                 )}
+                 {activeTab === "blog" && <BlogUploadTab />}
               </div>
             </div>
           </div>
