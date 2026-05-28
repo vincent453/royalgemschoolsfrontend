@@ -33,9 +33,9 @@ const ReviewCard = ({
       <div className="flex items-center gap-3 bg-gray-50 rounded-sm px-3 sm:px-4 py-4 sm:py-5">
         <img
           src={avatar}
-          alt={name}
           className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover shrink-0"
         />
+        
         <div>
           <h4 className="font-jost font-bold text-gray-900 text-xs sm:text-sm">{name}</h4>
           <p className="font-dm-sans text-gray-400 text-[11px] sm:text-xs mt-0.5">{company}</p>
