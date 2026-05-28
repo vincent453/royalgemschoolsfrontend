@@ -24,6 +24,12 @@ const reviews = [
     company: "Staff, Royal Gem Schools",
     avatar: testimonial3,
   },
+    {
+    review: "My stay at Royal Gem Mathematical Schools has been an exciting one filled with learning, fun and exhilarating experiences but not without challenges. Challenges that pushed me to think smarter, work harder, and discover strengths I never knew I had. For me, this is an opportunity for capacity building. The friendly/healthy work environment makes learning even more interesting. Greater values unleashed with every day that passes.All thanks to Royal Gem mathematical Schools.Indeed sometimes, 'Big' is not by size.",
+    name: "Mr. Stephen Owoichoche Akor",
+    company: "HOD, Secondary section",
+    avatar: "https://i.pravatar.cc/150?img=9",
+  },
   {
     review: "My stay in RGMS since joining the workforce has been a wonderful learning experience. I have gained knowledge, support, and valuable teamwork skills. I appreciate the opportunity to grow and contribute to the organization.",
     name: "Ms Oluwanifemi Bello",
