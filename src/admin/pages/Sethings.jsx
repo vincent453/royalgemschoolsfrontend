@@ -109,34 +109,42 @@ const SchoolInfoTab = () => {
     }
   };
 
-const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+  e.preventDefault()
 
-    try {
-      const body = new FormData()
-      body.append("title",    formData.title)
-      body.append("category", formData.category)
-      body.append("date",     new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }))
-      if (formData.content) body.append("content", formData.content)
-      if (formData.image)   body.append("image",   formData.image)
+  try {
+    const body = new FormData()
 
-      await createAsync.run(async () => {
-        const res  = await fetch(`${API}/api/blog`, {
-          method:  "POST",
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-          body,
-        })
-        const data = await res.json()
-        if (!res.ok) throw new Error(data.message ?? "Failed to upload blog")
-        return data
-      })
+    body.append("title",    formData.title)
+    body.append("category", formData.category)
+    body.append("content",  formData.content)
+    body.append("date", new Date().toLocaleDateString("en-US", {
+      year: "numeric", month: "long", day: "numeric",
+    }))
 
-      showToast("Blog uploaded successfully!")
-      resetForm()
-    } catch (error) {
-      console.error(error)
+    if (formData.image) {
+      body.append("image", formData.image)
     }
+
+    await createAsync.run(async () => {
+      const res = await fetch("https://royalgemschoolsbackend.onrender.com/api/blog", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        body,
+      })
+      const text = await res.text()
+      let data = {}
+      try { data = JSON.parse(text) } catch { /* empty body */ }
+      if (!res.ok) throw new Error(data.message ?? `Upload failed (${res.status})`)
+      return data
+    })
+
+    showToast("Blog uploaded successfully!")
+    resetForm()
+  } catch (error) {
+    console.error(error)
   }
+}
 
   if (fetchAsync.loading) {
     return (
