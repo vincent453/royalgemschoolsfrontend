@@ -107,14 +107,34 @@ const SchoolInfoTab = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+    e.preventDefault()
+
     try {
-      const updated = await saveAsync.run(() => updateSchoolInfo(school));
-      setSchool((prev) => ({ ...prev, ...updated }));
-      showToast("School info saved!");
-    } catch { /* error shown in ErrorBanner */ }
-  };
+      const body = new FormData()
+      body.append("title",    formData.title)
+      body.append("category", formData.category)
+      body.append("date",     new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }))
+      if (formData.content) body.append("content", formData.content)
+      if (formData.image)   body.append("image",   formData.image)
+
+      await createAsync.run(async () => {
+        const res  = await fetch(`${import.meta.env.VITE_API_URL}/api/blog`, {
+          method:  "POST",
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          body,
+        })
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.message ?? "Failed to upload blog")
+        return data
+      })
+
+      showToast("Blog uploaded successfully!")
+      resetForm()
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   if (fetchAsync.loading) {
     return (
@@ -565,15 +585,21 @@ const BlogUploadTab = () => {
       }
 
       await createAsync.run(async () => {
-        const res  = await fetch(`${import.meta.env.VITE_API_URL}/api/blog`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/blog`, {
           method: "POST",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
           body,
         })
-        const data = await res.json()
-        if (!res.ok) throw new Error(data.message ?? "Failed to upload blog")
+
+        // safely parse — server may return an empty body on some errors
+        const text = await res.text()
+        let data = {}
+        try { data = JSON.parse(text) } catch { /* empty body, ignore */ }
+
+        if (!res.ok) {
+          throw new Error(data.message ?? `Upload failed (${res.status})`)
+        }
+
         return data
       })
 
