@@ -5,8 +5,8 @@ const contactCards = [
     icon: <FaMapMarkerAlt />,
     title: "Our Location",
     lines: [
-      "Ikorodu, Lagos State",
-      "Abuja, FCT, Nigeria",
+      "Main address: 15, Royal Gem Avenue, Ayonnusi Estate, off Sagamu Road, Ikorudu, Lagos State",
+      "Annex: 6, Main Street, Suncity Estate, Galadimawa Distict, Abuja, 15, Royal Gem Avenue, Ayok",
     ],
     bg: "bg-rose-50",
     iconBg: "bg-rose-100 text-rose-400",
@@ -16,8 +16,9 @@ const contactCards = [
     icon: <FaPhone />,
     title: "Telephone",
     lines: [
-      "+234 800 000 0000",
-      "+234 900 000 0000",
+      "+234 906 565 0959",
+      "+234 703 719 9498",
+      "+234 803 409 1055",
     ],
     bg: "bg-[#eef0ff]",
     iconBg: "bg-[#dde0ff] text-[#525fe1]",
@@ -27,12 +28,11 @@ const contactCards = [
     icon: <FaEnvelope />,
     title: "Send Email",
     lines: [
-      "info@royalgemschools.com",
-      "admin@royalgemschools.com",
+      "school.royalgem@gmail.com",
     ],
     bg: "bg-teal-50",
     iconBg: "bg-teal-100 text-teal-500",
-    href: "mailto:info@royalgemschools.com",
+    href: "mailto:school.royalgem@gmail.com",
   },
 ]
 

@@ -14,9 +14,9 @@ const aboutLinks = [
 
 
 
-const contactInfo = [
+const contactInfo = [Annex: 6, Main Street, Suncity Estate, Galadimawa Distict, Abuja, 15, Royal Gem Avenue, Ayok
   { icon: <FaMapMarkerAlt />, text: "Main address: 15, Royal Gem Avenue, Ayonnusi Estate, off Sagamu Road, Ikorudu, Lagos State", href: null },
-  { icon: <FaMapMarkerAlt />, text: "Annex: 6, Main Street, Suncity Estate, Galadimawa Distict, Abuja, 15, Royal Gem Avenue, Ayok", href: null },
+  { icon: <FaMapMarkerAlt />, text: "", href: null },
   { icon: <FaPhone />,        text: "+234 906 565 0959",                           href: "tel:+23407037199498" },
   { icon: <FaPhone />,        text: "+234 703 719 9498",                           href: "tel:+23407037199498" },
   { icon: <FaWhatsapp />,     text: "Contact Whatsapp",                            href: "https://wa.me/2347037199498", colored: true },

@@ -7,6 +7,7 @@ const BlogCard = ({
   category,
   categoryColor = "text-[#525fe1]",
   title,
+  content,
   href = "#",
   onDelete,
 }) => {
@@ -45,6 +46,9 @@ const BlogCard = ({
         <h3 className="font-jost font-bold text-[#702b70] text-lg leading-snug line-clamp-2">
           {title}
         </h3>
+        <p className='font-dmsan text-[#702b70] text-sm leading-snug line-clamp-2'>
+          {content}
+        </p>
 
         {/* Read More Button */}
         <a

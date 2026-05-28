@@ -12,8 +12,6 @@ import {
   fetchAccount, updateAccount, changePassword, uploadAvatar,
 } from "../services/sethingsApi";
 
-const API = "https://royalgemschoolsbackend.onrender.com";
-
 function useAsync() {
   const [state, setState] = useState({ loading: false, error: null });
   const run = useCallback(async (fn) => {
@@ -110,41 +108,13 @@ const SchoolInfoTab = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault()
-
-  try {
-    const body = new FormData()
-
-    body.append("title",    formData.title)
-    body.append("category", formData.category)
-    body.append("content",  formData.content)
-    body.append("date", new Date().toLocaleDateString("en-US", {
-      year: "numeric", month: "long", day: "numeric",
-    }))
-
-    if (formData.image) {
-      body.append("image", formData.image)
-    }
-
-    await createAsync.run(async () => {
-      const res = await fetch("https://royalgemschoolsbackend.onrender.com/api/blog", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        body,
-      })
-      const text = await res.text()
-      let data = {}
-      try { data = JSON.parse(text) } catch { /* empty body */ }
-      if (!res.ok) throw new Error(data.message ?? `Upload failed (${res.status})`)
-      return data
-    })
-
-    showToast("Blog uploaded successfully!")
-    resetForm()
-  } catch (error) {
-    console.error(error)
-  }
-}
+    e.preventDefault();
+    try {
+      const updated = await saveAsync.run(() => updateSchoolInfo(school));
+      setSchool((prev) => ({ ...prev, ...updated }));
+      showToast("School info saved!");
+    } catch { /* error shown in ErrorBanner */ }
+  };
 
   if (fetchAsync.loading) {
     return (
@@ -583,28 +553,27 @@ const BlogUploadTab = () => {
     try {
       const body = new FormData()
 
-      body.append("title", formData.title)
+      body.append("title",    formData.title)
       body.append("category", formData.category)
-      body.append("content", formData.content)
+      body.append("content",  formData.content)
+      body.append("date", new Date().toLocaleDateString("en-US", {
+        year: "numeric", month: "long", day: "numeric",
+      }))
 
       if (formData.image) {
         body.append("image", formData.image)
       }
 
-      body.append("date", new Date().toLocaleDateString("en-US", {
-        year: "numeric", month: "long", day: "numeric",
-      }))
-
       await createAsync.run(async () => {
-        const res = await fetch(`${API}/api/blog`, {
+        const res  = await fetch(`https://royalgemschoolsbackend.vercel.app/api/blog`, {
           method: "POST",
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
           body,
         })
-        const text = await res.text()
-        let data = {}
-        try { data = JSON.parse(text) } catch { /* empty body */ }
-        if (!res.ok) throw new Error(data.message ?? `Upload failed (${res.status})`)
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.message ?? "Failed to upload blog")
         return data
       })
 

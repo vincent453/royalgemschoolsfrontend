@@ -5,7 +5,7 @@ import Navbar from "../components/layout/Navbar"
 import BlogCard from "../components/ui/BlogCard"
 import Footer from "../components/layout/Foooter"
 
-const API = import.meta.env.VITE_API_URL || "https://royalgemschoolsbackend.onrender.com"
+const API = import.meta.env.VITE_API_URL || "https://royalgemschoolsbackend.vercel.app"
 
 const CATEGORY_COLORS = [
   "text-[#525fe1]",
@@ -258,6 +258,7 @@ const Blog = () => {
                   categories
                 )}
                 title={post.title}
+                content={post.content}
                 href={`/blog/${post.slug || post._id}`}
                 onDelete={
                   manageAccess

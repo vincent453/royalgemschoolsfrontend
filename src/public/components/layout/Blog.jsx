@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import BlogCard from "../ui/BlogCard"
 import SectionHeader from "../ui/SectionHeader"
 
-const API = import.meta.env.VITE_API_URL || "https://royalgemschoolsbackend.onrender.com"
+const API = import.meta.env.VITE_API_URL || "https://royalgemschoolsbackend.vercel.app"
 
 const CATEGORY_COLORS = [
   "text-[#525fe1]",
