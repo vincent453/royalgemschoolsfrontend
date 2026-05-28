@@ -12,6 +12,8 @@ import {
   fetchAccount, updateAccount, changePassword, uploadAvatar,
 } from "../services/sethingsApi";
 
+const API = "https://royalgemschoolsbackend.onrender.com";
+
 function useAsync() {
   const [state, setState] = useState({ loading: false, error: null });
   const run = useCallback(async (fn) => {
@@ -119,7 +121,7 @@ const handleSubmit = async (e) => {
       if (formData.image)   body.append("image",   formData.image)
 
       await createAsync.run(async () => {
-        const res  = await fetch(`${import.meta.env.VITE_API_URL}/api/blog`, {
+        const res  = await fetch(`${API}/api/blog`, {
           method:  "POST",
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
           body,
@@ -573,33 +575,28 @@ const BlogUploadTab = () => {
     try {
       const body = new FormData()
 
-      body.append("title",    formData.title)
+      body.append("title", formData.title)
       body.append("category", formData.category)
-      body.append("content",  formData.content)
-      body.append("date", new Date().toLocaleDateString("en-US", {
-        year: "numeric", month: "long", day: "numeric",
-      }))
+      body.append("content", formData.content)
 
       if (formData.image) {
         body.append("image", formData.image)
       }
 
+      body.append("date", new Date().toLocaleDateString("en-US", {
+        year: "numeric", month: "long", day: "numeric",
+      }))
+
       await createAsync.run(async () => {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/blog`, {
+        const res = await fetch(`${API}/api/blog`, {
           method: "POST",
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
           body,
         })
-
-        // safely parse — server may return an empty body on some errors
         const text = await res.text()
         let data = {}
-        try { data = JSON.parse(text) } catch { /* empty body, ignore */ }
-
-        if (!res.ok) {
-          throw new Error(data.message ?? `Upload failed (${res.status})`)
-        }
-
+        try { data = JSON.parse(text) } catch { /* empty body */ }
+        if (!res.ok) throw new Error(data.message ?? `Upload failed (${res.status})`)
         return data
       })
 
