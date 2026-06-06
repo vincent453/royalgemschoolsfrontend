@@ -14,6 +14,8 @@ import Testimonials from "../components/layout/Testimonials"
 import Blog from "../components/layout/Blog"
 import Footer from "../components/layout/Foooter"
 import shapeimage from '../../assets/img/shape-image.png'
+import SEO from "../components/layout/SEO"
+import { Helmet } from "react-helmet-async"
 
 const Home = () => {
   useEffect(() => {
@@ -26,6 +28,32 @@ const Home = () => {
   }, [])
 
   return (
+    <>
+          <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "School",
+            name: "Royal Gem School",
+            url: "https://royalgemschool.com",
+            telephone: "+234XXXXXXXXXX",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "School Address",
+              addressLocality: "Abuja",
+              addressCountry: "NG"
+            }
+          })}
+        </script>
+      </Helmet>
+
+<SEO
+  title="Royal Gem School | Quality Education for Future Leaders"
+  description="Royal Gem School provides quality nursery, primary, and secondary education with experienced teachers, modern learning facilities, and a nurturing environment."
+  keywords="Royal Gem School, school in Nigeria, nursery school, primary school, secondary school, quality education, admission"
+  image="https://royalgemschool.com/seo-image.jpg"
+  url="https://royalgemschool.com"
+/>
     <div className="overflow-x-hidden">
       <Navbar />
 
@@ -74,6 +102,7 @@ const Home = () => {
         <Footer />
       </div>
     </div>
+    </>
   )
 }
 

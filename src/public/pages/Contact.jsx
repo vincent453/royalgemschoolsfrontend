@@ -8,6 +8,7 @@ import contactimg from '../../assets/img/blog2.jpeg'
 import ContactInfo from "../components/ui/ContactInfo"
 import ContactForm from "../components/ui/ContactForm"
 import Footer from "../components/layout/Foooter"
+import SEO from "../components/layout/SEO"
 
 const Contact = () => {
   useEffect(() => {
@@ -20,6 +21,13 @@ const Contact = () => {
   }, [])
 
   return (
+    <>
+    <SEO
+  title="Contact Royal Gem School"
+  description="Get in touch with Royal Gem School. We'd love to hear from you!"
+  keywords="contact royal gem school, school contact, get in touch"
+  url="https://royalgemschool.com/contact"
+/> 
     <div className="overflow-hidden">
       {/* Navbar: no animation — always visible immediately */}
       <Navbar />
@@ -44,6 +52,7 @@ const Contact = () => {
         <Footer />
       </div>
     </div>
+    </>
   )
 }
 

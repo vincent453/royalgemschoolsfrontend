@@ -4,6 +4,7 @@ import { FiImage } from "react-icons/fi"
 import Navbar from "../components/layout/Navbar"
 import BlogCard from "../components/ui/BlogCard"
 import Footer from "../components/layout/Foooter"
+import SEO from "../components/layout/SEO"
 
 const API = import.meta.env.VITE_API_URL || "https://royalgemschoolsbackend.vercel.app"
 
@@ -158,6 +159,12 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO
+  title="School News & Events | Royal Gem School"
+  description="Stay updated with school news, announcements, achievements, and upcoming events."
+  keywords="school news, school events, education updates"
+  url="https://royalgemschool.com/blog"
+/>
       <Navbar />
 
       {/* Hero Section */}

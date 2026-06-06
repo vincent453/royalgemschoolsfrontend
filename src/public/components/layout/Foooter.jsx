@@ -165,7 +165,7 @@ const Footer = () => {
             <span className="font-bold text-gray-700">Royal Gem Schools</span>. 
             Built by{" "}
             <span className="font-bold text-gray-700">
-              Vincent Web and App Development
+              <a href="https://wa.me/2348067215570">Vincent Web and App Development</a>
             </span>
           </p>  
 

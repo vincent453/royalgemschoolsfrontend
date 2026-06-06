@@ -26,7 +26,7 @@ const reviews = [
     company: "Staff, Royal Gem Schools",
     avatar: testimonial3,
   },
-    {
+  {
     review: "My stay at Royal Gem Mathematical Schools has been an exciting one filled with learning, fun and exhilarating experiences but not without challenges. Challenges that pushed me to think smarter, work harder, and discover strengths I never knew I had. For me, this is an opportunity for capacity building. The friendly/healthy work environment makes learning even more interesting. Greater values unleashed with every day that passes.All thanks to Royal Gem mathematical Schools.Indeed sometimes, 'Big' is not by size.",
     name: "Mr. Stephen Owoichoche Akor",
     company: "HOD, Secondary section",
@@ -36,43 +36,36 @@ const reviews = [
     review: "My stay in RGMS since joining the workforce has been a wonderful learning experience. I have gained knowledge, support, and valuable teamwork skills. I appreciate the opportunity to grow and contribute to the organization.",
     name: "Ms Oluwanifemi Bello",
     company: "Staff, Royal Gem Schools",
-    avatar: <FaUser />,
   },
   {
     review: "My stay in RGNPS has been peaceful and happy. I have gained more patience in handling children and I've grown both as a teacher and as a person. I'm proud to contribute to the development of RG Schools.",
     name: "Miss Feyisola Deborah",
     company: "Staff, Royal Gem Schools",
-    avatar: <FaUser />,
   },
   {
     review: "My stay in RGMS has been a beautiful learning experience so far. I have enjoyed the supportive environment, teamwork, and the opportunity to contribute to the growth of the pupils.",
     name: "Miss Oluwagbemisola Ogunleye",
     company: "Staff, Royal Gem Schools",
-    avatar: <FaUser />,
   },
   {
     review: "My stay in Royal Gem Nur/Pry School has been filled with growth, learning, and beautiful experiences. Teaching here has been meaningful and impactful in so many ways.",
     name: "Miss Gift AbasiEma",
     company: "Staff, Royal Gem Schools",
-    avatar: <FaUser />,
   },
   {
     review: "Working at RGMS has been a truly transformative experience. It has continually challenged me to push beyond my comfort zone, uncover hidden strengths, and develop skills I never knew I possessed.",
     name: "Mrs Toyin Ajayi",
     company: "Head of Finance, Royal Gem Schools",
-    avatar: <FaUser />,
   },
   {
     review: "Being part of RGMS has positively shaped my teaching career and strengthened my skills in classroom management, pupils' development, and working with a good team.",
     name: "Mrs Adewole",
     company: "Staff, Royal Gem Schools",
-    avatar: <FaUser />,
   },
   {
     review: "Working as a team mate in this assignment has been one of the most fulfilling experiences of my life. The parents, the staff, the children have all made me a better person.",
     name: "Mr. Michael Oyetayo",
     company: "HOS Ikorodu, Royal Gem Schools",
-    avatar: <FaUser />,
   },
   {
     review: "I have worked with different schools and amassed a lot of experience, but the way you lead us is different from what I have experienced elsewhere. Long live Royal Gem Mathematical School Abuja.",
@@ -84,9 +77,40 @@ const reviews = [
     review: "It has been amazing working at RGMS, where I learn something new every day. For the first time in my career, I feel truly fulfilled and found peace of mind here.",
     name: "Miss Mary Attah",
     company: "Staff, Royal Gem Schools",
-    avatar: <FaUser />,
   },
 ]
+
+// Generates a consistent colour from the person's name
+const getAvatarColor = (name) => {
+  const colors = [
+    "bg-[#702b70]", "bg-[#A033A0]", "bg-[#525fe1]",
+    "bg-[#0f6e56]", "bg-[#ba7517]", "bg-[#185fa5]",
+  ]
+  const index = name.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0)
+  return colors[index % colors.length]
+}
+
+const getInitials = (name) =>
+  name.split(" ").map((w) => w[0]?.toUpperCase() ?? "").slice(0, 2).join("")
+
+export const AvatarDisplay = ({ avatar, name }) => {
+  if (avatar && typeof avatar === "string") {
+    return (
+      <img
+        src={avatar}
+        alt={name}
+        className="w-full h-full object-cover"
+      />
+    )
+  }
+  return (
+    <div className={`w-full h-full flex items-center justify-center ${getAvatarColor(name)}`}>
+      <span className="text-white font-jost font-bold text-lg">
+        {getInitials(name)}
+      </span>
+    </div>
+  )
+}
 
 const Testimonials = () => {
   return (
@@ -115,7 +139,7 @@ const Testimonials = () => {
 
           {/* Right — slider */}
           <div className="w-full lg:w-1/2">
-            <ReviewSlider reviews={reviews} />
+            <ReviewSlider reviews={reviews} AvatarDisplay={AvatarDisplay} />
           </div>
 
         </div>

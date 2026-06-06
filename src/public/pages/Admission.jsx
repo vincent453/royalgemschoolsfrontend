@@ -5,6 +5,7 @@ import Footer from '../components/layout/Foooter'
 import Navbar from '../components/layout/Navbar'
 import bg from '../../assets/img/musicclass.jpeg'
 import { useNavigate } from "react-router-dom";
+import SEO from '../components/layout/SEO'
 
 const Sparkle = ({ size = 16, color = '#f5c518', style = {} }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill={color} style={style}>
@@ -78,6 +79,12 @@ export default function Admissions() {
 
   return (
     <>
+    <SEO
+  title="Admissions | Royal Gem School"
+  description="Apply for admission into Royal Gem School. Learn about admission requirements, procedures, and enrollment."
+  keywords="school admission, royal gem admission, school registration"
+  url="https://royalgemschool.com/admission"
+/>
       <style>{`
         /* ... (keep all your existing styles exactly as-is) ... */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap');

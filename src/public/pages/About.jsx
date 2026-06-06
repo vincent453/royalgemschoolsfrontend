@@ -16,6 +16,7 @@ import Footer from "../components/layout/Foooter"
 
 import AOS from "aos"
 import "aos/dist/aos.css"
+import SEO from "../components/layout/SEO"
 
 const About = () => {
 
@@ -52,6 +53,13 @@ const About = () => {
   ]
 
   return (
+    <>
+    <SEO
+  title="About Royal Gem School"
+  description="Learn about Royal Gem School, our vision, mission, values, and commitment to academic excellence."
+  keywords="about royal gem school, school mission, school vision"
+  url="https://royalgemschool.com/about"
+/>
     <div className="overflow-x-hidden">
 
       {/* Navbar */}
@@ -133,8 +141,9 @@ const About = () => {
 
       {/* Footer */}
       <Footer />
-
+      
     </div>
+    </>
   )
 }
 
