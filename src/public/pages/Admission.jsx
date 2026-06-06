@@ -89,7 +89,7 @@ export default function Admissions() {
         /* ... (keep all your existing styles exactly as-is) ... */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'DM Sans', sans-serif; color: #1a1a2e; background: #fff; }
+        body { font-family: 'DM Sans', sans-serif; color: #1a1a2e; background: #fff; overflow-x: hidden; }
         .hero { padding: 80px 5% 60px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; overflow: hidden; }
         .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(160,51,160,0.1); border: 1px solid rgba(160,51,160,0.2); border-radius: 100px; padding: 6px 16px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: #A033A0; margin-bottom: 24px; }
         .hero h1 { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: clamp(36px, 6vw, 64px); line-height: 1.1; margin-bottom: 20px; }
