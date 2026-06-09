@@ -5,7 +5,7 @@ const facilities = [
     icon: <FaChalkboardTeacher />,
     title: "Modern Classrooms",
     description: "Spacious, well-ventilated classrooms equipped with smart boards and learning aids to create an ideal learning environment.",
-    color: "bg-purple-50 text-[#A033A0]",
+    color: "bg-purple-50 text-[#f056f0]",
     border: "border-purple-100",
   },
   {
@@ -73,7 +73,7 @@ const FacilityCard = ({ icon, title, description, color, border }) => (
     <h3 className="font-jost font-bold text-gray-900 text-lg">{title}</h3>
 
     {/* Animated divider */}
-    <div className="w-10 h-0.5 bg-[#A033A0] group-hover:w-full transition-all duration-500" />
+    <div className="w-10 h-0.5 bg-[#f056f0] group-hover:w-full transition-all duration-500" />
 
     {/* Description */}
     <p className="font-dm-sans text-gray-400 text-sm leading-relaxed">{description}</p>
@@ -89,14 +89,14 @@ const Facilities = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-0.5 bg-[#A033A0]" />
-              <span className="font-dm-sans text-[#A033A0] font-semibold text-sm uppercase tracking-widest">
+              <div className="w-10 h-0.5 bg-[#f056f0]" />
+              <span className="font-dm-sans text-[#f056f0] font-semibold text-sm uppercase tracking-widest">
                 Our Facilities
               </span>
             </div>
             <h2 className="font-jost font-bold text-3xl md:text-4xl text-gray-900">
               A World-Class Environment <br className="hidden md:block" />
-              <span className="text-[#A033A0]">Built for Learning</span>
+              <span className="text-[#f056f0]">Built for Learning</span>
             </h2>
           </div>
           <p className="font-dm-sans text-gray-500 text-base max-w-sm leading-relaxed">

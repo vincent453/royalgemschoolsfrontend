@@ -30,10 +30,10 @@ function useAsync() {
 
 const inputClass = `w-full border border-gray-200 rounded-lg px-4 py-2.5
   font-dm-sans text-gray-700 text-sm placeholder-gray-300
-  focus:outline-none focus:border-[#A033A0] bg-white
+  focus:outline-none focus:border-[#f056f0] bg-white
   transition-colors duration-300`;
 
-const labelClass = `font-dm-sans text-[#A033A0] text-sm font-semibold mb-1 block`;
+const labelClass = `font-dm-sans text-[#f056f0] text-sm font-semibold mb-1 block`;
 
 const SaveButton = ({ loading, label = "Save Changes" }) => (
   <div className="flex justify-end pt-2 border-t border-gray-100">
@@ -41,7 +41,7 @@ const SaveButton = ({ loading, label = "Save Changes" }) => (
       type="submit"
       disabled={loading}
       className="flex items-center gap-2 font-jost font-semibold px-8 py-2.5
-                 rounded-full bg-[#A033A0] hover:bg-[#525fe1] text-white
+                 rounded-full bg-[#f056f0] hover:bg-[#525fe1] text-white
                  transition-colors duration-500 disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {loading && <FaSpinner className="animate-spin text-sm" />}
@@ -147,7 +147,7 @@ const SchoolInfoTab = () => {
 
       <div className="flex items-center gap-5">
         <div className="relative w-20 h-20 rounded-full bg-gray-100
-                        border-2 border-[#A033A0]/20 overflow-hidden shrink-0">
+                        border-2 border-[#f056f0]/20 overflow-hidden shrink-0">
           {preview
             ? <img src={preview} alt="School logo" className="w-full h-full object-cover" />
             : <div className="w-full h-full flex items-center justify-center">
@@ -163,7 +163,7 @@ const SchoolInfoTab = () => {
         <div>
           <label htmlFor="logo"
             className="font-dm-sans text-xs font-semibold px-4 py-2 rounded-full
-                       bg-[#A033A0] text-white cursor-pointer hover:bg-[#525fe1]
+                       bg-[#f056f0] text-white cursor-pointer hover:bg-[#525fe1]
                        transition-colors duration-300">
             {logoAsync.loading ? "Uploading…" : "Upload Logo"}
           </label>
@@ -297,12 +297,12 @@ const AccountTab = ({ onAvatarChange }) => {
 
       {/* ── Avatar with upload ── */}
       <div className="flex items-center gap-5">
-        <div className="relative w-20 h-20 rounded-full bg-[#A033A0]/10
-                        border-2 border-[#A033A0]/20 overflow-hidden shrink-0
+        <div className="relative w-20 h-20 rounded-full bg-[#f056f0]/10
+                        border-2 border-[#f056f0]/20 overflow-hidden shrink-0
                         flex items-center justify-center">
           {preview
             ? <img src={preview} alt="Avatar" className="w-full h-full object-cover" />
-            : <span className="font-bold text-[#A033A0] text-xl">{initials || <FaUser />}</span>}
+            : <span className="font-bold text-[#f056f0] text-xl">{initials || <FaUser />}</span>}
 
           {/* Camera overlay */}
           <label htmlFor="avatar-upload"
@@ -331,7 +331,7 @@ const AccountTab = ({ onAvatarChange }) => {
           )}
           <label htmlFor="avatar-upload"
             className="mt-2 inline-block font-dm-sans text-xs font-semibold px-4 py-1.5
-                       rounded-full bg-[#A033A0] text-white cursor-pointer
+                       rounded-full bg-[#f056f0] text-white cursor-pointer
                        hover:bg-[#525fe1] transition-colors duration-300">
             {avatarAsync.loading ? "Uploading…" : "Change Photo"}
           </label>
@@ -436,7 +436,7 @@ const PasswordTab = () => {
         />
         <button type="button" onClick={() => toggle(field)}
           className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400
-                     hover:text-[#A033A0] transition-colors duration-300">
+                     hover:text-[#f056f0] transition-colors duration-300">
           {show[field] ? <FaEyeSlash /> : <FaEye />}
         </button>
       </div>
@@ -633,7 +633,7 @@ const BlogUploadTab = () => {
 
         <label
           htmlFor="blog-image"
-          className="w-fit px-5 py-2 rounded-full bg-[#A033A0] text-white
+          className="w-fit px-5 py-2 rounded-full bg-[#f056f0] text-white
                      font-dm-sans text-sm font-semibold cursor-pointer
                      hover:bg-[#525fe1] transition-colors duration-300"
         >
@@ -751,8 +751,8 @@ const [sidebarOpen, setSidebarOpen] = useState(false);
                       className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm
                                   font-dm-sans font-semibold text-left transition-all duration-300
                                   ${activeTab === tab.id
-                                    ? "bg-[#A033A0] text-white shadow-sm"
-                                    : "text-gray-500 hover:bg-[#A033A0]/10 hover:text-[#A033A0]"}`}>
+                                    ? "bg-[#f056f0] text-white shadow-sm"
+                                    : "text-gray-500 hover:bg-[#f056f0]/10 hover:text-[#f056f0]"}`}>
                       <span className="text-base">{tab.icon}</span>
                       {tab.label}
                       {(tab.id === "notif" || tab.id === "appearance") && (
@@ -783,7 +783,7 @@ const [sidebarOpen, setSidebarOpen] = useState(false);
                 {(activeTab === "notif" || activeTab === "appearance") && (
                   <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-12
                                   flex flex-col items-center justify-center text-center gap-3">
-                    <div className="w-16 h-16 rounded-full bg-[#A033A0]/10 flex items-center justify-center text-[#A033A0] text-2xl">
+                    <div className="w-16 h-16 rounded-full bg-[#f056f0]/10 flex items-center justify-center text-[#f056f0] text-2xl">
                       {tabs.find(t => t.id === activeTab)?.icon}
                     </div>
                     <p className="font-jost font-bold text-gray-700 text-lg">Coming Soon</p>

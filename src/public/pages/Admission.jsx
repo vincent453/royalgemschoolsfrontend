@@ -24,8 +24,8 @@ const Star = ({ style = {} }) => (
 
 const CheckIcon = () => (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 mt-0.5">
-    <circle cx="9" cy="9" r="9" fill="#A033A0" opacity="0.12" />
-    <path d="M5 9l3 3 5-5" stroke="#A033A0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="9" cy="9" r="9" fill="#f056f0" opacity="0.12" />
+    <path d="M5 9l3 3 5-5" stroke="#f056f0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 
@@ -96,15 +96,15 @@ export default function Admissions() {
         <div className="relative z-10 w-full max-w-3xl mx-auto">
           {/* Decorative sparkles */}
           <Sparkle size={20} color="#f5c518" style={{ position: 'absolute', top: 40, left: '8%' }} />
-          <Sparkle size={12} color="#A033A0" style={{ position: 'absolute', top: 100, left: '15%' }} />
+          <Sparkle size={12} color="#f056f0" style={{ position: 'absolute', top: 100, left: '15%' }} />
           <Sparkle size={24} color="#f5c518" style={{ position: 'absolute', top: 60, right: '10%' }} />
-          <Sparkle size={14} color="#A033A0" style={{ position: 'absolute', bottom: 80, right: '18%' }} />
+          <Sparkle size={14} color="#f056f0" style={{ position: 'absolute', bottom: 80, right: '18%' }} />
           <Star style={{ position: 'absolute', bottom: 60, left: '12%' }} />
 
           {/* Badge */}
           <div data-aos="fade-down" data-aos-duration="600">
-            <span className="inline-flex items-center gap-2 bg-[#A033A0]/10 border border-[#A033A0]/20 rounded-full px-4 py-1.5 text-[13px] font-semibold text-[#A033A0] mb-6">
-              <svg width="14" height="14" fill="#A033A0" viewBox="0 0 24 24">
+            <span className="inline-flex items-center gap-2 bg-[#f056f0]/10 border border-[#f056f0]/20 rounded-full px-4 py-1.5 text-[13px] font-semibold text-[#f056f0] mb-6">
+              <svg width="14" height="14" fill="#f056f0" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z" />
               </svg>
               2025/2026 Admissions — Now Open
@@ -115,7 +115,7 @@ export default function Admissions() {
           <div data-aos="fade-up" data-aos-delay="100">
             <h1 className="font-extrabold text-white leading-tight mb-5 text-4xl sm:text-5xl lg:text-6xl" style={{ fontFamily: "'Poppins', sans-serif" }}>
               Begin Your Child's<br />
-              <span className="text-[#A033A0]">Extraordinary Journey</span>
+              <span className="text-[#f056f0]">Extraordinary Journey</span>
             </h1>
           </div>
 
@@ -130,10 +130,10 @@ export default function Admissions() {
           {/* Buttons */}
           <div data-aos="fade-up" data-aos-delay="300">
             <div className="flex flex-col sm:flex-row gap-3 flex-wrap justify-center">
-              <a href="#apply" className="bg-[#A033A0] text-white border-2 border-[#A033A0] rounded-full px-8 py-3 font-semibold text-sm hover:bg-[#7b1fa2] hover:border-[#7b1fa2] hover:-translate-y-0.5 transition-all duration-300 text-center" style={{ fontFamily: "'Poppins', sans-serif" }}>
+              <a href="#apply" className="bg-[#f056f0] text-white border-2 border-[#f056f0] rounded-full px-8 py-3 font-semibold text-sm hover:bg-[#7b1fa2] hover:border-[#7b1fa2] hover:-translate-y-0.5 transition-all duration-300 text-center" style={{ fontFamily: "'Poppins', sans-serif" }}>
                 Apply Now
               </a>
-              <a href="#process" className="bg-transparent text-[#A033A0] border-2 border-[#A033A0] rounded-full px-8 py-3 font-semibold text-sm hover:bg-[#A033A0]/7 hover:-translate-y-0.5 transition-all duration-300 text-center" style={{ fontFamily: "'Poppins', sans-serif" }}>
+              <a href="#process" className="bg-transparent text-[#f056f0] border-2 border-[#f056f0] rounded-full px-8 py-3 font-semibold text-sm hover:bg-[#f056f0]/7 hover:-translate-y-0.5 transition-all duration-300 text-center" style={{ fontFamily: "'Poppins', sans-serif" }}>
                 See Admission Process
               </a>
             </div>
@@ -141,7 +141,7 @@ export default function Admissions() {
 
           {/* Stats */}
           <div data-aos="fade-up" data-aos-delay="400">
-            <div className="flex flex-wrap justify-center gap-5 sm:gap-10 mt-14 pt-10 border-t border-[#A033A0]/20 w-full">
+            <div className="flex flex-wrap justify-center gap-5 sm:gap-10 mt-14 pt-10 border-t border-[#f056f0]/20 w-full">
               {[
                 { num: '300+', label: 'Happy Students' },
                 { num: '1,200+', label: 'Alumni Network' },
@@ -149,7 +149,7 @@ export default function Admissions() {
                 { num: '10+', label: 'Years of Excellence' },
               ].map((s, i) => (
                 <div className="text-center min-w-[80px]" key={s.label} data-aos="zoom-in" data-aos-delay={450 + i * 80}>
-                  <span className="block font-extrabold text-2xl sm:text-3xl text-[#A033A0]" style={{ fontFamily: "'Poppins', sans-serif" }}>{s.num}</span>
+                  <span className="block font-extrabold text-2xl sm:text-3xl text-[#f056f0]" style={{ fontFamily: "'Poppins', sans-serif" }}>{s.num}</span>
                   <span className="block text-xs text-gray-400 mt-0.5">{s.label}</span>
                 </div>
               ))}
@@ -161,9 +161,9 @@ export default function Admissions() {
       {/* ── Why Choose Us ── */}
       <section className="px-[5%] py-16 md:py-20">
         <div data-aos="fade-up">
-          <span className="block text-center text-xs font-semibold text-[#A033A0] uppercase tracking-widest mb-3">Why Royal Gem?</span>
+          <span className="block text-center text-xs font-semibold text-[#f056f0] uppercase tracking-widest mb-3">Why Royal Gem?</span>
           <h2 className="text-center font-extrabold text-3xl sm:text-4xl text-[#1a1a2e] leading-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            A School That <span className="text-[#A033A0]">Truly Cares</span>
+            A School That <span className="text-[#f056f0]">Truly Cares</span>
           </h2>
           <p className="text-center text-[#777] text-sm max-w-xl mx-auto leading-relaxed mb-14">
             We go beyond textbooks — building character, confidence, and critical thinking in every child.
@@ -178,11 +178,11 @@ export default function Admissions() {
           ].map((c, i) => (
             <div
               key={c.num}
-              className="bg-white border border-[#f0e0f0] rounded-2xl p-7 relative hover:border-[#A033A0] hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(160,51,160,0.1)] transition-all duration-300"
+              className="bg-white border border-[#f0e0f0] rounded-2xl p-7 relative hover:border-[#f056f0] hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(160,51,160,0.1)] transition-all duration-300"
               data-aos="fade-up"
               data-aos-delay={i * 100}
             >
-              <span className="absolute top-4 right-5 font-black text-5xl text-[#A033A0]/[0.08] leading-none select-none" style={{ fontFamily: "'Poppins', sans-serif" }}>{c.num}</span>
+              <span className="absolute top-4 right-5 font-black text-5xl text-[#f056f0]/[0.08] leading-none select-none" style={{ fontFamily: "'Poppins', sans-serif" }}>{c.num}</span>
               <span className="text-3xl mb-4 block">{c.icon}</span>
               <div className="font-bold text-[17px] text-[#1a1a2e] mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>{c.title}</div>
               <div className="text-sm text-[#777] leading-relaxed">{c.desc}</div>
@@ -194,9 +194,9 @@ export default function Admissions() {
       {/* ── Admissions Process ── */}
       <section className="px-[5%] py-16 md:py-20 bg-gradient-to-br from-[#f8f0ff] to-[#fdf5ff]" id="process">
         <div data-aos="fade-up">
-          <span className="block text-center text-xs font-semibold text-[#A033A0] uppercase tracking-widest mb-3">Step by Step</span>
+          <span className="block text-center text-xs font-semibold text-[#f056f0] uppercase tracking-widest mb-3">Step by Step</span>
           <h2 className="text-center font-extrabold text-3xl sm:text-4xl text-[#1a1a2e] leading-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            Our <span className="text-[#A033A0]">Admissions Process</span>
+            Our <span className="text-[#f056f0]">Admissions Process</span>
           </h2>
           <p className="text-center text-[#777] text-sm max-w-xl mx-auto leading-relaxed mb-14">
             We've made our admissions journey simple and transparent. Here's exactly what to expect.
@@ -206,11 +206,11 @@ export default function Admissions() {
           {steps.map((s, i) => (
             <div
               key={s.num}
-              className="bg-white border border-[#f0e0f0] rounded-2xl p-7 relative hover:border-[#A033A0] hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(160,51,160,0.1)] transition-all duration-300"
+              className="bg-white border border-[#f0e0f0] rounded-2xl p-7 relative hover:border-[#f056f0] hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(160,51,160,0.1)] transition-all duration-300"
               data-aos={i % 2 === 0 ? 'fade-right' : 'fade-left'}
               data-aos-delay={i * 80}
             >
-              <span className="absolute top-4 right-5 font-black text-5xl text-[#A033A0]/[0.08] leading-none select-none" style={{ fontFamily: "'Poppins', sans-serif" }}>{s.num}</span>
+              <span className="absolute top-4 right-5 font-black text-5xl text-[#f056f0]/[0.08] leading-none select-none" style={{ fontFamily: "'Poppins', sans-serif" }}>{s.num}</span>
               <span className="text-3xl mb-4 block">{s.icon}</span>
               <div className="font-bold text-[17px] text-[#1a1a2e] mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>{s.title}</div>
               <div className="text-sm text-[#777] leading-relaxed">{s.desc}</div>
@@ -222,7 +222,7 @@ export default function Admissions() {
       {/* ── Important Dates banner ── */}
       <div className="py-12 sm:py-16 bg-white overflow-hidden">
         <div
-          className="bg-gradient-to-r from-[#A033A0] to-[#7b1fa2] rounded-none sm:rounded-3xl mx-0 sm:mx-[5%] px-[5%] py-12 flex flex-col lg:flex-row gap-8 items-start lg:items-center justify-between"
+          className="bg-gradient-to-r from-[#f056f0] to-[#7b1fa2] rounded-none sm:rounded-3xl mx-0 sm:mx-[5%] px-[5%] py-12 flex flex-col lg:flex-row gap-8 items-start lg:items-center justify-between"
           data-aos="zoom-in"
         >
           <div data-aos="fade-right" data-aos-delay="100" className="flex-1">
@@ -263,9 +263,9 @@ export default function Admissions() {
       {/* ── Requirements ── */}
       <section className="px-[5%] py-16 md:py-20" id="requirements">
         <div data-aos="fade-up">
-          <span className="block text-center text-xs font-semibold text-[#A033A0] uppercase tracking-widest mb-3">Checklist</span>
+          <span className="block text-center text-xs font-semibold text-[#f056f0] uppercase tracking-widest mb-3">Checklist</span>
           <h2 className="text-center font-extrabold text-3xl sm:text-4xl text-[#1a1a2e] leading-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            Required <span className="text-[#A033A0]">Documents</span>
+            Required <span className="text-[#f056f0]">Documents</span>
           </h2>
           <p className="text-center text-[#777] text-sm max-w-xl mx-auto leading-relaxed mb-14">
             Please ensure all documents are ready before starting your application to avoid delays.
@@ -275,7 +275,7 @@ export default function Admissions() {
           {requirements.map((r, i) => (
             <div
               key={i}
-              className="flex items-start gap-3 bg-white border border-[#f0e0f0] rounded-2xl px-5 py-4 hover:border-[#A033A0] transition-colors duration-200"
+              className="flex items-start gap-3 bg-white border border-[#f0e0f0] rounded-2xl px-5 py-4 hover:border-[#f056f0] transition-colors duration-200"
               data-aos="fade-up"
               data-aos-delay={i * 70}
             >
@@ -292,9 +292,9 @@ export default function Admissions() {
       {/* ── FAQ ── */}
       <section className="px-[5%] py-16 md:py-20">
         <div data-aos="fade-up">
-          <span className="block text-center text-xs font-semibold text-[#A033A0] uppercase tracking-widest mb-3">Got Questions?</span>
+          <span className="block text-center text-xs font-semibold text-[#f056f0] uppercase tracking-widest mb-3">Got Questions?</span>
           <h2 className="text-center font-extrabold text-3xl sm:text-4xl text-[#1a1a2e] leading-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            Frequently Asked <span className="text-[#A033A0]">Questions</span>
+            Frequently Asked <span className="text-[#f056f0]">Questions</span>
           </h2>
           <p className="text-center text-[#777] text-sm max-w-xl mx-auto leading-relaxed mb-14">
             Everything you need to know about joining the Royal Gem family.
@@ -304,7 +304,7 @@ export default function Admissions() {
           {faqs.map((f, i) => (
             <div
               key={i}
-              className="bg-white border border-[#ede0f5] rounded-2xl overflow-hidden hover:border-[#A033A0] transition-colors duration-200"
+              className="bg-white border border-[#ede0f5] rounded-2xl overflow-hidden hover:border-[#f056f0] transition-colors duration-200"
               data-aos="fade-up"
               data-aos-delay={i * 80}
             >
@@ -313,7 +313,7 @@ export default function Admissions() {
                 onClick={() => toggleFaq(i)}
               >
                 <span className="font-semibold text-[15px] text-[#1a1a2e]" style={{ fontFamily: "'Poppins', sans-serif" }}>{f.q}</span>
-                <span className="w-7 h-7 rounded-full shrink-0 bg-[#A033A0]/10 text-[#A033A0] flex items-center justify-center text-lg leading-none transition-transform duration-300">+</span>
+                <span className="w-7 h-7 rounded-full shrink-0 bg-[#f056f0]/10 text-[#f056f0] flex items-center justify-center text-lg leading-none transition-transform duration-300">+</span>
               </button>
               <div
                 className="overflow-hidden transition-all duration-[350ms] ease-in-out"
@@ -335,7 +335,7 @@ export default function Admissions() {
         <div data-aos="zoom-in">
           <Sparkle size={18} color="#f5c518" style={{ display: 'inline-block', marginBottom: 16 }} />
           <h2 className="font-extrabold text-3xl sm:text-4xl text-[#1a1a2e] mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            Ready to Join the<br /><span className="text-[#A033A0]">Royal Gem Family?</span>
+            Ready to Join the<br /><span className="text-[#f056f0]">Royal Gem Family?</span>
           </h2>
           <p className="text-sm text-[#777] max-w-sm mx-auto leading-relaxed mb-9">
             Take the first step towards your child's bright future.
@@ -348,7 +348,7 @@ export default function Admissions() {
             <a
               href="#"
               onClick={() => navigate('/')}
-              className="bg-[#A033A0] text-white border-2 border-[#A033A0] rounded-full px-8 py-3 font-semibold text-sm hover:bg-[#7b1fa2] hover:border-[#7b1fa2] hover:-translate-y-0.5 transition-all duration-300 text-center"
+              className="bg-[#f056f0] text-white border-2 border-[#f056f0] rounded-full px-8 py-3 font-semibold text-sm hover:bg-[#7b1fa2] hover:border-[#7b1fa2] hover:-translate-y-0.5 transition-all duration-300 text-center"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
               Download Application Form
@@ -356,7 +356,7 @@ export default function Admissions() {
             <a
               href="#"
               onClick={() => navigate('/contact')}
-              className="bg-transparent text-[#A033A0] border-2 border-[#A033A0] rounded-full px-8 py-3 font-semibold text-sm hover:bg-[#A033A0]/7 hover:-translate-y-0.5 transition-all duration-300 text-center"
+              className="bg-transparent text-[#f056f0] border-2 border-[#f056f0] rounded-full px-8 py-3 font-semibold text-sm hover:bg-[#f056f0]/7 hover:-translate-y-0.5 transition-all duration-300 text-center"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
               Contact Admissions Office

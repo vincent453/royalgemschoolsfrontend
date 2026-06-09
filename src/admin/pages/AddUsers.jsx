@@ -136,9 +136,9 @@ const AddUser = () => {
      focus:outline-none transition-colors duration-300
      ${errors[field]
        ? 'border-red-400 focus:border-red-400'
-       : 'border-gray-200 focus:border-[#A033A0]'}`
+       : 'border-gray-200 focus:border-[#f056f0]'}`
 
-  const labelClass = `font-dm-sans text-[#A033A0] text-sm font-semibold mb-1 block`
+  const labelClass = `font-dm-sans text-[#f056f0] text-sm font-semibold mb-1 block`
   const errorClass = `font-dm-sans text-xs text-red-400 mt-1`
 
   const selectedRole = roles.find(r => r.value === form.role)
@@ -289,11 +289,11 @@ const AddUser = () => {
                       onClick={() => update('role', r.value)}
                       className={`text-left p-4 rounded-xl border-2 transition-all duration-300
                         ${form.role === r.value
-                          ? 'border-[#A033A0] bg-[#fdf8ff]'
+                          ? 'border-[#f056f0] bg-[#fdf8ff]'
                           : 'border-gray-100 bg-gray-50 hover:border-[#d9a0d9]'}`}
                     >
                       <p className={`font-jost font-bold text-sm mb-1
-                        ${form.role === r.value ? 'text-[#A033A0]' : 'text-gray-700'}`}>
+                        ${form.role === r.value ? 'text-[#f056f0]' : 'text-gray-700'}`}>
                         {r.label}
                       </p>
                       <p className="font-dm-sans text-xs text-gray-400 leading-relaxed">
@@ -349,7 +349,7 @@ const AddUser = () => {
                         onClick={() => handleCopy('username', form.username)}
                         disabled={!form.username}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300
-                                   hover:text-[#A033A0] disabled:opacity-30 transition-colors duration-300"
+                                   hover:text-[#f056f0] disabled:opacity-30 transition-colors duration-300"
                       >
                         {copiedField === 'username'
                           ? <FaCheckCircle className="text-green-500 text-xs" />
@@ -362,7 +362,7 @@ const AddUser = () => {
                       disabled={!form.firstName || !form.lastName}
                       className="flex items-center gap-1.5 px-3 py-2.5 rounded-lg border border-gray-200
                                  font-dm-sans text-xs font-semibold text-gray-500
-                                 hover:border-[#A033A0] hover:text-[#A033A0]
+                                 hover:border-[#f056f0] hover:text-[#f056f0]
                                  disabled:opacity-30 transition-all duration-300 whitespace-nowrap"
                     >
                       <FaRedo className="text-xs" /> Auto
@@ -392,7 +392,7 @@ const AddUser = () => {
                           type="button"
                           onClick={() => handleCopy('pin', form.portalPin)}
                           disabled={!form.portalPin}
-                          className="text-gray-300 hover:text-[#A033A0] disabled:opacity-30 transition-colors duration-300"
+                          className="text-gray-300 hover:text-[#f056f0] disabled:opacity-30 transition-colors duration-300"
                         >
                           {copiedField === 'pin'
                             ? <FaCheckCircle className="text-green-500 text-xs" />
@@ -401,7 +401,7 @@ const AddUser = () => {
                         <button
                           type="button"
                           onClick={() => setShowPin(!showPin)}
-                          className="text-gray-300 hover:text-[#A033A0] transition-colors duration-300"
+                          className="text-gray-300 hover:text-[#f056f0] transition-colors duration-300"
                         >
                           {showPin ? <FaEyeSlash className="text-xs" /> : <FaEye className="text-xs" />}
                         </button>
@@ -412,7 +412,7 @@ const AddUser = () => {
                       onClick={generatePin}
                       className="flex items-center gap-1.5 px-3 py-2.5 rounded-lg border border-gray-200
                                  font-dm-sans text-xs font-semibold text-gray-500
-                                 hover:border-[#A033A0] hover:text-[#A033A0]
+                                 hover:border-[#f056f0] hover:text-[#f056f0]
                                  transition-all duration-300 whitespace-nowrap"
                     >
                       <FaRedo className="text-xs" /> Generate
@@ -429,7 +429,7 @@ const AddUser = () => {
               {/* Credentials preview */}
               {(form.username || form.portalPin) && (
                 <div className="bg-[#fdf8ff] border border-[#f0e0f0] rounded-xl px-5 py-4 flex flex-col gap-2">
-                  <p className="font-dm-sans text-xs font-semibold text-[#A033A0] uppercase tracking-wide mb-1">
+                  <p className="font-dm-sans text-xs font-semibold text-[#f056f0] uppercase tracking-wide mb-1">
                     Credentials Preview
                   </p>
                   <div className="flex flex-wrap gap-6">
@@ -442,7 +442,7 @@ const AddUser = () => {
                     {form.portalPin && (
                       <div>
                         <p className="font-dm-sans text-xs text-gray-400">Portal PIN (Password)</p>
-                        <p className="font-jost font-bold text-[#A033A0] text-sm tracking-widest">
+                        <p className="font-jost font-bold text-[#f056f0] text-sm tracking-widest">
                           {showPin ? form.portalPin : '•'.repeat(form.portalPin.length)}
                         </p>
                       </div>
@@ -465,8 +465,8 @@ const AddUser = () => {
                 type="button"
                 onClick={() => navigate('/users')}
                 className="font-jost font-semibold px-8 py-2.5 rounded-full border
-                           border-gray-300 text-gray-600 hover:border-[#A033A0]
-                           hover:text-[#A033A0] transition-all duration-300"
+                           border-gray-300 text-gray-600 hover:border-[#f056f0]
+                           hover:text-[#f056f0] transition-all duration-300"
               >
                 Cancel
               </button>
@@ -475,7 +475,7 @@ const AddUser = () => {
                 disabled={loading}
                 className={`font-jost font-semibold px-8 py-2.5 rounded-full text-white
                             transition-colors duration-500
-                            ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#A033A0] hover:bg-[#525fe1]'}`}
+                            ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#f056f0] hover:bg-[#525fe1]'}`}
               >
                 {loading ? 'Creating...' : 'Create User'}
               </button>

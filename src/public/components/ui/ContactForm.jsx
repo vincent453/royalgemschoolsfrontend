@@ -3,7 +3,7 @@ const ContactForm = ({
   onSubmit,
 }) => {
   const inputClass = `w-full bg-[#eef0ff] border border-transparent 
-                      focus:border-[#A033A0] focus:outline-none
+                      focus:border-[#f056f0] focus:outline-none
                       px-4 py-4 sm:py-5
                       font-dm-sans text-gray-700 text-sm
                       placeholder-gray-400 transition-colors duration-300
@@ -87,7 +87,7 @@ const ContactForm = ({
               <div>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto bg-[#A033A0] hover:bg-[#525fe1]
+                  className="w-full sm:w-auto bg-[#f056f0] hover:bg-[#525fe1]
                              text-white font-jost font-semibold
                              px-8 sm:px-10 py-3 sm:py-4
                              transition-colors duration-300 rounded-lg"

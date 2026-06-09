@@ -10,7 +10,7 @@ const API = import.meta.env.VITE_API_URL || "https://royalgemschoolsbackend.verc
 
 const CATEGORY_COLORS = [
   "text-[#525fe1]",
-  "text-[#A033A0]",
+  "text-[#f056f0]",
   "text-[#0f6e56]",
   "text-[#ba7517]",
   "text-[#993c1d]",
@@ -192,8 +192,8 @@ const Blog = () => {
               className={`px-4 py-2 rounded-full border text-sm font-semibold transition-all duration-300 cursor-pointer
                 ${
                   activeCategory === category
-                    ? "bg-[#A033A0] text-white border-[#A033A0]"
-                    : "bg-white text-gray-600 border-gray-200 hover:border-[#A033A0] hover:text-[#A033A0]"
+                    ? "bg-[#f056f0] text-white border-[#f056f0]"
+                    : "bg-white text-gray-600 border-gray-200 hover:border-[#f056f0] hover:text-[#f056f0]"
                 }`}
             >
               {category}
@@ -207,7 +207,7 @@ const Blog = () => {
         {loading ? (
           <div className="flex items-center justify-center gap-3 py-32 text-gray-400">
             <svg
-              className="w-6 h-6 animate-spin text-[#A033A0]"
+              className="w-6 h-6 animate-spin text-[#f056f0]"
               fill="none"
               viewBox="0 0 24 24"
             >
@@ -239,7 +239,7 @@ const Blog = () => {
 
             <button
               onClick={fetchPosts}
-              className="text-sm text-[#A033A0] underline font-dm-sans cursor-pointer"
+              className="text-sm text-[#f056f0] underline font-dm-sans cursor-pointer"
             >
               Retry
             </button>

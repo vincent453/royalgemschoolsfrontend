@@ -70,8 +70,8 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `transition-colors duration-300 ${
                     isActive
-                      ? "text-[#A033A0]"
-                      : "hover:text-[#A033A0]"
+                      ? "text-[#f056f0]"
+                      : "hover:text-[#f056f0]"
                   }`
                 }
               >
@@ -121,8 +121,8 @@ const Navbar = () => {
               className={({ isActive }) =>
                 `transition-colors duration-300 ${
                   isActive
-                    ? "text-[#A033A0]"
-                    : "hover:text-[#A033A0]"
+                    ? "text-[#f056f0]"
+                    : "hover:text-[#f056f0]"
                 }`
               }
             >

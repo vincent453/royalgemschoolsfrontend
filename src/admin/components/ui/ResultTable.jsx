@@ -121,7 +121,7 @@ const ResultTable = ({ isReadOnly = false }) => {
                         <img src={item.student.profilePhoto}
                           className="w-10 h-10 rounded-full object-cover" alt={item.student?.firstName} />
                       ) : (
-                        <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-[#A033A0] font-bold text-sm">
+                        <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-[#f056f0] font-bold text-sm">
                           {item.student?.firstName?.[0]}{item.student?.lastName?.[0]}
                         </div>
                       )}
@@ -130,7 +130,7 @@ const ResultTable = ({ isReadOnly = false }) => {
                       </span>
                     </td>
 
-                    <td className="text-[#A033A0] font-medium">{item.student?.classLevel}</td>
+                    <td className="text-[#f056f0] font-medium">{item.student?.classLevel}</td>
                     <td className="text-gray-500">{item.term}</td>
                     <td className="text-gray-500">{item.session}</td>
                     <td className="text-gray-600">{item.totalScore}</td>
@@ -150,7 +150,7 @@ const ResultTable = ({ isReadOnly = false }) => {
 
                     <td className="relative">
                       <button onClick={() => toggleMenu(item._id)}>
-                        <MoreHorizontal className="text-gray-400 cursor-pointer hover:text-[#A033A0]" />
+                        <MoreHorizontal className="text-gray-400 cursor-pointer hover:text-[#f056f0]" />
                       </button>
 
                       {openMenuId === item._id && (
@@ -199,7 +199,7 @@ const ResultTable = ({ isReadOnly = false }) => {
             disabled={currentPage === 1} className="disabled:opacity-40">{"<"}</button>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
             <button key={page} onClick={() => setCurrentPage(page)}
-              className={`px-3 py-1 rounded ${currentPage === page ? "bg-[#A033A0] text-white" : "text-gray-500 hover:bg-gray-100"}`}>
+              className={`px-3 py-1 rounded ${currentPage === page ? "bg-[#f056f0] text-white" : "text-gray-500 hover:bg-gray-100"}`}>
               {page}
             </button>
           ))}

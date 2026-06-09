@@ -53,7 +53,7 @@ const BlogCard = ({
         {/* Read More Button */}
         <a
           href={href || '#'}
-          className="inline-flex items-center gap-2 bg-[#A033A0] hover:bg-[#525fe1]
+          className="inline-flex items-center gap-2 bg-[#f056f0] hover:bg-[#525fe1]
                      text-white font-jost font-semibold text-sm
                      px-5 py-5 w-fit transition-colors duration-300"
         >

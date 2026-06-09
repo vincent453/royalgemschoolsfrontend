@@ -79,7 +79,7 @@ const Topbar = ({ avatarOverride, onMenuToggle }) => {
             <div className="absolute right-0 top-[46px] md:top-[48px] w-52 md:w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-50 overflow-hidden">
               <div className="px-4 py-3 border-b border-gray-100 bg-[#fdf8ff]">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full overflow-hidden bg-[#A033A0] flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full overflow-hidden bg-[#f056f0] flex items-center justify-center">
                     {avatar ? (
                       <img src={avatar} alt={displayName} className="w-full h-full object-cover" />
                     ) : (
@@ -90,7 +90,7 @@ const Topbar = ({ avatarOverride, onMenuToggle }) => {
                     <p className="font-bold text-gray-800 text-sm truncate">{displayName}</p>
                     <p className="text-xs text-gray-400 truncate">{displayEmail}</p>
                     {displayRole && (
-                      <span className="inline-block mt-1 text-[10px] font-semibold text-[#A033A0] bg-[#A033A0]/10 px-2 py-0.5 rounded-full">
+                      <span className="inline-block mt-1 text-[10px] font-semibold text-[#f056f0] bg-[#f056f0]/10 px-2 py-0.5 rounded-full">
                         {displayRole}
                       </span>
                     )}
@@ -98,10 +98,10 @@ const Topbar = ({ avatarOverride, onMenuToggle }) => {
                 </div>
               </div>
               <div className="py-1">
-                <button onClick={() => { navigate("/admin/settings/"); setMenuOpen(false); }} className="flex items-center gap-2 w-full px-4 py-2.5 text-sm text-gray-600 hover:bg-[#fdf8ff] hover:text-[#A033A0]">
+                <button onClick={() => { navigate("/admin/settings/"); setMenuOpen(false); }} className="flex items-center gap-2 w-full px-4 py-2.5 text-sm text-gray-600 hover:bg-[#fdf8ff] hover:text-[#f056f0]">
                   ⚙️ Settings
                 </button>
-                <button onClick={() => { navigate("/settings?tab=account"); setMenuOpen(false); }} className="flex items-center gap-2 w-full px-4 py-2.5 text-sm text-gray-600 hover:bg-[#fdf8ff] hover:text-[#A033A0]">
+                <button onClick={() => { navigate("/settings?tab=account"); setMenuOpen(false); }} className="flex items-center gap-2 w-full px-4 py-2.5 text-sm text-gray-600 hover:bg-[#fdf8ff] hover:text-[#f056f0]">
                   👤 Edit Profile
                 </button>
                 <div className="border-t border-gray-100 mt-1 pt-1">

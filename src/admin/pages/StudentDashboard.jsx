@@ -79,7 +79,7 @@ export default function StudentDashboard() {
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center bg-[#f5eaf5]">
       <div className="text-center">
-        <div className="w-10 h-10 border-4 border-[#A033A0] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+        <div className="w-10 h-10 border-4 border-[#f056f0] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
         <p className="text-gray-500 text-sm">Loading your portal...</p>
       </div>
     </div>
@@ -89,7 +89,7 @@ export default function StudentDashboard() {
     <div className="min-h-screen bg-[#E6EBEE]">
 
       {/* ── Topbar ── */}
-      <header className="sticky top-0 z-40 bg-[#A033A0] h-[60px] flex items-center px-6 gap-4 shadow-md">
+      <header className="sticky top-0 z-40 bg-[#f056f0] h-[60px] flex items-center px-6 gap-4 shadow-md">
         <h1 className="text-white font-bold text-lg flex-1">Student Portal</h1>
         <span className="text-white/70 text-sm hidden md:block">
           {student ? `Welcome, ${student.firstName}` : ""}
@@ -113,10 +113,10 @@ export default function StudentDashboard() {
           <div className="bg-white rounded-2xl shadow-sm p-6 flex flex-col md:flex-row gap-6 items-center md:items-start">
             {student.profilePhoto ? (
               <img src={student.profilePhoto} alt={student.firstName}
-                className="w-24 h-24 rounded-full object-cover border-4 border-[#A033A0]/20 shrink-0" />
+                className="w-24 h-24 rounded-full object-cover border-4 border-[#f056f0]/20 shrink-0" />
             ) : (
-              <div className="w-24 h-24 rounded-full bg-[#A033A0]/10 flex items-center justify-center shrink-0">
-                <span className="text-[#A033A0] font-bold text-3xl">
+              <div className="w-24 h-24 rounded-full bg-[#f056f0]/10 flex items-center justify-center shrink-0">
+                <span className="text-[#f056f0] font-bold text-3xl">
                   {student.firstName?.[0]}{student.lastName?.[0]}
                 </span>
               </div>
@@ -127,7 +127,7 @@ export default function StudentDashboard() {
                 {student.firstName} {student.lastName}
               </h2>
               <p className="text-gray-400 text-sm mt-1">
-                Reg No: <span className="font-semibold text-[#A033A0]">{student.regNumber}</span>
+                Reg No: <span className="font-semibold text-[#f056f0]">{student.regNumber}</span>
               </p>
 
               <div className="flex flex-wrap gap-3 mt-3 justify-center md:justify-start">
@@ -151,7 +151,7 @@ export default function StudentDashboard() {
                 { label: "Best Avg",  value: results.length ? Math.max(...results.map(r => Number(r.average))).toFixed(1) : "—" },
               ].map(s => (
                 <div key={s.label} className="flex flex-col items-center bg-[#f5eaf5] rounded-2xl px-4 py-3 min-w-[70px]">
-                  <span className="font-jost font-bold text-[#A033A0] text-xl">{s.value}</span>
+                  <span className="font-jost font-bold text-[#f056f0] text-xl">{s.value}</span>
                   <span className="text-xs text-gray-400 mt-0.5">{s.label}</span>
                 </div>
               ))}
@@ -173,7 +173,7 @@ export default function StudentDashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {results.map((r) => (
                 <div key={r._id}
-                  className="border border-gray-100 rounded-2xl p-5 hover:border-[#A033A0]/30 hover:shadow-sm transition-all duration-200 flex flex-col gap-3">
+                  className="border border-gray-100 rounded-2xl p-5 hover:border-[#f056f0]/30 hover:shadow-sm transition-all duration-200 flex flex-col gap-3">
 
                   <div className="flex items-center justify-between">
                     <div>
@@ -205,7 +205,7 @@ export default function StudentDashboard() {
                     </span>
                     <button
                       onClick={() => window.open(`/portal/results/${r._id}`, "_blank")}
-                      className="px-4 py-1.5 bg-[#A033A0] text-white text-xs font-semibold rounded-full hover:bg-[#525fe1] transition-colors duration-300">
+                      className="px-4 py-1.5 bg-[#f056f0] text-white text-xs font-semibold rounded-full hover:bg-[#525fe1] transition-colors duration-300">
                       View Report Card
                     </button>
                   </div>

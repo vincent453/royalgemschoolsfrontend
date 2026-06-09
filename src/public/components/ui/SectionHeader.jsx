@@ -2,7 +2,7 @@ const SectionHeader = ({
   title,
   description,
   align = "center",
-  titleColor = "text-[#A033A0]",
+  titleColor = "text-[#f056f0]",
   descColor = "text-gray-500",
 }) => {
   return (

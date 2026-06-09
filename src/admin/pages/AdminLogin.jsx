@@ -64,7 +64,7 @@ const AdminLogin = () => {
     }
   };
 
-  const inputClass = `w-full bg-gray-100 border border-transparent focus:border-[#A033A0]
+  const inputClass = `w-full bg-gray-100 border border-transparent focus:border-[#f056f0]
                       focus:outline-none focus:bg-white pl-11 pr-4 py-3.5
                       font-dm-sans text-gray-600 text-sm placeholder-gray-400
                       transition-all duration-300`
@@ -133,18 +133,18 @@ const AdminLogin = () => {
               />
               <button type="button" onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400
-                           hover:text-[#A033A0] transition-colors duration-300">
+                           hover:text-[#f056f0] transition-colors duration-300">
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
 
-            <a href="#" className="font-dm-sans text-sm text-gray-400 hover:text-[#A033A0]
+            <a href="#" className="font-dm-sans text-sm text-gray-400 hover:text-[#f056f0]
                        transition-colors duration-300 w-fit">
               Forgot password?
             </a>
 
             <button type="submit" disabled={loading}
-              className="w-fit bg-[#1a1a4b] hover:bg-[#A033A0] text-white font-jost
+              className="w-fit bg-[#1a1a4b] hover:bg-[#f056f0] text-white font-jost
                          font-semibold px-10 py-3.5 rounded-lg transition-colors duration-300
                          mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
               {loading ? 'Signing in...' : 'Sign In'}
@@ -157,14 +157,14 @@ const AdminLogin = () => {
         <div className="hidden lg:flex w-[55%] bg-gradient-to-br from-[#f0f1ff] via-[#fce4ff] to-[#e8f4ff]
                         items-center justify-center relative overflow-hidden">
 
-          <div className="absolute top-[-60px] right-[-60px] w-64 h-64 rounded-full bg-[#A033A0]/10 blur-3xl" />
+          <div className="absolute top-[-60px] right-[-60px] w-64 h-64 rounded-full bg-[#f056f0]/10 blur-3xl" />
           <div className="absolute bottom-[-40px] left-[-40px] w-52 h-52 rounded-full bg-[#525fe1]/10 blur-3xl" />
           <div className="absolute top-[40%] left-[5%] w-32 h-32 rounded-full bg-[#FFB400]/10 blur-2xl" />
 
           {[
             { top: '12%', left: '18%',  color: '#FFB400', size: 'text-xl' },
             { top: '22%', right: '12%', color: '#ff4d6d', size: 'text-sm' },
-            { top: '58%', right: '8%',  color: '#A033A0', size: 'text-lg' },
+            { top: '58%', right: '8%',  color: '#f056f0', size: 'text-lg' },
             { top: '72%', left: '12%',  color: '#525fe1', size: 'text-sm' },
             { top: '38%', left: '6%',   color: '#00b4d8', size: 'text-xl' },
             { top: '80%', right: '20%', color: '#FFB400', size: 'text-sm' },
@@ -175,7 +175,7 @@ const AdminLogin = () => {
 
           <div className="relative z-10 w-[78%]">
             <div className="absolute inset-[-18px] rounded-[60%_40%_30%_70%/60%_30%_70%_40%]
-                           border-4 border-dashed border-[#A033A0]/30 animate-spin"
+                           border-4 border-dashed border-[#f056f0]/30 animate-spin"
               style={{ animationDuration: '20s' }} />
             <div className="absolute inset-[-6px] rounded-[40%_60%_70%_30%/40%_50%_60%_50%]
                            border-2 border-dotted border-[#525fe1]/40 animate-spin"

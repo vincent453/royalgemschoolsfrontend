@@ -65,7 +65,7 @@ const Footer = () => {
                   key={i}
                   href={href}
                   className="w-9 h-9 rounded-full border text-[1.2rem] border-gray-300 flex items-center justify-center
-                             text-gray-500 hover:bg-[#A033A0] hover:text-white hover:border-[#A033A0]
+                             text-gray-500 hover:bg-[#f056f0] hover:text-white hover:border-[#f056f0]
                              transition-all duration-300 text-sm"
                 >
                   {icon}
@@ -82,7 +82,7 @@ const Footer = () => {
                 <li key={i}>
                   <a
                     href={href}
-                    className="font-dm-sans text-gray-500 text-sm hover:text-[#A033A0] transition-colors duration-300"
+                    className="font-dm-sans text-gray-500 text-sm hover:text-[#f056f0] transition-colors duration-300"
                   >
                     {label}
                   </a>
@@ -99,13 +99,13 @@ const Footer = () => {
             <ul className="flex flex-col gap-3">
               {contactInfo.map(({ icon, text, href, colored }, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="text-[#A033A0] mt-0.5 shrink-0">{icon}</span>
+                  <span className="text-[#f056f0] mt-0.5 shrink-0">{icon}</span>
                   {href ? (
                     <a
                       href={href}
                       className={`font-dm-sans text-md leading-snug transition-colors duration-300
                                   ${colored
-                                    ? 'text-[#A033A0] hover:text-[#525fe1]'
+                                    ? 'text-[#f056f0] hover:text-[#525fe1]'
                                     : 'text-gray-500 hover:text-[#525fe1]'} `}
                     >
                       {text}
@@ -127,7 +127,7 @@ const Footer = () => {
             {/* Google Play */}
             <a
               href="#"
-              className="flex items-center gap-3 bg-[#525fe1] hover:bg-[#A033A0] text-white
+              className="flex items-center gap-3 bg-[#525fe1] hover:bg-[#f056f0] text-white
                          px-4 py-2.5 rounded-lg transition-colors duration-300 w-fit"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -141,7 +141,7 @@ const Footer = () => {
             {/* App Store */}
             <a
               href="#"
-              className="flex items-center gap-3 bg-gray-900 hover:bg-[#A033A0] text-white
+              className="flex items-center gap-3 bg-gray-900 hover:bg-[#f056f0] text-white
                          px-4 py-2.5 rounded-lg transition-colors duration-300 w-fit"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -172,8 +172,8 @@ const Footer = () => {
           {/* Scroll to top */}
              <button
             onClick={scrollToTop}
-            className={`w-12 h-12 right-6 bottom-6 fixed z-50 rounded-full border-2 border-[#A033A0] text-[#A033A0]
-                        flex items-center justify-center hover:bg-[#A033A0] hover:text-white
+            className={`w-12 h-12 right-6 bottom-6 fixed z-50 rounded-full border-2 border-[#f056f0] text-[#f056f0]
+                        flex items-center justify-center hover:bg-[#f056f0] hover:text-white
                         transition-all duration-300
                         ${showScroll
                           ? 'opacity-100 translate-y-0 pointer-events-auto'

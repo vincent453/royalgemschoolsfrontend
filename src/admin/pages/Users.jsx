@@ -92,8 +92,8 @@ const Users = () => {
 
   const inputClass = `border border-gray-200 rounded-lg px-4 py-2.5
                       font-dm-sans text-gray-700 text-sm placeholder-gray-300
-                      focus:outline-none focus:border-[#A033A0] transition-colors duration-300`
-  const labelClass = `font-dm-sans text-[#A033A0] text-sm font-semibold mb-1 block`
+                      focus:outline-none focus:border-[#f056f0] transition-colors duration-300`
+  const labelClass = `font-dm-sans text-[#f056f0] text-sm font-semibold mb-1 block`
 
   const stats = [
     { label: 'Total Users', value: users.length,                              color: 'text-gray-800'    },
@@ -131,7 +131,7 @@ const Users = () => {
               <button
                 onClick={() => navigate('/admin/addUsers')}
                 className="flex items-center gap-2 font-jost font-semibold px-6 py-2.5 rounded-full
-                           bg-[#A033A0] hover:bg-[#525fe1] text-white text-sm
+                           bg-[#f056f0] hover:bg-[#525fe1] text-white text-sm
                            transition-colors duration-500 shadow-sm"
               >
                 <FaPlus className="text-xs" />
@@ -265,7 +265,7 @@ const Users = () => {
                       <div className="relative">
                         <button
                           onClick={() => setOpenMenu(openMenu === u._id ? null : u._id)}
-                          className="text-gray-300 hover:text-[#A033A0] transition-colors duration-300 p-1"
+                          className="text-gray-300 hover:text-[#f056f0] transition-colors duration-300 p-1"
                         >
                           <FaEllipsisV className="text-sm" />
                         </button>
@@ -276,7 +276,7 @@ const Users = () => {
                             <button
                               onClick={() => { navigate(`/admin/users/edit/${u._id}`); setOpenMenu(null) }}
                               className="flex items-center gap-2 w-full px-4 py-2.5 text-sm font-dm-sans
-                                         text-gray-600 hover:bg-[#fdf8ff] hover:text-[#A033A0] transition-colors"
+                                         text-gray-600 hover:bg-[#fdf8ff] hover:text-[#f056f0] transition-colors"
                             >
                               <FaEdit className="text-xs" /> Edit User
                             </button>

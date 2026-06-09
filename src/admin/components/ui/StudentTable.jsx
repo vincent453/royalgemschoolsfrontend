@@ -112,7 +112,7 @@ const StudentTable = () => {
         <p className="font-dm-sans text-red-500 text-sm">{error}</p>
         <button
           onClick={fetchStudents}
-          className="px-5 py-2 bg-[#A033A0] text-white text-sm rounded-full font-dm-sans font-semibold hover:bg-[#525fe1] transition-colors duration-300"
+          className="px-5 py-2 bg-[#f056f0] text-white text-sm rounded-full font-dm-sans font-semibold hover:bg-[#525fe1] transition-colors duration-300"
         >
           Retry
         </button>
@@ -136,8 +136,8 @@ const StudentTable = () => {
               className={`px-4 py-1.5 rounded-full text-sm font-dm-sans font-semibold
                           transition-all duration-300
                           ${activeClass === value
-                            ? "bg-[#A033A0] text-white shadow-sm"
-                            : "bg-gray-100 text-gray-500 hover:bg-[#A033A0]/10 hover:text-[#A033A0]"}`}
+                            ? "bg-[#f056f0] text-white shadow-sm"
+                            : "bg-gray-100 text-gray-500 hover:bg-[#f056f0]/10 hover:text-[#f056f0]"}`}
             >
               {label}
               <span className={`ml-1.5 text-xs px-1.5 py-0.5 rounded-full
@@ -197,8 +197,8 @@ const StudentTable = () => {
                           className="w-10 h-10 rounded-full object-cover shrink-0"
                         />
                       ) : (
-                        <div className="w-10 h-10 rounded-full bg-[#A033A0]/10 flex items-center justify-center shrink-0">
-                          <span className="text-[#A033A0] font-bold text-sm">
+                        <div className="w-10 h-10 rounded-full bg-[#f056f0]/10 flex items-center justify-center shrink-0">
+                          <span className="text-[#f056f0] font-bold text-sm">
                             {student.firstName?.[0]}{student.lastName?.[0]}
                           </span>
                         </div>
@@ -210,7 +210,7 @@ const StudentTable = () => {
                   </td>
 
                   {/* Reg number */}
-                  <td className="pr-4 text-[#A033A0] font-medium whitespace-nowrap">
+                  <td className="pr-4 text-[#f056f0] font-medium whitespace-nowrap">
                     {student.regNumber}
                   </td>
 
@@ -229,14 +229,14 @@ const StudentTable = () => {
                     <div className="flex gap-2">
                       {student.parentPhone && (
                         <a href={`tel:${student.parentPhone}`}>
-                          <button className="p-2 bg-[#A033A0]/10 text-[#A033A0] rounded-full hover:bg-[#A033A0] hover:text-white transition-colors duration-300">
+                          <button className="p-2 bg-[#f056f0]/10 text-[#f056f0] rounded-full hover:bg-[#f056f0] hover:text-white transition-colors duration-300">
                             <Phone size={14} />
                           </button>
                         </a>
                       )}
                       {student.parentEmail && (
                         <a href={`mailto:${student.parentEmail}`}>
-                          <button className="p-2 bg-[#A033A0]/10 text-[#A033A0] rounded-full hover:bg-[#A033A0] hover:text-white transition-colors duration-300">
+                          <button className="p-2 bg-[#f056f0]/10 text-[#f056f0] rounded-full hover:bg-[#f056f0] hover:text-white transition-colors duration-300">
                             <Mail size={14} />
                           </button>
                         </a>
@@ -253,7 +253,7 @@ const StudentTable = () => {
                                       ${student.classLevel?.startsWith("JSS")
                                         ? "bg-blue-100 text-blue-600"
                                         : student.classLevel?.startsWith("SSS")
-                                          ? "bg-purple-100 text-[#A033A0]"
+                                          ? "bg-purple-100 text-[#f056f0]"
                                           : "bg-green-100 text-green-600"}`}>
                       {student.classLevel}
                     </span>
@@ -265,7 +265,7 @@ const StudentTable = () => {
                   {/* Action menu */}
                   <td className="relative">
                     <button onClick={() => toggleMenu(student._id)}>
-                      <MoreHorizontal className="text-gray-400 cursor-pointer hover:text-[#A033A0]" />
+                      <MoreHorizontal className="text-gray-400 cursor-pointer hover:text-[#f056f0]" />
                     </button>
 
                     {openMenuId === student._id && (
@@ -310,7 +310,7 @@ const StudentTable = () => {
             onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
             disabled={currentPage === 1}
             className="px-3 py-1 rounded-lg border border-gray-200 text-gray-500
-                       hover:border-[#A033A0] hover:text-[#A033A0]
+                       hover:border-[#f056f0] hover:text-[#f056f0]
                        disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300"
           >‹</button>
 
@@ -320,8 +320,8 @@ const StudentTable = () => {
               onClick={() => setCurrentPage(page)}
               className={`px-3 py-1 rounded-lg border transition-all duration-300
                           ${currentPage === page
-                            ? "bg-[#A033A0] text-white border-[#A033A0]"
-                            : "border-gray-200 text-gray-500 hover:border-[#A033A0] hover:text-[#A033A0]"}`}
+                            ? "bg-[#f056f0] text-white border-[#f056f0]"
+                            : "border-gray-200 text-gray-500 hover:border-[#f056f0] hover:text-[#f056f0]"}`}
             >
               {page}
             </button>
@@ -331,7 +331,7 @@ const StudentTable = () => {
             onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
             disabled={currentPage === totalPages || totalPages === 0}
             className="px-3 py-1 rounded-lg border border-gray-200 text-gray-500
-                       hover:border-[#A033A0] hover:text-[#A033A0]
+                       hover:border-[#f056f0] hover:text-[#f056f0]
                        disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300"
           >›</button>
         </div>

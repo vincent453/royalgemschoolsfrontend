@@ -27,8 +27,8 @@ const GeneratePin = () => {
 
   const inputClass = `w-full border border-gray-200 rounded-lg px-4 py-2.5
                       font-dm-sans text-gray-700 text-sm placeholder-gray-300
-                      focus:outline-none focus:border-[#A033A0] transition-colors duration-300`;
-  const labelClass = `font-dm-sans text-[#A033A0] text-sm font-semibold mb-1 block`;
+                      focus:outline-none focus:border-[#f056f0] transition-colors duration-300`;
+  const labelClass = `font-dm-sans text-[#f056f0] text-sm font-semibold mb-1 block`;
 
   // ── Fetch ALL students once on mount using the existing working endpoint ──
   useEffect(() => {
@@ -288,7 +288,7 @@ const GeneratePin = () => {
                     </span>
                   </h2>
                   <button type="button" onClick={handleCopyAll}
-                    className="flex items-center gap-2 text-sm font-dm-sans font-semibold text-[#A033A0] hover:text-[#525fe1] transition-colors">
+                    className="flex items-center gap-2 text-sm font-dm-sans font-semibold text-[#f056f0] hover:text-[#525fe1] transition-colors">
                     {copied === "all"
                       ? <><FaCheckCircle className="text-green-500" /> Copied!</>
                       : <><FaCopy className="text-xs" /> Copy All</>}
@@ -308,9 +308,9 @@ const GeneratePin = () => {
                       <span className="font-dm-sans text-xs text-gray-400">{p.reg}</span>
                       <span className="font-dm-sans text-sm font-semibold text-gray-700">{p.name}</span>
                       <span className="font-dm-sans text-sm text-gray-500">{p.class}</span>
-                      <span className="font-jost font-bold text-[#A033A0] tracking-widest text-sm">{p.pin}</span>
+                      <span className="font-jost font-bold text-[#f056f0] tracking-widest text-sm">{p.pin}</span>
                       <button type="button" onClick={() => handleCopy(p.pin, i)}
-                        className="text-gray-400 hover:text-[#A033A0] transition-colors flex items-center justify-center">
+                        className="text-gray-400 hover:text-[#f056f0] transition-colors flex items-center justify-center">
                         {copied === i
                           ? <FaCheckCircle className="text-green-500 text-sm" />
                           : <FaCopy className="text-sm" />}
@@ -330,26 +330,26 @@ const GeneratePin = () => {
               {generated ? (
                 <>
                   <button type="button" onClick={handleReset}
-                    className="flex items-center gap-2 font-jost font-semibold px-8 py-2.5 rounded-full border border-gray-300 text-gray-600 hover:border-[#A033A0] hover:text-[#A033A0] transition-all duration-300">
+                    className="flex items-center gap-2 font-jost font-semibold px-8 py-2.5 rounded-full border border-gray-300 text-gray-600 hover:border-[#f056f0] hover:text-[#f056f0] transition-all duration-300">
                     <FaRedo className="text-xs" /> Reset
                   </button>
                   <button type="button" onClick={handleDownload}
-                    className="flex items-center gap-2 font-jost font-semibold px-8 py-2.5 rounded-full border border-[#A033A0] text-[#A033A0] hover:bg-[#faf5ff] transition-all duration-300">
+                    className="flex items-center gap-2 font-jost font-semibold px-8 py-2.5 rounded-full border border-[#f056f0] text-[#f056f0] hover:bg-[#faf5ff] transition-all duration-300">
                     <FaDownload className="text-xs" /> Download PINs
                   </button>
                   <button type="submit" disabled={loading}
-                    className="flex items-center gap-2 font-jost font-semibold px-8 py-2.5 rounded-full bg-[#A033A0] hover:bg-[#525fe1] text-white transition-colors duration-500 disabled:opacity-50">
+                    className="flex items-center gap-2 font-jost font-semibold px-8 py-2.5 rounded-full bg-[#f056f0] hover:bg-[#525fe1] text-white transition-colors duration-500 disabled:opacity-50">
                     <FaRedo className="text-xs" /> Regenerate
                   </button>
                 </>
               ) : (
                 <>
                   <button type="button" onClick={handleReset}
-                    className="font-jost font-semibold px-8 py-2.5 rounded-full border border-gray-300 text-gray-600 hover:border-[#A033A0] hover:text-[#A033A0] transition-all duration-300">
+                    className="font-jost font-semibold px-8 py-2.5 rounded-full border border-gray-300 text-gray-600 hover:border-[#f056f0] hover:text-[#f056f0] transition-all duration-300">
                     Cancel
                   </button>
                   <button type="submit" disabled={loading || loadingStudents}
-                    className="flex items-center gap-2 font-jost font-semibold px-8 py-2.5 rounded-full bg-[#A033A0] hover:bg-[#525fe1] text-white transition-colors duration-500 disabled:opacity-50">
+                    className="flex items-center gap-2 font-jost font-semibold px-8 py-2.5 rounded-full bg-[#f056f0] hover:bg-[#525fe1] text-white transition-colors duration-500 disabled:opacity-50">
                     <FaKey className="text-xs" />
                     {loading ? "Generating..." : "Generate PIN"}
                   </button>

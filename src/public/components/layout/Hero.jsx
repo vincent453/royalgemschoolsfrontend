@@ -1,4 +1,4 @@
-import home from '../../../assets/img/trip.jpeg'
+import home from '../../../assets/img/homebg.png'
 import StatCard from '../ui/RatingCard'
 import { FaUserGraduate } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +20,7 @@ const stats = [
   },
   {
     icon: <FaUserGraduate className="text-[#f26b65]" />,
-    count: "10+",
+    count: "20+",
     label: "Years of Excellence",
   },
 ];
@@ -45,7 +45,7 @@ const Hero = () => {
     {/* Text side */}
     <div className="flex-1 max-w-lg text-center lg:text-left">
       <h1 className="font-jost font-bold text-4xl md:text-5xl lg:text-[4rem] leading-tight text-white">
-        <span className="text-[#A033A0]">
+        <span className="text-[#f056f0]">
           Royal Gem Mathematical School
         </span>
 
@@ -61,14 +61,14 @@ const Hero = () => {
    <div className="mt-8 flex gap-4 justify-center lg:justify-start">
   <button
     onClick={() => navigate("/admissions")}
-    className="bg-[#A033A0] hover:bg-[#525fe1] text-white font-jost font-semibold py-3 px-8 transition-all duration-500"
+    className="bg-[#f056f0] hover:bg-[#525fe1] text-white font-jost font-semibold py-3 px-8 transition-all duration-500"
   >
     Get Started
   </button>
 
   <button
     onClick={() => navigate("/about")}
-    className="border border-white text-white font-jost font-semibold py-3 px-8 hover:border-[#A033A0] hover:text-[#A033A0] transition-all duration-300"
+    className="border border-white text-white font-jost font-semibold py-3 px-8 hover:border-[#f056f0] hover:text-[#f056f0] transition-all duration-300"
   >
     Learn More
   </button>

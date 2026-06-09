@@ -19,9 +19,9 @@ const PORTALS = {
     pinHint:       "Given to you during enrollment",
     welcome:       "Access your results, timetable, attendance record and fee statements — all in one place.",
     redirectTo:    "/student/dashboard",
-    tabColor:      "border-[#A033A0] bg-[#f5eaf5] text-[#A033A0]",
+    tabColor:      "border-[#f056f0] bg-[#f5eaf5] text-[#f056f0]",
     tabInactive:   "border-gray-200 bg-white text-gray-400",
-    accent:        "#A033A0",
+    accent:        "#f056f0",
     badgeText:     "Student Portal",
     badgeBg:       "bg-[#f5eaf5] text-[#7a2079]",
   },
@@ -34,9 +34,9 @@ const PORTALS = {
     pinHint:       "Use your child's PIN from the school",
     welcome:       "Monitor your child's academic progress, results, attendance and fee payments from anywhere.",
     redirectTo:    "/parent/dashboard",
-    tabColor:      "border-[#A033A0] bg-[#f5eaf5] text-[#A033A0]",
+    tabColor:      "border-[#f056f0] bg-[#f5eaf5] text-[#f056f0]",
     tabInactive:   "border-gray-200 bg-white text-gray-400",
-    accent:        "#A033A0",
+    accent:        "#f056f0",
     badgeText:     "Parent Portal",
     badgeBg:       "bg-[#f5eaf5] text-[#7a2079]",
   },
@@ -141,9 +141,9 @@ export default function Portal() {
       <div className="min-h-screen bg-gradient-to-br from-[#c4a7c4] via-[#fff7ff] to-[#e8cfe8] flex items-center justify-center p-6 relative overflow-hidden font-sans">
 
         {/* Decorative blobs */}
-        <div className="absolute -top-16 -left-20 w-56 h-56 rounded-full bg-[#A033A0]/10 animate-pulse pointer-events-none" />
+        <div className="absolute -top-16 -left-20 w-56 h-56 rounded-full bg-[#f056f0]/10 animate-pulse pointer-events-none" />
         <div className="absolute top-1/3 -right-12 w-36 h-36 rounded-full bg-[#1a6fb5]/10 animate-pulse pointer-events-none" style={{ animationDelay: "1s" }} />
-        <div className="absolute bottom-10 left-10 w-24 h-24 rounded-full bg-[#A033A0]/08 animate-pulse pointer-events-none" style={{ animationDelay: "2s" }} />
+        <div className="absolute bottom-10 left-10 w-24 h-24 rounded-full bg-[#f056f0]/08 animate-pulse pointer-events-none" style={{ animationDelay: "2s" }} />
 
         <div className={`relative z-10 w-full max-w-5xl flex flex-col lg:flex-row gap-6 items-stretch transition-all duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"}`}>
 
@@ -206,7 +206,7 @@ export default function Portal() {
             </div>
 
             {/* Form card */}
-            <div className={`bg-white rounded-3xl p-8 shadow-xl border border-[#A033A0]/10 flex flex-col gap-6 transition-all duration-300 ${shake ? "animate-[shake_0.5s_ease]" : ""}`}
+            <div className={`bg-white rounded-3xl p-8 shadow-xl border border-[#f056f0]/10 flex flex-col gap-6 transition-all duration-300 ${shake ? "animate-[shake_0.5s_ease]" : ""}`}
               style={{ borderTop: `3px solid ${portal.accent}` }}>
 
               <div className="flex items-center gap-4">
@@ -307,7 +307,7 @@ export default function Portal() {
 
             <div className="flex gap-2 flex-wrap justify-center">
               {["🔒 Secure Login", "📋 WAEC Verified", "🏅 Award-Winning School"].map(t => (
-                <span key={t} className="text-xs font-medium px-3 py-1.5 rounded-full border border-[#A033A0]/20 bg-[#f5eaf5] text-[#7a2079]">
+                <span key={t} className="text-xs font-medium px-3 py-1.5 rounded-full border border-[#f056f0]/20 bg-[#f5eaf5] text-[#7a2079]">
                   {t}
                 </span>
               ))}

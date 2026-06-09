@@ -2,7 +2,7 @@ const ImageTextSection = ({
   image,
   imageAlt = "section image",
   title,
-  titleColor = "text-[#A033A0]",
+  titleColor = "text-[#f056f0]",
   paragraphs = [],
   imageLeft = true,
   children,

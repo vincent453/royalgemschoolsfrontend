@@ -9,7 +9,7 @@ const PlayButton = ({ onClick }) => {
         onClick?.()
       }}
       className="video-button relative flex items-center justify-center
-                 w-16 h-16 rounded-full bg-[#A033A0] hover:bg-[#525fe1]
+                 w-16 h-16 rounded-full bg-[#f056f0] hover:bg-[#525fe1]
                  text-white shadow-2xl hover:scale-110 active:scale-95
                  transition-all duration-300 overflow-visible"
     >

@@ -67,7 +67,7 @@ const RecentResults = () => {
                         {item.student?.profilePhoto ? (
                           <img src={item.student.profilePhoto} className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover" alt={item.student?.firstName} />
                         ) : (
-                          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-purple-100 flex items-center justify-center text-[#A033A0] font-bold text-xs md:text-sm">
+                          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-purple-100 flex items-center justify-center text-[#f056f0] font-bold text-xs md:text-sm">
                             {item.student?.firstName?.[0]}{item.student?.lastName?.[0]}
                           </div>
                         )}

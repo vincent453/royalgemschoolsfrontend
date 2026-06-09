@@ -41,7 +41,7 @@ const TeacherCard = ({
               href={href}
               onClick={e => e.stopPropagation()}
               className="w-8 h-8 sm:w-9 sm:h-9
-                         bg-[#A033A0] hover:bg-[#525fe1] text-white
+                         bg-[#f056f0] hover:bg-[#525fe1] text-white
                          flex items-center justify-center
                          transition-colors duration-300"
             >

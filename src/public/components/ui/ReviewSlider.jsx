@@ -92,7 +92,7 @@ const ReviewSlider = ({ reviews, className = "py-4" }) => {
             aria-label={`Go to slide ${i + 1}`}
             className={`h-2 rounded-full transition-all duration-300
                         ${current === i
-                          ? 'w-6 bg-[#A033A0]'
+                          ? 'w-6 bg-[#f056f0]'
                           : 'w-2 bg-gray-300 hover:bg-gray-400'}`}
           />
         ))}

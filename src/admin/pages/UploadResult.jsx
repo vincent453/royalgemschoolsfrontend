@@ -180,8 +180,8 @@ const UploadResult = () => {
   // ── Shared styles ──
   const inputClass = `w-full border border-gray-200 rounded-lg px-4 py-2.5
                       font-dm-sans text-gray-700 text-sm placeholder-gray-300
-                      focus:outline-none focus:border-[#A033A0] transition-colors duration-300`
-  const labelClass = `font-dm-sans text-[#A033A0] text-sm font-semibold mb-1 block`
+                      focus:outline-none focus:border-[#f056f0] transition-colors duration-300`
+  const labelClass = `font-dm-sans text-[#f056f0] text-sm font-semibold mb-1 block`
   const sectionClass = `bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col gap-4`
   const headingClass = `font-jost font-bold text-gray-800 text-lg border-b border-gray-100 pb-3`
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -327,7 +327,7 @@ const UploadResult = () => {
               </div>
 
               <button type="button" onClick={addSubject}
-                className="flex items-center gap-2 text-[#A033A0] hover:text-[#525fe1] font-dm-sans font-semibold text-sm transition-colors duration-300 w-fit">
+                className="flex items-center gap-2 text-[#f056f0] hover:text-[#525fe1] font-dm-sans font-semibold text-sm transition-colors duration-300 w-fit">
                 <FaPlus className="text-xs" /> Add Another Subject
               </button>
             </div>
@@ -370,11 +370,11 @@ const UploadResult = () => {
             {/* ── Actions ── */}
             <div className="flex items-center justify-end gap-4 pb-6">
               <button type="button" onClick={resetForm}
-                className="font-jost font-semibold px-8 py-2.5 rounded-full border border-gray-300 text-gray-600 hover:border-[#A033A0] hover:text-[#A033A0] transition-all duration-300">
+                className="font-jost font-semibold px-8 py-2.5 rounded-full border border-gray-300 text-gray-600 hover:border-[#f056f0] hover:text-[#f056f0] transition-all duration-300">
                 Cancel
               </button>
               <button type="submit" disabled={loading}
-                className={`font-jost font-semibold px-8 py-2.5 rounded-full text-white transition-colors duration-500 ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#A033A0] hover:bg-[#525fe1]'}`}>
+                className={`font-jost font-semibold px-8 py-2.5 rounded-full text-white transition-colors duration-500 ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#f056f0] hover:bg-[#525fe1]'}`}>
                 {loading ? 'Uploading...' : 'Upload Result'}
               </button>
             </div>

@@ -15,7 +15,7 @@ const achievements = [
     value: "500+",
     label: "Students Graduated",
     description: "Hundreds of well-rounded graduates shaping communities.",
-    color: "bg-purple-50 text-[#A033A0]",
+    color: "bg-purple-50 text-[#f056f0]",
     border: "border-purple-100",
   },
   {
@@ -67,7 +67,7 @@ const AchievementCard = ({ icon, value, label, description, color, border }) => 
     </div>
 
     {/* Divider */}
-    <div className="w-10 h-0.5 bg-[#A033A0] group-hover:w-full transition-all duration-500" />
+    <div className="w-10 h-0.5 bg-[#f056f0] group-hover:w-full transition-all duration-500" />
 
     {/* Description */}
     <p className="font-dm-sans text-gray-400 text-sm leading-relaxed">{description}</p>
@@ -83,14 +83,14 @@ const Achievements = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-0.5 bg-[#A033A0]" />
-              <span className="font-dm-sans text-[#A033A0] font-semibold text-sm uppercase tracking-widest">
+              <div className="w-10 h-0.5 bg-[#f056f0]" />
+              <span className="font-dm-sans text-[#f056f0] font-semibold text-sm uppercase tracking-widest">
                 Our Achievements
               </span>
             </div>
             <h2 className="font-jost font-bold text-3xl md:text-4xl text-gray-900">
               What We Have <br className="hidden md:block" />
-              <span className="text-[#A033A0]">Accomplished</span>
+              <span className="text-[#f056f0]">Accomplished</span>
             </h2>
           </div>
           <p className="font-dm-sans text-gray-500 text-base max-w-sm leading-relaxed">

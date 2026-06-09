@@ -8,7 +8,7 @@ const AboutUs = ({image}) => {
       image={image}
       imageLeft={true}
       title="Brief History Of Our School"
-      titleColor="text-[#A033A0]"
+      titleColor="text-[#f056f0]"
      paragraphs={[
      
       "Royal Gem Schools was founded by Dr. Oluwatoyin Ariyo-Ojeme, a seasoned educator with over three decades of experience in teaching, research, and educational development. Her passion for raising academically sound and morally upright students led to the establishment of Royal Gem Nursery and Primary School in Ikorodu, Lagos State",

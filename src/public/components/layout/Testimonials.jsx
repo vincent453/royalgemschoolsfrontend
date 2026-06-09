@@ -83,7 +83,7 @@ const reviews = [
 // Generates a consistent colour from the person's name
 const getAvatarColor = (name) => {
   const colors = [
-    "bg-[#702b70]", "bg-[#A033A0]", "bg-[#525fe1]",
+    "bg-[#702b70]", "bg-[#f056f0]", "bg-[#525fe1]",
     "bg-[#0f6e56]", "bg-[#ba7517]", "bg-[#185fa5]",
   ]
   const index = name.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0)

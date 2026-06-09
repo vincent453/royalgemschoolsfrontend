@@ -140,10 +140,10 @@ const EditStudent = () => {
 
   const inputClass = `w-full border border-gray-200 rounded-lg px-4 py-2.5
                       font-dm-sans text-gray-700 text-sm placeholder-gray-300
-                      focus:outline-none focus:border-[#A033A0] bg-white
+                      focus:outline-none focus:border-[#f056f0] bg-white
                       transition-colors duration-300`;
 
-  const labelClass = `font-dm-sans text-[#A033A0] text-sm font-semibold mb-1 block`;
+  const labelClass = `font-dm-sans text-[#f056f0] text-sm font-semibold mb-1 block`;
 
   // ── Loading state ──
   if (fetching) {
@@ -162,7 +162,7 @@ const EditStudent = () => {
           <p className="font-dm-sans text-red-400 text-sm mb-3">{fetchError}</p>
           <button
             onClick={() => navigate("/admin/students")}
-            className="font-dm-sans text-sm text-[#A033A0] underline"
+            className="font-dm-sans text-sm text-[#f056f0] underline"
           >
             ← Back to Students
           </button>
@@ -199,7 +199,7 @@ const EditStudent = () => {
               <span className={`px-3 py-1 text-xs rounded-full font-dm-sans font-semibold
                                ${form.grade?.startsWith("JSS")
                                  ? "bg-blue-100 text-blue-600"
-                                 : "bg-purple-100 text-[#A033A0]"}`}>
+                                 : "bg-purple-100 text-[#f056f0]"}`}>
                 {form.grade || "No Class"}
               </span>
             </div>
@@ -214,7 +214,7 @@ const EditStudent = () => {
 
                 {/* Photo upload */}
                 <div className="flex flex-col items-center gap-3 shrink-0">
-                  <div className="relative w-28 h-28 rounded-full bg-gray-100 border-2 border-[#A033A0]/20 overflow-hidden">
+                  <div className="relative w-28 h-28 rounded-full bg-gray-100 border-2 border-[#f056f0]/20 overflow-hidden">
                     {preview ? (
                       <img src={preview} alt="Preview" className="w-full h-full object-cover" />
                     ) : (
@@ -235,7 +235,7 @@ const EditStudent = () => {
                     <label
                       htmlFor="photo"
                       className="font-dm-sans text-xs font-semibold px-4 py-1.5 rounded-full
-                                 bg-[#A033A0] text-white cursor-pointer hover:bg-[#525fe1]
+                                 bg-[#f056f0] text-white cursor-pointer hover:bg-[#525fe1]
                                  transition-colors duration-300"
                     >
                       Change
@@ -371,8 +371,8 @@ const EditStudent = () => {
                 type="button"
                 onClick={() => navigate("/admin/students")}
                 className="font-jost font-semibold px-8 py-2.5 rounded-full border
-                           border-gray-300 text-gray-600 hover:border-[#A033A0]
-                           hover:text-[#A033A0] transition-all duration-300"
+                           border-gray-300 text-gray-600 hover:border-[#f056f0]
+                           hover:text-[#f056f0] transition-all duration-300"
               >
                 Cancel
               </button>
@@ -380,7 +380,7 @@ const EditStudent = () => {
                 type="submit"
                 disabled={loading}
                 className="font-jost font-semibold px-8 py-2.5 rounded-full
-                           bg-[#A033A0] hover:bg-[#525fe1] text-white
+                           bg-[#f056f0] hover:bg-[#525fe1] text-white
                            transition-colors duration-500 disabled:opacity-50
                            disabled:cursor-not-allowed"
               >

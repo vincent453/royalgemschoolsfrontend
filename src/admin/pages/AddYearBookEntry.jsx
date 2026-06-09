@@ -37,8 +37,8 @@ const AddYearbookEntry = () => {
   // ── Shared styles (matches UploadResult) ──
   const inputClass = `w-full border border-gray-200 rounded-lg px-4 py-2.5
                       font-dm-sans text-gray-700 text-sm placeholder-gray-300
-                      focus:outline-none focus:border-[#A033A0] transition-colors duration-300`;
-  const labelClass  = `font-dm-sans text-[#A033A0] text-sm font-semibold mb-1 block`;
+                      focus:outline-none focus:border-[#f056f0] transition-colors duration-300`;
+  const labelClass  = `font-dm-sans text-[#f056f0] text-sm font-semibold mb-1 block`;
   const sectionClass = `bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col gap-4`;
   const headingClass = `font-jost font-bold text-gray-800 text-lg border-b border-gray-100 pb-3`;
 
@@ -255,7 +255,7 @@ const AddYearbookEntry = () => {
                     <button
                       type="button"
                       onClick={() => fileRef.current?.click()}
-                      className="flex items-center gap-2 px-4 py-2 bg-[#A033A0] text-white text-sm font-dm-sans
+                      className="flex items-center gap-2 px-4 py-2 bg-[#f056f0] text-white text-sm font-dm-sans
                                  font-semibold rounded-lg hover:bg-[#8a2a8a] transition-colors duration-300"
                     >
                       <FaUpload className="text-xs" />
@@ -273,7 +273,7 @@ const AddYearbookEntry = () => {
                     )}
                   </div>
                   {uploading && (
-                    <p className="font-dm-sans text-[#A033A0] text-xs">Uploading photo…</p>
+                    <p className="font-dm-sans text-[#f056f0] text-xs">Uploading photo…</p>
                   )}
                 </div>
                 <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={onFileChange} />
@@ -325,7 +325,7 @@ const AddYearbookEntry = () => {
                 <button
                   type="button"
                   onClick={addAward}
-                  className="flex items-center gap-2 px-5 py-2.5 bg-[#A033A0] text-white text-sm font-dm-sans
+                  className="flex items-center gap-2 px-5 py-2.5 bg-[#f056f0] text-white text-sm font-dm-sans
                              font-semibold rounded-lg hover:bg-[#8a2a8a] transition-colors duration-300 whitespace-nowrap"
                 >
                   <FaPlus className="text-xs" /> Add
@@ -338,14 +338,14 @@ const AddYearbookEntry = () => {
                   {awards.map((award, i) => (
                     <span
                       key={i}
-                      className="flex items-center gap-2 bg-[#f5eaf5] text-[#7a2079] border border-[#A033A0]/20
+                      className="flex items-center gap-2 bg-[#f5eaf5] text-[#7a2079] border border-[#f056f0]/20
                                  text-xs font-dm-sans font-semibold px-3 py-1.5 rounded-full"
                     >
                       🏅 {award}
                       <button
                         type="button"
                         onClick={() => removeAward(i)}
-                        className="text-[#A033A0] hover:text-red-500 transition-colors ml-1"
+                        className="text-[#f056f0] hover:text-red-500 transition-colors ml-1"
                       >
                         <FaTimes className="text-[10px]" />
                       </button>
@@ -366,7 +366,7 @@ const AddYearbookEntry = () => {
                 <div
                   onClick={() => setIsFeatured(!isFeatured)}
                   className={`relative w-11 h-6 rounded-full transition-colors duration-300 cursor-pointer
-                    ${isFeatured ? "bg-[#A033A0]" : "bg-gray-200"}`}
+                    ${isFeatured ? "bg-[#f056f0]" : "bg-gray-200"}`}
                 >
                   <div
                     className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-300
@@ -390,7 +390,7 @@ const AddYearbookEntry = () => {
                 type="button"
                 onClick={resetForm}
                 className="font-jost font-semibold px-8 py-2.5 rounded-full border border-gray-300 text-gray-600
-                           hover:border-[#A033A0] hover:text-[#A033A0] transition-all duration-300"
+                           hover:border-[#f056f0] hover:text-[#f056f0] transition-all duration-300"
               >
                 Cancel
               </button>
@@ -398,7 +398,7 @@ const AddYearbookEntry = () => {
                 type="submit"
                 disabled={loading || uploading}
                 className={`font-jost font-semibold px-8 py-2.5 rounded-full text-white transition-colors duration-500
-                  ${loading || uploading ? "bg-gray-400 cursor-not-allowed" : "bg-[#A033A0] hover:bg-[#525fe1]"}`}
+                  ${loading || uploading ? "bg-gray-400 cursor-not-allowed" : "bg-[#f056f0] hover:bg-[#525fe1]"}`}
               >
                 {loading ? "Saving..." : uploading ? "Uploading Photo..." : "Add to Yearbook"}
               </button>

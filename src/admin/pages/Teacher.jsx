@@ -60,7 +60,7 @@ const Teacher = () => {
               <button
                 onClick={() => navigate("/admin/addUsers")}
                 className="flex items-center gap-2 font-jost font-semibold px-6 py-2.5 rounded-full
-                           bg-[#A033A0] hover:bg-[#525fe1] text-white text-sm
+                           bg-[#f056f0] hover:bg-[#525fe1] text-white text-sm
                            transition-colors duration-500 shadow-sm"
               >
                 <FaPlus className="text-xs" />

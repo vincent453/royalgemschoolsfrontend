@@ -19,8 +19,8 @@ const FounderProfile = ({
 
         {/* Section label */}
         <div className="flex items-center gap-3 mb-10">
-          <div className="w-10 h-0.5 bg-[#A033A0]" />
-          <span className="font-dm-sans text-[#A033A0] font-semibold text-sm uppercase tracking-widest">
+          <div className="w-10 h-0.5 bg-[#f056f0]" />
+          <span className="font-dm-sans text-[#f056f0] font-semibold text-sm uppercase tracking-widest">
             Meet the Founder
           </span>
         </div>
@@ -32,7 +32,7 @@ const FounderProfile = ({
             <div className="relative">
 
               {/* Decorative background blob */}
-              <div className="absolute -inset-4 bg-[#A033A0]/10 rounded-[40%_60%_60%_40%/40%_40%_60%_60%] -z-10" />
+              <div className="absolute -inset-4 bg-[#f056f0]/10 rounded-[40%_60%_60%_40%/40%_40%_60%_60%] -z-10" />
 
               {/* Photo */}
               <img
@@ -42,7 +42,7 @@ const FounderProfile = ({
               />
 
               {/* Logo badge */}
-              <div className="absolute -bottom-5 -right-5 bg-white rounded-full shadow-lg p-2 border-2 border-[#A033A0]/20">
+              <div className="absolute -bottom-5 -right-5 bg-white rounded-full shadow-lg p-2 border-2 border-[#f056f0]/20">
                 <img src={logo} alt="Royal Gem Logo" className="w-14 h-14 object-contain" />
               </div>
 
@@ -65,7 +65,7 @@ const FounderProfile = ({
 
             {/* Quote */}
             <div className="relative bg-[#f0f1ff] rounded-2xl px-6 py-5">
-              <FaQuoteLeft className="text-[#A033A0] text-2xl mb-3 opacity-60" />
+              <FaQuoteLeft className="text-[#f056f0] text-2xl mb-3 opacity-60" />
               <p className="font-dm-sans text-gray-700 text-base md:text-lg leading-relaxed italic">
                 {quote}
               </p>
@@ -90,7 +90,7 @@ Today, she consults for both public and private schools on curriculum simplifica
                   className="flex flex-col items-center justify-center bg-gray-50
                              border border-gray-100 rounded-2xl py-4 px-2 text-center"
                 >
-                  <span className="font-jost font-bold text-2xl text-[#A033A0]">{value}</span>
+                  <span className="font-jost font-bold text-2xl text-[#f056f0]">{value}</span>
                   <span className="font-dm-sans text-gray-400 text-xs mt-1">{label}</span>
                 </div>
               ))}

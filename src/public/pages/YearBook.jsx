@@ -22,7 +22,7 @@ const fetchYearbook = async (session) => {
 const Avatar = ({ name }) => {
   const initials = name.split(" ").map((w) => w[0]?.toUpperCase() ?? "").slice(0, 2).join("");
   const palettes = [
-    ["#A033A0", "#6d1b6d"],
+    ["#f056f0", "#6d1b6d"],
     ["#525fe1", "#3340c4"],
     ["#0e9f6e", "#057a55"],
     ["#e3a008", "#c27803"],
@@ -61,11 +61,11 @@ const FeaturedCard = ({ entry }) => (
         <div>
           <h3 className="font-bold text-gray-900 text-xl leading-tight">{entry.name}</h3>
           {entry.nickname && (
-            <p className="text-sm text-[#A033A0] font-semibold mt-0.5">"{entry.nickname}"</p>
+            <p className="text-sm text-[#f056f0] font-semibold mt-0.5">"{entry.nickname}"</p>
           )}
           <p className="text-xs text-gray-400 mt-1">{entry.regNumber}</p>
         </div>
-        <span className="text-xs font-semibold bg-purple-50 text-[#A033A0] border border-purple-100 px-3 py-1.5 rounded-full whitespace-nowrap">
+        <span className="text-xs font-semibold bg-purple-50 text-[#f056f0] border border-purple-100 px-3 py-1.5 rounded-full whitespace-nowrap">
           {entry.classArm}
         </span>
       </div>
@@ -112,13 +112,13 @@ const StudentCard = ({ entry }) => (
       <div>
         <h3 className="font-bold text-gray-900 text-sm leading-tight">{entry.name}</h3>
         {entry.nickname && (
-          <p className="text-[11px] text-[#A033A0] font-semibold mt-0.5">"{entry.nickname}"</p>
+          <p className="text-[11px] text-[#f056f0] font-semibold mt-0.5">"{entry.nickname}"</p>
         )}
       </div>
 
       <div className="flex items-center justify-between gap-1">
         <span className="text-[10px] text-gray-400">{entry.regNumber}</span>
-        <span className="text-[10px] font-semibold bg-purple-50 text-[#A033A0] px-2 py-0.5 rounded-full border border-purple-100">
+        <span className="text-[10px] font-semibold bg-purple-50 text-[#f056f0] px-2 py-0.5 rounded-full border border-purple-100">
           {entry.classArm}
         </span>
       </div>
@@ -212,7 +212,7 @@ export default function Yearbook() {
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
           {/* Logo */}
           <div className="flex items-center gap-3 flex-shrink-0">
-            {/* <div className="w-9 h-9 rounded-xl bg-[#A033A0] flex items-center justify-center">
+            {/* <div className="w-9 h-9 rounded-xl bg-[#f056f0] flex items-center justify-center">
               <FaGraduationCap className="text-white text-sm" />
             </div>
             <div className="leading-tight hidden sm:block">
@@ -229,7 +229,7 @@ export default function Yearbook() {
                 onClick={() => setFilterSession(s)}
                 className={`text-xs font-semibold px-4 py-1.5 rounded-lg transition-all duration-200
                   ${filterSession === s
-                    ? "bg-white text-[#A033A0] shadow-sm"
+                    ? "bg-white text-[#f056f0] shadow-sm"
                     : "text-gray-500 hover:text-gray-700"
                   }`}
               >
@@ -243,11 +243,11 @@ export default function Yearbook() {
       {/* ── HERO BANNER ────────────────────────────────────────────── */}
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col items-center text-center gap-4">
-          <div className="inline-flex items-center gap-2 bg-purple-50 border border-purple-100 text-[#A033A0] text-xs font-semibold px-4 py-1.5 rounded-full">
+          <div className="inline-flex items-center gap-2 bg-purple-50 border border-purple-100 text-[#f056f0] text-xs font-semibold px-4 py-1.5 rounded-full">
             <FaGraduationCap className="text-[10px]" /> {filterSession} Academic Session
           </div>
           <h1 className="text-4xl sm:text-5xl font-black text-gray-900 tracking-tight leading-none">
-            Class <span className="text-[#A033A0]">Yearbook</span>
+            Class <span className="text-[#f056f0]">Yearbook</span>
           </h1>
           <p className="text-gray-400 text-base max-w-md leading-relaxed">
             Celebrating the brilliant minds, big dreams, and unforgettable memories of our graduating students.
@@ -284,7 +284,7 @@ export default function Yearbook() {
               placeholder="Search by name, nickname or reg number…"
               className="w-full h-10 pl-9 pr-10 rounded-xl border border-gray-200 bg-gray-50
                          text-sm text-gray-700 placeholder-gray-300
-                         focus:outline-none focus:border-[#A033A0] focus:bg-white transition-all duration-200"
+                         focus:outline-none focus:border-[#f056f0] focus:bg-white transition-all duration-200"
             />
             {search && (
               <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500">
@@ -301,8 +301,8 @@ export default function Yearbook() {
                 onClick={() => setFilterClass(c)}
                 className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition-all duration-200
                   ${filterClass === c
-                    ? "bg-[#A033A0] text-white border-[#A033A0] shadow-sm"
-                    : "bg-white text-gray-500 border-gray-200 hover:border-[#A033A0] hover:text-[#A033A0]"
+                    ? "bg-[#f056f0] text-white border-[#f056f0] shadow-sm"
+                    : "bg-white text-gray-500 border-gray-200 hover:border-[#f056f0] hover:text-[#f056f0]"
                   }`}
               >
                 {c}
@@ -336,7 +336,7 @@ export default function Yearbook() {
             <p className="text-sm text-gray-400">{error}</p>
             <button
               onClick={() => load(filterSession)}
-              className="mt-2 px-6 py-2.5 bg-[#A033A0] text-white text-sm font-semibold rounded-full hover:bg-[#8a2a8a] transition-colors"
+              className="mt-2 px-6 py-2.5 bg-[#f056f0] text-white text-sm font-semibold rounded-full hover:bg-[#8a2a8a] transition-colors"
             >
               Try Again
             </button>

@@ -60,7 +60,7 @@ const ContactInfoCard = ({ icon, title, lines, bg, iconBg, href }) => (
           <a
             key={i}
             href={href}
-            className="font-dm-sans text-gray-500 text-sm sm:text-base break-words hover:text-[#A033A0] transition-colors duration-300"
+            className="font-dm-sans text-gray-500 text-sm sm:text-base break-words hover:text-[#f056f0] transition-colors duration-300"
           >
             {line}
           </a>

@@ -7,7 +7,7 @@ const Loader = () => (
     {/* Spinner ring + logo in center */}
     <div className="relative flex items-center justify-center">
       {/* Outer spinning ring */}
-      <div className="w-24 h-24 rounded-full border-4 border-gray-100 border-t-[#A033A0] animate-spin" />
+      <div className="w-24 h-24 rounded-full border-4 border-gray-100 border-t-[#f056f0] animate-spin" />
       
       {/* Inner static ring */}
       <div className="absolute w-16 h-16 rounded-full border-4 border-gray-100 border-b-[#525fe1] animate-spin [animation-direction:reverse] [animation-duration:1.5s]" />
