@@ -210,6 +210,25 @@ const UploadResult = () => {
     </div>
   )
 
+  const subjectTotals = subjects.map(sub => {
+  const total =
+    (Number(sub.cwk) || 0) +
+    (Number(sub.hwk) || 0) +
+    (Number(sub.ca1) || 0) +
+    (Number(sub.ca2) || 0) +
+    (Number(sub.exam) || 0);
+
+  return total;
+});
+
+const grandTotal = subjectTotals.reduce((sum, total) => sum + total, 0);
+
+const average =
+  subjects.length > 0
+    ? (grandTotal / subjects.length).toFixed(2)
+    : 0;
+
+
   return (
     <div className="flex flex-col h-[100dvh] bg-[#E6EBEE] overflow-x-hidden">
       <div className="sticky top-0 z-50 w-full">        <Topbar onMenuToggle={() => setSidebarOpen(p => !p)} />
@@ -341,7 +360,25 @@ const UploadResult = () => {
                 <DispositionTable title="Inclusive Learning Activities" data={inclusive}   setter={setInclusive}   />
               </div>
             </div>
+            <div className={sectionClass}>
+            <h2 className={headingClass}>Result Summary</h2>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm text-gray-500">Total Score</p>
+                <h3 className="text-2xl font-bold text-[#f056f0]">
+                  {grandTotal}
+                </h3>
+              </div>
+
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm text-gray-500">Average Score</p>
+                <h3 className="text-2xl font-bold text-[#525fe1]">
+                  {average}%
+                </h3>
+              </div>
+            </div>
+          </div>
             {/* ── 5. Remarks & Next Term ── */}
             <div className={sectionClass}>
               <h2 className={headingClass}>Remarks & Next Term</h2>

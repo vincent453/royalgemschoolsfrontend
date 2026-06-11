@@ -13,7 +13,17 @@ const roles = [
   {
     value: 'teacher',
     label: 'Teacher',
-    description: 'Upload results and view assigned class information',
+    description: 'General teacher — can view students and upload results',
+  },
+  {
+    value: 'subject_teacher',
+    label: 'Subject Teacher',
+    description: 'Uploads scores for their assigned subject across multiple classes',
+  },
+  {
+    value: 'class_teacher',
+    label: 'Class Teacher',
+    description: 'Finalizes and publishes complete result cards for their class',
   },
 ]
 
@@ -101,8 +111,9 @@ const AddUser = () => {
         role:        form.role,
         password:    form.portalPin, // PIN is used as the login password
         isActive:    form.status === 'Active',
-         subjects: form.role === "teacher" ? form.subjects : [],
-  assignedClass: form.role === "teacher" ? form.assignedClass : null,
+        subject:         showClassField ? form.subjects.join(", ") : "",
+        assignedClass:   showClassField ? form.assignedClass : null,
+        assignedClasses: showClassField && form.assignedClass ? [form.assignedClass] : [],
       }
 
       const res = await fetch('https://royalgemschoolsbackend.vercel.app/api/users', {
@@ -117,7 +128,7 @@ const AddUser = () => {
       const data = await res.json()
       if (!res.ok) throw new Error(data.message || 'Failed to create user')
 
-      navigate('/users')
+      navigate('/admin/users')
     } catch (err) {
       setApiError(err.message)
     } finally {
@@ -142,7 +153,7 @@ const AddUser = () => {
   const errorClass = `font-dm-sans text-xs text-red-400 mt-1`
 
   const selectedRole = roles.find(r => r.value === form.role)
-  const showClassField = form.role === 'teacher'
+  const showClassField = ['teacher', 'subject_teacher', 'class_teacher'].includes(form.role)
 
   return (
     <div className="flex flex-col h-[100dvh] bg-[#E6EBEE] overflow-x-hidden">
@@ -220,23 +231,7 @@ const AddUser = () => {
               </div>
             </div>
 
-                    {showClassField && (
-          <div className="flex flex-col flex-1 min-w-[180px] max-w-xs mt-4">
-            <label className={labelClass}>Subjects Taught</label>
 
-            <input
-              type="text"
-              placeholder="e.g Math, English, Physics"
-              value={form.subjects.join(", ")}
-              onChange={(e) => handleSubjectChange(e.target.value)}
-              className={inputClass('subjects')}
-            />
-
-            <p className="text-xs text-gray-400 mt-1">
-              Separate subjects with commas
-            </p>
-          </div>
-        )}
 
             {/* ── Section 2: Role & Access ── */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col gap-6">
@@ -304,18 +299,33 @@ const AddUser = () => {
                 </div>
               </div>
 
-              {/* Assigned class — only for teachers */}
+              {/* Subject + Class — only for teacher roles */}
               {showClassField && (
-                <div className="flex flex-col flex-1 min-w-[180px] max-w-xs">
-                  <label className={labelClass}>Assigned Class</label>
-                  <select
-                    value={form.assignedClass}
-                    onChange={(e) => update('assignedClass', e.target.value)}
-                    className={inputClass('assignedClass')}
-                  >
-                    <option value="">-- Select Class --</option>
-                    {classes.map(c => <option key={c} value={c}>{c}</option>)}
-                  </select>
+                <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-col flex-1 min-w-[180px]">
+                    <label className={labelClass}>Subjects Taught</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Mathematics, English"
+                      value={form.subjects.join(", ")}
+                      onChange={(e) => handleSubjectChange(e.target.value)}
+                      className={inputClass('subjects')}
+                    />
+                    <p className="font-dm-sans text-xs text-gray-400 mt-1">
+                      Separate subjects with commas
+                    </p>
+                  </div>
+                  <div className="flex flex-col flex-1 min-w-[180px]">
+                    <label className={labelClass}>Assigned Class</label>
+                    <select
+                      value={form.assignedClass}
+                      onChange={(e) => update('assignedClass', e.target.value)}
+                      className={inputClass('assignedClass')}
+                    >
+                      <option value="">-- Select Class --</option>
+                      {classes.map(c => <option key={c} value={c}>{c}</option>)}
+                    </select>
+                  </div>
                 </div>
               )}
             </div>
@@ -463,7 +473,7 @@ const AddUser = () => {
             <div className="flex items-center justify-end gap-4 pb-6">
               <button
                 type="button"
-                onClick={() => navigate('/users')}
+                onClick={() => navigate('/admin/users')}
                 className="font-jost font-semibold px-8 py-2.5 rounded-full border
                            border-gray-300 text-gray-600 hover:border-[#f056f0]
                            hover:text-[#f056f0] transition-all duration-300"

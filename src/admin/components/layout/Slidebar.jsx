@@ -12,30 +12,71 @@ import {
   MdPin,
   MdMemory,
   MdKey,
+  MdCheckCircle,
 } from "react-icons/md";
 
 // ── Admin sees everything ──
 const adminNavItems = [
-  { id: 1, label: "Dashboard",  href: "/admin/dashboard",  icon: <MdDashboard /> },
-  { id: 2, label: "Students",   href: "/admin/students",   icon: <MdSchool />    },
-  { id: 3, label: "Results",    href: "/admin/results",    icon: <MdBarChart />  },
-  { id: 4, label: "Teachers",   href: "/admin/teachers",   icon: <MdPeople />    },
-  { id: 5, label: "Users",      href: "/admin/users",      icon: <MdGroup />     },
-  { id: 6, label: "Add Yearbook Entry",      href: "/admin/addyearbookentry", icon: <MdMemory />     },
-{ id: 7, label: "Generate PIN", href: "/admin/generatepin", icon: <MdKey /> },  
+  { id: 1, label: "Dashboard",            href: "/admin/dashboard",            icon: <MdDashboard /> },
+  { id: 2, label: "Students",             href: "/admin/students",             icon: <MdSchool />    },
+  { id: 3, label: "Results",              href: "/admin/results",              icon: <MdBarChart />  },
+  { id: 4, label: "Teachers",             href: "/admin/teachers",             icon: <MdPeople />    },
+  { id: 5, label: "Users",                href: "/admin/users",                icon: <MdGroup />     },
+  { id: 6, label: "Yearbook Entry",       href: "/admin/addyearbookentry",     icon: <MdMemory />    },
+  { id: 7, label: "Generate PIN",         href: "/admin/generatepin",          icon: <MdKey />       },
+  { id: 8, label: "Upload Subject Result",href: "/admin/uploadsubjectresult",  icon: <MdUpload />    },
+  { id: 9, label: "Finalize Results",     href: "/admin/finalizeresults",      icon: <MdCheckCircle />},
+  { id: 10,label: "Settings",             href: "/admin/settings",             icon: <MdSettings />  },
 ];
 
-// ── Teacher sees limited menu ──
-const teacherNavItems = [
-  { id: 1, label: "Dashboard",      href: "/teacher/dashboard", icon: <MdDashboard /> },
-  { id: 2, label: "Students",       href: "/teacher/students",  icon: <MdSchool />    },
-  { id: 3, label: "Results",        href: "/teacher/results",   icon: <MdBarChart />  },
-  { id: 4, label: "Upload Result",  href: "/teacher/upload",    icon: <MdUpload />    },
+// ── Subject teacher — can only upload scores ──
+const subjectTeacherNavItems = [
+  { id: 1, label: "Dashboard",            href: "/teacher/dashboard",              icon: <MdDashboard /> },
+  { id: 2, label: "Students",             href: "/teacher/students",               icon: <MdSchool />    },
+  { id: 3, label: "Upload Subject Scores",href: "/teacher/upload-subject-result",  icon: <MdUpload />    },
+  { id: 4, label: "Results",              href: "/teacher/results",                icon: <MdBarChart />  },
 ];
+
+// ── Class teacher — can finalize results ──
+const classTeacherNavItems = [
+  { id: 1, label: "Dashboard",            href: "/teacher/dashboard",              icon: <MdDashboard /> },
+  { id: 2, label: "Students",             href: "/teacher/students",               icon: <MdSchool />    },
+  { id: 3, label: "Finalize Results",     href: "/teacher/finalize-result",        icon: <MdCheckCircle />},
+  { id: 4, label: "Results",              href: "/teacher/results",                icon: <MdBarChart />  },
+];
+
+// ── General teacher — legacy / upload old flow ──
+const teacherNavItems = [
+  { id: 1, label: "Dashboard",            href: "/teacher/dashboard",              icon: <MdDashboard /> },
+  { id: 2, label: "Students",             href: "/teacher/students",               icon: <MdSchool />    },
+  { id: 3, label: "Results",              href: "/teacher/results",                icon: <MdBarChart />  },
+  { id: 4, label: "Upload Result",        href: "/teacher/upload",                 icon: <MdUpload />    },
+  { id: 5, label: "Upload Subject Scores",href: "/teacher/upload-subject-result",  icon: <MdUpload />    },
+  { id: 6, label: "Finalize Results",     href: "/teacher/finalize-result",        icon: <MdCheckCircle />},
+];
+
+const roleLabel = {
+  admin:           "Admin Portal",
+  teacher:         "Teacher Portal",
+  subject_teacher: "Subject Teacher",
+  class_teacher:   "Class Teacher",
+};
+
+const roleBadgeColor = {
+  admin:           "bg-[#a13ea1]/10 text-[#a13ea1]",
+  teacher:         "bg-green-100 text-green-700",
+  subject_teacher: "bg-blue-100 text-blue-700",
+  class_teacher:   "bg-indigo-100 text-indigo-700",
+};
 
 const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
-  const role     = useRole();
-  const navItems = role === "teacher" ? teacherNavItems : adminNavItems;
+  const role = useRole();
+
+  const navItems =
+    role === "subject_teacher" ? subjectTeacherNavItems :
+    role === "class_teacher"   ? classTeacherNavItems   :
+    role === "teacher"         ? teacherNavItems        :
+    adminNavItems;
 
   return (
     <>
@@ -67,10 +108,8 @@ const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
         {/* Role badge */}
         <div className="px-4 pt-3 pb-1">
           <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full
-            ${role === "teacher"
-              ? "bg-green-100 text-green-700"
-              : "bg-[#a13ea1]/10 text-[#a13ea1]"}`}>
-            {role === "teacher" ? "Teacher Portal" : "Admin Portal"}
+            ${roleBadgeColor[role] ?? roleBadgeColor.admin}`}>
+            {roleLabel[role] ?? "Admin Portal"}
           </span>
         </div>
 

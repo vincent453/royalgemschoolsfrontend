@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import logo from '../../assets/img/logo.png'
-import loginbanner from '../../assets/img/students.jpeg'
+import loginbanner from '../../assets/img/party.jpeg'
 
 const API = "https://royalgemschoolsbackend.vercel.app";
 
@@ -19,7 +19,8 @@ const AdminLogin = () => {
     if (!token) return;
     try {
       const { role } = JSON.parse(atob(token.split(".")[1]));
-      navigate(role === "teacher" ? "/teacher/dashboard" : "/admin/dashboard");
+      const teacherRoles = ["teacher", "subject_teacher", "class_teacher"];
+      navigate(teacherRoles.includes(role) ? "/teacher/dashboard" : "/admin/dashboard");
     } catch {
       localStorage.removeItem("token");
     }
@@ -48,9 +49,10 @@ const AdminLogin = () => {
       // Save token and redirect based on role returned by the server
       localStorage.setItem("token", data.token);
 
+      const teacherRoles = ["teacher", "subject_teacher", "class_teacher"];
       if (data.role === "admin") {
         navigate("/admin/dashboard");
-      } else if (data.role === "teacher") {
+      } else if (teacherRoles.includes(data.role)) {
         navigate("/teacher/dashboard");
       } else {
         setError("Access denied. Staff portal only.");

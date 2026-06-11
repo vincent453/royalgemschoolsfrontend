@@ -136,12 +136,12 @@ export default function StudentDetailsForm({
               className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#A13EA1] focus:border-transparent transition"
             >
               <option value="">Select class</option>
-              <option value="Jss 1">JSS 1</option>
-              <option value="Jss 2">JSS 2</option>
-              <option value="Jss 3">JSS 3</option>
-              <option value="SSs 1">SSS 1</option>
-              <option value="SSs 2">SSS 2</option>
-              <option value="SSs 3">SSS 3</option>
+              <option value="JSS 1">JSS 1</option>
+              <option value="JSS 2">JSS 2</option>
+              <option value="JSS 3">JSS 3</option>
+              <option value="SSS 1">SSS 1</option>
+              <option value="SSS 2">SSS 2</option>
+              <option value="SSS 3">SSS 3</option>
             </select>
           </Field>
 
