@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import logo from '../../assets/img/logo.png'
-import loginbanner from '../../assets/img/party.jpeg'
+import loginbanner from '../../assets/img/learner.jpeg'
 
 const API = "https://royalgemschoolsbackend.vercel.app";
 
-const AdminLogin = () => {
+const AdminLogin =  () => {
   const [showPassword, setShowPassword] = useState(false)
   const [form, setForm]                 = useState({ email: '', password: '' })
   const [loading, setLoading]           = useState(false)
