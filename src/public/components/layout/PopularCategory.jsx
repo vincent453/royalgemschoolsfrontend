@@ -8,9 +8,9 @@ import robot from '../../../assets/img/robot.png'
 import mathematics from '../../../assets/img/mathematics.png'
 import ches from '../../../assets/img/strategy.png'
 import graph from '../../../assets/img/graphic-design.png'
+import training from '../../../assets/img/training.png'
 import CategoryCard from '../ui/CategoryCard'
 import SectionHeader from '../ui/SectionHeader'
-import training from '../../../assets/img/training.png'
 
 const categories = [
   { icon: graph,       label: "Graphic Design Course"        },
@@ -37,20 +37,16 @@ const PopularCategory = () => {
       }}
     >
       <div className="max-w-7xl mx-auto flex flex-col gap-8 sm:gap-10">
-
-        {/* Header */}
         <SectionHeader
           title="Our Services"
           description="We provide engaging programs that support students academically, creatively, and socially. These activities help learners develop important skills, explore their interests, and grow into confident, capable individuals."
         />
 
-        {/* Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5 md:gap-6 justify-items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-5">
           {categories.map((item, index) => (
             <CategoryCard key={index} icon={item.icon} label={item.label} />
           ))}
         </div>
-
       </div>
     </section>
   );
