@@ -268,14 +268,14 @@ export default function FinalizeResult() {
                       <button
                         key={`${item.student._id}-${item.classLevel}-${item.term}-${item.session}`}
                         onClick={() => selectStudent(item)}
-                        className="w-full flex items-center gap-4 px-6 py-4 text-left hover:bg-[#fdf8ff] transition-colors duration-150"
+                        className="w-full flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 px-6 py-4 text-left hover:bg-[#fdf8ff] transition-colors duration-150"
                       >
                         {item.student.profilePhoto ? (
                           <img src={item.student.profilePhoto} alt={item.student.firstName}
-                            className="w-9 h-9 rounded-full object-cover shrink-0" />
+                            className="w-10 h-10 rounded-full object-cover shrink-0" />
                         ) : (
-                          <div className="w-9 h-9 rounded-full bg-[#f056f0]/10 flex items-center justify-center shrink-0">
-                            <span className="text-[#f056f0] font-bold text-xs">
+                          <div className="w-10 h-10 rounded-full bg-[#f056f0]/10 flex items-center justify-center shrink-0">
+                            <span className="text-[#f056f0] font-bold text-sm">
                               {item.student.firstName?.[0]}{item.student.lastName?.[0]}
                             </span>
                           </div>
@@ -284,11 +284,14 @@ export default function FinalizeResult() {
                           <p className="font-dm-sans font-semibold text-gray-700 text-sm truncate">
                             {item.student.firstName} {item.student.lastName}
                           </p>
-                          <p className="font-dm-sans text-xs text-gray-400">
+                          <p className="font-dm-sans text-xs text-gray-400 truncate">
                             {item.student.regNumber} · {item.classLevel} · {item.term} · {item.session}
                           </p>
+                          <p className="font-dm-sans text-xs text-gray-500 mt-1">
+                            {item.subjectCount} subject{item.subjectCount === 1 ? "" : "s"} ready to finalize
+                          </p>
                         </div>
-                        <span className="text-[#f056f0] text-sm font-dm-sans">Review →</span>
+                        <span className="text-[#f056f0] text-sm font-dm-sans flex-shrink-0">Review →</span>
                       </button>
                     ))}
                   </div>
@@ -316,7 +319,7 @@ export default function FinalizeResult() {
             {step === "details" && selectedStudent && (
               <>
                 {/* Student banner */}
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex items-center gap-4">
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col sm:flex-row sm:items-center gap-4">
                   {selectedStudent.profilePhoto ? (
                     <img src={selectedStudent.profilePhoto} alt={selectedStudent.firstName}
                       className="w-14 h-14 rounded-full object-cover shrink-0 border-2 border-[#f056f0]/20" />
@@ -327,16 +330,16 @@ export default function FinalizeResult() {
                       </span>
                     </div>
                   )}
-                  <div className="flex-1">
-                    <p className="font-jost font-bold text-gray-800 text-lg">
+                  <div className="flex-1 min-w-0">
+                    <p className="font-jost font-bold text-gray-800 text-lg truncate">
                       {selectedStudent.firstName} {selectedStudent.lastName}
                     </p>
-                    <p className="font-dm-sans text-xs text-gray-400 mt-0.5">
+                    <p className="font-dm-sans text-xs text-gray-400 mt-0.5 truncate">
                       {selectedStudent.regNumber} · {classLevel} · {term} · {session}
                     </p>
                   </div>
                   {alreadyDone && (
-                    <span className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-100 text-emerald-700
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-100 text-emerald-700
                                      text-xs font-dm-sans font-semibold rounded-full">
                       <FiCheck /> Published
                     </span>
