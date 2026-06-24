@@ -48,7 +48,7 @@ useEffect(() => {
 
   const headers = {
     Authorization: `Bearer ${token}`,
-  };
+  };  
 
   const loadData = async () => {
     try {
