@@ -1,8 +1,8 @@
 import Slidebar from "../components/layout/Slidebar";
 import Topbar from "../components/layout/Topbar";
-import StudentDetailsForm from "../components/ui/StudentDetailsForm";
 import EducationDetailsForm from "../components/ui/EducationDetailsForm";
 import { useState } from "react";
+import StudentDetailsForm from "../components/ui/StudentDetailsForm";
 
 const AddStudent = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false)

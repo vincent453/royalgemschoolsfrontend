@@ -7,7 +7,7 @@ import {
 import Slidebar from "../components/layout/Slidebar";
 import Topbar from "../components/layout/Topbar";
 
-const API = "https://royalgemschoolsbackend.onrender.com";
+const API = import.meta.env.VITE_API_URL ?? "https://royalgemschoolsbackend.vercel.app";
 
 const StatCard = ({ icon, label, value, color }) => (
   <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex items-center gap-4">

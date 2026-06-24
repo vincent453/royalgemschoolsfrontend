@@ -39,7 +39,8 @@ const AddUser = () => {
     email:         '',
     phone:         '',
     role:          '',
-    assignedClass: '',
+    assignedClasses: [],
+    classToAdd:    '',
     status:        'Active',
     username:      '',
     portalPin:     '',
@@ -112,8 +113,7 @@ const AddUser = () => {
         password:    form.portalPin, // PIN is used as the login password
         isActive:    form.status === 'Active',
         subject:         showClassField ? form.subjects.join(", ") : "",
-        assignedClass:   showClassField ? form.assignedClass : null,
-        assignedClasses: showClassField && form.assignedClass ? [form.assignedClass] : [],
+        assignedClasses: showClassField ? form.assignedClasses : [],
       }
 
       const res = await fetch('https://royalgemschoolsbackend.vercel.app/api/users', {
@@ -137,11 +137,28 @@ const AddUser = () => {
   }
 
   const handleSubjectChange = (value) => {
-  setForm(prev => ({
-    ...prev,
-    subjects: value.split(",").map(s => s.trim())
-  }))
-}
+    setForm(prev => ({
+      ...prev,
+      subjects: value.split(",").map(s => s.trim())
+    }))
+  }
+
+  const handleAddClass = () => {
+    if (form.classToAdd && !form.assignedClasses.includes(form.classToAdd)) {
+      setForm(prev => ({
+        ...prev,
+        assignedClasses: [...prev.assignedClasses, prev.classToAdd],
+        classToAdd: ''
+      }))
+    }
+  }
+
+  const handleRemoveClass = (classToRemove) => {
+    setForm(prev => ({
+      ...prev,
+      assignedClasses: prev.assignedClasses.filter(c => c !== classToRemove)
+    }))
+  }
   const inputClass = (field) =>
     `w-full border rounded-lg px-4 py-2.5 font-dm-sans text-gray-700 text-sm placeholder-gray-300
      focus:outline-none transition-colors duration-300
@@ -299,10 +316,11 @@ const AddUser = () => {
                 </div>
               </div>
 
-              {/* Subject + Class — only for teacher roles */}
+              {/* Subject + Classes — only for teacher roles */}
               {showClassField && (
-                <div className="flex flex-wrap gap-4">
-                  <div className="flex flex-col flex-1 min-w-[180px]">
+                <div className="flex flex-col gap-6">
+                  {/* Subjects */}
+                  <div className="flex flex-col flex-1">
                     <label className={labelClass}>Subjects Taught</label>
                     <input
                       type="text"
@@ -315,17 +333,62 @@ const AddUser = () => {
                       Separate subjects with commas
                     </p>
                   </div>
-                  <div className="flex flex-col flex-1 min-w-[180px]">
-                    <label className={labelClass}>Assigned Class</label>
-                    <select
-                      value={form.assignedClass}
-                      onChange={(e) => update('assignedClass', e.target.value)}
-                      className={inputClass('assignedClass')}
-                    >
-                      <option value="">-- Select Class --</option>
-                      {classes.map(c => <option key={c} value={c}>{c}</option>)}
-                    </select>
+
+                  {/* Assigned Classes */}
+                  <div className="flex flex-col gap-3">
+                    <label className={labelClass}>Assigned Classes</label>
+                    <div className="flex gap-2">
+                      <select
+                        value={form.classToAdd}
+                        onChange={(e) => update('classToAdd', e.target.value)}
+                        className={`${inputClass('classToAdd')} flex-1`}
+                      >
+                        <option value="">-- Select a Class to Add --</option>
+                        {classes.map(c => (
+                          <option
+                            key={c}
+                            value={c}
+                            disabled={form.assignedClasses.includes(c)}
+                          >
+                            {c}
+                          </option>
+                        ))}
+                      </select>
+                      <button
+                        type="button"
+                        onClick={handleAddClass}
+                        disabled={!form.classToAdd}
+                        className="px-4 py-2.5 rounded-lg bg-[#f056f0] text-white font-dm-sans text-sm font-semibold
+                                   hover:bg-[#525fe1] disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-300"
+                      >
+                        Add
+                      </button>
+                    </div>
+                    <p className="font-dm-sans text-xs text-gray-400">
+                      Add one or more classes this teacher will handle
+                    </p>
                   </div>
+
+                  {/* Selected Classes List */}
+                  {form.assignedClasses.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {form.assignedClasses.map(c => (
+                        <div
+                          key={c}
+                          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#f056f0]/10 border border-[#f056f0]"
+                        >
+                          <span className="font-dm-sans text-sm font-semibold text-[#f056f0]">{c}</span>
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveClass(c)}
+                            className="text-[#f056f0] hover:text-red-500 font-bold text-lg leading-none transition-colors"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>

@@ -3,7 +3,7 @@ import { FiCheck, FiAlertCircle, FiChevronDown } from "react-icons/fi";
 import Slidebar from "../components/layout/Slidebar";
 import Topbar from "../components/layout/Topbar";
 
-const API = "https://royalgemschoolsbackend.onrender.com";
+const API = import.meta.env.VITE_API_URL ?? "https://royalgemschoolsbackend.vercel.app";
 
 const TERMS = ["1st Term", "2nd Term", "3rd Term"];
 const SCORE_FIELDS = [
@@ -26,7 +26,7 @@ const gradeInfo = (total) => {
 export default function UploadSubjectResult() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [profile,     setProfile]     = useState(null);
-
+  const [assignments, setAssignments] = useState([]);
   const [selectedClass,   setSelectedClass]   = useState("");
   const [selectedSubject, setSelectedSubject] = useState("");
   const [term,            setTerm]            = useState("");
@@ -35,41 +35,75 @@ export default function UploadSubjectResult() {
   const [students,        setStudents]        = useState([]);
   const [scores,          setScores]          = useState({});
   const [loadingStudents, setLoadingStudents] = useState(false);
+  const [loadingTeacher,  setLoadingTeacher]  = useState(true);
   const [saving,          setSaving]          = useState(false);
   const [toast,           setToast]           = useState(null);
+  
 
   // ── Load teacher profile on mount ──
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
-    fetch(`${API}/api/users/profile`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        if (data && !data.message) {
-          setProfile(data);
-          // Pre-fill from profile
-          if (data.assignedClass) setSelectedClass(data.assignedClass);
-          if (data.subject)       setSelectedSubject(data.subject.split(",")[0].trim());
-        }
-      })
-      .catch(() => {});
-  }, []);
+useEffect(() => {
+  const token = localStorage.getItem("token");
 
-  // Class options — combine assignedClass (single) + assignedClasses (array)
+  if (!token) return;
+
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+
+  const loadData = async () => {
+    try {
+      const [profileRes, assignmentsRes] = await Promise.all([
+        fetch(`${API}/api/users/profile`, { headers }),
+        fetch(`${API}/api/assignments/my`, { headers }),
+      ]);
+
+      if (!profileRes.ok) {
+        throw new Error("Failed to load profile");
+      }
+
+      const profileData = await profileRes.json();
+
+      let assignmentsData = [];
+
+      if (assignmentsRes.ok) {
+        assignmentsData = await assignmentsRes.json();
+      }
+
+      setProfile(profileData);
+
+      if (Array.isArray(assignmentsData)) {
+        setAssignments(assignmentsData);
+      }
+    } catch (error) {
+      console.error("Error loading teacher data:", error);
+      showToast("error", "Failed to load teacher information.");
+    }
+  };
+
+  loadData();
+}, []);
+  // Class options — combine assignedClass (single) + assignedClasses (array) + assignment classLevels
   const classOptions = (() => {
-    const fromArray  = Array.isArray(profile?.assignedClasses)
-      ? profile.assignedClasses.filter(Boolean)
+    const fromArray = Array.isArray(profile?.assignedClasses)
+      ? profile.assignedClasses.map((c) => c?.trim()).filter(Boolean)
       : [];
-    const fromSingle = profile?.assignedClass ? [profile.assignedClass] : [];
-    return [...new Set([...fromArray, ...fromSingle])];
+    const fromSingle = profile?.assignedClass ? [profile.assignedClass.trim()] : [];
+    const fromAssignments = Array.isArray(assignments)
+      ? assignments.flatMap((a) => (Array.isArray(a.classLevels) ? a.classLevels : []))
+      : [];
+    return [...new Set([...fromArray, ...fromSingle, ...fromAssignments.map((c) => c?.trim()).filter(Boolean)])];
   })();
 
-  // Subject options — may be comma-separated e.g. "Math, English"
-  const subjectOptions = profile?.subject
-    ? profile.subject.split(",").map((s) => s.trim()).filter(Boolean)
-    : [];
+  // Subject options — may be comma-separated e.g. "Math, English" or derived from assignments
+  const subjectOptions = (() => {
+    const fromProfile = profile?.subject
+      ? profile.subject.split(",").map((s) => s.trim()).filter(Boolean)
+      : [];
+    const fromAssignments = Array.isArray(assignments)
+      ? assignments.map((a) => a.subject?.trim()).filter(Boolean)
+      : [];
+    return [...new Set([...fromProfile, ...fromAssignments])];
+  })();
 
   // ── Load students when filters ready ──
   useEffect(() => {
@@ -403,3 +437,4 @@ export default function UploadSubjectResult() {
     </div>
   );
 }
+

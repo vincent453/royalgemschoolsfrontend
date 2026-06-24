@@ -113,7 +113,7 @@ export default function FinalizeResult() {
     setLoadingSubjects(true);
     const token = localStorage.getItem("token");
     try {
-      const params = new URLSearchParams({ term, session });
+      const params = new URLSearchParams({ classLevel, term, session });
       const res  = await fetch(`${API}/api/subject-results/student/${student._id}?${params}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
