@@ -295,62 +295,6 @@ export default function FinalizeResult() {
                 )}
               </div>
             )}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {/* Class */}
-                  <div className="flex flex-col gap-1">
-                    <label className="font-dm-sans text-xs text-[#f056f0] font-semibold uppercase tracking-wide">Class</label>
-                    <input
-                      type="text"
-                      value={classLevel}
-                      onChange={(e) => setClassLevel(e.target.value)}
-                      placeholder="e.g. JSS 1"
-                      className="border border-gray-200 rounded-xl px-4 py-2.5 font-dm-sans text-sm
-                                 text-gray-700 focus:outline-none focus:border-[#f056f0] transition-colors"
-                    />
-                  </div>
-
-                  {/* Term */}
-                  <div className="flex flex-col gap-1">
-                    <label className="font-dm-sans text-xs text-[#f056f0] font-semibold uppercase tracking-wide">Term</label>
-                    <div className="relative">
-                      <select
-                        value={term}
-                        onChange={(e) => setTerm(e.target.value)}
-                        className="w-full appearance-none border border-gray-200 rounded-xl px-4 py-2.5
-                                   font-dm-sans text-sm text-gray-700 focus:outline-none focus:border-[#f056f0]
-                                   transition-colors bg-white pr-9"
-                      >
-                        <option value="">Select term</option>
-                        {TERMS.map((t) => <option key={t}>{t}</option>)}
-                      </select>
-                      <FiChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-                    </div>
-                  </div>
-
-                  {/* Session */}
-                  <div className="flex flex-col gap-1">
-                    <label className="font-dm-sans text-xs text-[#f056f0] font-semibold uppercase tracking-wide">Session</label>
-                    <input
-                      type="text"
-                      value={session}
-                      onChange={(e) => setSession(e.target.value)}
-                      placeholder="e.g. 2024/2025"
-                      className="border border-gray-200 rounded-xl px-4 py-2.5 font-dm-sans text-sm
-                                 text-gray-700 focus:outline-none focus:border-[#f056f0] transition-colors placeholder-gray-300"
-                    />
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  disabled
-                  className="mt-6 flex items-center gap-2 font-jost font-semibold px-8 py-2.5 rounded-full
-                             bg-gray-200 text-gray-500 text-sm cursor-not-allowed"
-                >
-                  Auto-loading students…
-                </button>
-              </div>
-            )}
 
             {/* ── STEP 2: Student list ── */}
             {step === "review" && selectedStudent && (
@@ -365,29 +309,6 @@ export default function FinalizeResult() {
                 <div className="px-6 py-8 text-center font-dm-sans text-sm text-gray-400">
                   Select a different result from the pending list to review.
                 </div>
-              </div>
-            )}
-                        {s.profilePhoto ? (
-                          <img src={s.profilePhoto} alt={s.firstName}
-                            className="w-9 h-9 rounded-full object-cover shrink-0" />
-                        ) : (
-                          <div className="w-9 h-9 rounded-full bg-[#f056f0]/10 flex items-center justify-center shrink-0">
-                            <span className="text-[#f056f0] font-bold text-xs">
-                              {s.firstName?.[0]}{s.lastName?.[0]}
-                            </span>
-                          </div>
-                        )}
-                        <div className="flex-1 min-w-0">
-                          <p className="font-dm-sans font-semibold text-gray-700 text-sm truncate">
-                            {s.firstName} {s.lastName}
-                          </p>
-                          <p className="font-dm-sans text-xs text-gray-400">{s.regNumber}</p>
-                        </div>
-                        <span className="text-[#f056f0] text-sm font-dm-sans">Review →</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
               </div>
             )}
 
