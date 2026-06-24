@@ -113,12 +113,13 @@ useEffect(() => {
     }
     setLoadingStudents(true);
     const token = localStorage.getItem("token");
-    fetch(`${API}/api/students`, {
+    const params = new URLSearchParams({ classLevel: selectedClass });
+    fetch(`${API}/api/students?${params}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((r) => r.json())
       .then((data) => {
-        // Backend already filters by teacher's assignedClass via protectAdminOrUser
+        // Backend already filters by teacher's assigned class(es) and selected class
         setStudents(Array.isArray(data) ? data : []);
         setScores({});
       })

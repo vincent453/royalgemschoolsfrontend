@@ -43,16 +43,16 @@ export default function FinalizeResult() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Step management: "filter" → "review" → "details"
-  const [step, setStep] = useState("filter");
+  const [step, setStep] = useState("review");
 
   // Filters
   const [classLevel, setClassLevel]   = useState("");
   const [term,       setTerm]         = useState("");
   const [session,    setSession]      = useState("");
 
-  // Students list
-  const [students,        setStudents]        = useState([]);
-  const [loadingStudents, setLoadingStudents] = useState(false);
+  // Pending results ready to finalize
+  const [pendingResults, setPendingResults] = useState([]);
+  const [loadingPending, setLoadingPending] = useState(false);
 
   // Selected student + their subject results
   const [selectedStudent,  setSelectedStudent]  = useState(null);
@@ -104,16 +104,45 @@ export default function FinalizeResult() {
     }
   };
 
+  useEffect(() => {
+    loadPendingResults();
+  }, []);
+
+  const loadPendingResults = async () => {
+    setLoadingPending(true);
+    const token = localStorage.getItem("token");
+    try {
+      const res = await fetch(`${API}/api/results/pending`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      setPendingResults(Array.isArray(data) ? data : []);
+    } catch {
+      showToast("error", "Failed to load pending results.");
+      setPendingResults([]);
+    } finally {
+      setLoadingPending(false);
+    }
+  };
+
   // Load subject results for a student
-  const selectStudent = async (student) => {
+  const selectStudent = async (item) => {
+    const student = item.student || item;
+    const selectedClassLevel = item.classLevel || student.classLevel || classLevel;
+    const selectedTerm = item.term || term;
+    const selectedSession = item.session || session;
+
     setSelectedStudent(student);
+    setClassLevel(selectedClassLevel);
+    setTerm(selectedTerm);
+    setSession(selectedSession);
     setSubjectResults([]);
     setMissingSubjects([]);
     setAlreadyDone(false);
     setLoadingSubjects(true);
     const token = localStorage.getItem("token");
     try {
-      const params = new URLSearchParams({ classLevel, term, session });
+      const params = new URLSearchParams({ classLevel: selectedClassLevel, term: selectedTerm, session: selectedSession });
       const res  = await fetch(`${API}/api/subject-results/student/${student._id}?${params}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -209,7 +238,7 @@ export default function FinalizeResult() {
               </div>
               {step !== "filter" && (
                 <button
-                  onClick={() => { setStep("filter"); setSelectedStudent(null); setStudents([]); }}
+                  onClick={() => { setStep("review"); setSelectedStudent(null); loadPendingResults(); }}
                   className="font-dm-sans text-sm text-[#f056f0] hover:underline"
                 >
                   ← Start over
@@ -217,10 +246,55 @@ export default function FinalizeResult() {
               )}
             </div>
 
-            {/* ── STEP 1: Filters ── */}
-            {step === "filter" && (
+            {/* ── STEP 1: Pending Results ── */}
+            {step === "review" && selectedStudent === null && (
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                <p className="font-jost font-semibold text-gray-700 mb-4">Select Class & Term</p>
+                <p className="font-jost font-semibold text-gray-700 mb-4">Pending Results</p>
+                <p className="font-dm-sans text-sm text-gray-400 mb-4">
+                  These students have uploaded subject scores and are ready to review for finalization.
+                </p>
+                {loadingPending ? (
+                  <div className="flex items-center justify-center py-16 gap-3 text-gray-400">
+                    <span className="w-5 h-5 border-2 border-[#f056f0] border-t-transparent rounded-full animate-spin" />
+                    <span className="font-dm-sans text-sm">Loading pending results…</span>
+                  </div>
+                ) : pendingResults.length === 0 ? (
+                  <div className="py-16 text-center font-dm-sans text-sm text-gray-400">
+                    No pending results are available right now.
+                  </div>
+                ) : (
+                  <div className="divide-y divide-gray-50">
+                    {pendingResults.map((item) => (
+                      <button
+                        key={`${item.student._id}-${item.classLevel}-${item.term}-${item.session}`}
+                        onClick={() => selectStudent(item)}
+                        className="w-full flex items-center gap-4 px-6 py-4 text-left hover:bg-[#fdf8ff] transition-colors duration-150"
+                      >
+                        {item.student.profilePhoto ? (
+                          <img src={item.student.profilePhoto} alt={item.student.firstName}
+                            className="w-9 h-9 rounded-full object-cover shrink-0" />
+                        ) : (
+                          <div className="w-9 h-9 rounded-full bg-[#f056f0]/10 flex items-center justify-center shrink-0">
+                            <span className="text-[#f056f0] font-bold text-xs">
+                              {item.student.firstName?.[0]}{item.student.lastName?.[0]}
+                            </span>
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="font-dm-sans font-semibold text-gray-700 text-sm truncate">
+                            {item.student.firstName} {item.student.lastName}
+                          </p>
+                          <p className="font-dm-sans text-xs text-gray-400">
+                            {item.student.regNumber} · {item.classLevel} · {item.term} · {item.session}
+                          </p>
+                        </div>
+                        <span className="text-[#f056f0] text-sm font-dm-sans">Review →</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {/* Class */}
                   <div className="flex flex-col gap-1">
@@ -268,42 +342,31 @@ export default function FinalizeResult() {
                 </div>
 
                 <button
-                  onClick={loadStudents}
-                  disabled={!classLevel || !term || !session || loadingStudents}
+                  type="button"
+                  disabled
                   className="mt-6 flex items-center gap-2 font-jost font-semibold px-8 py-2.5 rounded-full
-                             bg-[#f056f0] hover:bg-[#525fe1] text-white text-sm
-                             transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                             bg-gray-200 text-gray-500 text-sm cursor-not-allowed"
                 >
-                  {loadingStudents ? (
-                    <><span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" /> Loading…</>
-                  ) : "Load Students →"}
+                  Auto-loading students…
                 </button>
               </div>
             )}
 
             {/* ── STEP 2: Student list ── */}
-            {step === "review" && (
+            {step === "review" && selectedStudent && (
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                 <div className="px-6 py-4 border-b border-gray-100">
                   <p className="font-jost font-bold text-gray-800">{classLevel} — {term} · {session}</p>
                   <p className="font-dm-sans text-xs text-gray-400 mt-0.5">
-                    Select a student to review and finalize their result
+                    Review subject results for this student and finalize the result.
                   </p>
                 </div>
 
-                {students.length === 0 ? (
-                  <div className="py-16 text-center font-dm-sans text-sm text-gray-400">
-                    No students found in this class.
-                  </div>
-                ) : (
-                  <div className="divide-y divide-gray-50">
-                    {students.map((s) => (
-                      <button
-                        key={s._id}
-                        onClick={() => selectStudent(s)}
-                        className="w-full flex items-center gap-4 px-6 py-4 text-left
-                                   hover:bg-[#fdf8ff] transition-colors duration-150"
-                      >
+                <div className="px-6 py-8 text-center font-dm-sans text-sm text-gray-400">
+                  Select a different result from the pending list to review.
+                </div>
+              </div>
+            )}
                         {s.profilePhoto ? (
                           <img src={s.profilePhoto} alt={s.firstName}
                             className="w-9 h-9 rounded-full object-cover shrink-0" />
