@@ -30,6 +30,21 @@ import UploadSubjectResult from "../admin/pages/UploadSubjectResult";
 import FinalizeResult      from "../admin/pages/FinalizeResult";
 import AddYearbookEntry    from "../admin/pages/AddYearBookEntry";
 
+// Accounting pages
+import AccountingDashboard from "../pages/accounting/Dashboard";
+import Income              from "../pages/accounting/Income";
+import Expenses            from "../pages/accounting/Expenses";
+import Ledger              from "../pages/accounting/Ledger";
+// Fees & Billing
+import Fees               from "../admin/pages/Fees";
+import StudentFees        from "../admin/pages/StudentFees";
+import CollectPayment     from "../admin/pages/CollectPayment";
+import PaymentHistory     from "../admin/pages/PaymentHistory";
+import OutstandingBalances from "../admin/pages/OutstandingBalances";
+import ReceiptDetails     from "../admin/pages/ReceiptDetails";
+ 
+
+
 // Teacher dashboard
 import TeacherDashboard from "../admin/pages/TeacherDashboard";
 
@@ -107,6 +122,22 @@ export default function AppRoutes() {
         element={<AdminRoute><AddYearbookEntry /></AdminRoute>} />
       <Route path="/admin/settings"
         element={<AdminRoute><Settings /></AdminRoute>} />
+      <Route path="/admin/accounting"
+        element={<AdminRoute><AccountingDashboard /></AdminRoute>} />
+      <Route path="/admin/accounting/ledger"
+        element={<AdminRoute><Ledger /></AdminRoute>} />
+      <Route path="/admin/accounting/income"
+        element={<AdminRoute><Income /></AdminRoute>} />
+      <Route path="/admin/accounting/expenses"
+        element={<AdminRoute><Expenses /></AdminRoute>} />
+              {/* ── Fees & Billing ── */}
+      <Route path="/admin/fees"                   element={<AdminRoute><Fees /></AdminRoute>} />
+      <Route path="/admin/fees/students"          element={<AdminRoute><StudentFees /></AdminRoute>} />
+      <Route path="/admin/fees/collect/:id"       element={<AdminRoute><CollectPayment /></AdminRoute>} />
+      <Route path="/admin/fees/history"           element={<AdminRoute><PaymentHistory /></AdminRoute>} />
+      <Route path="/admin/fees/outstanding"       element={<AdminRoute><OutstandingBalances /></AdminRoute>} />
+      <Route path="/admin/fees/receipt/:id"       element={<AdminRoute><ReceiptDetails /></AdminRoute>} />
+      <Route path="/portal/receipt/:id"           element={<ReceiptDetails />} />
 
       {/* ── Teacher ── */}
       <Route path="/teacher/dashboard"

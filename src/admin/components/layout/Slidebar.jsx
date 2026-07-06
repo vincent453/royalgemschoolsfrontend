@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
 import logo from "../../../assets/img/logo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import useRole from "../../hooks/useRole";
 import {
   MdDashboard,
@@ -13,48 +14,130 @@ import {
   MdMemory,
   MdKey,
   MdCheckCircle,
+  MdAccountBalance,
+  MdReceipt,
+  MdBook,
+  MdExpandMore,
+  MdExpandLess,
 } from "react-icons/md";
 
-// ── Admin sees everything ──
+// ─────────────────────────────────────────────────────────────
+// Nav structure
+// Items with group: true have children[] instead of href
+// ─────────────────────────────────────────────────────────────
+
 const adminNavItems = [
-  { id: 1, label: "Dashboard",            href: "/admin/dashboard",            icon: <MdDashboard /> },
-  { id: 2, label: "Students",             href: "/admin/students",             icon: <MdSchool />    },
-  { id: 3, label: "Results",              href: "/admin/results",              icon: <MdBarChart />  },
-  { id: 4, label: "Teachers",             href: "/admin/teachers",             icon: <MdPeople />    },
-  { id: 5, label: "Users",                href: "/admin/users",                icon: <MdGroup />     },
-  { id: 6, label: "Yearbook Entry",       href: "/admin/addyearbookentry",     icon: <MdMemory />    },
-  { id: 7, label: "Generate PIN",         href: "/admin/generatepin",          icon: <MdKey />       },
-  { id: 8, label: "Upload Subject Result",href: "/admin/uploadsubjectresult",  icon: <MdUpload />    },
-  { id: 9, label: "Finalize Results",     href: "/admin/finalizeresults",      icon: <MdCheckCircle />},
-  { id: 10,label: "Settings",             href: "/admin/settings",             icon: <MdSettings />  },
+  {
+    id: "dashboard",
+    label: "Dashboard",
+    href: "/admin/dashboard",
+    icon: <MdDashboard />,
+  },
+  {
+    id: "accounting",
+    label: "Accounting",
+    icon: <MdAccountBalance />,
+    group: true,
+    children: [
+      { id: "acc-overview",  label: "Overview",       href: "/admin/accounting",          icon: <MdBarChart />  },
+      { id: "acc-income",    label: "Income",          href: "/admin/accounting/income",   icon: <MdReceipt />   },
+      { id: "acc-expenses",  label: "Expenses",        href: "/admin/accounting/expenses", icon: <MdReceipt />   },
+      { id: "acc-ledger",    label: "Ledger",          href: "/admin/accounting/ledger",   icon: <MdBook />      },
+      { id: "acc-fees",      label: "Fees & Billing",  href: "/admin/fees",                icon: <MdPin />       },
+    ],
+  },
+  {
+    id: "students",
+    label: "Students",
+    href: "/admin/students",
+    icon: <MdSchool />,
+  },
+  {
+    id: "results",
+    label: "Results",
+    icon: <MdBarChart />,
+    group: true,
+    children: [
+      { id: "results-view",     label: "View Results",          href: "/admin/results",             icon: <MdBarChart />    },
+      { id: "results-upload",   label: "Upload Subject Scores",  href: "/admin/uploadsubjectresult", icon: <MdUpload />      },
+      { id: "results-finalize", label: "Finalize Results",       href: "/admin/finalizeresults",     icon: <MdCheckCircle /> },
+    ],
+  },
+  {
+    id: "people",
+    label: "People",
+    icon: <MdPeople />,
+    group: true,
+    children: [
+      { id: "people-teachers", label: "Teachers", href: "/admin/teachers", icon: <MdPeople /> },
+      { id: "people-users",    label: "Users",    href: "/admin/users",    icon: <MdGroup />  },
+    ],
+  },
+  {
+    id: "other",
+    label: "Other",
+    icon: <MdMemory />,
+    group: true,
+    children: [
+      { id: "other-yearbook", label: "Yearbook Entry", href: "/admin/addyearbookentry", icon: <MdMemory /> },
+      { id: "other-pin",      label: "Generate PIN",   href: "/admin/generatepin",      icon: <MdKey />    },
+    ],
+  },
+  {
+    id: "settings",
+    label: "Settings",
+    href: "/admin/settings",
+    icon: <MdSettings />,
+  },
 ];
 
 // ── Subject teacher — can only upload scores ──
 const subjectTeacherNavItems = [
-  { id: 1, label: "Dashboard",            href: "/teacher/dashboard",              icon: <MdDashboard /> },
-  { id: 2, label: "Students",             href: "/teacher/students",               icon: <MdSchool />    },
-  { id: 3, label: "Upload Subject Scores",href: "/teacher/upload-subject-result",  icon: <MdUpload />    },
-  { id: 4, label: "Results",              href: "/teacher/results",                icon: <MdBarChart />  },
+  { id: "dashboard", label: "Dashboard",             href: "/teacher/dashboard",             icon: <MdDashboard /> },
+  { id: "students",  label: "Students",              href: "/teacher/students",              icon: <MdSchool />    },
+  { id: "upload",    label: "Upload Subject Scores",  href: "/teacher/upload-subject-result", icon: <MdUpload />   },
+  { id: "results",   label: "Results",                href: "/teacher/results",               icon: <MdBarChart /> },
 ];
 
 // ── Class teacher — can finalize results ──
 const classTeacherNavItems = [
-  { id: 1, label: "Dashboard",            href: "/teacher/dashboard",              icon: <MdDashboard /> },
-  { id: 2, label: "Students",             href: "/teacher/students",               icon: <MdSchool />    },
-  { id: 3, label: "Finalize Results",     href: "/teacher/finalize-result",        icon: <MdCheckCircle />},
-  { id: 4, label: "Results",              href: "/teacher/results",                icon: <MdBarChart />  },
+  { id: "dashboard", label: "Dashboard",        href: "/teacher/dashboard",       icon: <MdDashboard />  },
+  { id: "students",  label: "Students",         href: "/teacher/students",        icon: <MdSchool />     },
+  { id: "finalize",  label: "Finalize Results", href: "/teacher/finalize-result", icon: <MdCheckCircle />},
+  { id: "results",   label: "Results",          href: "/teacher/results",         icon: <MdBarChart />   },
 ];
 
 // ── General teacher — legacy / upload old flow ──
 const teacherNavItems = [
-  { id: 1, label: "Dashboard",            href: "/teacher/dashboard",              icon: <MdDashboard /> },
-  { id: 2, label: "Students",             href: "/teacher/students",               icon: <MdSchool />    },
-  { id: 3, label: "Results",              href: "/teacher/results",                icon: <MdBarChart />  },
-  { id: 4, label: "Upload Result",        href: "/teacher/upload",                 icon: <MdUpload />    },
-  { id: 5, label: "Upload Subject Scores",href: "/teacher/upload-subject-result",  icon: <MdUpload />    },
-  { id: 6, label: "Finalize Results",     href: "/teacher/finalize-result",        icon: <MdCheckCircle />},
+  {
+    id: "dashboard",
+    label: "Dashboard",
+    href: "/teacher/dashboard",
+    icon: <MdDashboard />,
+  },
+  {
+    id: "students",
+    label: "Students",
+    href: "/teacher/students",
+    icon: <MdSchool />,
+  },
+  {
+    id: "results",
+    label: "Results",
+    icon: <MdBarChart />,
+    group: true,
+    children: [
+      { id: "results-view",     label: "View Results",          href: "/teacher/results",               icon: <MdBarChart />    },
+      { id: "results-upload",   label: "Upload Result",         href: "/teacher/upload",                icon: <MdUpload />      },
+      { id: "results-subject",  label: "Upload Subject Scores", href: "/teacher/upload-subject-result", icon: <MdUpload />      },
+      { id: "results-finalize", label: "Finalize Results",      href: "/teacher/finalize-result",       icon: <MdCheckCircle /> },
+    ],
+  },
 ];
 
+// ─────────────────────────────────────────────────────────────
+// Role meta
+// ─────────────────────────────────────────────────────────────
 const roleLabel = {
   admin:           "Admin Portal",
   teacher:         "Teacher Portal",
@@ -69,6 +152,69 @@ const roleBadgeColor = {
   class_teacher:   "bg-indigo-100 text-indigo-700",
 };
 
+// ─────────────────────────────────────────────────────────────
+// GroupItem — collapsible nav group
+// ─────────────────────────────────────────────────────────────
+const GroupItem = ({ item, onClose }) => {
+  const location = useLocation();
+  const isGroupActive = item.children.some((c) => location.pathname === c.href);
+  const [open, setOpen] = useState(isGroupActive);
+
+  // Auto-open when navigating directly into a child route
+  useEffect(() => {
+    if (isGroupActive) setOpen(true);
+  }, [location.pathname]);
+
+  return (
+    <div>
+      {/* Group header */}
+      <button
+        onClick={() => setOpen((prev) => !prev)}
+        className={`
+          w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium
+          transition-all duration-200 text-left
+          ${isGroupActive
+            ? "text-[#a13ea1] bg-[#a13ea1]/10"
+            : "text-gray-500 hover:text-[#a13ea1] hover:bg-[#a13ea1]/10"
+          }
+        `}
+      >
+        <span className="w-5 text-center text-base flex-shrink-0">{item.icon}</span>
+        <span className="flex-1">{item.label}</span>
+        <span className="text-base opacity-50">
+          {open ? <MdExpandLess /> : <MdExpandMore />}
+        </span>
+      </button>
+
+      {/* Children */}
+      {open && (
+        <div className="ml-4 pl-3 border-l-2 border-[#a13ea1]/20 mt-1 space-y-0.5">
+          {item.children.map((child) => (
+            <NavLink
+              key={child.id}
+              to={child.href}
+              onClick={onClose}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200
+                ${isActive
+                  ? "bg-[#a13ea1] text-white shadow-sm"
+                  : "text-gray-500 hover:text-[#a13ea1] hover:bg-[#a13ea1]/10"
+                }`
+              }
+            >
+              <span className="w-4 text-center text-sm flex-shrink-0">{child.icon}</span>
+              <span className="flex-1">{child.label}</span>
+            </NavLink>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+// ─────────────────────────────────────────────────────────────
+// Sidebar
+// ─────────────────────────────────────────────────────────────
 const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const role = useRole();
 
@@ -78,12 +224,14 @@ const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
     role === "teacher"         ? teacherNavItems        :
     adminNavItems;
 
+  const handleClose = () => setSidebarOpen(false);
+
   return (
     <>
       {/* Mobile Overlay */}
       {sidebarOpen && (
         <div
-          onClick={() => setSidebarOpen(false)}
+          onClick={handleClose}
           className="fixed inset-0 bg-black/50 z-40 md:hidden"
         />
       )}
@@ -119,24 +267,28 @@ const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
             Main Menu
           </p>
 
-          {navItems.map((item) => (
-            <NavLink
-              key={item.id}
-              to={item.href}
-              onClick={() => setSidebarOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
-                ${isActive
-                  ? "bg-[#a13ea1] text-white shadow-sm"
-                  : "text-gray-500 hover:text-[#a13ea1] hover:bg-[#a13ea1]/10"
-                }`
-              }
-            >
-              <span className="w-5 text-center text-base">{item.icon}</span>
-              <span className="flex-1">{item.label}</span>
-              <span className="text-xs opacity-40">›</span>
-            </NavLink>
-          ))}
+          {navItems.map((item) =>
+            item.group ? (
+              <GroupItem key={item.id} item={item} onClose={handleClose} />
+            ) : (
+              <NavLink
+                key={item.id}
+                to={item.href}
+                onClick={handleClose}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
+                  ${isActive
+                    ? "bg-[#a13ea1] text-white shadow-sm"
+                    : "text-gray-500 hover:text-[#a13ea1] hover:bg-[#a13ea1]/10"
+                  }`
+                }
+              >
+                <span className="w-5 text-center text-base">{item.icon}</span>
+                <span className="flex-1">{item.label}</span>
+                <span className="text-xs opacity-40">›</span>
+              </NavLink>
+            )
+          )}
         </nav>
       </aside>
     </>

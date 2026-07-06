@@ -1,21 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import SchoolFees from "./SchoolFees";
 
 const API = "https://royalgemschoolsbackend.vercel.app";
 
 export default function StudentDashboard() {
-  const navigate = useNavigate();
+  const navigate  = useNavigate();
+  const hasFetched = useRef(false); // ✅ prevents double-fetch in StrictMode too
+
   const [student, setStudent] = useState(null);
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error,   setError]   = useState("");
 
   useEffect(() => {
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+
     const token = localStorage.getItem("portalToken");
     const role  = localStorage.getItem("portalRole");
 
-    if (!token || role !== "student") { navigate("/portal"); return; }
+    if (!token || role !== "student") {
+      setLoading(false);
+      navigate("/portal");
+      return;
+    }
 
+    // Show cached student immediately while fetching
     const cached = localStorage.getItem("portalStudent");
     if (cached) {
       try { setStudent(JSON.parse(cached)); } catch {}
@@ -49,7 +60,7 @@ export default function StudentDashboard() {
     };
 
     fetchData();
-  }, [navigate]);
+  }, []); // ✅ empty deps — runs once on mount only
 
   const handleLogout = () => {
     localStorage.removeItem("portalToken");
@@ -146,9 +157,9 @@ export default function StudentDashboard() {
             {/* Summary stats */}
             <div className="flex gap-4 shrink-0">
               {[
-                { label: "Results",   value: results.length },
-                { label: "Passed",    value: results.filter(r => r.resultStatus === "Pass").length },
-                { label: "Best Avg",  value: results.length ? Math.max(...results.map(r => Number(r.average))).toFixed(1) : "—" },
+                { label: "Results",  value: results.length },
+                { label: "Passed",   value: results.filter(r => r.resultStatus === "Pass").length },
+                { label: "Best Avg", value: results.length ? Math.max(...results.map(r => Number(r.average))).toFixed(1) : "—" },
               ].map(s => (
                 <div key={s.label} className="flex flex-col items-center bg-[#f5eaf5] rounded-2xl px-4 py-3 min-w-[70px]">
                   <span className="font-jost font-bold text-[#f056f0] text-xl">{s.value}</span>
@@ -158,6 +169,9 @@ export default function StudentDashboard() {
             </div>
           </div>
         )}
+
+        {/* ── School Fees ── */}
+        <SchoolFees />
 
         {/* ── Results ── */}
         <div className="bg-white rounded-2xl shadow-sm p-6">
