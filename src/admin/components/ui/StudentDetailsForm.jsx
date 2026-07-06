@@ -136,6 +136,16 @@ export default function StudentDetailsForm({
               className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#A13EA1] focus:border-transparent transition"
             >
               <option value="">Select class</option>
+              <option value="Reception 1">Reception 1</option>
+              <option value="Reception 2">Reception 2</option>
+              <option value="Pre-K">Pre-K</option>
+              <option value="Pre-K">Kindergarten</option>
+              <option value="Pre-K">Primary 1</option>
+              <option value="Pre-K">Primary 2</option>
+              <option value="Pre-K">Primary 3</option>
+              <option value="Pre-K">Primary 4</option>
+              <option value="Pre-K">Primary 5</option>
+              <option value="Pre-K">Primary 6</option>
               <option value="JSS 1">JSS 1</option>
               <option value="JSS 2">JSS 2</option>
               <option value="JSS 3">JSS 3</option>

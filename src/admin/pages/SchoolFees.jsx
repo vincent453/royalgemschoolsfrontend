@@ -31,34 +31,6 @@ export default function SchoolFees() {
       .catch(e => setError(e.message))
       .finally(() => setLoading(false));
   }, [navigate]);
-
-  const fetchFees = async () => {
-  try {
-    const token = localStorage.getItem("portalToken");
-
-    const res = await fetch(`${API}/api/fees/me/all`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    const data = await res.json();
-    setFees(Array.isArray(data) ? data : []);
-  } catch (e) {
-    setError(e.message);
-  } finally {
-    setLoading(false);
-  }
-};
-
-useEffect(() => {
-  if (!localStorage.getItem("portalToken")) {
-    navigate("/portal");
-    return;
-  }
-
-  fetchFees();
-}, [navigate]);
   const handlePay = async (feeId) => {
     setPaying(feeId);
     try {
@@ -164,7 +136,24 @@ useEffect(() => {
 
                 <div className="flex items-center gap-3">
                   <button
-                    onClick={() => navigate(`/portal/receipt/${fee._id}`)}
+                    onClick={async () => {
+                      try {
+                        const token = localStorage.getItem("portalToken");
+                        const res = await fetch(`${API}/api/receipts/byFeeStatement/${fee._id}`, {
+                          headers: { Authorization: `Bearer ${token}` }
+                        });
+                        const receipt = await res.json();
+                        if (receipt._id) {
+                          navigate(`/portal/receipt/${receipt._id}`);
+                        } else {
+                          setToast({ type: "error", msg: receipt.message || "Receipt not found" });
+                          setTimeout(() => setToast(null), 4000);
+                        }
+                      } catch (e) {
+                        setToast({ type: "error", msg: e.message });
+                        setTimeout(() => setToast(null), 4000);
+                      }
+                    }}
                     className="flex items-center gap-1.5 px-4 py-2 border border-gray-200 rounded-full
                                font-dm-sans text-xs font-semibold text-gray-600
                                hover:border-[#f056f0] hover:text-[#f056f0] transition-colors"

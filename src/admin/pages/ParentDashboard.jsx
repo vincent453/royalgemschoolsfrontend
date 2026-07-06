@@ -1,30 +1,26 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SchoolFees from "./SchoolFees";
+import ReceiptHistory from "../../pages/accounting/Receipthistory";
 
 const API = "https://royalgemschoolsbackend.vercel.app";
 
 export default function ParentDashboard() {
-  const navigate   = useNavigate();
-  const hasFetched = useRef(false); // ✅ prevents re-fetch on re-render / StrictMode
-
+  const navigate = useNavigate();
   const [student,  setStudent]  = useState(null);
   const [results,  setResults]  = useState([]);
+  const [fees,     setFees]     = useState([]);
+  const [feeLoading, setFeeLoading] = useState(true);
+  const [feeError, setFeeError]   = useState("");
   const [loading,  setLoading]  = useState(true);
   const [error,    setError]    = useState("");
+  const [selected, setSelected] = useState(null); // selected result to view
 
   useEffect(() => {
-    if (hasFetched.current) return;
-    hasFetched.current = true;
+    const token       = localStorage.getItem("portalToken");
+    const cachedInfo  = localStorage.getItem("portalStudent");
 
-    const token      = localStorage.getItem("portalToken");
-    const cachedInfo = localStorage.getItem("portalStudent");
-
-    if (!token) {
-      setLoading(false);
-      navigate("/portal");
-      return;
-    }
+    if (!token) { navigate("/portal"); return; }
 
     // Pre-fill from cache while fetching
     if (cachedInfo) {
@@ -37,8 +33,8 @@ export default function ParentDashboard() {
         const studentId = payload.studentId;
 
         const [studentRes, resultsRes] = await Promise.all([
-          fetch(`${API}/api/students/${studentId}`,        { headers: { Authorization: `Bearer ${token}` } }),
-          fetch(`${API}/api/results?student=${studentId}`, { headers: { Authorization: `Bearer ${token}` } }),
+          fetch(`${API}/api/students/${studentId}`,       { headers: { Authorization: `Bearer ${token}` } }),
+          fetch(`${API}/api/results?student=${studentId}`,{ headers: { Authorization: `Bearer ${token}` } }),
         ]);
 
         if (studentRes.ok) {
@@ -51,7 +47,7 @@ export default function ParentDashboard() {
           const r = await resultsRes.json();
           setResults(Array.isArray(r) ? r : []);
         }
-      } catch {
+      } catch (err) {
         setError("Failed to load data. Please try again.");
       } finally {
         setLoading(false);
@@ -59,7 +55,7 @@ export default function ParentDashboard() {
     };
 
     fetchData();
-  }, []); // ✅ empty deps — runs once on mount only
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem("portalToken");
@@ -169,6 +165,9 @@ export default function ParentDashboard() {
 
         {/* ── School Fees ── */}
         <SchoolFees />
+
+        {/* ── Receipt History ── */}
+        <ReceiptHistory />
 
         {/* ── Results ── */}
         <div className="bg-white rounded-2xl shadow-sm p-6">

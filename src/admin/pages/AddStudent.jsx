@@ -14,9 +14,9 @@ const AddStudent = () => {
     regNumber: "",
     gender: "",
     dateOfBirth: "",
-    placeOfBirth: "",   // ✅ was missing
+    placeOfBirth: "",   
     address: "",
-    profilePhoto: null, // ✅ was missing
+    profilePhoto: null,
   });
 
   const [parentForm, setParentForm] = useState({

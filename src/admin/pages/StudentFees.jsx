@@ -23,7 +23,8 @@ const StatusBadge = ({ status }) => {
 };
 
 const TERMS    = ["", "1st Term", "2nd Term", "3rd Term"];
-const CLASSES  = ["", "JSS 1", "JSS 2", "JSS 3", "SSS 1", "SSS 2", "SSS 3"];
+const CLASSES  = ['', 'Reception 1', 'Reception 2', 'Pre-k', 'Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5', 'Primary 6', 'JSS 1', 'JSS 2', 'JSS 3', 'SSS 1', 'SSS 2', 'SSS 3']
+
 
 export default function StudentFees() {
   const navigate = useNavigate();

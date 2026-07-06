@@ -6,14 +6,14 @@ const features = [
   {
     number: "01",
     title: "Qualified Teachers",
-    description: "Our experienced and certified teachers are dedicated to nurturing students academically and personally, ensuring every child reaches their full potential.",
+    description: "Our experienced and certified teachers are passionate about nurturing every Gem to excel academically, develop exemplary character, embrace personal responsibility, and acquire practical leadership skills that prepare them for lifelong success and meaningful global impact.",
     bgColor: "bg-red-100",
     textColor: "text-red-400"
   },
   {
     number: "02",
     title: "Quality Education",
-    description: "We provide a well-structured and up-to-date curriculum that equips students with the knowledge and skills needed for academic excellence and future success.",
+    description: "High-quality, well-structured education aligned with global best practices.",
     bgColor: "bg-purple-100",
     textColor: "text-purple-400"
   },

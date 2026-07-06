@@ -12,7 +12,7 @@ const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="flex flex-col h-full bg-[#E6EBEE] overflow-hidden">
+    <div className="flex flex-col h-screen bg-[#E6EBEE] overflow-hidden">
       <div className="sticky top-0 z-50 w-full">
         <Topbar onMenuToggle={() => setSidebarOpen(p => !p)} />
       </div>
@@ -25,10 +25,10 @@ const AdminDashboard = () => {
         />
       )}
 
-      <div className="flex flex-1 overflow-hidden h-full rounded-r-2xl shadow-sm relative">
+      <div className="flex flex-1 overflow-hidden rounded-r-2xl shadow-sm relative">
         {/* Sidebar */}
         <div
-          className={`fixed md:relative top-0 left-0 h-full z-40 transition-transform duration-300
+          className={`fixed md:relative top-[4rem] left-0  z-40 transition-transform duration-300
             ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"} -mt-0 md:-mt-16`}
         >
                     <Slidebar

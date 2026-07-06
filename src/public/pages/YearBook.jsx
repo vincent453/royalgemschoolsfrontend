@@ -3,8 +3,9 @@ import { FaSearch, FaTimes, FaStar, FaQuoteLeft, FaGraduationCap, FaTrophy } fro
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Foooter";
 
-const CLASSES  = ["All", "Kindergarten", "Nursery 1", "Nursery 2", "JSS 1", "JSS 2", "JSS 3", "SSS 1", "SSS 2", "SSS 3"];
-const SESSIONS = ["2024/2025", "2023/2024", "2022/2023"];
+const CLASSES  = ['All', 'Reception 1', 'Reception 2', 'Pre-k', 'Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5', 'Primary 6', 'JSS 1', 'JSS 2', 'JSS 3', 'SSS 1', 'SSS 2', 'SSS 3']
+
+const SESSIONS = ["2026/2027","2025/2026", "2024/2025", "2023/2024", "2022/2023",];
 
 // ── Fetch ─────────────────────────────────────────────────────────
 const fetchYearbook = async (session) => {

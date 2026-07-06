@@ -19,6 +19,7 @@ import {
   MdBook,
   MdExpandMore,
   MdExpandLess,
+  MdEventNote,
 } from "react-icons/md";
 
 // ─────────────────────────────────────────────────────────────
@@ -44,6 +45,7 @@ const adminNavItems = [
       { id: "acc-expenses",  label: "Expenses",        href: "/admin/accounting/expenses", icon: <MdReceipt />   },
       { id: "acc-ledger",    label: "Ledger",          href: "/admin/accounting/ledger",   icon: <MdBook />      },
       { id: "acc-fees",      label: "Fees & Billing",  href: "/admin/fees",                icon: <MdPin />       },
+      { id: "acc-receipts",  label: "Receipts",        href: "/admin/receipts",            icon: <MdReceipt />   },
     ],
   },
   {
@@ -61,6 +63,18 @@ const adminNavItems = [
       { id: "results-view",     label: "View Results",          href: "/admin/results",             icon: <MdBarChart />    },
       { id: "results-upload",   label: "Upload Subject Scores",  href: "/admin/uploadsubjectresult", icon: <MdUpload />      },
       { id: "results-finalize", label: "Finalize Results",       href: "/admin/finalizeresults",     icon: <MdCheckCircle /> },
+    ],
+  },
+  {
+    id: "attendance",
+    label: "Attendance",
+    icon: <MdEventNote />,
+    group: true,
+    children: [
+      { id: "attendance-dashboard", label: "Dashboard",         href: "/admin/attendance",        icon: <MdBarChart />    },
+      { id: "attendance-mark",      label: "Mark Attendance",   href: "/admin/attendance/mark",   icon: <MdCheckCircle /> },
+      { id: "attendance-report",    label: "Reports",           href: "/admin/attendance/report", icon: <MdBook />        },
+      { id: "attendance-student",   label: "Student History",   href: "/admin/attendance/student",icon: <MdSchool />      },
     ],
   },
   {
@@ -239,8 +253,8 @@ const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
       {/* Sidebar */}
       <aside
         className={`
-          fixed md:static top-0 mt-[3.5rem] left-0 z-50
-          w-[240px] min-h-screen bg-white border-r border-gray-100
+          fixed md:static top-0 left-0 z-50
+          w-[240px] h-full bg-white border-r border-gray-100
           flex flex-col transition-transform duration-300 ease-in-out
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0

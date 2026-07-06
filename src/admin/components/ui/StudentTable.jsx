@@ -3,18 +3,24 @@ import { Phone, Mail, MoreHorizontal } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const classSegments = [
-  { label: "All",           value: "all"          },
-  { label: "Nursery 1",     value: "Nursery 1"    },
-  { label: "Nursery 2",     value: "Nursery 2"    },
-  { label: "Kindergarten",  value: "Kindergarten" },
+  { label: "All",           value: "all"            },
+  { label: "Reception 1",   value: "Reception 1"    },
+  { label: "Reception 2",   value: "Reception 2"    },
+  { label: "Pre-k",         value: "Pre-k"          },
+  { label: "Primary 1",     value: "Primary 1"      },
+  { label: "Primary 2",     value: "Primary 2"      },
+  { label: "Primary 3",     value: "Primary 3"      },
+  { label: "Primary 4",     value: "Primary 4"      },
+  { label: "Primary 5",     value: "Primary 5"      },
+  { label: "Primary 6",     value: "Primary 6"      },
   { label: "JSS 1",         value: "JSS 1"        },
   { label: "JSS 2",         value: "JSS 2"        },
   { label: "JSS 3",         value: "JSS 3"        },
   { label: "SSS 1",         value: "SSS 1"        },
   { label: "SSS 2",         value: "SSS 2"        },
   { label: "SSS 3",         value: "SSS 3"        },
+  
 ]
-
 const itemsPerPage = 8
 
 const StudentTable = () => {

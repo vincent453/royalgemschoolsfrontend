@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { FaKey, FaCopy, FaDownload, FaRedo, FaCheckCircle } from "react-icons/fa";
 
 const API      = "https://royalgemschoolsbackend.vercel.app";
-const classes  = ["All Classes", "JSS 1", "JSS 2", "JSS 3", "SSS 1", "SSS 2", "SSS 3"];
-const sessions = ["2023/2024", "2024/2025", "2025/2026"];
+const classes = ['Reception 1', 'Reception 2', 'Pre-k', 'Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5', 'Primary 6', 'JSS 1', 'JSS 2', 'JSS 3', 'SSS 1', 'SSS 2', 'SSS 3']
+const sessions = ["2023/2024", "2024/2025", "2025/2026", "2026/2027"];
 const terms    = ["1st Term", "2nd Term", "3rd Term"];
 const pinTypes = ["Single Student", "Entire Class"];
 

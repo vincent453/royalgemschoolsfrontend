@@ -15,17 +15,17 @@ export default function ReceiptDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const printRef = useRef(null);
-  const [statement, setStatement] = useState(null);
+  const [receipt, setReceipt] = useState(null);
   const [loading,   setLoading]   = useState(true);
   const [error,     setError]     = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token") || localStorage.getItem("portalToken");
-    fetch(`${API}/api/fees/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+    fetch(`${API}/api/receipts/${id}`, { headers: { Authorization: `Bearer ${token}` } })
       .then(r => r.json())
       .then(data => {
         if (data.message && !data._id) throw new Error(data.message);
-        setStatement(data);
+        setReceipt(data);
       })
       .catch(e => setError(e.message))
       .finally(() => setLoading(false));
@@ -53,9 +53,10 @@ export default function ReceiptDetails() {
     </div>
   );
 
-  if (!statement) return null;
+  if (!receipt) return null;
 
-  const successPayments = (statement.payments ?? []).filter(p => p.status === "success");
+  const student = receipt.student || {};
+  const feeStatement = receipt.feeStatement || {};
 
   return (
     <div className="min-h-screen bg-[#E6EBEE] print:bg-white">
@@ -92,20 +93,20 @@ export default function ReceiptDetails() {
             </div>
             <div className="text-right">
               <p className="font-dm-sans text-xs text-gray-400 uppercase tracking-wide">Receipt</p>
-              <p className="font-jost font-bold text-[#f056f0] text-lg mt-0.5">{statement.reference}</p>
-              <StatusBadge status={statement.status} />
+              <p className="font-jost font-bold text-[#f056f0] text-lg mt-0.5">{receipt.receiptNumber}</p>
+              <StatusBadge status={receipt.status} />
             </div>
           </div>
 
           {/* Student info */}
           <div className="grid grid-cols-2 gap-6 mb-6">
             {[
-              { label: "Student Name",      value: `${statement.student?.firstName} ${statement.student?.lastName}` },
-              { label: "Admission Number",  value: statement.student?.regNumber },
-              { label: "Class",             value: statement.classLevel },
-              { label: "Session",           value: statement.session },
-              { label: "Term",              value: statement.term },
-              { label: "Due Date",          value: fmtDate(statement.dueDate) },
+              { label: "Student Name",      value: `${student.firstName} ${student.lastName}` },
+              { label: "Admission Number",  value: student.regNumber },
+              { label: "Class",             value: receipt.classLevel || student.classLevel },
+              { label: "Session",           value: receipt.session },
+              { label: "Term",              value: receipt.term },
+              { label: "Issued Date",       value: fmtDate(receipt.issuedAt) },
             ].map(r => (
               <div key={r.label}>
                 <p className="font-dm-sans text-xs text-gray-400 uppercase tracking-wide">{r.label}</p>
@@ -116,33 +117,31 @@ export default function ReceiptDetails() {
 
           {/* Fee items */}
           <div className="mb-6">
-            <p className="font-jost font-bold text-gray-800 mb-3">Fee Items</p>
+            <p className="font-jost font-bold text-gray-800 mb-3">Payment Details</p>
             <div className="border border-gray-100 rounded-xl overflow-hidden">
               <table className="w-full text-sm">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-4 py-3 text-left font-dm-sans text-xs text-gray-400 font-semibold uppercase tracking-wide">Item</th>
+                    <th className="px-4 py-3 text-left font-dm-sans text-xs text-gray-400 font-semibold uppercase tracking-wide">Description</th>
                     <th className="px-4 py-3 text-right font-dm-sans text-xs text-gray-400 font-semibold uppercase tracking-wide">Amount</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
-                  {(statement.items ?? []).map((item, i) => (
-                    <tr key={i}>
-                      <td className="px-4 py-3 font-dm-sans text-gray-700">{item.title}</td>
-                      <td className="px-4 py-3 font-dm-sans text-gray-700 text-right">{fmt(item.amount)}</td>
-                    </tr>
-                  ))}
+                  <tr>
+                    <td className="px-4 py-3 font-dm-sans text-gray-700">{receipt.description || "Payment"}</td>
+                    <td className="px-4 py-3 font-dm-sans text-gray-700 text-right">{fmt(receipt.amount)}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
 
-          {/* Totals */}
+          {/* Payment summary */}
           <div className="border-t border-gray-100 pt-4 space-y-2">
             {[
-              { label: "Total Fee",   value: fmt(statement.amountDue),  bold: false },
-              { label: "Amount Paid", value: fmt(statement.amountPaid), bold: false, color: "text-emerald-600" },
-              { label: "Balance Due", value: fmt(statement.balance),    bold: true,  color: statement.balance > 0 ? "text-red-500" : "text-emerald-600" },
+              { label: "Payment Method", value: receipt.paymentMethod?.toUpperCase() || "—", bold: false },
+              { label: "Payment Reference", value: receipt.paymentReference || receipt.paymentGateway, bold: false },
+              { label: "Amount Paid", value: fmt(receipt.amount), bold: true, color: "text-emerald-600" },
             ].map(r => (
               <div key={r.label} className="flex items-center justify-between">
                 <p className={`font-dm-sans text-sm ${r.bold ? "font-bold text-gray-800" : "text-gray-500"}`}>{r.label}</p>
@@ -151,31 +150,13 @@ export default function ReceiptDetails() {
             ))}
           </div>
 
-          {/* Payment transactions */}
-          {successPayments.length > 0 && (
-            <div className="mt-6 border-t border-gray-100 pt-5">
-              <p className="font-jost font-bold text-gray-800 mb-3">Payment Transactions</p>
-              <div className="space-y-2">
-                {successPayments.map((p, i) => (
-                  <div key={i} className="flex items-center justify-between bg-emerald-50 rounded-xl px-4 py-3">
-                    <div>
-                      <p className="font-dm-sans text-sm font-semibold text-emerald-700">{fmt(p.amount)}</p>
-                      <p className="font-dm-sans text-xs text-emerald-600 mt-0.5">{p.paystackReference || p.reference}</p>
-                    </div>
-                    <p className="font-dm-sans text-xs text-emerald-600">{fmtDate(p.paidAt)}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
           {/* Footer */}
           <div className="mt-8 pt-4 border-t border-gray-100 text-center">
             <p className="font-dm-sans text-xs text-gray-400">
               This is a computer-generated receipt. No signature required.
             </p>
             <p className="font-dm-sans text-xs text-gray-400 mt-1">
-              Generated on {fmtDate(new Date())} · Royal Gem Schools
+              Generated on {fmtDate(receipt.issuedAt)} · Royal Gem Schools
             </p>
           </div>
         </div>

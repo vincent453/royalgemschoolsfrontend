@@ -30,27 +30,34 @@ import UploadSubjectResult from "../admin/pages/UploadSubjectResult";
 import FinalizeResult      from "../admin/pages/FinalizeResult";
 import AddYearbookEntry    from "../admin/pages/AddYearBookEntry";
 
-// Accounting pages
-import AccountingDashboard from "../pages/accounting/Dashboard";
-import Income              from "../pages/accounting/Income";
-import Expenses            from "../pages/accounting/Expenses";
-import Ledger              from "../pages/accounting/Ledger";
-// Fees & Billing
-import Fees               from "../admin/pages/Fees";
-import StudentFees        from "../admin/pages/StudentFees";
-import CollectPayment     from "../admin/pages/CollectPayment";
-import PaymentHistory     from "../admin/pages/PaymentHistory";
-import OutstandingBalances from "../admin/pages/OutstandingBalances";
-import ReceiptDetails     from "../admin/pages/ReceiptDetails";
- 
-
-
 // Teacher dashboard
 import TeacherDashboard from "../admin/pages/TeacherDashboard";
+
+// Accounting
+import AccountingDashboard from "../pages/accounting/Dashboard";
+import Income from "../pages/accounting/Income";
+import Expenses from "../pages/accounting/Expenses";
+import Ledger from "../pages/accounting/Ledger";
+import Receipts from "../pages/accounting/Receipts";
+
+// Fees & Billing
+import Fees from "../admin/pages/Fees";
+import StudentFees from "../admin/pages/StudentFees";
+import CollectPayment from "../admin/pages/CollectPayment";
+import PaymentHistory from "../admin/pages/PaymentHistory";
+import OutstandingBalances from "../admin/pages/OutstandingBalances";
+import ReceiptDetails from "../admin/pages/ReceiptDetails";
 
 // Student / Parent dashboards
 import StudentDashboard from "../admin/pages/StudentDashboard";
 import ParentDashboard  from "../admin/pages/ParentDashboard";
+
+// Attendance
+import AttendanceDashboard from "../admin/pages/AttendanceDashboard";
+import MarkAttendance from "../admin/pages/MarkAttendance";
+import AttendanceReport from "../admin/pages/AttendanceReport";
+import StudentAttendanceHistory from "../admin/pages/StudentAttendanceHistory";
+import StudentAttendancePortal from "../admin/pages/StudentAttendancePortal";
 
 // Guards
 import {
@@ -59,6 +66,7 @@ import {
   StudentPortalRoute,
   ParentPortalRoute,
 } from "./ProtectedRoutes";
+
 
 export default function AppRoutes() {
   return (
@@ -122,22 +130,6 @@ export default function AppRoutes() {
         element={<AdminRoute><AddYearbookEntry /></AdminRoute>} />
       <Route path="/admin/settings"
         element={<AdminRoute><Settings /></AdminRoute>} />
-      <Route path="/admin/accounting"
-        element={<AdminRoute><AccountingDashboard /></AdminRoute>} />
-      <Route path="/admin/accounting/ledger"
-        element={<AdminRoute><Ledger /></AdminRoute>} />
-      <Route path="/admin/accounting/income"
-        element={<AdminRoute><Income /></AdminRoute>} />
-      <Route path="/admin/accounting/expenses"
-        element={<AdminRoute><Expenses /></AdminRoute>} />
-              {/* ── Fees & Billing ── */}
-      <Route path="/admin/fees"                   element={<AdminRoute><Fees /></AdminRoute>} />
-      <Route path="/admin/fees/students"          element={<AdminRoute><StudentFees /></AdminRoute>} />
-      <Route path="/admin/fees/collect/:id"       element={<AdminRoute><CollectPayment /></AdminRoute>} />
-      <Route path="/admin/fees/history"           element={<AdminRoute><PaymentHistory /></AdminRoute>} />
-      <Route path="/admin/fees/outstanding"       element={<AdminRoute><OutstandingBalances /></AdminRoute>} />
-      <Route path="/admin/fees/receipt/:id"       element={<AdminRoute><ReceiptDetails /></AdminRoute>} />
-      <Route path="/portal/receipt/:id"           element={<ReceiptDetails />} />
 
       {/* ── Teacher ── */}
       <Route path="/teacher/dashboard"
@@ -154,6 +146,34 @@ export default function AppRoutes() {
         element={<TeacherRoute><UploadSubjectResult /></TeacherRoute>} />
       <Route path="/teacher/finalize-result"
         element={<TeacherRoute><FinalizeResult /></TeacherRoute>} />
+
+      {/* ── Accounting ── */}
+      <Route path="/admin/accounting"
+        element={<AdminRoute><AccountingDashboard /></AdminRoute>} />
+      <Route path="/admin/accounting/income"
+        element={<AdminRoute><Income /></AdminRoute>} />
+      <Route path="/admin/accounting/expenses"
+        element={<AdminRoute><Expenses /></AdminRoute>} />
+      <Route path="/admin/accounting/ledger"
+        element={<AdminRoute><Ledger /></AdminRoute>} />
+
+      {/* ── Fees & Billing ── */}
+      <Route path="/admin/fees"                   element={<AdminRoute><Fees /></AdminRoute>} />
+      <Route path="/admin/fees/students"          element={<AdminRoute><StudentFees /></AdminRoute>} />
+      <Route path="/admin/fees/collect/:id"       element={<AdminRoute><CollectPayment /></AdminRoute>} />
+      <Route path="/admin/fees/history"           element={<AdminRoute><PaymentHistory /></AdminRoute>} />
+      <Route path="/admin/fees/outstanding"       element={<AdminRoute><OutstandingBalances /></AdminRoute>} />
+      <Route path="/admin/fees/receipt/:id"       element={<AdminRoute><ReceiptDetails /></AdminRoute>} />
+      <Route path="/admin/receipts"               element={<AdminRoute><Receipts /></AdminRoute>} />
+      <Route path="/admin/receipts/:id"           element={<AdminRoute><ReceiptDetails /></AdminRoute>} />
+      <Route path="/portal/receipt/:id"           element={<ReceiptDetails />} />
+
+      {/* ── Attendance ── */}
+      <Route path="/admin/attendance"             element={<AdminRoute><AttendanceDashboard /></AdminRoute>} />
+      <Route path="/admin/attendance/mark"        element={<AdminRoute><MarkAttendance /></AdminRoute>} />
+      <Route path="/admin/attendance/report"      element={<AdminRoute><AttendanceReport /></AdminRoute>} />
+      <Route path="/admin/attendance/student"     element={<AdminRoute><StudentAttendanceHistory /></AdminRoute>} />
+      <Route path="/parent/attendance"            element={<ParentPortalRoute><StudentAttendancePortal /></ParentPortalRoute>} />
 
       {/* ── Fallback ── */}
       <Route path="*" element={<Navigate to="/" replace />} />
