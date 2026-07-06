@@ -43,5 +43,3 @@ export const getSuppliers    = () => fetch(`${API}/suppliers`,          { header
 export const createSupplier  = (body) => fetch(`${API}/suppliers`,      { method: "POST", headers: h(), body: JSON.stringify(body) }).then(handle);
 export const updateSupplier  = (id, body) => fetch(`${API}/suppliers/${id}`, { method: "PUT", headers: h(), body: JSON.stringify(body) }).then(handle);
 export const deleteSupplier  = (id) => fetch(`${API}/suppliers/${id}`,  { method: "DELETE", headers: h() }).then(handle);
-EOFILE
-echo "API service done"
