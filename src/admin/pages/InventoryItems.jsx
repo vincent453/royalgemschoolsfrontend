@@ -1,4 +1,4 @@
-cat > /home/claude/inventory/InventoryItems.jsx << 'EOFILE'
+
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { FaPlus, FaSearch, FaEdit, FaTrash, FaEye } from "react-icons/fa";
@@ -321,5 +321,3 @@ export default function InventoryItems() {
     </div>
   );
 }
-EOFILE
-echo "InventoryItems done"
