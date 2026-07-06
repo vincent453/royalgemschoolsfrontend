@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import logo from "../../../assets/img/logo.png";
-import { NavLink, useLocation } from "react-router-dom";
+import { href, NavLink, useLocation } from "react-router-dom";
 import useRole from "../../hooks/useRole";
 import {
   MdDashboard,
@@ -48,6 +48,18 @@ const adminNavItems = [
       { id: "acc-receipts",  label: "Receipts",        href: "/admin/receipts",            icon: <MdReceipt />   },
     ],
   },
+  {
+    id: "inventory",
+    label: "Inventory",
+    href: "/admin/inventory",
+    icon: <MdMemory />,
+    group: true,
+    children: [
+      { id: "inventory-items", label: "Items", href: "/admin/inventory/items", icon: <MdMemory /> },
+      { id: "inventory-movement", label: "Stock Movement", href: "/admin/inventory/stock-movement", icon: <MdMemory /> },
+    ],
+  },
+
   {
     id: "students",
     label: "Students",

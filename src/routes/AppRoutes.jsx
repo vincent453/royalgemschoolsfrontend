@@ -66,6 +66,8 @@ import {
   StudentPortalRoute,
   ParentPortalRoute,
 } from "./ProtectedRoutes";
+import InventoryDashboard from "../admin/pages/InventoryDashboard";
+import InventoryItems from "../admin/pages/InventoryItems";
 
 
 export default function AppRoutes() {
@@ -174,6 +176,22 @@ export default function AppRoutes() {
       <Route path="/admin/attendance/report"      element={<AdminRoute><AttendanceReport /></AdminRoute>} />
       <Route path="/admin/attendance/student"     element={<AdminRoute><StudentAttendanceHistory /></AdminRoute>} />
       <Route path="/parent/attendance"            element={<ParentPortalRoute><StudentAttendancePortal /></ParentPortalRoute>} />
+
+      {/* ── Inventory ── */ }
+      <Route path="/admin/inventory" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
+      <Route path="/admin/inventory/stock-movement" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
+      <Route path="/admin/inventory/stock-movement/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
+      <Route path="/admin/inventory/stock-movement/add" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
+      <Route path="/admin/inventory/stock-movement/edit/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
+      <Route path="/admin/inventory/stock-movement/view/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
+      <Route path="/admin/inventory/stock-movement/report" element={<AdminRoute><InventoryDashboard /></AdminRoute>} /> 
+      <Route path="/admin/inventory/stock-movement/report/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
+      <Route path="/admin/inventory/stock-movement/report/add" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
+      <Route path="/admin/inventory/stock-movement/report/edit/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
+      <Route path="/admin/inventory/stock-movement/report/view/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
+      <Route path="/admin/inventory/stock-movement/report/download/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
+      <Route path="/admin/inventory/items" element={<AdminRoute><InventoryItems /></AdminRoute>} />
+
 
       {/* ── Fallback ── */}
       <Route path="*" element={<Navigate to="/" replace />} />
