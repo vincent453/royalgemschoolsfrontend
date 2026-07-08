@@ -20,6 +20,13 @@ import {
   MdExpandMore,
   MdExpandLess,
   MdEventNote,
+  MdInventory2,
+  MdAddBox,
+  MdSwapHoriz,
+  MdShoppingCart,
+  MdWarning,
+  MdRemoveShoppingCart,
+  MdAssessment,
 } from "react-icons/md";
 
 // ─────────────────────────────────────────────────────────────
@@ -48,17 +55,63 @@ const adminNavItems = [
       { id: "acc-receipts",  label: "Receipts",        href: "/admin/receipts",            icon: <MdReceipt />   },
     ],
   },
-  {
-    id: "inventory",
-    label: "Inventory",
-    href: "/admin/inventory",
-    icon: <MdMemory />,
-    group: true,
-    children: [
-      { id: "inventory-items", label: "Items", href: "/admin/inventory/items", icon: <MdMemory /> },
-      { id: "inventory-movement", label: "Stock Movement", href: "/admin/inventory/stock-movement", icon: <MdMemory /> },
-    ],
-  },
+{
+  id: "inventory",
+  label: "Inventory",
+  href: "/admin/inventory",
+  icon: <MdInventory2 />,
+  group: true,
+  children: [
+    {
+      id: "inventory-dashboard",
+      label: "Dashboard",
+      href: "/admin/inventory",
+      icon: <MdDashboard />,
+    },
+    {
+      id: "inventory-items",
+      label: "Inventory Items",
+      href: "/admin/inventory/items",
+      icon: <MdInventory2 />,
+    },
+    {
+      id: "inventory-movements",
+      label: "Stock Movements",
+      href: "/admin/inventory/movements",
+      icon: <MdSwapHoriz />,
+    },
+    {
+      id: "inventory-purchases",
+      label: "Purchases",
+      href: "/admin/inventory/purchases",
+      icon: <MdShoppingCart />,
+    },
+    {
+      id: "inventory-suppliers",
+      label: "Suppliers",
+      href: "/admin/inventory/suppliers",
+      icon: <MdPeople />,
+    },
+    {
+      id: "inventory-low-stock",
+      label: "Low Stock",
+      href: "/admin/inventory/low-stock",
+      icon: <MdWarning />,
+    },
+    {
+      id: "inventory-out-stock",
+      label: "Out of Stock",
+      href: "/admin/inventory/out-of-stock",
+      icon: <MdRemoveShoppingCart />,
+    },
+    {
+      id: "inventory-reports",
+      label: "Reports",
+      href: "/admin/inventory/reports",
+      icon: <MdAssessment />,
+    },
+  ],
+},
 
   {
     id: "students",

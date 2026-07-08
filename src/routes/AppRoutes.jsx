@@ -68,6 +68,9 @@ import {
 } from "./ProtectedRoutes";
 import InventoryDashboard from "../admin/pages/InventoryDashboard";
 import InventoryItems from "../admin/pages/InventoryItems";
+import InventoryItemDetails from "../admin/pages/InventoryItemDetails";
+import Suppliers from "../admin/pages/Suppliers";
+import Purchases from "../admin/pages/Purchases";
 
 
 export default function AppRoutes() {
@@ -191,6 +194,9 @@ export default function AppRoutes() {
       <Route path="/admin/inventory/stock-movement/report/view/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
       <Route path="/admin/inventory/stock-movement/report/download/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
       <Route path="/admin/inventory/items" element={<AdminRoute><InventoryItems /></AdminRoute>} />
+      <Route path="/admin/inventory/items/:id" element={<AdminRoute><InventoryItemDetails /></AdminRoute>} />
+      <Route path="/admin/inventory/suppliers" element={<AdminRoute><Suppliers /></AdminRoute>} />
+      <Route path="/admin/inventory/purchases" element={<AdminRoute><Purchases /></AdminRoute>} />
 
 
       {/* ── Fallback ── */}
