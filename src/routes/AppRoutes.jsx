@@ -73,6 +73,7 @@ import Suppliers from "../admin/pages/Suppliers";
 import Purchases from "../admin/pages/Purchases";
 import StockMovements from "../admin/pages/StockMovement";
 import LowStock from "../admin/pages/LowStock";
+import EditUser from "../admin/pages/EditUser";
 
 
 export default function AppRoutes() {
@@ -121,6 +122,8 @@ export default function AppRoutes() {
         element={<AdminRoute><Users /></AdminRoute>} />
       <Route path="/admin/addUsers"
         element={<AdminRoute><AddUser /></AdminRoute>} />
+      <Route path="/admin/users/edit/:id" 
+      element={<EditUser />} />
       <Route path="/admin/results"
         element={<AdminRoute><Result /></AdminRoute>} />
       <Route path="/admin/results/view/:id"
@@ -191,6 +194,7 @@ export default function AppRoutes() {
       <Route path="/admin/inventory/suppliers" element={<AdminRoute><Suppliers /></AdminRoute>} />
       <Route path="/admin/inventory/purchases" element={<AdminRoute><Purchases /></AdminRoute>} />
       <Route path="/admin/inventory/low-stock" element={<AdminRoute><LowStock /></AdminRoute>} />
+      
 
 
       {/* ── Fallback ── */}
