@@ -71,6 +71,8 @@ import InventoryItems from "../admin/pages/InventoryItems";
 import InventoryItemDetails from "../admin/pages/InventoryItemDetails";
 import Suppliers from "../admin/pages/Suppliers";
 import Purchases from "../admin/pages/Purchases";
+import StockMovements from "../admin/pages/StockMovement";
+import LowStock from "../admin/pages/LowStock";
 
 
 export default function AppRoutes() {
@@ -182,21 +184,13 @@ export default function AppRoutes() {
 
       {/* ── Inventory ── */ }
       <Route path="/admin/inventory" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
-      <Route path="/admin/inventory/stock-movement" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
+      <Route path="/admin/inventory/stock-movement" element={<AdminRoute><StockMovements /> </AdminRoute>} />
       <Route path="/admin/inventory/stock-movement/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
-      <Route path="/admin/inventory/stock-movement/add" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
-      <Route path="/admin/inventory/stock-movement/edit/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
-      <Route path="/admin/inventory/stock-movement/view/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
-      <Route path="/admin/inventory/stock-movement/report" element={<AdminRoute><InventoryDashboard /></AdminRoute>} /> 
-      <Route path="/admin/inventory/stock-movement/report/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
-      <Route path="/admin/inventory/stock-movement/report/add" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
-      <Route path="/admin/inventory/stock-movement/report/edit/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
-      <Route path="/admin/inventory/stock-movement/report/view/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
-      <Route path="/admin/inventory/stock-movement/report/download/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
       <Route path="/admin/inventory/items" element={<AdminRoute><InventoryItems /></AdminRoute>} />
       <Route path="/admin/inventory/items/:id" element={<AdminRoute><InventoryItemDetails /></AdminRoute>} />
       <Route path="/admin/inventory/suppliers" element={<AdminRoute><Suppliers /></AdminRoute>} />
       <Route path="/admin/inventory/purchases" element={<AdminRoute><Purchases /></AdminRoute>} />
+      <Route path="/admin/inventory/low-stock" element={<AdminRoute><LowStock /></AdminRoute>} />
 
 
       {/* ── Fallback ── */}

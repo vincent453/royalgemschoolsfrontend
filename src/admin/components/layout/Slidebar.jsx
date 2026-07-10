@@ -77,7 +77,7 @@ const adminNavItems = [
     {
       id: "inventory-movements",
       label: "Stock Movements",
-      href: "/admin/inventory/movements",
+      href: "/admin/inventory/stock-movement",
       icon: <MdSwapHoriz />,
     },
     {
@@ -97,19 +97,7 @@ const adminNavItems = [
       label: "Low Stock",
       href: "/admin/inventory/low-stock",
       icon: <MdWarning />,
-    },
-    {
-      id: "inventory-out-stock",
-      label: "Out of Stock",
-      href: "/admin/inventory/out-of-stock",
-      icon: <MdRemoveShoppingCart />,
-    },
-    {
-      id: "inventory-reports",
-      label: "Reports",
-      href: "/admin/inventory/reports",
-      icon: <MdAssessment />,
-    },
+    }
   ],
 },
 
