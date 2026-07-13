@@ -184,17 +184,20 @@ export default function UploadSubjectResult() {
           return fetch(`${API}/api/subject-results`, {
             method:  "POST",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-            body: JSON.stringify({
-              studentId:  student._id,
-              subject:    selectedSubject,
-              classLevel: selectedClass,
-              term,
-              session,
-              hwk:  Number(s.hwk)  || 0,
-              ca1:  Number(s.ca1)  || 0,
-              ca2:  Number(s.ca2)  || 0,
-              exam: Number(s.exam) || 0,
-            }),
+           body: JSON.stringify({
+            studentId: student._id,
+            subject: selectedSubject,
+            classLevel: selectedClass,
+            term,
+            session,
+            hwk: Number(s.hwk) || 0,
+            ca1: Number(s.ca1) || 0,
+            ca2: Number(s.ca2) || 0,
+            exam: Number(s.exam) || 0,
+
+            firstTermAverage: Number(s.firstTermAverage) || null,
+            secondTermAverage: Number(s.secondTermAverage) || null,
+          }),
           }).then((r) => r.json());
         })
       );
@@ -434,22 +437,45 @@ export default function UploadSubjectResult() {
                                 </div>
 
                                 {/* 1st Term carry-forward */}
-                                {(term === "2nd Term" || term === "3rd Term") && (
-                                  <div className="text-center">
-                                    <span className="font-dm-sans text-sm text-indigo-600 font-semibold">
-                                      {prev.firstTerm != null ? `${Number(prev.firstTerm).toFixed(1)}` : "—"}
-                                    </span>
-                                  </div>
-                                )}
+                       {(term === "2nd Term" || term === "3rd Term") && (
+                      <input
+                        type="number"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        value={s.firstTermAverage ?? ""}
+                        onChange={(e) =>
+                          setScores((prev) => ({
+                            ...prev,
+                            [student._id]: {
+                              ...prev[student._id],
+                              firstTermAverage: e.target.value,
+                            },
+                          }))
+                        }
+                        className="w-full border border-gray-200 rounded-lg px-2 py-1.5 text-center"
+                      />
+                    )}
 
-                                {/* 2nd Term carry-forward */}
-                                {term === "3rd Term" && (
-                                  <div className="text-center">
-                                    <span className="font-dm-sans text-sm text-purple-600 font-semibold">
-                                      {prev.secondTerm != null ? `${Number(prev.secondTerm).toFixed(1)}` : "—"}
-                                    </span>
-                                  </div>
-                                )}
+                    {term === "3rd Term" && (
+                      <input
+                        type="number"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        value={s.secondTermAverage ?? ""}
+                        onChange={(e) =>
+                          setScores((prev) => ({
+                            ...prev,
+                            [student._id]: {
+                              ...prev[student._id],
+                              secondTermAverage: e.target.value,
+                            },
+                          }))
+                        }
+                        className="w-full border border-gray-200 rounded-lg px-2 py-1.5 text-center"
+                      />
+                    )}
                               </div>
                             );
                           })}
