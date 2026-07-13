@@ -38,7 +38,7 @@ const AdminDashboard = () => {
               <div className="w-full md:w-1/2">
                 <Performance />
               </div>
-              <div className="w-full md:w-1/2">
+              <div className="w-full md:w-1/2"> 
                 <Overview />
               </div>
             </div>
