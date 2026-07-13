@@ -12,30 +12,20 @@ const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="flex flex-col h-screen bg-[#E6EBEE] overflow-hidden">
-      <div className="sticky top-0 z-50 w-full">
-        <Topbar onMenuToggle={() => setSidebarOpen(p => !p)} />
-      </div>
-
-      {/* Mobile sidebar overlay */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/40 z-30 md:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
-
-      <div className="flex flex-1 overflow-hidden rounded-r-2xl shadow-sm relative">
-        {/* Sidebar */}
-        <div
-          className={`fixed md:relative top-[4rem] left-0  z-40 transition-transform duration-300
-            ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"} -mt-0 md:-mt-16`}
-        >
-                    <Slidebar
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
-      />
-        </div>
+    <div className="flex flex-col h-[100dvh] bg-[#E6EBEE] overflow-x-hidden">
+   
+         <div className="sticky top-0 z-50 w-full">
+           <Topbar onMenuToggle={() => setSidebarOpen(p => !p)} />
+         </div>
+   
+         <div className="flex flex-1 overflow-hidden">
+           <div className="-mt-16">
+                       <Slidebar
+           sidebarOpen={sidebarOpen}
+           setSidebarOpen={setSidebarOpen}
+         />
+           </div>
+   
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col overflow-y-auto">

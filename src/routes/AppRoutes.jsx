@@ -74,6 +74,8 @@ import Purchases from "../admin/pages/Purchases";
 import StockMovements from "../admin/pages/StockMovement";
 import LowStock from "../admin/pages/LowStock";
 import EditUser from "../admin/pages/EditUser";
+import ShopDashboard from "../admin/pages/ShopDashboard";
+import ShopProducts from "../admin/pages/ShopProduct";
 
 
 export default function AppRoutes() {
@@ -194,6 +196,11 @@ export default function AppRoutes() {
       <Route path="/admin/inventory/suppliers" element={<AdminRoute><Suppliers /></AdminRoute>} />
       <Route path="/admin/inventory/purchases" element={<AdminRoute><Purchases /></AdminRoute>} />
       <Route path="/admin/inventory/low-stock" element={<AdminRoute><LowStock /></AdminRoute>} />
+
+      {/* ── Online Shop ── */}
+      <Route path="/admin/shop" element={<AdminRoute><ShopDashboard /></AdminRoute>} />
+      <Route path="/admin/shop/products" element={<AdminRoute><ShopProducts /></AdminRoute>} />
+
       
 
 

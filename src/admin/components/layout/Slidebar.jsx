@@ -100,6 +100,20 @@ const adminNavItems = [
     }
   ],
 },
+{
+  id: "Shop",
+  label: "Shop",
+  href: "/admin/shop",
+  icon: <MdShoppingCart />,
+  group: true,
+  children: [
+    {id:"dashboard", label:"Dashboard", href:"/admin/shop", icon:<MdDashboard />},
+    {id:"shop-products", label:"Products", href:"/admin/shop/products", icon:<MdInventory2 />},
+    {id:"shop-orders",   label:"Orders",   href:"/admin/shop/orders",   icon:<MdShoppingCart />},
+
+  ],
+},
+
 
   {
     id: "students",
