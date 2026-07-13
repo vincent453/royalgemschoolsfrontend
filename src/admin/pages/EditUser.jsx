@@ -132,7 +132,7 @@ export default function EditUser() {
       setTimeout(() => navigate("/admin/users"), 1200);
     } catch (err) {
       setError(err.message);
-    } finally {
+    } finally { 
       setSaving(false);
     }
   };
