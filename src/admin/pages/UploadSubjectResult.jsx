@@ -12,7 +12,7 @@ const TERM_FIELDS = {
     { key: "hwk", label: "HWK", max: 10 },
     { key: "ca1", label: "CA1", max: 10 },
     { key: "ca2", label: "CA2", max: 10 },
-    { key: "cf",  label: "CF",  max: 10 }, // Class Fun
+    { key: "cf",  label: "C.F",  max: 10 }, // Class Fun
     { key: "exam", label: "Exam", max: 60 },
   ],
   "2nd Term": [
