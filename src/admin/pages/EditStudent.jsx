@@ -4,7 +4,7 @@ import Slidebar from "../components/layout/Slidebar";
 import Topbar from "../components/layout/Topbar";
 import { FaUser, FaCamera } from "react-icons/fa";
 
-const classSegments = [
+const classes = [
   { label: "All",           value: "all"            },
   { label: "Reception 1",   value: "Reception 1"    },
   { label: "Reception 2",   value: "Reception 2"    },
