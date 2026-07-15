@@ -4,7 +4,25 @@ import Slidebar from "../components/layout/Slidebar";
 import Topbar from "../components/layout/Topbar";
 import { FaUser, FaCamera } from "react-icons/fa";
 
-const classes     = ["JSS 1", "JSS 2", "JSS 3", "SSS 1", "SSS 2", "SSS 3"];
+const classSegments = [
+  { label: "All",           value: "all"            },
+  { label: "Reception 1",   value: "Reception 1"    },
+  { label: "Reception 2",   value: "Reception 2"    },
+  { label: "Pre-k",         value: "Pre-k"          },
+  { label: "Primary 1",     value: "Primary 1"      },
+  { label: "Primary 2",     value: "Primary 2"      },
+  { label: "Primary 3",     value: "Primary 3"      },
+  { label: "Primary 4",     value: "Primary 4"      },
+  { label: "Primary 5",     value: "Primary 5"      },
+  { label: "Primary 6",     value: "Primary 6"      },
+  { label: "JSS 1",         value: "JSS 1"        },
+  { label: "JSS 2",         value: "JSS 2"        },
+  { label: "JSS 3",         value: "JSS 3"        },
+  { label: "SSS 1",         value: "SSS 1"        },
+  { label: "SSS 2",         value: "SSS 2"        },
+  { label: "SSS 3",         value: "SSS 3"        },
+  
+]
 const genders     = ["Male", "Female"];
 const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
