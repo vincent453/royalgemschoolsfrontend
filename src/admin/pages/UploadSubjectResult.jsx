@@ -9,6 +9,7 @@ const TERMS = ["1st Term", "2nd Term", "3rd Term"];
 // ── Score fields per term ────────────────────────────────────
 const TERM_FIELDS = {
   "1st Term": [
+<<<<<<< HEAD
     { key: "hwk",  label: "HWK",  max: 10 },
     { key: "cf",   label: "C.F",  max: 10 },
     { key: "ca1",  label: "CA1",  max: 10 },
@@ -27,11 +28,30 @@ const TERM_FIELDS = {
     { key: "cf",   label: "C.F",  max: 10 },
     { key: "ca1",  label: "CA1",  max: 10 },
     { key: "ca2",  label: "CA2",  max: 10 },
+=======
+    { key: "hwk", label: "HWK", max: 10 },
+    { key: "ca1", label: "CA1", max: 10 },
+    { key: "ca2", label: "CA2", max: 10 },
+    { key: "cf",  label: "C.F",  max: 10 }, // Class Fun
+    { key: "exam", label: "Exam", max: 60 },
+  ],
+  "2nd Term": [
+    { key: "hwk", label: "HWK", max: 10 },
+    { key: "ca1", label: "CA1", max: 10 },
+    { key: "ca2", label: "CA2", max: 10 },
+    { key: "cf",  label: "C.F",  max: 10 },
+    { key: "exam", label: "Exam", max: 60 },
+  ],
+  "3rd Term": [
+    { key: "hwk", label: "HWK", max: 10 },
+    { key: "ca1", label: "CA1", max: 10 },
+    { key: "ca2", label: "CA2", max: 10 },
+    { key: "cf",  label: "C.F",  max: 10 },
+>>>>>>> 7d6775e1126c9f8a9da86b60553b20bddd0b99f8
     { key: "exam", label: "Exam", max: 60 },
   ],
 };
-
-const MAX_TOTAL = 90;
+const MAX_TOTAL = 100;
 
 const gradeInfo = (total) => {
   const pct = (total / MAX_TOTAL) * 100;
@@ -226,7 +246,7 @@ export default function UploadSubjectResult() {
   const tableHeaders = [
     "Student",
     ...scoreFields.map((f) => `${f.label} /${f.max}`),
-    "Total /90",
+    "Total /100",
     "%",
     "Grade",
     ...(term === "2nd Term" ? ["1st Term Avg"] : []),
@@ -337,12 +357,12 @@ export default function UploadSubjectResult() {
               {/* Term info banner */}
               {term && (
                 <div className="mt-4 px-4 py-2.5 bg-[#f056f0]/5 border border-[#f056f0]/20 rounded-xl">
-                  <p className="font-dm-sans text-xs text-[#f056f0] font-semibold">
-                    {term} scoring: HWK (10) + CA1 (10) + CA2 (10) + Exam (60) = 90
-                    {term === "2nd Term" && " · 1st Term average will be shown"}
-                    {term === "3rd Term" && " · 1st & 2nd Term averages will be shown"}
-                  </p>
-                </div>
+  <p className="font-dm-sans text-xs text-[#f056f0] font-semibold">
+    {term} scoring: HWK (10) + CA1 (10) + CA2 (10) + CF (10) + Exam (60) = 100
+    {term === "2nd Term" && " · 1st Term average will be shown"}
+    {term === "3rd Term" && " · 1st & 2nd Term averages will be shown"}
+  </p>
+</div>
               )}
             </div>
 
