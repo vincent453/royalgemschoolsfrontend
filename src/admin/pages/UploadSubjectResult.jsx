@@ -10,18 +10,21 @@ const TERMS = ["1st Term", "2nd Term", "3rd Term"];
 const TERM_FIELDS = {
   "1st Term": [
     { key: "hwk",  label: "HWK",  max: 10 },
+    { key: "cf",   label: "C.F",  max: 10 },
     { key: "ca1",  label: "CA1",  max: 10 },
     { key: "ca2",  label: "CA2",  max: 10 },
     { key: "exam", label: "Exam", max: 60 },
   ],
   "2nd Term": [
     { key: "hwk",  label: "HWK",  max: 10 },
+    { key: "cf",   label: "C.F",  max: 10 },
     { key: "ca1",  label: "CA1",  max: 10 },
     { key: "ca2",  label: "CA2",  max: 10 },
     { key: "exam", label: "Exam", max: 60 },
   ],
   "3rd Term": [
     { key: "hwk",  label: "HWK",  max: 10 },
+    { key: "cf",   label: "C.F",  max: 10 },
     { key: "ca1",  label: "CA1",  max: 10 },
     { key: "ca2",  label: "CA2",  max: 10 },
     { key: "exam", label: "Exam", max: 60 },
@@ -191,6 +194,7 @@ export default function UploadSubjectResult() {
             term,
             session,
             hwk: Number(s.hwk) || 0,
+            cf: Number(s.cf) || 0,
             ca1: Number(s.ca1) || 0,
             ca2: Number(s.ca2) || 0,
             exam: Number(s.exam) || 0,

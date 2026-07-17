@@ -88,16 +88,46 @@ export default function ParentDashboard() {
     <div className="min-h-screen bg-[#E6EBEE]">
 
       {/* ── Topbar ── */}
-      <header className="sticky top-0 z-40 bg-[#f056f0] h-[60px] flex items-center px-6 gap-4 shadow-md">
-        <h1 className="text-white font-bold text-lg flex-1">Parent Portal</h1>
-        <span className="text-white/70 text-sm hidden md:block">
-          {student ? `Viewing: ${student.firstName} ${student.lastName}` : ""}
-        </span>
-        <button onClick={handleLogout}
-          className="text-white/80 hover:text-white text-sm font-semibold transition-colors">
-          Log Out
-        </button>
-      </header>
+<header className="sticky top-0 z-40 bg-[#f056f0] h-[60px] flex items-center px-6 shadow-md">
+
+  <h1 className="text-white font-bold text-lg mr-8">
+    Parent Portal
+  </h1>
+
+  <nav className="hidden md:flex gap-6 text-white text-sm">
+
+    <button onClick={() => navigate("/portal/dashboard")}>
+      Dashboard
+    </button>
+
+    <button onClick={() => navigate("/portal/results")}>
+      Results
+    </button>
+
+    <button onClick={() => navigate("/portal/fees")}>
+      School Fees
+    </button>
+
+    <button onClick={() => navigate("/portal/shop")}>
+      🛒 School Shop
+    </button>
+
+    <button onClick={() => navigate("/portal/orders")}>
+      My Orders
+    </button>
+
+  </nav>
+
+  <div className="flex-1" />
+
+  <button
+      onClick={handleLogout}
+      className="text-white"
+  >
+      Log Out
+  </button>
+
+</header>
 
       <main className="max-w-5xl mx-auto p-6 flex flex-col gap-6">
 

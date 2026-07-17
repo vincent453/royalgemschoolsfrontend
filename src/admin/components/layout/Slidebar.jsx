@@ -28,6 +28,7 @@ import {
   MdRemoveShoppingCart,
   MdAssessment,
 } from "react-icons/md";
+import { ClipboardList, Package, PlusCircle, ShoppingBag } from "lucide-react";
 
 // ─────────────────────────────────────────────────────────────
 // Nav structure
@@ -101,16 +102,41 @@ const adminNavItems = [
   ],
 },
 {
-  id: "Shop",
+  id: "shop",
   label: "Shop",
-  href: "/admin/shop",
   icon: <MdShoppingCart />,
   group: true,
   children: [
-    {id:"dashboard", label:"Dashboard", href:"/admin/shop", icon:<MdDashboard />},
-    {id:"shop-products", label:"Products", href:"/admin/shop/products", icon:<MdInventory2 />},
-    {id:"shop-orders",   label:"Orders",   href:"/admin/shop/orders",   icon:<MdShoppingCart />},
-
+    {
+      id: "shop-dashboard",
+      label: "Dashboard",
+      href: "/admin/shop",
+      icon: <MdDashboard />,
+    },
+    {
+      id: "shop-categories",
+      label: "Categories",
+      href: "/admin/shop/categories",
+      icon: <ClipboardList />,
+    },
+    {
+      id: "shop-products",
+      label: "Products",
+      href: "/admin/shop/products",
+      icon: <Package />,
+    },
+    {
+      id: "shop-orders",
+      label: "Orders",
+      href: "/admin/shop/orders",
+      icon: <ShoppingBag />,
+    },
+    {
+      id: "shop-report",
+      label: "Sales Report",
+      href: "/admin/shop/report",
+      icon: <MdAssessment />,
+    },
   ],
 },
 

@@ -76,6 +76,12 @@ import LowStock from "../admin/pages/LowStock";
 import EditUser from "../admin/pages/EditUser";
 import ShopDashboard from "../admin/pages/ShopDashboard";
 import ShopProducts from "../admin/pages/ShopProduct";
+import ProductForm from "../admin/pages/ProductForm";
+import OrderDetails from "../admin/pages/OderDetail";
+import ShopOrders from "../admin/pages/ShopOrders";
+import PortalShop from "../admin/pages/PortalShop";
+import CategoryForm from "../admin/pages/CategoryForm";
+import CategoryList from "../admin/pages/CategoryList";
 
 
 export default function AppRoutes() {
@@ -199,7 +205,20 @@ export default function AppRoutes() {
 
       {/* ── Online Shop ── */}
       <Route path="/admin/shop" element={<AdminRoute><ShopDashboard /></AdminRoute>} />
+      <Route path="/admin/shop/categories" element={<CategoryList />} />
+      <Route path="/admin/shop/categories/new" element={<CategoryForm />} />
+      <Route path="/admin/shop/categories/:id" element={<CategoryForm />} />  
       <Route path="/admin/shop/products" element={<AdminRoute><ShopProducts /></AdminRoute>} />
+      <Route path="/admin/shop/products/new" element={<ProductForm />} />
+      <Route path="/admin/shop/products/:id/edit" element={<ProductForm />} />
+      <Route path="/admin/shop/orders" element={<ShopOrders />} />
+      <Route path="/admin/shop/orders/:id" element={<OrderDetails />} />
+
+      <Route path="/portal/shop" element={<PortalShop />} />
+      {/* <Route path="/portal/cart" element={<Cart />} />
+      <Route path="/portal/orders" element={<MyOrders />} />
+      <Route path="/portal/shop/:id" element={<ProductDetails />} />
+      <Route path="/portal/checkout" element={<Checkout />} /> */}
 
       
 
