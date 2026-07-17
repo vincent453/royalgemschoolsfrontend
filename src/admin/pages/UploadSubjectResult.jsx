@@ -9,26 +9,6 @@ const TERMS = ["1st Term", "2nd Term", "3rd Term"];
 // ── Score fields per term ────────────────────────────────────
 const TERM_FIELDS = {
   "1st Term": [
-<<<<<<< HEAD
-    { key: "hwk",  label: "HWK",  max: 10 },
-    { key: "cf",   label: "C.F",  max: 10 },
-    { key: "ca1",  label: "CA1",  max: 10 },
-    { key: "ca2",  label: "CA2",  max: 10 },
-    { key: "exam", label: "Exam", max: 60 },
-  ],
-  "2nd Term": [
-    { key: "hwk",  label: "HWK",  max: 10 },
-    { key: "cf",   label: "C.F",  max: 10 },
-    { key: "ca1",  label: "CA1",  max: 10 },
-    { key: "ca2",  label: "CA2",  max: 10 },
-    { key: "exam", label: "Exam", max: 60 },
-  ],
-  "3rd Term": [
-    { key: "hwk",  label: "HWK",  max: 10 },
-    { key: "cf",   label: "C.F",  max: 10 },
-    { key: "ca1",  label: "CA1",  max: 10 },
-    { key: "ca2",  label: "CA2",  max: 10 },
-=======
     { key: "hwk", label: "HWK", max: 10 },
     { key: "ca1", label: "CA1", max: 10 },
     { key: "ca2", label: "CA2", max: 10 },
@@ -47,7 +27,6 @@ const TERM_FIELDS = {
     { key: "ca1", label: "CA1", max: 10 },
     { key: "ca2", label: "CA2", max: 10 },
     { key: "cf",  label: "C.F",  max: 10 },
->>>>>>> 7d6775e1126c9f8a9da86b60553b20bddd0b99f8
     { key: "exam", label: "Exam", max: 60 },
   ],
 };
