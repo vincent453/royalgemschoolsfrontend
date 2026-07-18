@@ -27,6 +27,8 @@ import {
   MdWarning,
   MdRemoveShoppingCart,
   MdAssessment,
+  MdShoppingBag,
+  MdInventory,
 } from "react-icons/md";
 import { ClipboardList, Package, PlusCircle, ShoppingBag } from "lucide-react";
 
@@ -103,40 +105,16 @@ const adminNavItems = [
 },
 {
   id: "shop",
-  label: "Shop",
-  icon: <MdShoppingCart />,
+  label: "Online Shop",
+  icon: <MdShoppingBag />,
   group: true,
   children: [
-    {
-      id: "shop-dashboard",
-      label: "Dashboard",
-      href: "/admin/shop",
-      icon: <MdDashboard />,
-    },
-    {
-      id: "shop-categories",
-      label: "Categories",
-      href: "/admin/shop/categories",
-      icon: <ClipboardList />,
-    },
-    {
-      id: "shop-products",
-      label: "Products",
-      href: "/admin/shop/products",
-      icon: <Package />,
-    },
-    {
-      id: "shop-orders",
-      label: "Orders",
-      href: "/admin/shop/orders",
-      icon: <ShoppingBag />,
-    },
-    {
-      id: "shop-report",
-      label: "Sales Report",
-      href: "/admin/shop/report",
-      icon: <MdAssessment />,
-    },
+    { id: "shop-dash",       label: "Dashboard",    href: "/admin/shop",             icon: <MdDashboard />   },
+    { id: "shop-products",   label: "Products",     href: "/admin/shop/products",    icon: <MdInventory />   },
+    { id: "shop-orders",     label: "Orders",       href: "/admin/shop/orders",      icon: <MdShoppingCart />},
+    { id: "shop-categories", label: "Categories",   href: "/admin/shop/categories",  icon: <MdCategory />    },
+    { id: "shop-customers",  label: "Customers",    href: "/admin/shop/customers",   icon: <MdPeople />      },
+    { id: "shop-report",     label: "Sales Report", href: "/admin/shop/report",      icon: <MdBarChart />    },
   ],
 },
 

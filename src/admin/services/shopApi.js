@@ -1,6 +1,6 @@
 const API = import.meta.env.VITE_API_URL
   ? `${import.meta.env.VITE_API_URL}/api/shop`
-  : "https://royalgemschoolsbackend.onrender.com/api/shop";
+  : "https://royalgemschoolsbackend.vercel.app/api/shop";
 
 const h = () => ({
   "Content-Type": "application/json",
