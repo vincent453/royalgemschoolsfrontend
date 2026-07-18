@@ -29,6 +29,7 @@ import {
   MdAssessment,
   MdShoppingBag,
   MdInventory,
+  MdCategory,
 } from "react-icons/md";
 import { ClipboardList, Package, PlusCircle, ShoppingBag } from "lucide-react";
 

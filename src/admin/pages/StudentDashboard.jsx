@@ -118,7 +118,7 @@ export default function StudentDashboard() {
       🛒 School Shop
     </button>
 
-    <button onClick={() => navigate("/portal/orders")}>
+    <button onClick={() => navigate("/portal/shop/orders")}>
       My Orders
     </button>
 

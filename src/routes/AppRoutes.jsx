@@ -80,15 +80,20 @@ import ProductForm from "../admin/pages/ProductForm";
 import OrderDetails from "../admin/pages/OderDetail";
 import ShopOrders from "../admin/pages/ShopOrders";
 import PortalShop from "../admin/pages/PortalShop";
-import CategoryForm from "../admin/pages/CategoryForm";
-import CategoryList from "../admin/pages/CategoryList";
+import MyOrders from "../admin/pages/MyOrders";
+import ShopCategories from "../admin/pages/ShopCategories";
+import ShopCustomers from "../admin/pages/ShopCustomers";
+import SalesReport from "../admin/pages/SalesReport";
+
 
 
 export default function AppRoutes() {
   return (
     <Routes>
 
-      {/* ── Public ── */}
+      {/* ════════════════════════════════════════════
+          PUBLIC
+      ════════════════════════════════════════════ */}
       <Route path="/"           element={<Home />}       />
       <Route path="/about"      element={<About />}      />
       <Route path="/contact"    element={<Contact />}    />
@@ -96,42 +101,69 @@ export default function AppRoutes() {
       <Route path="/yearbook"   element={<Yearbook />}   />
       <Route path="/blog"       element={<Blog />}       />
 
-      {/* ── Portal login (student + parent) ── */}
+      {/* ════════════════════════════════════════════
+          PORTAL LOGIN
+      ════════════════════════════════════════════ */}
       <Route path="/portal" element={<Portal />} />
 
-      {/* ── Student portal ── */}
+      {/* ════════════════════════════════════════════
+          STUDENT PORTAL
+      ════════════════════════════════════════════ */}
       <Route path="/student/dashboard"
         element={<StudentPortalRoute><StudentDashboard /></StudentPortalRoute>} />
 
-      {/* ── Parent portal ── */}
+      {/* ════════════════════════════════════════════
+          PARENT PORTAL
+      ════════════════════════════════════════════ */}
       <Route path="/parent/dashboard"
         element={<ParentPortalRoute><ParentDashboard /></ParentPortalRoute>} />
+      <Route path="/parent/attendance"
+        element={<ParentPortalRoute><StudentAttendancePortal /></ParentPortalRoute>} />
 
-      {/* ── Shared result card (portal + admin + teacher) ── */}
-      <Route path="/portal/results/:id"       element={<ResultCard />} />
+      {/* ── Portal: shop ── */}
+      <Route path="/portal/shop"
+        element={<PortalShop />} />
+      <Route path="/portal/shop/orders"
+        element={<MyOrders />} />
 
-      {/* ── Staff login ── */}
+      {/* ── Portal: shared pages (no role gate needed) ── */}
+      <Route path="/portal/results/:id" element={<ResultCard />}    />
+      <Route path="/portal/receipt/:id" element={<ReceiptDetails />} />
+
+      {/* ════════════════════════════════════════════
+          STAFF LOGIN
+      ════════════════════════════════════════════ */}
       <Route path="/admin/portal" element={<AdminLogin />} />
 
-      {/* ── Admin only ── */}
+      {/* ════════════════════════════════════════════
+          ADMIN — Core
+      ════════════════════════════════════════════ */}
       <Route path="/admin/dashboard"
         element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+
+      {/* Students */}
       <Route path="/admin/students"
         element={<AdminRoute><Student /></AdminRoute>} />
       <Route path="/admin/students/add"
         element={<AdminRoute><AddStudent /></AdminRoute>} />
       <Route path="/admin/students/edit/:id"
         element={<AdminRoute><EditStudent /></AdminRoute>} />
+
+      {/* Teachers */}
       <Route path="/admin/teachers"
         element={<AdminRoute><Teacher /></AdminRoute>} />
       <Route path="/admin/teachers/add"
         element={<AdminRoute><AddTeachers /></AdminRoute>} />
+
+      {/* Users */}
       <Route path="/admin/users"
         element={<AdminRoute><Users /></AdminRoute>} />
       <Route path="/admin/addUsers"
         element={<AdminRoute><AddUser /></AdminRoute>} />
-      <Route path="/admin/users/edit/:id" 
-      element={<EditUser />} />
+      <Route path="/admin/users/edit/:id"
+        element={<AdminRoute><EditUser /></AdminRoute>} />
+
+      {/* Results */}
       <Route path="/admin/results"
         element={<AdminRoute><Result /></AdminRoute>} />
       <Route path="/admin/results/view/:id"
@@ -142,6 +174,8 @@ export default function AppRoutes() {
         element={<AdminRoute><UploadSubjectResult /></AdminRoute>} />
       <Route path="/admin/finalizeresults"
         element={<AdminRoute><FinalizeResult /></AdminRoute>} />
+
+      {/* Misc admin */}
       <Route path="/admin/generatepin"
         element={<AdminRoute><GeneratePin /></AdminRoute>} />
       <Route path="/admin/addyearbookentry"
@@ -149,7 +183,9 @@ export default function AppRoutes() {
       <Route path="/admin/settings"
         element={<AdminRoute><Settings /></AdminRoute>} />
 
-      {/* ── Teacher ── */}
+      {/* ════════════════════════════════════════════
+          TEACHER
+      ════════════════════════════════════════════ */}
       <Route path="/teacher/dashboard"
         element={<TeacherRoute><TeacherDashboard /></TeacherRoute>} />
       <Route path="/teacher/students"
@@ -165,7 +201,9 @@ export default function AppRoutes() {
       <Route path="/teacher/finalize-result"
         element={<TeacherRoute><FinalizeResult /></TeacherRoute>} />
 
-      {/* ── Accounting ── */}
+      {/* ════════════════════════════════════════════
+          ACCOUNTING
+      ════════════════════════════════════════════ */}
       <Route path="/admin/accounting"
         element={<AdminRoute><AccountingDashboard /></AdminRoute>} />
       <Route path="/admin/accounting/income"
@@ -175,53 +213,77 @@ export default function AppRoutes() {
       <Route path="/admin/accounting/ledger"
         element={<AdminRoute><Ledger /></AdminRoute>} />
 
-      {/* ── Fees & Billing ── */}
-      <Route path="/admin/fees"                   element={<AdminRoute><Fees /></AdminRoute>} />
-      <Route path="/admin/fees/students"          element={<AdminRoute><StudentFees /></AdminRoute>} />
-      <Route path="/admin/fees/collect/:id"       element={<AdminRoute><CollectPayment /></AdminRoute>} />
-      <Route path="/admin/fees/history"           element={<AdminRoute><PaymentHistory /></AdminRoute>} />
-      <Route path="/admin/fees/outstanding"       element={<AdminRoute><OutstandingBalances /></AdminRoute>} />
-      <Route path="/admin/fees/receipt/:id"       element={<AdminRoute><ReceiptDetails /></AdminRoute>} />
-      <Route path="/admin/receipts"               element={<AdminRoute><Receipts /></AdminRoute>} />
-      <Route path="/admin/receipts/:id"           element={<AdminRoute><ReceiptDetails /></AdminRoute>} />
-      <Route path="/portal/receipt/:id"           element={<ReceiptDetails />} />
+      {/* ════════════════════════════════════════════
+          FEES & BILLING
+      ════════════════════════════════════════════ */}
+      <Route path="/admin/fees"
+        element={<AdminRoute><Fees /></AdminRoute>} />
+      <Route path="/admin/fees/students"
+        element={<AdminRoute><StudentFees /></AdminRoute>} />
+      <Route path="/admin/fees/collect/:id"
+        element={<AdminRoute><CollectPayment /></AdminRoute>} />
+      <Route path="/admin/fees/history"
+        element={<AdminRoute><PaymentHistory /></AdminRoute>} />
+      <Route path="/admin/fees/outstanding"
+        element={<AdminRoute><OutstandingBalances /></AdminRoute>} />
+      <Route path="/admin/fees/receipt/:id"
+        element={<AdminRoute><ReceiptDetails /></AdminRoute>} />
+      <Route path="/admin/receipts"
+        element={<AdminRoute><Receipts /></AdminRoute>} />
+      <Route path="/admin/receipts/:id"
+        element={<AdminRoute><ReceiptDetails /></AdminRoute>} />
 
-      {/* ── Attendance ── */}
-      <Route path="/admin/attendance"             element={<AdminRoute><AttendanceDashboard /></AdminRoute>} />
-      <Route path="/admin/attendance/mark"        element={<AdminRoute><MarkAttendance /></AdminRoute>} />
-      <Route path="/admin/attendance/report"      element={<AdminRoute><AttendanceReport /></AdminRoute>} />
-      <Route path="/admin/attendance/student"     element={<AdminRoute><StudentAttendanceHistory /></AdminRoute>} />
-      <Route path="/parent/attendance"            element={<ParentPortalRoute><StudentAttendancePortal /></ParentPortalRoute>} />
+      {/* ════════════════════════════════════════════
+          ATTENDANCE
+      ════════════════════════════════════════════ */}
+      <Route path="/admin/attendance"
+        element={<AdminRoute><AttendanceDashboard /></AdminRoute>} />
+      <Route path="/admin/attendance/mark"
+        element={<AdminRoute><MarkAttendance /></AdminRoute>} />
+      <Route path="/admin/attendance/report"
+        element={<AdminRoute><AttendanceReport /></AdminRoute>} />
+      <Route path="/admin/attendance/student"
+        element={<AdminRoute><StudentAttendanceHistory /></AdminRoute>} />
 
-      {/* ── Inventory ── */ }
-      <Route path="/admin/inventory" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
-      <Route path="/admin/inventory/stock-movement" element={<AdminRoute><StockMovements /> </AdminRoute>} />
-      <Route path="/admin/inventory/stock-movement/:id" element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
-      <Route path="/admin/inventory/items" element={<AdminRoute><InventoryItems /></AdminRoute>} />
-      <Route path="/admin/inventory/items/:id" element={<AdminRoute><InventoryItemDetails /></AdminRoute>} />
-      <Route path="/admin/inventory/suppliers" element={<AdminRoute><Suppliers /></AdminRoute>} />
-      <Route path="/admin/inventory/purchases" element={<AdminRoute><Purchases /></AdminRoute>} />
-      <Route path="/admin/inventory/low-stock" element={<AdminRoute><LowStock /></AdminRoute>} />
+      {/* ════════════════════════════════════════════
+          INVENTORY
+      ════════════════════════════════════════════ */}
+      <Route path="/admin/inventory"
+        element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
+      <Route path="/admin/inventory/items"
+        element={<AdminRoute><InventoryItems /></AdminRoute>} />
+      <Route path="/admin/inventory/items/:id"
+        element={<AdminRoute><InventoryItemDetails /></AdminRoute>} />
+      <Route path="/admin/inventory/suppliers"
+        element={<AdminRoute><Suppliers /></AdminRoute>} />
+      <Route path="/admin/inventory/purchases"
+        element={<AdminRoute><Purchases /></AdminRoute>} />
+      <Route path="/admin/inventory/stock-movement"
+        element={<AdminRoute><StockMovements /></AdminRoute>} />
+      <Route path="/admin/inventory/low-stock"
+        element={<AdminRoute><LowStock /></AdminRoute>} />
 
-      {/* ── Online Shop ── */}
-      <Route path="/admin/shop" element={<AdminRoute><ShopDashboard /></AdminRoute>} />
-      <Route path="/admin/shop/categories" element={<CategoryList />} />
-      <Route path="/admin/shop/categories/new" element={<CategoryForm />} />
-      <Route path="/admin/shop/categories/:id" element={<CategoryForm />} />  
-      <Route path="/admin/shop/products" element={<AdminRoute><ShopProducts /></AdminRoute>} />
-      <Route path="/admin/shop/products/new" element={<ProductForm />} />
-      <Route path="/admin/shop/products/:id/edit" element={<ProductForm />} />
-      <Route path="/admin/shop/orders" element={<ShopOrders />} />
-      <Route path="/admin/shop/orders/:id" element={<OrderDetails />} />
-
-      <Route path="/portal/shop" element={<PortalShop />} />
-      {/* <Route path="/portal/cart" element={<Cart />} />
-      <Route path="/portal/orders" element={<MyOrders />} />
-      <Route path="/portal/shop/:id" element={<ProductDetails />} />
-      <Route path="/portal/checkout" element={<Checkout />} /> */}
-
-      
-
+      {/* ════════════════════════════════════════════
+          ONLINE SHOP — Admin
+      ════════════════════════════════════════════ */}
+      <Route path="/admin/shop"
+        element={<AdminRoute><ShopDashboard /></AdminRoute>} />
+      <Route path="/admin/shop/products"
+        element={<AdminRoute><ShopProducts /></AdminRoute>} />
+      <Route path="/admin/shop/products/new"
+        element={<AdminRoute><ProductForm /></AdminRoute>} />
+      <Route path="/admin/shop/products/:id"
+        element={<AdminRoute><ProductForm /></AdminRoute>} />
+      <Route path="/admin/shop/orders"
+        element={<AdminRoute><ShopOrders /></AdminRoute>} />
+      <Route path="/admin/shop/orders/:id"
+        element={<AdminRoute><OrderDetails /></AdminRoute>} />
+      <Route path="/admin/shop/categories"
+        element={<AdminRoute><ShopCategories /></AdminRoute>} />
+      <Route path="/admin/shop/customers"
+        element={<AdminRoute><ShopCustomers /></AdminRoute>} />
+      <Route path="/admin/shop/report"
+        element={<AdminRoute><SalesReport /></AdminRoute>} />
 
       {/* ── Fallback ── */}
       <Route path="*" element={<Navigate to="/" replace />} />
@@ -229,3 +291,5 @@ export default function AppRoutes() {
     </Routes>
   );
 }
+
+
