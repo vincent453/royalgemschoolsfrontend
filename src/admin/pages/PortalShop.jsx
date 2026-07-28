@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaSearch, FaShoppingCart, FaPlus, FaMinus, FaTimes, FaBoxOpen, FaStar } from "react-icons/fa";
+import { FaSearch, FaShoppingCart, FaPlus, FaMinus, FaTimes, FaBoxOpen, FaStar, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { getPublicProducts, getPublicCategories, placeOrder, initializePayment } from "../../services/shopApi";
 
 const fmt = (n) => `₦${Number(n || 0).toLocaleString("en-NG", { minimumFractionDigits: 2 })}`;
@@ -11,6 +11,94 @@ const StatusBadge = ({ stock, min }) => {
   if (stock <= 0)    return <span className="text-xs font-semibold text-red-500">Out of Stock</span>;
   if (stock <= min)  return <span className="text-xs font-semibold text-amber-500">Low Stock ({stock} left)</span>;
   return <span className="text-xs font-semibold text-emerald-600">In Stock</span>;
+};
+
+// ─────────────────────────────────────────────────────────────
+// Product image slider — auto-advances through p.images, pauses
+// on hover, with dot indicators and manual arrow controls.
+// ─────────────────────────────────────────────────────────────
+const ProductImageSlider = ({ images = [], alt, badge }) => {
+  const [index, setIndex]     = useState(0);
+  const [paused, setPaused]   = useState(false);
+  const timerRef = useRef(null);
+
+  const slides = images.length ? images : [null];
+  const multi  = slides.length > 1;
+
+  useEffect(() => {
+    if (!multi || paused) return;
+    timerRef.current = setInterval(() => {
+      setIndex(i => (i + 1) % slides.length);
+    }, 3000);
+    return () => clearInterval(timerRef.current);
+  }, [multi, paused, slides.length]);
+
+  const go = (i, e) => {
+    e?.stopPropagation();
+    setIndex((i + slides.length) % slides.length);
+  };
+
+  return (
+    <div
+      className="relative h-60 bg-gray-50 overflow-hidden group"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {slides.map((src, i) => (
+        <div
+          key={i}
+          className="absolute inset-0 transition-opacity duration-500 ease-in-out"
+          style={{ opacity: i === index ? 1 : 0 }}
+        >
+          {src ? (
+            <img src={src} alt={alt} className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <FaBoxOpen className="text-4xl text-gray-200" />
+            </div>
+          )}
+        </div>
+      ))}
+
+      {badge}
+
+      {multi && (
+        <>
+          <button
+            type="button"
+            onClick={(e) => go(index - 1, e)}
+            className="absolute left-1.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/30
+                       text-white flex items-center justify-center opacity-0 group-hover:opacity-100
+                       transition-opacity hover:bg-black/50"
+          >
+            <FaChevronLeft className="text-[10px]" />
+          </button>
+          <button
+            type="button"
+            onClick={(e) => go(index + 1, e)}
+            className="absolute right-1.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/30
+                       text-white flex items-center justify-center opacity-0 group-hover:opacity-100
+                       transition-opacity hover:bg-black/50"
+          >
+            <FaChevronRight className="text-[10px]" />
+          </button>
+
+          <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={(e) => go(i, e)}
+                className={`h-1.5 rounded-full transition-all ${
+                  i === index ? "w-4 bg-white" : "w-1.5 bg-white/60"
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default function PortalShop() {
@@ -195,11 +283,11 @@ export default function PortalShop() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-sm animate-pulse">
-                <div className="h-44 bg-gray-100" />
-                <div className="p-4 space-y-2">
+                <div className="h-60 bg-gray-100" />
+                <div className="p-5 space-y-3">
                   <div className="h-3 bg-gray-100 rounded w-3/4" />
                   <div className="h-3 bg-gray-100 rounded w-1/2" />
-                  <div className="h-8 bg-gray-100 rounded-xl mt-3" />
+                  <div className="h-9 bg-gray-100 rounded-xl mt-3" />
                 </div>
               </div>
             ))}
@@ -210,7 +298,7 @@ export default function PortalShop() {
             <p className="font-dm-sans text-sm text-gray-400">No products found.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             {products.map(p => {
               const stock     = p.inventoryItem?.quantity ?? 0;
               const minStock  = p.inventoryItem?.minimumStock ?? 0;
@@ -220,66 +308,65 @@ export default function PortalShop() {
               return (
                 <div key={p._id} className="bg-white rounded-2xl shadow-sm border border-gray-100
                                              hover:shadow-md transition-shadow duration-200 overflow-hidden">
-                  {/* Image */}
-                  <div className="relative h-44 bg-gray-50">
-                    {p.images?.[0] ? (
-                      <img src={p.images[0]} alt={p.productName} className="w-full h-full object-cover" />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <FaBoxOpen className="text-4xl text-gray-200" />
-                      </div>
-                    )}
-                    {p.isFeatured && (
-                      <span className="absolute top-2 left-2 bg-[#f056f0] text-white text-[10px]
-                                       font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-                        <FaStar className="text-[8px]" /> Featured
-                      </span>
-                    )}
-                    {p.discountPrice && (
-                      <span className="absolute top-2 right-2 bg-red-500 text-white text-[10px]
-                                       font-bold px-2 py-0.5 rounded-full">
-                        SALE
-                      </span>
-                    )}
-                  </div>
+                  {/* Image slider */}
+                  <ProductImageSlider
+                    images={p.images ?? []}
+                    alt={p.productName}
+                    badge={
+                      <>
+                        {p.isFeatured && (
+                          <span className="absolute top-2 left-2 bg-[#f056f0] text-white text-[10px]
+                                           font-bold px-2 py-0.5 rounded-full flex items-center gap-1 z-10">
+                            <FaStar className="text-[8px]" /> Featured
+                          </span>
+                        )}
+                        {p.discountPrice && (
+                          <span className="absolute top-2 right-2 bg-red-500 text-white text-[10px]
+                                           font-bold px-2 py-0.5 rounded-full z-10">
+                            SALE
+                          </span>
+                        )}
+                      </>
+                    }
+                  />
 
                   {/* Info */}
-                  <div className="p-4">
-                    <p className="font-dm-sans text-xs text-gray-400 mb-1">{p.category?.name}</p>
-                    <p className="font-dm-sans font-semibold text-gray-700 text-sm line-clamp-2 mb-2">
+                  <div className="p-5">
+                    <p className="font-dm-sans text-xs text-gray-400 mb-1.5">{p.category?.name}</p>
+                    <p className="font-dm-sans font-semibold text-gray-700 text-base line-clamp-2 mb-2.5">
                       {p.productName}
                     </p>
 
-                    <div className="flex items-center gap-2 mb-3">
+                    <div className="flex items-center gap-2 mb-3.5">
                       {p.discountPrice ? (
                         <>
-                          <span className="font-jost font-bold text-[#f056f0]">{fmt(p.discountPrice)}</span>
+                          <span className="font-jost font-bold text-lg text-[#f056f0]">{fmt(p.discountPrice)}</span>
                           <span className="font-dm-sans text-xs text-gray-300 line-through">{fmt(p.price)}</span>
                         </>
                       ) : (
-                        <span className="font-jost font-bold text-gray-800">{fmt(p.price)}</span>
+                        <span className="font-jost font-bold text-lg text-gray-800">{fmt(p.price)}</span>
                       )}
                     </div>
 
                     <StatusBadge stock={stock} min={minStock} />
 
                     {inCart ? (
-                      <div className="flex items-center gap-2 mt-3">
+                      <div className="flex items-center gap-2 mt-4">
                         <button onClick={() => updateQty(p._id, -1)}
-                          className="w-8 h-8 rounded-full bg-gray-100 hover:bg-[#f056f0]/10 flex items-center
+                          className="w-9 h-9 rounded-full bg-gray-100 hover:bg-[#f056f0]/10 flex items-center
                                      justify-center text-gray-500 hover:text-[#f056f0] transition-colors">
                           <FaMinus className="text-xs" />
                         </button>
                         <span className="font-jost font-bold text-gray-700 flex-1 text-center">{inCart.qty}</span>
                         <button onClick={() => updateQty(p._id, 1)} disabled={inCart.qty >= stock}
-                          className="w-8 h-8 rounded-full bg-[#f056f0]/10 hover:bg-[#f056f0]/20 flex items-center
+                          className="w-9 h-9 rounded-full bg-[#f056f0]/10 hover:bg-[#f056f0]/20 flex items-center
                                      justify-center text-[#f056f0] transition-colors disabled:opacity-40">
                           <FaPlus className="text-xs" />
                         </button>
                       </div>
                     ) : (
                       <button onClick={() => addToCart(p)} disabled={outOfStock}
-                        className={`w-full mt-3 py-2 rounded-xl font-dm-sans text-sm font-semibold transition-colors
+                        className={`w-full mt-4 py-2.5 rounded-xl font-dm-sans text-sm font-semibold transition-colors
                           ${outOfStock
                             ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                             : "bg-[#f056f0] hover:bg-[#525fe1] text-white"}`}>
