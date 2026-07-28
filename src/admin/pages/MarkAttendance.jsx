@@ -172,6 +172,17 @@ export default function MarkAttendance() {
                     onChange={(e) => setClassLevel(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-200 rounded-lg font-dm-sans text-sm"
                   >
+                    <option value="">All Classes</option>
+                    <option value="Reception 1">Reception 1</option>
+                    <option value="Reception 2">Reception 2</option>
+                    <option value="Pre-K">Pre-K</option>
+                    <option value="Pre-K">Kindergarten</option>
+                    <option value="Pre-K">Primary 1</option>
+                    <option value="Pre-K">Primary 2</option>
+                    <option value="Pre-K">Primary 3</option>
+                    <option value="Pre-K">Primary 4</option>
+                    <option value="Pre-K">Primary 5</option>
+                    <option value="Pre-K">Primary 6</option>
                     <option value="JSS 1">JSS 1</option>
                     <option value="JSS 2">JSS 2</option>
                     <option value="JSS 3">JSS 3</option>
