@@ -30,7 +30,7 @@ export default function ScholarshipForm() {
   const [success,     setSuccess]     = useState("");
 
   const [form, setForm] = useState({
-    scholarshipName: "", description: "", sponsor: "", type: "Academic",
+    scholarshipName: "", scholarshipCode: "", description: "", sponsor: "", type: "Academic",
     discountType: "percentage", discountValue: "",
     applicableClasses: [], applicableSession: "",
     maxBeneficiaries: "", startDate: "", endDate: "",
@@ -48,6 +48,7 @@ export default function ScholarshipForm() {
         const toDateInput = (d) => d ? new Date(d).toISOString().slice(0, 10) : "";
         setForm({
           scholarshipName:         s.scholarshipName         ?? "",
+          scholarshipCode:         s.scholarshipCode         ?? "",
           description:             s.description             ?? "",
           sponsor:                 s.sponsor                 ?? "",
           type:                    s.type                    ?? "Academic",
@@ -158,6 +159,11 @@ export default function ScholarshipForm() {
                   <label className={labelClass}>Scholarship Name *</label>
                   <input type="text" value={form.scholarshipName} onChange={e => set("scholarshipName", e.target.value)}
                     placeholder="e.g. Academic Excellence Award" required className={inputClass} />
+                </div>
+                <div>
+                  <label className={labelClass}>Scholarship Code *</label>
+                  <input type="text" value={form.scholarshipCode} onChange={e => set("scholarshipCode", e.target.value.toUpperCase())}
+                    placeholder="e.g. ACAD-2025" required className={inputClass} />
                 </div>
                 <div>
                   <label className={labelClass}>Type *</label>

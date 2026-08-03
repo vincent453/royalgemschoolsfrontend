@@ -97,7 +97,7 @@ export default function StudentDashboard() {
 <header className="sticky top-0 z-40 bg-[#f056f0] h-[60px] flex items-center px-6 shadow-md">
 
   <h1 className="text-white font-bold text-lg mr-8">
-    Parent Portal
+    Student Portal
   </h1>
 
   <nav className="hidden md:flex gap-6 text-white text-sm">
@@ -112,6 +112,10 @@ export default function StudentDashboard() {
 
     <button onClick={() => navigate("/portal/fees")}>
       School Fees
+    </button>
+
+    <button onClick={() => navigate("/student/learning")}>
+      Learning
     </button>
 
     <button onClick={() => navigate("/portal/shop")}>

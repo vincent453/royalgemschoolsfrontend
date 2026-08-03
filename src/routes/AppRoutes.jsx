@@ -29,6 +29,18 @@ import ResultCard          from "../admin/pages/ResultCard";
 import UploadSubjectResult from "../admin/pages/UploadSubjectResult";
 import FinalizeResult      from "../admin/pages/FinalizeResult";
 import AddYearbookEntry    from "../admin/pages/AddYearBookEntry";
+import ScholarshipDashboard from "../admin/pages/ScholarshipDashboard";
+import ScholarshipList      from "../admin/pages/ScholarshipList";
+import ScholarshipForm      from "../admin/pages/ScholarshipForm";
+import ScholarshipDetails   from "../admin/pages/Scholarshipdetails";
+import AwardScholarship     from "../admin/pages/AwardScholarship";
+import Beneficiaries        from "../admin/pages/Beneficiaries";
+import ScholarshipReports   from "../admin/pages/ScholarshipReports";
+import StudentScholarshipProfile from "../admin/pages/StudentScholarshipProfile";
+import LearningDashboard from "../admin/pages/LearningDashboard";
+import LearningAssignments from "../admin/pages/LearningAssignments";
+import LearningResources from "../admin/pages/LearningResources";
+import StudentLearningPortal from "../admin/pages/StudentLearningPortal";
 
 // Teacher dashboard
 import TeacherDashboard from "../admin/pages/TeacherDashboard";
@@ -111,6 +123,8 @@ export default function AppRoutes() {
       ════════════════════════════════════════════ */}
       <Route path="/student/dashboard"
         element={<StudentPortalRoute><StudentDashboard /></StudentPortalRoute>} />
+      <Route path="/student/learning"
+        element={<StudentPortalRoute><StudentLearningPortal /></StudentPortalRoute>} />
 
       {/* ════════════════════════════════════════════
           PARENT PORTAL
@@ -174,6 +188,34 @@ export default function AppRoutes() {
         element={<AdminRoute><UploadSubjectResult /></AdminRoute>} />
       <Route path="/admin/finalizeresults"
         element={<AdminRoute><FinalizeResult /></AdminRoute>} />
+
+      {/* Scholarship module */}
+      <Route path="/admin/scholarships"
+        element={<AdminRoute><ScholarshipList /></AdminRoute>} />
+      <Route path="/admin/scholarships/dashboard"
+        element={<AdminRoute><ScholarshipDashboard /></AdminRoute>} />
+      <Route path="/admin/scholarships/new"
+        element={<AdminRoute><ScholarshipForm /></AdminRoute>} />
+      <Route path="/admin/scholarships/:id"
+        element={<AdminRoute><ScholarshipDetails /></AdminRoute>} />
+      <Route path="/admin/scholarships/:id/edit"
+        element={<AdminRoute><ScholarshipForm /></AdminRoute>} />
+      <Route path="/admin/scholarships/award"
+        element={<AdminRoute><AwardScholarship /></AdminRoute>} />
+      <Route path="/admin/scholarships/beneficiaries"
+        element={<AdminRoute><Beneficiaries /></AdminRoute>} />
+      <Route path="/admin/scholarships/reports"
+        element={<AdminRoute><ScholarshipReports /></AdminRoute>} />
+      <Route path="/admin/scholarships/student/:id"
+        element={<AdminRoute><StudentScholarshipProfile /></AdminRoute>} />
+
+      {/* Learning module */}
+      <Route path="/admin/learning"
+        element={<AdminRoute><LearningDashboard /></AdminRoute>} />
+      <Route path="/admin/learning/assignments"
+        element={<AdminRoute><LearningAssignments /></AdminRoute>} />
+      <Route path="/admin/learning/resources"
+        element={<AdminRoute><LearningResources /></AdminRoute>} />
 
       {/* Misc admin */}
       <Route path="/admin/generatepin"

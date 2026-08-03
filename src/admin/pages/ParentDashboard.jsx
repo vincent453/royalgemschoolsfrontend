@@ -108,6 +108,10 @@ export default function ParentDashboard() {
       School Fees
     </button>
 
+    <button onClick={() => navigate("/student/learning")}>
+      Learning
+    </button>
+
     <button onClick={() => navigate("/portal/shop")}>
       🛒 School Shop
     </button>

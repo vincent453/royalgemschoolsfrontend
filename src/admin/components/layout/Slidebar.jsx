@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import logo from "../../../assets/img/logo.png";
-import { href, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import useRole from "../../hooks/useRole";
 import {
   MdDashboard,
@@ -21,17 +21,13 @@ import {
   MdExpandLess,
   MdEventNote,
   MdInventory2,
-  MdAddBox,
   MdSwapHoriz,
   MdShoppingCart,
   MdWarning,
-  MdRemoveShoppingCart,
-  MdAssessment,
   MdShoppingBag,
   MdInventory,
   MdCategory,
 } from "react-icons/md";
-import { ClipboardList, Package, PlusCircle, ShoppingBag } from "lucide-react";
 
 // ─────────────────────────────────────────────────────────────
 // Nav structure
@@ -120,6 +116,29 @@ const adminNavItems = [
 },
 
 
+  {
+    id: "scholarships",
+    label: "Scholarships",
+    icon: <MdSchool />,
+    group: true,
+    children: [
+      { id: "scholarship-dashboard", label: "Dashboard", href: "/admin/scholarships/dashboard", icon: <MdDashboard /> },
+      { id: "scholarship-list", label: "Scholarship List", href: "/admin/scholarships", icon: <MdSchool /> },
+      { id: "scholarship-beneficiaries", label: "Beneficiaries", href: "/admin/scholarships/beneficiaries", icon: <MdGroup /> },
+      { id: "scholarship-reports", label: "Reports", href: "/admin/scholarships/reports", icon: <MdBarChart /> },
+    ],
+  },
+  {
+    id: "learning",
+    label: "Learning",
+    icon: <MdBook />,
+    group: true,
+    children: [
+      { id: "learning-dashboard", label: "Overview", href: "/admin/learning", icon: <MdDashboard /> },
+      { id: "learning-assignments", label: "Assignments", href: "/admin/learning/assignments", icon: <MdBook /> },
+      { id: "learning-resources", label: "Resources", href: "/admin/learning/resources", icon: <MdBook /> },
+    ],
+  },
   {
     id: "students",
     label: "Students",
@@ -245,11 +264,6 @@ const GroupItem = ({ item, onClose }) => {
   const location = useLocation();
   const isGroupActive = item.children.some((c) => location.pathname === c.href);
   const [open, setOpen] = useState(isGroupActive);
-
-  // Auto-open when navigating directly into a child route
-  useEffect(() => {
-    if (isGroupActive) setOpen(true);
-  }, [location.pathname]);
 
   return (
     <div>
