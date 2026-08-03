@@ -5,24 +5,23 @@ import Topbar from "../components/layout/Topbar";
 import { FaUser, FaCamera } from "react-icons/fa";
 
 const classes = [
-  { label: "All",           value: "all"            },
-  { label: "Reception 1",   value: "Reception 1"    },
-  { label: "Reception 2",   value: "Reception 2"    },
-  { label: "Pre-k",         value: "Pre-k"          },
-  { label: "Primary 1",     value: "Primary 1"      },
-  { label: "Primary 2",     value: "Primary 2"      },
-  { label: "Primary 3",     value: "Primary 3"      },
-  { label: "Primary 4",     value: "Primary 4"      },
-  { label: "Primary 5",     value: "Primary 5"      },
-  { label: "Primary 6",     value: "Primary 6"      },
-  { label: "JSS 1",         value: "JSS 1"        },
-  { label: "JSS 2",         value: "JSS 2"        },
-  { label: "JSS 3",         value: "JSS 3"        },
-  { label: "SSS 1",         value: "SSS 1"        },
-  { label: "SSS 2",         value: "SSS 2"        },
-  { label: "SSS 3",         value: "SSS 3"        },
-  
-]
+  { label: "All", value: "all" },
+  { label: "Reception 1", value: "Reception 1" },
+  { label: "Reception 2", value: "Reception 2" },
+  { label: "Pre-k", value: "Pre-k" },
+  { label: "Primary 1", value: "Primary 1" },
+  { label: "Primary 2", value: "Primary 2" },
+  { label: "Primary 3", value: "Primary 3" },
+  { label: "Primary 4", value: "Primary 4" },
+  { label: "Primary 5", value: "Primary 5" },
+  { label: "Primary 6", value: "Primary 6" },
+  { label: "JSS 1", value: "JSS 1" },
+  { label: "JSS 2", value: "JSS 2" },
+  { label: "JSS 3", value: "JSS 3" },
+  { label: "SSS 1", value: "SSS 1" },
+  { label: "SSS 2", value: "SSS 2" },
+  { label: "SSS 3", value: "SSS 3" },
+];
 const genders     = ["Male", "Female"];
 const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
@@ -44,6 +43,8 @@ const EditStudent = () => {
     address:     "",
     city:        "",
     grade:       "",
+    session:     "",
+    placeOfBirth: "",
     studentId:   "",
     parentName:  "",
     parentPhone: "",
@@ -73,13 +74,15 @@ const EditStudent = () => {
           firstName:   data.firstName   || "",
           lastName:    data.lastName    || "",
           email:       data.email       || "",
-          phone:       data.parentPhone || "",   // phone stored as parentPhone on model
+          phone:       data.parentPhone || "",
           dob:         data.dateOfBirth ? data.dateOfBirth.split("T")[0] : "",
           gender:      data.gender      || "",
           bloodGroup:  data.bloodGroup  || "",
           address:     data.address     || "",
           city:        data.city        || "",
           grade:       data.classLevel  || "",
+          session:     data.session     || "",
+          placeOfBirth: data.placeOfBirth || "",
           studentId:   data.regNumber   || "",
           parentName:  `${data.parentFirstName || ""} ${data.parentLastName || ""}`.trim(),
           parentPhone: data.parentPhone || "",
@@ -120,17 +123,20 @@ const EditStudent = () => {
       const token    = localStorage.getItem("token");
       const formData = new FormData();
 
-      formData.append("firstName",      form.firstName);
-      formData.append("lastName",       form.lastName);
-      formData.append("dateOfBirth",    form.dob);
-      formData.append("gender",         form.gender);
-      formData.append("address",        form.address);
-      formData.append("classLevel",     form.grade);
-      formData.append("regNumber",      form.studentId);
-      formData.append("parentFirstName", form.parentName.split(" ")[0] || form.parentName);
-      formData.append("parentLastName",  form.parentName.split(" ")[1] || "");
-      formData.append("parentPhone",    form.parentPhone);
-      formData.append("parentEmail",    form.parentEmail);
+      formData.append("firstName", form.firstName);
+      formData.append("lastName", form.lastName);
+      formData.append("dateOfBirth", form.dob);
+      formData.append("gender", form.gender);
+      formData.append("address", form.address);
+      formData.append("classLevel", form.grade);
+      formData.append("session", form.session);
+      formData.append("placeOfBirth", form.placeOfBirth);
+      formData.append("regNumber", form.studentId);
+      const parentParts = (form.parentName || "").trim().split(/\s+/);
+      formData.append("parentFirstName", parentParts[0] || "");
+      formData.append("parentLastName", parentParts.slice(1).join(" ")); 
+      formData.append("parentPhone", form.parentPhone || form.phone);
+      formData.append("parentEmail", form.parentEmail || form.email);
 
       if (photo instanceof File) {
         formData.append("profilePhoto", photo);
@@ -316,6 +322,11 @@ const EditStudent = () => {
                       placeholder="student@email.com" className={inputClass} />
                   </div>
                   <div>
+                    <label className={labelClass}>Place of Birth</label>
+                    <input name="placeOfBirth" value={form.placeOfBirth} onChange={handleChange}
+                      placeholder="Place of birth" className={inputClass} />
+                  </div>
+                  <div>
                     <label className={labelClass}>City</label>
                     <input name="city" value={form.city} onChange={handleChange}
                       placeholder="City" className={inputClass} />
@@ -346,8 +357,15 @@ const EditStudent = () => {
                   <select name="grade" value={form.grade} onChange={handleChange}
                     className={inputClass} required>
                     <option value="">Select Class</option>
-                    {classes.map((c) => <option key={c}>{c}</option>)}
+                    {classes.map((c) => (
+                      <option key={c.value} value={c.value}>{c.label}</option>
+                    ))}
                   </select>
+                </div>
+                <div>
+                  <label className={labelClass}>Session</label>
+                  <input name="session" value={form.session} onChange={handleChange}
+                    placeholder="2024/2025" className={inputClass} />
                 </div>
               </div>
             </div>

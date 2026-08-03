@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import Slidebar from "../components/layout/Slidebar";
+import Topbar from "../components/layout/Topbar";
 
 const API = "https://royalgemschoolsbackend.vercel.app";
 
 export default function LearningAssignments() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [assignments, setAssignments] = useState([]);
   const [form, setForm] = useState({
     title: "",
@@ -48,40 +51,54 @@ export default function LearningAssignments() {
   };
 
   return (
-    <div className="p-6 space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-800">Assignments</h1>
-        <p className="text-sm text-gray-500">Create and manage class assignments for students.</p>
+    <div className="flex h-screen bg-[#E6EBEE] overflow-hidden">
+      <div className="sticky top-0 z-50 w-full">
+        <Topbar onMenuToggle={() => setSidebarOpen((p) => !p)} />
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-sm p-5 space-y-4">
-        <div className="grid md:grid-cols-2 gap-4">
-          <input className="border rounded-xl p-3" placeholder="Assignment title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} required />
-          <input className="border rounded-xl p-3" placeholder="Subject" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} required />
-          <input className="border rounded-xl p-3" placeholder="Class level" value={form.classLevel} onChange={(e) => setForm({ ...form, classLevel: e.target.value })} required />
-          <input type="number" className="border rounded-xl p-3" placeholder="Total marks" value={form.totalMarks} onChange={(e) => setForm({ ...form, totalMarks: Number(e.target.value) })} />
-          <input type="date" className="border rounded-xl p-3" value={form.dueDate} onChange={(e) => setForm({ ...form, dueDate: e.target.value })} required />
-          <input className="border rounded-xl p-3" placeholder="Session" value={form.session} onChange={(e) => setForm({ ...form, session: e.target.value })} />
+      <div className="flex flex-1 overflow-hidden">
+        <div className="-mt-16">
+          <Slidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         </div>
-        <textarea className="border rounded-xl p-3 w-full" rows="3" placeholder="Assignment description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
-        <button className="px-4 py-2 rounded-xl bg-[#f056f0] text-white text-sm font-semibold">Create Assignment</button>
-      </form>
 
-      <div className="bg-white rounded-2xl shadow-sm p-5">
-        <h2 className="font-semibold text-gray-800 mb-4">Existing Assignments</h2>
-        {loading ? <p className="text-sm text-gray-500">Loading…</p> : (
-          <div className="space-y-3">
-            {assignments.map((item) => (
-              <div key={item._id} className="flex items-center justify-between border rounded-xl p-3">
-                <div>
-                  <p className="font-semibold text-sm text-gray-700">{item.title}</p>
-                  <p className="text-xs text-gray-400">{item.subject} • {item.classLevel} • Due {new Date(item.dueDate).toLocaleDateString()}</p>
-                </div>
-                <span className="text-xs text-gray-500">{item.totalMarks} marks</span>
+        <main className="flex-1 overflow-y-auto p-6">
+          <div className="space-y-6 max-w-6xl mx-auto">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-800">Assignments</h1>
+              <p className="text-sm text-gray-500">Create and manage class assignments for students.</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-sm p-5 space-y-4">
+              <div className="grid md:grid-cols-2 gap-4">
+                <input className="border rounded-xl p-3" placeholder="Assignment title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} required />
+                <input className="border rounded-xl p-3" placeholder="Subject" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} required />
+                <input className="border rounded-xl p-3" placeholder="Class level" value={form.classLevel} onChange={(e) => setForm({ ...form, classLevel: e.target.value })} required />
+                <input type="number" className="border rounded-xl p-3" placeholder="Total marks" value={form.totalMarks} onChange={(e) => setForm({ ...form, totalMarks: Number(e.target.value) })} />
+                <input type="date" className="border rounded-xl p-3" value={form.dueDate} onChange={(e) => setForm({ ...form, dueDate: e.target.value })} required />
+                <input className="border rounded-xl p-3" placeholder="Session" value={form.session} onChange={(e) => setForm({ ...form, session: e.target.value })} />
               </div>
-            ))}
+              <textarea className="border rounded-xl p-3 w-full" rows="3" placeholder="Assignment description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
+              <button className="px-4 py-2 rounded-xl bg-[#f056f0] text-white text-sm font-semibold">Create Assignment</button>
+            </form>
+
+            <div className="bg-white rounded-2xl shadow-sm p-5">
+              <h2 className="font-semibold text-gray-800 mb-4">Existing Assignments</h2>
+              {loading ? <p className="text-sm text-gray-500">Loading…</p> : (
+                <div className="space-y-3">
+                  {assignments.map((item) => (
+                    <div key={item._id} className="flex items-center justify-between border rounded-xl p-3">
+                      <div>
+                        <p className="font-semibold text-sm text-gray-700">{item.title}</p>
+                        <p className="text-xs text-gray-400">{item.subject} • {item.classLevel} • Due {new Date(item.dueDate).toLocaleDateString()}</p>
+                      </div>
+                      <span className="text-xs text-gray-500">{item.totalMarks} marks</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
-        )}
+        </main>
       </div>
     </div>
   );
