@@ -133,8 +133,8 @@ export default function TeacherDashboard() {
           <div className="max-w-6xl mx-auto p-6 flex flex-col gap-6">
 
             {/* ── Welcome Banner ── */}
-            <div className="bg-gradient-to-r from-[#f056f0] to-[#525fe1] rounded-2xl p-6 text-white">
-              <div className="flex items-center justify-between">
+            <div className="rounded-[28px] bg-gradient-to-r from-[#f056f0] via-[#8b5cf6] to-[#525fe1] p-6 text-white shadow-sm">
+              <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
                 <div>
                   <p className="font-dm-sans text-white/70 text-sm">Welcome back</p>
                   <h1 className="font-jost font-bold text-2xl mt-0.5">Teacher Portal</h1>
@@ -149,12 +149,15 @@ export default function TeacherDashboard() {
                       : "No class assigned yet"}
                   </p>
                 </div>
-                <div className="hidden md:flex flex-col items-end gap-2">
-                  {myClasses.map(c => (
-                    <span key={c} className="px-3 py-1.5 bg-white/20 rounded-full text-xs font-dm-sans font-bold">
-                      {c}
-                    </span>
-                  ))}
+                <div className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 backdrop-blur-sm">
+                  <p className="text-xs uppercase tracking-[0.25em] text-white/70">Today</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {myClasses.length > 0 ? myClasses.slice(0, 3).map(c => (
+                      <span key={c} className="px-3 py-1.5 bg-white/20 rounded-full text-xs font-dm-sans font-bold">
+                        {c}
+                      </span>
+                    )) : <span className="px-3 py-1.5 bg-white/20 rounded-full text-xs font-dm-sans font-bold">No class assigned</span>}
+                  </div>
                 </div>
               </div>
             </div>
