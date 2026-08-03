@@ -5,7 +5,7 @@ import { FaPlus, FaTrash } from "react-icons/fa";
 
 const API = import.meta.env.VITE_API_URL ?? "https://royalgemschoolsbackend.vercel.app";
 
-const classes = ['All Classes', 'Reception 1', 'Reception 2', 'Pre-k', 'Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5', 'Primary 6', 'JSS 1', 'JSS 2', 'JSS 3', 'SSS 1', 'SSS 2', 'SSS 3']
+const classes = ['All Classes', 'Reception 1', 'Reception 2', 'Kindergarten', 'Pre-k', 'Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5', 'Primary 6', 'JSS 1', 'JSS 2', 'JSS 3', 'SSS 1', 'SSS 2', 'SSS 3']
 const terms       = ["1st Term","2nd Term","3rd Term"];
 const sessions    = ["2023/2024","2024/2025","2025/2026", "2026/2027 "];
 const sortOptions = [

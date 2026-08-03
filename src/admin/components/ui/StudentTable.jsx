@@ -6,6 +6,7 @@ const classSegments = [
   { label: "All",           value: "all"            },
   { label: "Reception 1",   value: "Reception 1"    },
   { label: "Reception 2",   value: "Reception 2"    },
+  { label: "Kindergarten",  value: "Kindergarten"   },
   { label: "Pre-k",         value: "Pre-k"          },
   { label: "Primary 1",     value: "Primary 1"      },
   { label: "Primary 2",     value: "Primary 2"      },
