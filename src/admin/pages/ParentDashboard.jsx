@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FiBookOpen, FiCreditCard, FiShoppingBag, FiClipboard } from "react-icons/fi";
 import SchoolFees from "./SchoolFees";
 import ReceiptHistory from "../../pages/accounting/Receipthistory";
@@ -8,6 +8,7 @@ const API = "https://royalgemschoolsbackend.vercel.app";
 
 export default function ParentDashboard() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [student, setStudent] = useState(null);
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -62,11 +63,29 @@ export default function ParentDashboard() {
     fetchData();
   }, [navigate]);
 
+  useEffect(() => {
+    const hash = location.hash.replace("#", "");
+    if (!hash) return;
+
+    const timer = window.setTimeout(() => {
+      const el = document.getElementById(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 80);
+
+    return () => window.clearTimeout(timer);
+  }, [location.hash]);
+
   const handleLogout = () => {
     localStorage.removeItem("portalToken");
     localStorage.removeItem("portalRole");
     localStorage.removeItem("portalStudent");
     navigate("/portal");
+  };
+
+  const navigateToSection = (hash) => {
+    navigate(hash ? `/parent/dashboard${hash}` : "/parent/dashboard");
   };
 
   const statusColor = (s) =>
@@ -100,16 +119,16 @@ export default function ParentDashboard() {
 
           <nav className="hidden flex-1 items-center justify-center gap-2 md:flex">
             {[
-              { label: "Dashboard", path: "/portal/dashboard" },
-              { label: "Results", path: "/portal/results" },
-              { label: "School Fees", path: "/portal/fees" },
-              { label: "Learning", path: "/student/learning" },
-              { label: "School Shop", path: "/portal/shop" },
-              { label: "My Orders", path: "/portal/shop/orders" },
+              { label: "Dashboard", path: "/parent/dashboard", hash: "" },
+              { label: "Results", path: "/parent/dashboard", hash: "#results" },
+              { label: "School Fees", path: "/parent/dashboard", hash: "#fees" },
+              { label: "Learning", path: "/student/learning", hash: "" },
+              { label: "School Shop", path: "/portal/shop", hash: "" },
+              { label: "My Orders", path: "/portal/shop/orders", hash: "" },
             ].map((item) => (
               <button
                 key={item.label}
-                onClick={() => navigate(item.path)}
+                onClick={() => (item.path === "/parent/dashboard" ? navigateToSection(item.hash) : navigate(item.path))}
                 className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-white/20"
               >
                 {item.label}
@@ -184,7 +203,9 @@ export default function ParentDashboard() {
 
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-6">
-            <SchoolFees />
+            <div id="fees" className="scroll-mt-24">
+              <SchoolFees />
+            </div>
             <ReceiptHistory />
           </div>
 
@@ -220,7 +241,7 @@ export default function ParentDashboard() {
         </div>
 
         {/* ── Results ── */}
-        <div className="bg-white rounded-2xl shadow-sm p-6">
+        <div id="results" className="bg-white rounded-2xl shadow-sm p-6 scroll-mt-24">
           <h3 className="font-jost font-bold text-gray-800 text-lg mb-4 border-b border-gray-100 pb-3">
             Academic Results
           </h3>

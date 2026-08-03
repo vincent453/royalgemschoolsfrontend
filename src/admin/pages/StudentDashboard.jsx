@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import SchoolFees from "./SchoolFees";
 import ReceiptHistory from "../../pages/accounting/Receipthistory";
 
@@ -7,24 +7,27 @@ const API = "https://royalgemschoolsbackend.vercel.app";
 
 export default function StudentDashboard() {
   const navigate = useNavigate();
-  const [student, setStudent] = useState(null);
+  const location = useLocation();
+  const [student, setStudent] = useState(() => {
+    if (typeof window === "undefined") return null;
+    const cached = localStorage.getItem("portalStudent");
+    if (!cached) return null;
+
+    try {
+      return JSON.parse(cached);
+    } catch {
+      return null;
+    }
+  });
   const [results, setResults] = useState([]);
-  const [fees, setFees] = useState([]);
-  const [feeLoading, setFeeLoading] = useState(true);
-  const [feeError, setFeeError] = useState("");
   const [loading, setLoading] = useState(true);
-  const [error,   setError]   = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("portalToken");
     const role  = localStorage.getItem("portalRole");
 
     if (!token || role !== "student") { navigate("/portal"); return; }
-
-    const cached = localStorage.getItem("portalStudent");
-    if (cached) {
-      try { setStudent(JSON.parse(cached)); } catch {}
-    }
 
     const fetchData = async () => {
       try {
@@ -56,11 +59,29 @@ export default function StudentDashboard() {
     fetchData();
   }, [navigate]);
 
+  useEffect(() => {
+    const hash = location.hash.replace("#", "");
+    if (!hash) return;
+
+    const timer = window.setTimeout(() => {
+      const el = document.getElementById(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 80);
+
+    return () => window.clearTimeout(timer);
+  }, [location.hash]);
+
   const handleLogout = () => {
     localStorage.removeItem("portalToken");
     localStorage.removeItem("portalRole");
     localStorage.removeItem("portalStudent");
     navigate("/portal");
+  };
+
+  const navigateToSection = (hash) => {
+    navigate(hash ? `/student/dashboard${hash}` : "/student/dashboard");
   };
 
   const gradeColor = (avg) => {
@@ -102,15 +123,15 @@ export default function StudentDashboard() {
 
   <nav className="hidden md:flex gap-6 text-white text-sm">
 
-    <button onClick={() => navigate("/portal/dashboard")}>
+    <button onClick={() => navigateToSection("")}>
       Dashboard
     </button>
 
-    <button onClick={() => navigate("/portal/results")}>
+    <button onClick={() => navigateToSection("#results")}>
       Results
     </button>
 
-    <button onClick={() => navigate("/portal/fees")}>
+    <button onClick={() => navigateToSection("#fees")}>
       School Fees
     </button>
 
@@ -199,13 +220,15 @@ export default function StudentDashboard() {
         )}
 
         {/* ── School Fees ── */}
-        <SchoolFees />
+        <div id="fees" className="scroll-mt-24">
+          <SchoolFees />
+        </div>
 
         {/* ── Receipt History ── */}
         <ReceiptHistory />
 
         {/* ── Results ── */}
-        <div className="bg-white rounded-2xl shadow-sm p-6">
+        <div id="results" className="bg-white rounded-2xl shadow-sm p-6 scroll-mt-24">
           <h3 className="font-jost font-bold text-gray-800 text-lg mb-4 border-b border-gray-100 pb-3">
             My Results
           </h3>
