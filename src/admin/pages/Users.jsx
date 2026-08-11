@@ -15,7 +15,7 @@ const avatarColors = [
   'bg-purple-200 text-purple-800',
   'bg-blue-200 text-blue-800',
   'bg-green-200 text-green-800',
-  'bg-orange-200 text-orange-800',
+  'bg-orange-200 text-orange-800', 
   'bg-pink-200 text-pink-800',
   'bg-teal-200 text-teal-800',
   'bg-indigo-200 text-indigo-800',
@@ -182,7 +182,7 @@ const Users = () => {
 
             {/* ── Users Table ── */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-
+ 
               <div className="hidden md:grid grid-cols-[2fr_2fr_1.2fr_1fr_1fr_auto] gap-4 px-6 py-3 bg-gray-50 border-b border-gray-100">
                 {['Name', 'Email', 'Role', 'Status', 'Joined', ''].map((h, i) => (
                   <span key={i} className="font-dm-sans text-xs text-gray-400 font-semibold uppercase tracking-wide">
