@@ -96,6 +96,9 @@ import MyOrders from "../admin/pages/MyOrders";
 import ShopCategories from "../admin/pages/ShopCategories";
 import ShopCustomers from "../admin/pages/ShopCustomers";
 import SalesReport from "../admin/pages/SalesReport";
+import TeacherAssignments from "../admin/pages/TeacherAssignments";
+import TeacherSubmissions from "../admin/pages/TeacherSubmissions";
+import TeacherResources from "../admin/pages/TeacherResources";
 
 
 
@@ -242,6 +245,12 @@ export default function AppRoutes() {
         element={<TeacherRoute><UploadSubjectResult /></TeacherRoute>} />
       <Route path="/teacher/finalize-result"
         element={<TeacherRoute><FinalizeResult /></TeacherRoute>} />
+      <Route path="/teacher/lms/assignments"
+        element={<TeacherRoute><TeacherAssignments /></TeacherRoute>} />
+      <Route path="/teacher/lms/submissions/:id"
+        element={<TeacherRoute><TeacherSubmissions /></TeacherRoute>} />
+      <Route path="/teacher/lms/resources"
+        element={<TeacherRoute><TeacherResources /></TeacherRoute>} />
 
       {/* ════════════════════════════════════════════
           ACCOUNTING

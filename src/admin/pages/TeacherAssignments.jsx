@@ -4,8 +4,8 @@ import {
   FaPlus, FaEdit, FaTrash, FaEye, FaUsers,
   FaPaperclip, FaTimes, FaSave, FaBookOpen,
 } from "react-icons/fa";
-import Slidebar from "../../admin/components/layout/Slidebar";
-import Topbar   from "../../admin/components/layout/Topbar";
+import Slidebar from "../components/layout/Slidebar";
+import Topbar   from "../components/layout/Topbar";
 import {
   getAssignments, createAssignment, updateAssignment, deleteAssignment,
 } from "../../services/lmsApi";

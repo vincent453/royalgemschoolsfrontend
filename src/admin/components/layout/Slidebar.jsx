@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "../../../assets/img/logo.png";
 import { NavLink, useLocation } from "react-router-dom";
 import useRole from "../../hooks/useRole";
@@ -19,14 +19,9 @@ import {
   MdBook,
   MdExpandMore,
   MdExpandLess,
-  MdEventNote,
-  MdInventory2,
-  MdSwapHoriz,
-  MdShoppingCart,
-  MdWarning,
-  MdShoppingBag,
-  MdInventory,
-  MdCategory,
+  MdCastForEducation,
+  MdAssignment,
+  MdLibraryBooks,
 } from "react-icons/md";
 
 // ─────────────────────────────────────────────────────────────
@@ -52,91 +47,6 @@ const adminNavItems = [
       { id: "acc-expenses",  label: "Expenses",        href: "/admin/accounting/expenses", icon: <MdReceipt />   },
       { id: "acc-ledger",    label: "Ledger",          href: "/admin/accounting/ledger",   icon: <MdBook />      },
       { id: "acc-fees",      label: "Fees & Billing",  href: "/admin/fees",                icon: <MdPin />       },
-      { id: "acc-receipts",  label: "Receipts",        href: "/admin/receipts",            icon: <MdReceipt />   },
-    ],
-  },
-{
-  id: "inventory",
-  label: "Inventory",
-  href: "/admin/inventory",
-  icon: <MdInventory2 />,
-  group: true,
-  children: [
-    {
-      id: "inventory-dashboard",
-      label: "Dashboard",
-      href: "/admin/inventory",
-      icon: <MdDashboard />,
-    },
-    {
-      id: "inventory-items",
-      label: "Inventory Items",
-      href: "/admin/inventory/items",
-      icon: <MdInventory2 />,
-    },
-    {
-      id: "inventory-movements",
-      label: "Stock Movements",
-      href: "/admin/inventory/stock-movement",
-      icon: <MdSwapHoriz />,
-    },
-    {
-      id: "inventory-purchases",
-      label: "Purchases",
-      href: "/admin/inventory/purchases",
-      icon: <MdShoppingCart />,
-    },
-    {
-      id: "inventory-suppliers",
-      label: "Suppliers",
-      href: "/admin/inventory/suppliers",
-      icon: <MdPeople />,
-    },
-    {
-      id: "inventory-low-stock",
-      label: "Low Stock",
-      href: "/admin/inventory/low-stock",
-      icon: <MdWarning />,
-    }
-  ],
-},
-{
-  id: "shop",
-  label: "Online Shop",
-  icon: <MdShoppingBag />,
-  group: true,
-  children: [
-    { id: "shop-dash",       label: "Dashboard",    href: "/admin/shop",             icon: <MdDashboard />   },
-    { id: "shop-products",   label: "Products",     href: "/admin/shop/products",    icon: <MdInventory />   },
-    { id: "shop-orders",     label: "Orders",       href: "/admin/shop/orders",      icon: <MdShoppingCart />},
-    { id: "shop-categories", label: "Categories",   href: "/admin/shop/categories",  icon: <MdCategory />    },
-    { id: "shop-customers",  label: "Customers",    href: "/admin/shop/customers",   icon: <MdPeople />      },
-    { id: "shop-report",     label: "Sales Report", href: "/admin/shop/report",      icon: <MdBarChart />    },
-  ],
-},
-
-
-  {
-    id: "scholarships",
-    label: "Scholarships",
-    icon: <MdSchool />,
-    group: true,
-    children: [
-      { id: "scholarship-dashboard", label: "Dashboard", href: "/admin/scholarships/dashboard", icon: <MdDashboard /> },
-      { id: "scholarship-list", label: "Scholarship List", href: "/admin/scholarships", icon: <MdSchool /> },
-      { id: "scholarship-beneficiaries", label: "Beneficiaries", href: "/admin/scholarships/beneficiaries", icon: <MdGroup /> },
-      { id: "scholarship-reports", label: "Reports", href: "/admin/scholarships/reports", icon: <MdBarChart /> },
-    ],
-  },
-  {
-    id: "learning",
-    label: "Learning",
-    icon: <MdBook />,
-    group: true,
-    children: [
-      { id: "learning-dashboard", label: "Overview", href: "/admin/learning", icon: <MdDashboard /> },
-      { id: "learning-assignments", label: "Assignments", href: "/admin/learning/assignments", icon: <MdBook /> },
-      { id: "learning-resources", label: "Resources", href: "/admin/learning/resources", icon: <MdBook /> },
     ],
   },
   {
@@ -154,18 +64,6 @@ const adminNavItems = [
       { id: "results-view",     label: "View Results",          href: "/admin/results",             icon: <MdBarChart />    },
       { id: "results-upload",   label: "Upload Subject Scores",  href: "/admin/uploadsubjectresult", icon: <MdUpload />      },
       { id: "results-finalize", label: "Finalize Results",       href: "/admin/finalizeresults",     icon: <MdCheckCircle /> },
-    ],
-  },
-  {
-    id: "attendance",
-    label: "Attendance",
-    icon: <MdEventNote />,
-    group: true,
-    children: [
-      { id: "attendance-dashboard", label: "Dashboard",         href: "/admin/attendance",        icon: <MdBarChart />    },
-      { id: "attendance-mark",      label: "Mark Attendance",   href: "/admin/attendance/mark",   icon: <MdCheckCircle /> },
-      { id: "attendance-report",    label: "Reports",           href: "/admin/attendance/report", icon: <MdBook />        },
-      { id: "attendance-student",   label: "Student History",   href: "/admin/attendance/student",icon: <MdSchool />      },
     ],
   },
   {
@@ -189,6 +87,16 @@ const adminNavItems = [
     ],
   },
   {
+    id: "lms",
+    label: "Learning (LMS)",
+    icon: <MdCastForEducation />,
+    group: true,
+    children: [
+      { id: "lms-assignments", label: "Assignments",        href: "/teacher/lms/assignments", icon: <MdAssignment />      },
+      { id: "lms-resources",   label: "Learning Resources", href: "/teacher/lms/resources",   icon: <MdLibraryBooks />    },
+    ],
+  },
+  {
     id: "settings",
     label: "Settings",
     href: "/admin/settings",
@@ -198,10 +106,12 @@ const adminNavItems = [
 
 // ── Subject teacher — can only upload scores ──
 const subjectTeacherNavItems = [
-  { id: "dashboard", label: "Dashboard",             href: "/teacher/dashboard",             icon: <MdDashboard /> },
-  { id: "students",  label: "Students",              href: "/teacher/students",              icon: <MdSchool />    },
-  { id: "upload",    label: "Upload Subject Scores",  href: "/teacher/upload-subject-result", icon: <MdUpload />   },
-  { id: "results",   label: "Results",                href: "/teacher/results",               icon: <MdBarChart /> },
+  { id: "dashboard", label: "Dashboard",             href: "/teacher/dashboard",             icon: <MdDashboard />       },
+  { id: "students",  label: "Students",              href: "/teacher/students",              icon: <MdSchool />          },
+  { id: "upload",    label: "Upload Subject Scores",  href: "/teacher/upload-subject-result", icon: <MdUpload />         },
+  { id: "results",   label: "Results",                href: "/teacher/results",               icon: <MdBarChart />       },
+  { id: "lms-a",     label: "Assignments",            href: "/teacher/lms/assignments",       icon: <MdAssignment />     },
+  { id: "lms-r",     label: "Learning Resources",     href: "/teacher/lms/resources",         icon: <MdLibraryBooks />   },
 ];
 
 // ── Class teacher — can finalize results ──
@@ -210,6 +120,8 @@ const classTeacherNavItems = [
   { id: "students",  label: "Students",         href: "/teacher/students",        icon: <MdSchool />     },
   { id: "finalize",  label: "Finalize Results", href: "/teacher/finalize-result", icon: <MdCheckCircle />},
   { id: "results",   label: "Results",          href: "/teacher/results",         icon: <MdBarChart />   },
+  { id: "lms-a",     label: "Assignments",      href: "/teacher/lms/assignments", icon: <MdAssignment /> },
+  { id: "lms-r",     label: "Learning Resources",href: "/teacher/lms/resources",  icon: <MdLibraryBooks />},
 ];
 
 // ── General teacher — legacy / upload old flow ──
@@ -238,6 +150,16 @@ const teacherNavItems = [
       { id: "results-finalize", label: "Finalize Results",      href: "/teacher/finalize-result",       icon: <MdCheckCircle /> },
     ],
   },
+  {
+    id: "lms",
+    label: "Learning (LMS)",
+    icon: <MdCastForEducation />,
+    group: true,
+    children: [
+      { id: "lms-assignments", label: "Assignments",        href: "/teacher/lms/assignments", icon: <MdAssignment />   },
+      { id: "lms-resources",   label: "Learning Resources", href: "/teacher/lms/resources",   icon: <MdLibraryBooks /> },
+    ],
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────
@@ -264,6 +186,11 @@ const GroupItem = ({ item, onClose }) => {
   const location = useLocation();
   const isGroupActive = item.children.some((c) => location.pathname === c.href);
   const [open, setOpen] = useState(isGroupActive);
+
+  // Auto-open when navigating directly into a child route
+  useEffect(() => {
+    if (isGroupActive) setOpen(true);
+  }, [location.pathname]);
 
   return (
     <div>
@@ -339,8 +266,8 @@ const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
       {/* Sidebar */}
       <aside
         className={`
-          fixed md:static top-0 left-0 z-50
-          w-[240px] h-full bg-white border-r border-gray-100
+          fixed md:static top-0 mt-[3.5rem] left-0 z-50
+          w-[240px] min-h-screen bg-white border-r border-gray-100
           flex flex-col transition-transform duration-300 ease-in-out
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0
