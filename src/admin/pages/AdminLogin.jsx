@@ -50,7 +50,7 @@ const AdminLogin =  () => {
       localStorage.setItem("token", data.token);
 
       const teacherRoles = ["teacher", "subject_teacher", "class_teacher"];
-      if (data.role === "admin") {
+      if (data.role === "admin" || data.role === "super_admin") {
         navigate("/admin/dashboard");
       } else if (teacherRoles.includes(data.role)) {
         navigate("/teacher/dashboard");
