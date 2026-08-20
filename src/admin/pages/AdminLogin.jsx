@@ -6,6 +6,10 @@ import loginbanner from '../../assets/img/learner.jpeg'
 
 const API = "https://royalgemschoolsbackend.vercel.app";
 
+// Keep this in sync with STAFF_ROLES in authController.js
+const ADMIN_ROLES   = ["super_admin", "admin"];
+const TEACHER_ROLES = ["teacher", "subject_teacher", "class_teacher"];
+
 const AdminLogin =  () => {
   const [showPassword, setShowPassword] = useState(false)
   const [form, setForm]                 = useState({ email: '', password: '' })
@@ -19,8 +23,7 @@ const AdminLogin =  () => {
     if (!token) return;
     try {
       const { role } = JSON.parse(atob(token.split(".")[1]));
-      const teacherRoles = ["teacher", "subject_teacher", "class_teacher"];
-      navigate(teacherRoles.includes(role) ? "/teacher/dashboard" : "/admin/dashboard");
+      navigate(TEACHER_ROLES.includes(role) ? "/teacher/dashboard" : "/admin/dashboard");
     } catch {
       localStorage.removeItem("token");
     }
@@ -49,10 +52,9 @@ const AdminLogin =  () => {
       // Save token and redirect based on role returned by the server
       localStorage.setItem("token", data.token);
 
-      const teacherRoles = ["teacher", "subject_teacher", "class_teacher"];
-      if (data.role === "admin") {
+      if (ADMIN_ROLES.includes(data.role)) {
         navigate("/admin/dashboard");
-      } else if (teacherRoles.includes(data.role)) {
+      } else if (TEACHER_ROLES.includes(data.role)) {
         navigate("/teacher/dashboard");
       } else {
         setError("Access denied. Staff portal only.");
