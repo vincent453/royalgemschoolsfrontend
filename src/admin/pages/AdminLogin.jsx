@@ -6,9 +6,11 @@ import loginbanner from '../../assets/img/learner.jpeg'
 
 const API = "https://royalgemschoolsbackend.vercel.app";
 
-// Keep this in sync with STAFF_ROLES in authController.js
-const ADMIN_ROLES   = ["super_admin", "admin"];
-const TEACHER_ROLES = ["teacher", "subject_teacher", "class_teacher"];
+// Keep these in sync with authMiddleware.js (ROLES / STAFF_ROLES / TEACHER_ROLES).
+// admin, accountant, and inventory_manager all land on the staff/admin panel;
+// teaching roles get their own dashboard.
+const ADMIN_PANEL_ROLES = ["super_admin", "admin", "accountant", "inventory_manager"];
+const TEACHER_ROLES     = ["teacher", "subject_teacher", "class_teacher"];
 
 const AdminLogin =  () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -52,7 +54,7 @@ const AdminLogin =  () => {
       // Save token and redirect based on role returned by the server
       localStorage.setItem("token", data.token);
 
-      if (ADMIN_ROLES.includes(data.role)) {
+      if (ADMIN_PANEL_ROLES.includes(data.role)) {
         navigate("/admin/dashboard");
       } else if (TEACHER_ROLES.includes(data.role)) {
         navigate("/teacher/dashboard");
