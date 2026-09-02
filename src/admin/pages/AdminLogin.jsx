@@ -51,12 +51,13 @@ const AdminLogin =  () => {
         return;
       }
 
-      // Save token and redirect based on role returned by the server
       localStorage.setItem("token", data.token);
+      const returnedRole = data.role || data.user?.role || data.admin?.role;
+      const resolvedRole = data.isSuperAdmin || data.admin ? "super_admin" : returnedRole;
 
-      if (ADMIN_PANEL_ROLES.includes(data.role)) {
+      if (ADMIN_PANEL_ROLES.includes(resolvedRole)) {
         navigate("/admin/dashboard");
-      } else if (TEACHER_ROLES.includes(data.role)) {
+      } else if (TEACHER_ROLES.includes(resolvedRole)) {
         navigate("/teacher/dashboard");
       } else {
         setError("Access denied. Staff portal only.");
