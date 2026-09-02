@@ -1,108 +1,84 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-const API = "https://royalgemschoolsbackend.vercel.app";
+import { FaBookOpen, FaTasks, FaNewspaper, FaArrowRight } from "react-icons/fa";
 
 export default function StudentLearningPortal() {
   const navigate = useNavigate();
-  const [assignments, setAssignments] = useState([]);
-  const [resources, setResources] = useState([]);
-  const [submissions, setSubmissions] = useState([]);
-  const [studentId, setStudentId] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("portalToken");
-    if (!token) {
+    const role = localStorage.getItem("portalRole");
+
+    if (!token || role !== "student") {
       navigate("/portal");
-      return;
     }
-
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    setStudentId(payload.studentId);
-
-    Promise.all([
-      fetch(`${API}/api/learning/assignments?studentId=${payload.studentId}`),
-      fetch(`${API}/api/learning/resources?classLevel=JSS1`),
-      fetch(`${API}/api/learning/submissions?studentId=${payload.studentId}`),
-    ])
-      .then(async ([assignRes, resourceRes, subRes]) => {
-        const [assignData, resourceData, subData] = await Promise.all([assignRes.json(), resourceRes.json(), subRes.json()]);
-        setAssignments(Array.isArray(assignData) ? assignData : []);
-        setResources(Array.isArray(resourceData) ? resourceData : []);
-        setSubmissions(Array.isArray(subData) ? subData : []);
-      })
-      .finally(() => setLoading(false));
   }, [navigate]);
 
-  const submitAssignment = async (assignmentId) => {
-    const token = localStorage.getItem("portalToken");
-    const response = await fetch(`${API}/api/learning/submissions`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ assignment: assignmentId, student: studentId, content: "Submitted via portal", status: "Submitted" }),
-    });
-    if (response.ok) {
-      const data = await response.json();
-      setSubmissions((prev) => [data, ...prev]);
-    }
-  };
-
-  if (loading) return <div className="p-6 text-sm text-gray-500">Loading your learning workspace…</div>;
+  const cards = [
+    {
+      title: "My Assignments",
+      description: "View class work, due dates, submissions, and feedback.",
+      icon: <FaTasks className="text-2xl text-[#f056f0]" />,
+      action: "/student/assignments",
+      accent: "from-[#f056f0]/10 to-[#525fe1]/10",
+    },
+    {
+      title: "Learning Resources",
+      description: "Browse study material by class and category.",
+      icon: <FaBookOpen className="text-2xl text-[#525fe1]" />,
+      action: "/student/resources",
+      accent: "from-[#525fe1]/10 to-[#4ecdc4]/10",
+    },
+  ];
 
   return (
-    <div className="p-6 space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-800">My Learning</h1>
-        <p className="text-sm text-gray-500">Assignments, submissions, and resources for your class.</p>
-      </div>
+    <div className="min-h-screen bg-[#E6EBEE]">
+      <header className="sticky top-0 z-40 bg-[#f056f0] h-[60px] flex items-center px-6 shadow-md">
+        <button onClick={() => navigate("/student/dashboard")} className="text-white/80 hover:text-white transition-colors">
+          <FaArrowRight className="rotate-180" />
+        </button>
+        <h1 className="text-white font-bold text-lg flex-1 ml-3">My Learning</h1>
+      </header>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-white rounded-2xl shadow-sm p-5">
-          <h2 className="font-semibold text-gray-800 mb-4">Assignments</h2>
-          <div className="space-y-3">
-            {assignments.map((item) => (
-              <div key={item._id} className="border rounded-xl p-3">
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <p className="font-semibold text-sm text-gray-700">{item.title}</p>
-                    <p className="text-xs text-gray-400">{item.subject} • Due {new Date(item.dueDate).toLocaleDateString()}</p>
-                  </div>
-                  <button onClick={() => submitAssignment(item._id)} className="text-xs bg-[#f056f0] text-white px-3 py-1 rounded-full">Submit</button>
+      <main className="max-w-4xl mx-auto p-6">
+        <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
+          <h2 className="font-jost font-bold text-2xl text-gray-800">Learning dashboard</h2>
+          <p className="font-dm-sans text-sm text-gray-500 mt-2">
+            Stay on top of assignments, submission status, and helpful resources for your class.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {cards.map((card) => (
+            <button
+              key={card.title}
+              onClick={() => navigate(card.action)}
+              className={`text-left bg-gradient-to-br ${card.accent} rounded-2xl shadow-sm border border-white p-6 hover:shadow-md transition-all`}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shadow-sm">
+                  {card.icon}
                 </div>
+                <FaArrowRight className="text-gray-500" />
               </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="bg-white rounded-2xl shadow-sm p-5">
-          <h2 className="font-semibold text-gray-800 mb-4">Resources</h2>
-          <div className="space-y-3">
-            {resources.map((item) => (
-              <div key={item._id} className="border rounded-xl p-3">
-                <p className="font-semibold text-sm text-gray-700">{item.title}</p>
-                <p className="text-xs text-gray-400">{item.subject}</p>
-                {item.url && <a href={item.url} target="_blank" rel="noreferrer" className="text-xs text-[#f056f0]">Open</a>}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-2xl shadow-sm p-5">
-        <h2 className="font-semibold text-gray-800 mb-4">My Submissions</h2>
-        <div className="space-y-3">
-          {submissions.map((item) => (
-            <div key={item._id} className="border rounded-xl p-3 flex items-center justify-between">
-              <div>
-                <p className="font-semibold text-sm text-gray-700">{item.assignment?.title || "Assignment"}</p>
-                <p className="text-xs text-gray-400">Status: {item.status}</p>
-              </div>
-              <span className="text-xs text-gray-500">{item.status}</span>
-            </div>
+              <h3 className="font-jost font-bold text-xl text-gray-800 mb-2">{card.title}</h3>
+              <p className="font-dm-sans text-sm text-gray-600 leading-6">{card.description}</p>
+            </button>
           ))}
         </div>
-      </div>
+
+        <div className="mt-6 bg-white rounded-2xl shadow-sm p-6">
+          <div className="flex items-center gap-3 mb-3">
+            <FaNewspaper className="text-[#f056f0]" />
+            <h3 className="font-jost font-bold text-lg text-gray-800">Student quick guide</h3>
+          </div>
+          <ul className="space-y-2 font-dm-sans text-sm text-gray-600 list-disc pl-5">
+            <li>Check your assignments for the classes you are enrolled in.</li>
+            <li>Upload your work before the due date to avoid a late mark.</li>
+            <li>Open learning resources by category and class to support your study.</li>
+          </ul>
+        </div>
+      </main>
     </div>
   );
 }

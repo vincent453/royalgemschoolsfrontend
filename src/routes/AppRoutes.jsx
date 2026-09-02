@@ -41,6 +41,8 @@ import LearningDashboard from "../admin/pages/LearningDashboard";
 import LearningAssignments from "../admin/pages/LearningAssignments";
 import LearningResources from "../admin/pages/LearningResources";
 import StudentLearningPortal from "../admin/pages/StudentLearningPortal";
+import StudentAssignments from "../admin/pages/StudentAssignments";
+import StudentResources from "../admin/pages/StudentResources";
 
 // Teacher dashboard
 import TeacherDashboard from "../admin/pages/TeacherDashboard";
@@ -128,6 +130,10 @@ export default function AppRoutes() {
         element={<StudentPortalRoute><StudentDashboard /></StudentPortalRoute>} />
       <Route path="/student/learning"
         element={<StudentPortalRoute><StudentLearningPortal /></StudentPortalRoute>} />
+      <Route path="/student/assignments"
+        element={<StudentPortalRoute><StudentAssignments /></StudentPortalRoute>} />
+      <Route path="/student/resources"
+        element={<StudentPortalRoute><StudentResources /></StudentPortalRoute>} />
 
       {/* ════════════════════════════════════════════
           PARENT PORTAL
