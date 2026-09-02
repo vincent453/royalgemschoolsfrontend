@@ -92,8 +92,8 @@ const adminNavItems = [
     icon: <MdCastForEducation />,
     group: true,
     children: [
-      { id: "lms-assignments", label: "Assignments",        href: "/teacher/lms/assignments", icon: <MdAssignment />      },
-      { id: "lms-resources",   label: "Learning Resources", href: "/teacher/lms/resources",   icon: <MdLibraryBooks />    },
+      { id: "lms-assignments", label: "Assignments",        href: "/admin/learning/assignments", icon: <MdAssignment />      },
+      { id: "lms-resources",   label: "Learning Resources", href: "/admin/learning/resources",   icon: <MdLibraryBooks />    },
     ],
   },
   {

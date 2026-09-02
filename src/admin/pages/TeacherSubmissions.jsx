@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   FaArrowLeft, FaDownload, FaCheckCircle,
   FaClock, FaExclamationCircle, FaStar, FaTimes, FaSave,
@@ -37,6 +37,7 @@ const Skeleton = () => (
 export default function TeacherSubmissions() {
   const { id }     = useParams(); // assignment id
   const navigate   = useNavigate();
+  const location   = useLocation();
   const hasFetched = useRef(false);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -127,7 +128,7 @@ export default function TeacherSubmissions() {
 
             {/* Header */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-              <button onClick={() => navigate("/teacher/lms/assignments")}
+              <button onClick={() => navigate(location.pathname.startsWith("/admin/") ? "/admin/learning/assignments" : "/teacher/lms/assignments")}
                 className="flex items-center gap-2 text-sm text-gray-400 hover:text-[#f056f0] mb-3 transition-colors">
                 <FaArrowLeft /> Back to Assignments
               </button>

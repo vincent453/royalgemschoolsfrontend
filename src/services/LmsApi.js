@@ -62,7 +62,10 @@ export const getResources = (params = {}) => {
   const qs = new URLSearchParams(
     Object.fromEntries(Object.entries(params).filter(([, v]) => v !== "" && v != null))
   ).toString();
-  return fetch(`${BASE}/resources${qs ? `?${qs}` : ""}`).then(handle);
+  const token = localStorage.getItem("token") || localStorage.getItem("portalToken");
+  return fetch(`${BASE}/resources${qs ? `?${qs}` : ""}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  }).then(handle);
 };
 
 export const createResource = (fd) =>

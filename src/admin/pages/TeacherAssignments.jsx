@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   FaPlus, FaEdit, FaTrash, FaEye, FaUsers,
   FaPaperclip, FaTimes, FaSave, FaBookOpen,
@@ -36,6 +36,7 @@ const blankForm = {
 
 export default function TeacherAssignments() {
   const navigate   = useNavigate();
+  const location   = useLocation();
   const hasFetched = useRef(false);
   const [sidebarOpen,  setSidebarOpen]  = useState(false);
   const [assignments,  setAssignments]  = useState([]);
@@ -237,7 +238,7 @@ export default function TeacherAssignments() {
                       </div>
 
                       <div className="flex items-center gap-2 flex-shrink-0">
-                        <button onClick={() => navigate(`/teacher/lms/submissions/${a._id}`)}
+                        <button onClick={() => navigate(`${location.pathname.startsWith("/admin/") ? "/admin/learning/submissions" : "/teacher/lms/submissions"}/${a._id}`)}
                           title="View Submissions"
                           className="flex items-center gap-1.5 px-3 py-1.5 border border-gray-200 rounded-lg
                                      font-dm-sans text-xs text-gray-600 hover:border-[#f056f0] hover:text-[#f056f0] transition-colors">

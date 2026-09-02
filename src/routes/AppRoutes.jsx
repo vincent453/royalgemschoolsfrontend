@@ -38,8 +38,6 @@ import Beneficiaries        from "../admin/pages/Beneficiaries";
 import ScholarshipReports   from "../admin/pages/ScholarshipReports";
 import StudentScholarshipProfile from "../admin/pages/StudentScholarshipProfile";
 import LearningDashboard from "../admin/pages/LearningDashboard";
-import LearningAssignments from "../admin/pages/LearningAssignments";
-import LearningResources from "../admin/pages/LearningResources";
 import StudentLearningPortal from "../admin/pages/StudentLearningPortal";
 import StudentAssignments from "../admin/pages/StudentAssignments";
 import StudentResources from "../admin/pages/StudentResources";
@@ -222,9 +220,11 @@ export default function AppRoutes() {
       <Route path="/admin/learning"
         element={<AdminRoute><LearningDashboard /></AdminRoute>} />
       <Route path="/admin/learning/assignments"
-        element={<AdminRoute><LearningAssignments /></AdminRoute>} />
+        element={<AdminRoute><TeacherAssignments /></AdminRoute>} />
       <Route path="/admin/learning/resources"
-        element={<AdminRoute><LearningResources /></AdminRoute>} />
+        element={<AdminRoute><TeacherResources /></AdminRoute>} />
+      <Route path="/admin/learning/submissions/:id"
+        element={<AdminRoute><TeacherSubmissions /></AdminRoute>} />
 
       {/* Misc admin */}
       <Route path="/admin/generatepin"
