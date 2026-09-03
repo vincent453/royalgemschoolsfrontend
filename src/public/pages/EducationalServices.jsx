@@ -3,7 +3,7 @@ import Section from "../components/layout/Section";
 import EducationalServicesSection from "../components/layout/EducationalServices";
 import Footer from "../components/layout/Foooter";
 import SEO from "../components/layout/SEO";
-import servicesImage from "../../assets/img/training.png";
+import servicesImage from "../../assets/img/blog2.jpeg";
 
 export default function EducationalServices() {
   return (
