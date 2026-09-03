@@ -26,7 +26,7 @@ const Contact = () => {
   title="Contact Royal Gem School"
   description="Get in touch with Royal Gem School. We'd love to hear from you!"
   keywords="contact royal gem school, school contact, get in touch"
-  url="https://royalgemschool.com/contact"
+  url="https://www.royalgemschools.com/contact"
 /> 
     <div className="overflow-hidden">
       {/* Navbar: no animation — always visible immediately */}

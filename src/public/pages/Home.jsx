@@ -35,12 +35,12 @@ const Home = () => {
             "@context": "https://schema.org",
             "@type": "School",
             name: "Royal Gem School",
-            url: "https://royalgemschool.com",
-            telephone: "+234XXXXXXXXXX",
+            url: "https://www.royalgemschools.com",
+            telephone: "+2349065650959",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "School Address",
-              addressLocality: "Abuja",
+              streetAddress: "15, Royal Gem Avenue, Ayonnusi Estate, off Sagamu Road",
+              addressLocality: "Ikorodu, Lagos State",
               addressCountry: "NG"
             }
           })}
@@ -51,8 +51,8 @@ const Home = () => {
   title="Royal Gem School | Quality Education for Future Leaders"
   description="Royal Gem School provides quality nursery, primary, and secondary education with experienced teachers, modern learning facilities, and a nurturing environment."
   keywords="Royal Gem School, school in Nigeria, nursery school, primary school, secondary school, quality education, admission"
-  image="https://royalgemschool.com/seo-image.jpg"
-  url="https://royalgemschool.com"
+  image="https://www.royalgemschools.com/seo-image.jpg"
+  url="https://www.royalgemschools.com"
 />
     <div className="overflow-x-hidden">
       <Navbar />

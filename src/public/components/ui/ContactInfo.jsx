@@ -1,12 +1,12 @@
-import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa'
+import { FaMapMarkerAlt, FaPhone, FaGlobe } from 'react-icons/fa'
 
 const contactCards = [
   {
     icon: <FaMapMarkerAlt />,
     title: "Our Location",
     lines: [
-      "Main address: 15, Royal Gem Avenue, Ayonnusi Estate, off Sagamu Road, Ikorudu, Lagos State",
-      "Annex: 6, Main Street, Suncity Estate, Galadimawa Distict, Abuja, 15, Royal Gem Avenue, Ayok",
+      "Headquarters: 15, Royal Gem Avenue, Ayonnusi Estate, off Sagamu Road, Ikorodu, Lagos State",
+      "Abuja Annex: 6, Main Street, Suncity Estate, around Galadimawa, Abuja",
     ],
     bg: "bg-rose-50",
     iconBg: "bg-rose-100 text-rose-400",
@@ -19,20 +19,19 @@ const contactCards = [
       "+234 906 565 0959",
       "+234 703 719 9498",
       "+234 803 409 1055",
+      "WhatsApp: +234 703 719 9498",
     ],
     bg: "bg-[#eef0ff]",
     iconBg: "bg-[#dde0ff] text-[#525fe1]",
-    href: "tel:+2348000000000",
+    href: "tel:+2349065650959",
   },
   {
-    icon: <FaEnvelope />,
-    title: "Send Email",
-    lines: [
-      "school.royalgem@gmail.com",
-    ],
+    icon: <FaGlobe />,
+    title: "Visit Our Website",
+    lines: ["www.royalgemschools.com"],
     bg: "bg-teal-50",
     iconBg: "bg-teal-100 text-teal-500",
-    href: "mailto:school.royalgem@gmail.com",
+    href: "https://www.royalgemschools.com",
   },
 ]
 

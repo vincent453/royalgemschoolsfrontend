@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 // Public
 import Home       from "../public/pages/Home";
 import About      from "../public/pages/About";
+import EducationalServices from "../public/pages/EducationalServices";
 import Contact    from "../public/pages/Contact";
 import Admissions from "../public/pages/Admission";
 import Portal     from "../public/pages/Portal";
@@ -115,6 +116,7 @@ export default function AppRoutes() {
       ════════════════════════════════════════════ */}
       <Route path="/"           element={<Home />}       />
       <Route path="/about"      element={<About />}      />
+      <Route path="/educational-services" element={<EducationalServices />} />
       <Route path="/contact"    element={<Contact />}    />
       <Route path="/admissions" element={<Admissions />} />
       <Route path="/yearbook"   element={<Yearbook />}   />

@@ -11,10 +11,9 @@ const AboutUs = ({image}) => {
       titleColor="text-[#f056f0]"
      paragraphs={[
      
-      "Royal Gem Schools was founded by Dr. Oluwatoyin Ariyo-Ojeme, a seasoned educator with over three decades of experience in teaching, research, and educational development. Her passion for raising academically sound and morally upright students led to the establishment of Royal Gem Nursery and Primary School in Ikorodu, Lagos State",
-      " Driven by a clear vision to transform foundational education, the school quickly gained recognition for its commitment to excellence, discipline, and innovative teaching methods. Building on this success, Royal Gem Mathematical School was later established in Abuja to extend the same standard of quality education to a wider community.",
-      "Over the years, Royal Gem Schools have continued to grow, producing well-rounded students equipped with strong academic knowledge and critical thinking skills. Today, the institution stands as a symbol of excellence, combining experience, modern educational practices, and a deep commitment to nurturing future leaders.",
-      "With over 20 years of impact, Royal Gem Schools remain dedicated to shaping minds and building futures through quality education and strong moral values."
+      "Royal Gem Nursery/Primary School was founded in 2005 by Dr. Oluwatoyin Ariyo-Ojeme at Ajisebiaramecca Street, off Itoikin Road, Ikorodu. It began with a clear purpose: to give children a strong academic and moral foundation.",
+      "The school relocated to Jubilee Estate in September 2006 and found its permanent home in Ayonnusi Estate in September 2008. From the beginning, Royal Gem became known for making Mathematics accessible, engaging, and enjoyable.",
+      "The vision expanded through teacher development, the Royal Gem Mathematical Foundation, and Royal Gem Mathematical Schools, Abuja, established in 2021. In 2025, the Abuja school received full accreditation as a Basic Education Certificate Examination Centre."
     ]}
     />
 </div>

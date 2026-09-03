@@ -4,14 +4,14 @@ import logo from '../../../assets/img/logo.png'
 const FounderProfile = ({
   image,
   name = "Dr. Oluwatoyin Ariyo-Ojeme",
-  title = "Founder & Executive Director",
-  school = "Royal Gem Nursery / Primary School",
+  title = "Visioneer, Royal Gem Schools & Royal Gem Educational Services",
+  school = "Educator | Researcher | Data Analyst | Institution Builder",
   tagline = "Nurturing to Flourish",
   quote = "Education is not just about academics — it is about building character, instilling values, and equipping every child to become a true Gem in society.",
   experience = "30+",
-  students = "500+",
-  years = "20+",
-  profession = "Academic Researcher | Edupreneur | School Consultant"
+  students = "26",
+  years = "2005",
+  profession = "Research, Test and Measurement | Machine Learning | Artificial Intelligence"
 }) => {
   return (
     <section className="py-16 px-6 md:px-14 bg-white">
@@ -73,17 +73,17 @@ const FounderProfile = ({
 
             {/* Bio */}
             <p className="font-dm-sans text-gray-500 text-base leading-relaxed">
-                
-With a career spanning over three decades, Dr. Oluwatoyin Ariyo-Ojeme is a distinguished educator and researcher dedicated to the advancement of mathematical education and institutional excellence. A passionate teacher since 1991, she holds a Ph.D. and a Masters degree from the University of Lagos in Research, Test & Measurement. Her academic foundation includes a Distinction in Mathematics and Integrated Science from the College of Education, Ikere-Ekiti, and a 2nd Class Upper degree in Mathematics/Education from the University of Nigeria, Nsukka. While her expertise as a Data Analyst and University Lecturer has taken her to global platforms—including presenting research at Harvard University, the University of Kansas (NCME), and the University of Maryland—her heart remains with foundational education. She established Royal Gem Nursery/ Primary School, Ikorodu, Lagos State as she was directed in a vision. After 30 years of teaching at the nursery and primary levels, Lagos State secondary schools, and Universities of Lagos & Jos, she founded the Royal Gem Mathematical School in Abuja, which recently joined Ikorodu school in celebrating her 20th anniversary. Dr. Oluwatoyin Ariyo-Ojeme is a lifelong learner, recently expanding her expertise into Montessori Education, Child Protection, Neuroscience, and Machine Learning to better understand the cognitive development of students. 
-Today, she consults for both public and private schools on curriculum simplification, effective lesson plan/ note classroom management, and the development of professional conditions of service, ensuring the next generation of "Gems" is nurtured through evidence-based, hands-on experience.
+              Dr. Oluwatoyin Ariyo-Ojeme, formerly known as Oluwatoyin Obadare-Akpata, began her education career in 1991 as a Grade Three Teacher. She holds Distinctions in Mathematics and Integrated Science from the College of Education, Ikere-Ekiti, a Second Class Upper degree in Mathematics/Education from the University of Nigeria, Nsukka, and Master's and Ph.D. degrees from the University of Lagos, specialising in Research, Test and Measurement. She is also a trained Data Analyst with applied knowledge of Machine Learning and Artificial Intelligence.
+              <br /><br />
+              Her academic work has taken her to seminars and conferences at the University of Maryland, Harvard University, the University of Kansas, and Cambridge. Through Royal Gem Schools and Royal Gem Educational Services, she continues to strengthen mathematical learning, teacher practice, and institution building.
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 mt-2">
               {[
-                { value: experience, label: "Years Experience" },
-                { value: students,   label: "Students Impacted" },
-                { value: years,      label: "Years of Impact"   },
+                { value: experience, label: "Years in Education" },
+                { value: students,   label: "Years Teaching Nursery/Primary" },
+                { value: years,      label: "School Founded"   },
               ].map(({ value, label }, i) => (
                 <div
                   key={i}

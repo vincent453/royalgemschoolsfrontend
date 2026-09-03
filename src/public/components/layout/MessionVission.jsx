@@ -16,6 +16,10 @@ const MessionVission = () => {
   buttonHref="#about"
 />
 
+<p className="text-center font-jost font-semibold text-[#f056f0] text-lg mt-8 px-6">
+  Royal Gem Schools ........ Nurturing to Flourish.
+</p>
+
 
 <BannerCTA
   image={visionImg}

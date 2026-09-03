@@ -13,16 +13,16 @@ import CategoryCard from '../ui/CategoryCard'
 import SectionHeader from '../ui/SectionHeader'
 
 const categories = [
-  { icon: graph,       label: "Graphic Design Course"        },
-  { icon: event,       label: "After School Program"         },
-  { icon: mathematics, label: "Mathematics Improvement Plan" },
-  { icon: excel,       label: "Microsoft Excel Training"     },
-  { icon: robot,       label: "Robotics Workshop"            },
-  { icon: codding,     label: "Coding Bootcamp"              },
-  { icon: python,      label: "Python Programming"           },
-  { icon: music,       label: "Music Classes"                },
+  { icon: codding,     label: "Coding"                       },
+  { icon: python,      label: "Programming"                  },
+  { icon: robot,       label: "Robotics"                     },
+  { icon: mathematics, label: "Mathematics Challenge"        },
+  { icon: graph,       label: "Canva & Design"                },
+  { icon: music,       label: "CapCut & Creative Media"       },
+  { icon: excel,       label: "Literacy"                      },
   { icon: ches,        label: "Chess Club"                   },
-  { icon: training,    label: "Training"                     },
+  { icon: training,    label: "Leadership Development"        },
+  { icon: event,       label: "After-School Programme"        },
 ];
 
 const PopularCategory = () => {
@@ -38,8 +38,8 @@ const PopularCategory = () => {
     >
       <div className="max-w-7xl mx-auto flex flex-col gap-8 sm:gap-10">
         <SectionHeader
-          title="Our Services"
-          description="We provide engaging programs that support students academically, creatively, and socially. These activities help learners develop important skills, explore their interests, and grow into confident, capable individuals."
+          title="Future-Ready Curriculum"
+          description="Coding, Programming, and Robotics are integrated alongside Mathematics Challenge, CapCut, Canva, Literacy, and Chess Clubs to build creativity, critical thinking, and practical leadership skills."
         />
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-5">

@@ -6,6 +6,7 @@ import { FaSearch } from "react-icons/fa";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
+  { label: "Educational Services", href: "/educational-services" },
   { label: "Admissions", href: "/admissions" },
   { label: "Portal", href: "/portal" },
   { label: "YearBook", href: "/yearbook" },

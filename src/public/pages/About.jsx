@@ -12,6 +12,7 @@ import MessionVission from "../components/layout/MessionVission"
 import FounderProfile from "../components/layout/FounderProfile"
 import Achievements from "../components/layout/Acheivement"
 import Facilities from "../components/layout/Facilities"
+import EducationalServices from "../components/layout/EducationalServices"
 import Footer from "../components/layout/Foooter"
 
 import AOS from "aos"
@@ -32,23 +33,23 @@ const About = () => {
   const stats = [
     {
       icon: <FaUserGraduate className="text-[#f26b65]" />,
-      count: "300+",
-      label: "Academic Programs",
+      count: "1991",
+      label: "Founder Began Teaching",
     },
     {
       icon: <FaUserGraduate className="text-[#f26b65]" />,
-      count: "1200+",
-      label: "Students",
+      count: "2005",
+      label: "Royal Gem Founded",
     },
     {
       icon: <FaUserGraduate className="text-[#f26b65]" />,
-      count: "50+",
-      label: "Teachers",
+      count: "2021",
+      label: "Abuja School Established",
     },
     {
       icon: <FaUserGraduate className="text-[#f26b65]" />,
-      count: "10+",
-      label: "Years of Excellence",
+      count: "2025",
+      label: "Examination Accreditation",
     },
   ]
 
@@ -58,7 +59,7 @@ const About = () => {
   title="About Royal Gem School"
   description="Learn about Royal Gem School, our vision, mission, values, and commitment to academic excellence."
   keywords="about royal gem school, school mission, school vision"
-  url="https://royalgemschool.com/about"
+  url="https://royalgemschools.com/about"
 />
     <div className="overflow-x-hidden">
 
@@ -137,6 +138,11 @@ const About = () => {
       {/* Facilities */}
       <div data-aos="fade-up">
         <Facilities />
+      </div>
+
+      {/* Royal Gem Educational Services */}
+      <div data-aos="fade-up">
+        <EducationalServices />
       </div>
 
       {/* Footer */}
