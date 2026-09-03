@@ -325,15 +325,18 @@ export default function StudentAssignments() {
 
               <div>
                 <label className="font-dm-sans text-xs text-[#f056f0] font-semibold uppercase tracking-wide mb-1 block">
-                  Attach File (PDF, DOC, DOCX, Image — max 10MB)
+                  Attach Completed Work (optional)
                 </label>
                 <input type="file"
-                  accept=".pdf,.doc,.docx,image/jpeg,image/png,image/webp"
+                  accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,image/jpeg,image/png,image/webp"
                   onChange={e => setFile(e.target.files[0] ?? null)}
                   className="w-full font-dm-sans text-sm text-gray-600
                              file:mr-3 file:px-4 file:py-2 file:rounded-full file:border-0
                              file:bg-[#f056f0]/10 file:text-[#f056f0] file:font-semibold
                              hover:file:bg-[#f056f0]/20 transition-all" />
+                <p className="font-dm-sans text-[11px] text-gray-400 mt-1">
+                  PDF, DOC, DOCX, PPT, PPTX, XLS, XLSX, JPG, PNG, or WEBP (max 10MB)
+                </p>
                 {file && (
                   <p className="font-dm-sans text-xs text-emerald-600 mt-1 flex items-center gap-1">
                     <FaCheckCircle className="text-[10px]" /> {file.name}

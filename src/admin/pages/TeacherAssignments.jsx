@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
-  FaPlus, FaEdit, FaTrash, FaEye, FaUsers,
+  FaPlus, FaEdit, FaTrash, FaUsers,
   FaPaperclip, FaTimes, FaSave, FaBookOpen,
 } from "react-icons/fa";
 import Slidebar from "../components/layout/Slidebar";
@@ -58,7 +58,18 @@ export default function TeacherAssignments() {
   useEffect(() => {
     if (hasFetched.current) return;
     hasFetched.current = true;
-    fetchData();
+    const loadAssignments = async () => {
+      setLoading(true);
+      try {
+        const data = await getAssignments();
+        setAssignments(data.assignments ?? []);
+      } catch (e) {
+        setError(e.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadAssignments();
   }, []);
 
   const fetchData = async () => {
@@ -332,14 +343,23 @@ export default function TeacherAssignments() {
               </div>
 
               <div>
-                <label className={labelClass}>Attachment (PDF, DOC, DOCX, Image)</label>
+                <label className={labelClass}>Assignment File (optional)</label>
                 <input type="file"
-                  accept=".pdf,.doc,.docx,image/jpeg,image/png,image/webp"
+                  accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,image/jpeg,image/png,image/webp"
                   onChange={e => setFile(e.target.files[0] ?? null)}
-                  className="w-full font-dm-sans text-sm text-gray-600
-                             file:mr-3 file:px-4 file:py-2 file:rounded-full file:border-0
-                             file:bg-[#f056f0]/10 file:text-[#f056f0] file:font-semibold
-                             hover:file:bg-[#f056f0]/20 transition-all" />
+                  className="w-full cursor-pointer rounded-xl border-2 border-dashed border-[#f056f0]/30
+                             bg-[#fdf8ff] p-3 font-dm-sans text-sm text-gray-600 transition-colors
+                             file:mr-3 file:rounded-lg file:border-0 file:bg-[#f056f0]
+                             file:px-4 file:py-2 file:font-semibold file:text-white
+                             hover:border-[#f056f0] hover:file:bg-[#525fe1]" />
+                <p className="font-dm-sans text-[11px] text-gray-400 mt-1">
+                  PDF, DOC, DOCX, PPT, PPTX, XLS, XLSX, JPG, PNG, or WEBP (max 10MB)
+                </p>
+                {file && (
+                  <p className="font-dm-sans text-xs text-emerald-600 mt-2 flex items-center gap-1">
+                    <FaPaperclip className="text-[10px]" /> Selected: {file.name}
+                  </p>
+                )}
                 {editTarget?.attachment && !file && (
                   <a href={editTarget.attachment} target="_blank" rel="noreferrer"
                     className="inline-flex items-center gap-1 font-dm-sans text-xs text-[#f056f0] hover:underline mt-1">
