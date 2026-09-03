@@ -75,6 +75,10 @@ import StudentAttendancePortal from "../admin/pages/StudentAttendancePortal";
 import {
   AdminRoute,
   TeacherRoute,
+  AccountantRoute,
+  InventoryManagerRoute,
+  FinanceRoute,
+  InventoryRoute,
   StudentPortalRoute,
   ParentPortalRoute,
 } from "./ProtectedRoutes";
@@ -259,36 +263,63 @@ export default function AppRoutes() {
         element={<TeacherRoute><TeacherResources /></TeacherRoute>} />
 
       {/* ════════════════════════════════════════════
+          ACCOUNTANT
+      ════════════════════════════════════════════ */}
+      <Route path="/accountant" element={<AccountantRoute><AccountingDashboard /></AccountantRoute>} />
+      <Route path="/accountant/fees" element={<AccountantRoute><Fees /></AccountantRoute>} />
+      <Route path="/accountant/payments" element={<AccountantRoute><PaymentHistory /></AccountantRoute>} />
+      <Route path="/accountant/receipts" element={<AccountantRoute><Receipts /></AccountantRoute>} />
+      <Route path="/accountant/expenses" element={<AccountantRoute><Expenses /></AccountantRoute>} />
+      <Route path="/accountant/reports" element={<AccountantRoute><Ledger /></AccountantRoute>} />
+      <Route path="/accountant/fees/collect/:id" element={<AccountantRoute><CollectPayment /></AccountantRoute>} />
+      <Route path="/accountant/fees/receipt/:id" element={<AccountantRoute><ReceiptDetails /></AccountantRoute>} />
+      <Route path="/accountant/receipts/:id" element={<AccountantRoute><ReceiptDetails /></AccountantRoute>} />
+
+      {/* ════════════════════════════════════════════
+          INVENTORY MANAGER
+      ════════════════════════════════════════════ */}
+      <Route path="/inventory" element={<InventoryManagerRoute><InventoryDashboard /></InventoryManagerRoute>} />
+      <Route path="/inventory/items" element={<InventoryManagerRoute><InventoryItems /></InventoryManagerRoute>} />
+      <Route path="/inventory/purchases" element={<InventoryManagerRoute><Purchases /></InventoryManagerRoute>} />
+      <Route path="/inventory/usage" element={<InventoryManagerRoute><StockMovements /></InventoryManagerRoute>} />
+      <Route path="/inventory/history" element={<InventoryManagerRoute><StockMovements /></InventoryManagerRoute>} />
+      <Route path="/inventory/reports" element={<InventoryManagerRoute><LowStock /></InventoryManagerRoute>} />
+      <Route path="/inventory/items/:id" element={<InventoryManagerRoute><InventoryItemDetails /></InventoryManagerRoute>} />
+      <Route path="/inventory/suppliers" element={<InventoryManagerRoute><Suppliers /></InventoryManagerRoute>} />
+      <Route path="/inventory/stock-movement" element={<InventoryManagerRoute><StockMovements /></InventoryManagerRoute>} />
+      <Route path="/inventory/alerts" element={<InventoryManagerRoute><LowStock /></InventoryManagerRoute>} />
+
+      {/* ════════════════════════════════════════════
           ACCOUNTING
       ════════════════════════════════════════════ */}
       <Route path="/admin/accounting"
-        element={<AdminRoute><AccountingDashboard /></AdminRoute>} />
+        element={<FinanceRoute><AccountingDashboard /></FinanceRoute>} />
       <Route path="/admin/accounting/income"
-        element={<AdminRoute><Income /></AdminRoute>} />
+        element={<FinanceRoute><Income /></FinanceRoute>} />
       <Route path="/admin/accounting/expenses"
-        element={<AdminRoute><Expenses /></AdminRoute>} />
+        element={<FinanceRoute><Expenses /></FinanceRoute>} />
       <Route path="/admin/accounting/ledger"
-        element={<AdminRoute><Ledger /></AdminRoute>} />
+        element={<FinanceRoute><Ledger /></FinanceRoute>} />
 
       {/* ════════════════════════════════════════════
           FEES & BILLING
       ════════════════════════════════════════════ */}
       <Route path="/admin/fees"
-        element={<AdminRoute><Fees /></AdminRoute>} />
+        element={<FinanceRoute><Fees /></FinanceRoute>} />
       <Route path="/admin/fees/students"
         element={<AdminRoute><StudentFees /></AdminRoute>} />
       <Route path="/admin/fees/collect/:id"
         element={<AdminRoute><CollectPayment /></AdminRoute>} />
       <Route path="/admin/fees/history"
-        element={<AdminRoute><PaymentHistory /></AdminRoute>} />
+        element={<FinanceRoute><PaymentHistory /></FinanceRoute>} />
       <Route path="/admin/fees/outstanding"
         element={<AdminRoute><OutstandingBalances /></AdminRoute>} />
       <Route path="/admin/fees/receipt/:id"
-        element={<AdminRoute><ReceiptDetails /></AdminRoute>} />
+        element={<FinanceRoute><ReceiptDetails /></FinanceRoute>} />
       <Route path="/admin/receipts"
-        element={<AdminRoute><Receipts /></AdminRoute>} />
+        element={<FinanceRoute><Receipts /></FinanceRoute>} />
       <Route path="/admin/receipts/:id"
-        element={<AdminRoute><ReceiptDetails /></AdminRoute>} />
+        element={<FinanceRoute><ReceiptDetails /></FinanceRoute>} />
 
       {/* ════════════════════════════════════════════
           ATTENDANCE
@@ -306,19 +337,19 @@ export default function AppRoutes() {
           INVENTORY
       ════════════════════════════════════════════ */}
       <Route path="/admin/inventory"
-        element={<AdminRoute><InventoryDashboard /></AdminRoute>} />
+        element={<InventoryRoute><InventoryDashboard /></InventoryRoute>} />
       <Route path="/admin/inventory/items"
-        element={<AdminRoute><InventoryItems /></AdminRoute>} />
+        element={<InventoryRoute><InventoryItems /></InventoryRoute>} />
       <Route path="/admin/inventory/items/:id"
-        element={<AdminRoute><InventoryItemDetails /></AdminRoute>} />
+        element={<InventoryRoute><InventoryItemDetails /></InventoryRoute>} />
       <Route path="/admin/inventory/suppliers"
-        element={<AdminRoute><Suppliers /></AdminRoute>} />
+        element={<InventoryRoute><Suppliers /></InventoryRoute>} />
       <Route path="/admin/inventory/purchases"
-        element={<AdminRoute><Purchases /></AdminRoute>} />
+        element={<InventoryRoute><Purchases /></InventoryRoute>} />
       <Route path="/admin/inventory/stock-movement"
-        element={<AdminRoute><StockMovements /></AdminRoute>} />
+        element={<InventoryRoute><StockMovements /></InventoryRoute>} />
       <Route path="/admin/inventory/low-stock"
-        element={<AdminRoute><LowStock /></AdminRoute>} />
+        element={<InventoryRoute><LowStock /></InventoryRoute>} />
 
       {/* ════════════════════════════════════════════
           ONLINE SHOP — Admin

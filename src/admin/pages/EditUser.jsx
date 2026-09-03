@@ -9,7 +9,7 @@ import Topbar   from "../components/layout/Topbar";
 
 const API = import.meta.env.VITE_API_URL ?? "https://royalgemschoolsbackend.vercel.app";
 
-const ROLES = ["admin", "teacher", "subject_teacher", "class_teacher", "student", "parent"];
+const ROLES = ["admin", "teacher", "subject_teacher", "class_teacher", "accountant", "inventory_manager", "student", "parent"];
 
 const CLASSES = [
   ' ', 'Reception 1', 'Reception 2', 'Kindergarten', 'Pre-k', 'Primary 1', 'Primary 2', 'Primary 3', 'Primary 4','Primary 5', 'Primary 6', 'JSS 1', 'JSS 2', 'JSS 3', 'SSS 1', 'SSS 2', 'SSS 3'
@@ -20,6 +20,8 @@ const roleConfig = {
   teacher:         { label: "Teacher",         color: "bg-green-100 text-green-700"  },
   subject_teacher: { label: "Subject Teacher", color: "bg-indigo-100 text-indigo-700"},
   class_teacher:   { label: "Class Teacher",   color: "bg-teal-100 text-teal-700"   },
+  accountant:      { label: "Accountant",      color: "bg-amber-100 text-amber-700" },
+  inventory_manager: { label: "Inventory Manager", color: "bg-emerald-100 text-emerald-700" },
   student:         { label: "Student",         color: "bg-purple-100 text-purple-700"},
   parent:          { label: "Parent",          color: "bg-orange-100 text-orange-700"},
 };

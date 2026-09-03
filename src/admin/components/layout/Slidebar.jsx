@@ -162,11 +162,31 @@ const teacherNavItems = [
   },
 ];
 
+const accountantNavItems = [
+  { id: "dashboard", label: "Dashboard", href: "/accountant", icon: <MdDashboard /> },
+  { id: "fees", label: "School Fees", href: "/accountant/fees", icon: <MdPin /> },
+  { id: "payments", label: "Payments", href: "/accountant/payments", icon: <MdReceipt /> },
+  { id: "receipts", label: "Receipts", href: "/accountant/receipts", icon: <MdReceipt /> },
+  { id: "expenses", label: "Expenses", href: "/accountant/expenses", icon: <MdAccountBalance /> },
+  { id: "reports", label: "Financial Reports", href: "/accountant/reports", icon: <MdBarChart /> },
+];
+
+const inventoryManagerNavItems = [
+  { id: "dashboard", label: "Dashboard", href: "/inventory", icon: <MdDashboard /> },
+  { id: "items", label: "Inventory Items", href: "/inventory/items", icon: <MdSchool /> },
+  { id: "purchases", label: "Purchases", href: "/inventory/purchases", icon: <MdReceipt /> },
+  { id: "usage", label: "Stock Usage", href: "/inventory/usage", icon: <MdUpload /> },
+  { id: "history", label: "Inventory History", href: "/inventory/history", icon: <MdBook /> },
+  { id: "reports", label: "Reports", href: "/inventory/reports", icon: <MdBarChart /> },
+];
+
 // ─────────────────────────────────────────────────────────────
 // Role meta
 // ─────────────────────────────────────────────────────────────
 const roleLabel = {
   admin:           "Admin Portal",
+  accountant:      "Accountant Portal",
+  inventory_manager: "Inventory Manager",
   teacher:         "Teacher Portal",
   subject_teacher: "Subject Teacher",
   class_teacher:   "Class Teacher",
@@ -174,6 +194,8 @@ const roleLabel = {
 
 const roleBadgeColor = {
   admin:           "bg-[#a13ea1]/10 text-[#a13ea1]",
+  accountant:      "bg-amber-100 text-amber-700",
+  inventory_manager: "bg-emerald-100 text-emerald-700",
   teacher:         "bg-green-100 text-green-700",
   subject_teacher: "bg-blue-100 text-blue-700",
   class_teacher:   "bg-indigo-100 text-indigo-700",
@@ -246,6 +268,8 @@ const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const role = useRole();
 
   const navItems =
+    role === "accountant"        ? accountantNavItems :
+    role === "inventory_manager" ? inventoryManagerNavItems :
     role === "subject_teacher" ? subjectTeacherNavItems :
     role === "class_teacher"   ? classTeacherNavItems   :
     role === "teacher"         ? teacherNavItems        :

@@ -11,6 +11,14 @@ const API = "https://royalgemschoolsbackend.vercel.app";
 // teaching roles get their own dashboard.
 const ADMIN_PANEL_ROLES = ["super_admin", "admin", "accountant", "inventory_manager"];
 const TEACHER_ROLES     = ["teacher", "subject_teacher", "class_teacher"];
+const ROLE_HOME = {
+  admin: "/admin/dashboard",
+  teacher: "/teacher/dashboard",
+  subject_teacher: "/teacher/dashboard",
+  class_teacher: "/teacher/dashboard",
+  accountant: "/accountant",
+  inventory_manager: "/inventory",
+};
 
 const AdminLogin =  () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -25,7 +33,7 @@ const AdminLogin =  () => {
     if (!token) return;
     try {
       const { role } = JSON.parse(atob(token.split(".")[1]));
-      navigate(TEACHER_ROLES.includes(role) ? "/teacher/dashboard" : "/admin/dashboard");
+      navigate(ROLE_HOME[role] || "/admin/dashboard");
     } catch {
       localStorage.removeItem("token");
     }
@@ -55,7 +63,9 @@ const AdminLogin =  () => {
       const returnedRole = data.role || data.user?.role || data.admin?.role;
       const resolvedRole = data.isSuperAdmin || data.admin ? "super_admin" : returnedRole;
 
-      if (ADMIN_PANEL_ROLES.includes(resolvedRole)) {
+      if (ROLE_HOME[resolvedRole]) {
+        navigate(ROLE_HOME[resolvedRole]);
+      } else if (ADMIN_PANEL_ROLES.includes(resolvedRole)) {
         navigate("/admin/dashboard");
       } else if (TEACHER_ROLES.includes(resolvedRole)) {
         navigate("/teacher/dashboard");

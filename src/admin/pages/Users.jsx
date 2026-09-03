@@ -7,6 +7,10 @@ import { useNavigate } from 'react-router-dom'
 const roleConfig = {
   'admin':   { label: 'Admin',   color: 'bg-blue-100 text-blue-700',   icon: <FaUserTie className="text-xs" /> },
   'teacher': { label: 'Teacher', color: 'bg-green-100 text-green-700', icon: <FaChalkboardTeacher className="text-xs" /> },
+  'subject_teacher': { label: 'Subject Teacher', color: 'bg-indigo-100 text-indigo-700', icon: <FaChalkboardTeacher className="text-xs" /> },
+  'class_teacher': { label: 'Class Teacher', color: 'bg-teal-100 text-teal-700', icon: <FaChalkboardTeacher className="text-xs" /> },
+  'accountant': { label: 'Accountant', color: 'bg-amber-100 text-amber-700', icon: <FaUserTie className="text-xs" /> },
+  'inventory_manager': { label: 'Inventory Manager', color: 'bg-emerald-100 text-emerald-700', icon: <FaUserTie className="text-xs" /> },
   'student': { label: 'Student', color: 'bg-purple-100 text-purple-700', icon: <FaUser className="text-xs" /> },
   'parent':  { label: 'Parent',  color: 'bg-orange-100 text-orange-700', icon: <FaUser className="text-xs" /> },
 }
@@ -22,7 +26,7 @@ const avatarColors = [
   'bg-rose-200 text-rose-800',
 ]
 
-const roleFilters   = ['All Roles', 'admin', 'teacher', 'student', 'parent']
+const roleFilters   = ['All Roles', 'admin', 'teacher', 'subject_teacher', 'class_teacher', 'accountant', 'inventory_manager', 'student', 'parent']
 const statusFilters = ['All Status', 'Active', 'Inactive']
 
 const getInitials = (name = '') =>

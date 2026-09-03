@@ -7,6 +7,15 @@ const getRole = () => {
   catch { return null; }
 };
 
+const getRoleHome = (role) => ({
+  admin: "/admin/dashboard",
+  teacher: "/teacher/dashboard",
+  subject_teacher: "/teacher/dashboard",
+  class_teacher: "/teacher/dashboard",
+  accountant: "/accountant",
+  inventory_manager: "/inventory",
+}[role] || "/admin/portal");
+
 const getPortalRole = () => {
   const token = localStorage.getItem("portalToken");
   if (!token) return null;
@@ -26,7 +35,7 @@ export const ProtectedRoute = ({ children }) => {
 export const AdminRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   if (!token) return <Navigate to="/admin/portal" replace />;
-  if (getRole() === "teacher") return <Navigate to="/teacher/dashboard" replace />;
+  if (getRole() !== "admin") return <Navigate to={getRoleHome(getRole())} replace />;
   return children;
 };
 
@@ -34,7 +43,37 @@ export const AdminRoute = ({ children }) => {
 export const TeacherRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   if (!token) return <Navigate to="/admin/portal" replace />;
-  if (getRole() === "admin") return <Navigate to="/admin/dashboard" replace />;
+  if (!["teacher", "subject_teacher", "class_teacher"].includes(getRole())) {
+    return <Navigate to={getRoleHome(getRole())} replace />;
+  }
+  return children;
+};
+
+export const AccountantRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  if (!token) return <Navigate to="/admin/portal" replace />;
+  if (getRole() !== "accountant") return <Navigate to={getRoleHome(getRole())} replace />;
+  return children;
+};
+
+export const FinanceRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  if (!token) return <Navigate to="/admin/portal" replace />;
+  if (!["admin", "accountant"].includes(getRole())) return <Navigate to={getRoleHome(getRole())} replace />;
+  return children;
+};
+
+export const InventoryRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  if (!token) return <Navigate to="/admin/portal" replace />;
+  if (!["admin", "inventory_manager"].includes(getRole())) return <Navigate to={getRoleHome(getRole())} replace />;
+  return children;
+};
+
+export const InventoryManagerRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  if (!token) return <Navigate to="/admin/portal" replace />;
+  if (getRole() !== "inventory_manager") return <Navigate to={getRoleHome(getRole())} replace />;
   return children;
 };
 

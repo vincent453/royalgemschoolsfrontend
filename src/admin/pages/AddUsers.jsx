@@ -25,6 +25,16 @@ const roles = [
     label: 'Class Teacher',
     description: 'Finalizes and publishes complete result cards for their class',
   },
+  {
+    value: 'accountant',
+    label: 'Accountant',
+    description: 'Manages fees, payments, receipts and accounting records',
+  },
+  {
+    value: 'inventory_manager',
+    label: 'Inventory Manager',
+    description: 'Manages inventory items, purchases and stock movements',
+  },
 ]
 
 const classes = [' ', 'Reception 1', 'Reception 2', 'Kindergarten', 'Pre-k', 'Primary 1', 'Primary 2', 'Primary 3', 'Primary 4', 'Primary 5', 'Primary 6', 'JSS 1', 'JSS 2', 'JSS 3', 'SSS 1', 'SSS 2', 'SSS 3']
