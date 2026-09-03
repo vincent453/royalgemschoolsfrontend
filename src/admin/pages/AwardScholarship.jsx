@@ -5,7 +5,7 @@ import Slidebar from "../../admin/components/layout/Slidebar";
 import Topbar   from "../../admin/components/layout/Topbar";
 import { getScholarships, previewAward, awardScholarship } from "../../services/scholarshipApi";
 
-const API = import.meta.env.VITE_API_URL ?? "https://royalgemschoolsbackend.https://royalgemschoolsbackend";
+const API = import.meta.env.VITE_API_URL ?? "https://royalgemschoolsbackend.vercel.app";
 const fmt = (n) => `₦${Number(n || 0).toLocaleString("en-NG", { minimumFractionDigits: 2 })}`;
 
 const inputClass = `w-full border border-gray-200 rounded-xl px-4 py-2.5 font-dm-sans text-sm text-gray-700
