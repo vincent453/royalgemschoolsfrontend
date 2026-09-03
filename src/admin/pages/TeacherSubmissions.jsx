@@ -6,7 +6,7 @@ import {
 } from "react-icons/fa";
 import Slidebar from "../../admin/components/layout/Slidebar";
 import Topbar   from "../../admin/components/layout/Topbar";
-import { getSubmissions, gradeSubmission } from "../../services/lmsApi";
+import { getSubmissions, gradeSubmission } from "../../services/LmsApi";
 
 const fmt = (d) => d
   ? new Date(d).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })

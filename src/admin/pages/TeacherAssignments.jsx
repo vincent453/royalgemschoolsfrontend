@@ -8,7 +8,7 @@ import Slidebar from "../components/layout/Slidebar";
 import Topbar   from "../components/layout/Topbar";
 import {
   getAssignments, createAssignment, updateAssignment, deleteAssignment,
-} from "../../services/lmsApi";
+} from "../../services/LmsApi";
 
 const CLASSES  = ["JSS 1","JSS 2","JSS 3","SSS 1","SSS 2","SSS 3","Kindergarten","Nursery 1","Nursery 2"];
 const STATUSES = ["draft","published"];

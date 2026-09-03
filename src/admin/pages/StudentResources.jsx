@@ -4,7 +4,7 @@ import {
   FaArrowLeft, FaBookOpen, FaExternalLinkAlt,
   FaDownload, FaSearch,
 } from "react-icons/fa";
-import { getResources } from "../../services/lmsApi";
+import { getResources } from "../../services/LmsApi";
 
 const CATEGORIES = [
   "Public Speaking","Programming","Culture","Financial Literacy",

@@ -5,7 +5,7 @@ import {
 } from "react-icons/fa";
 import Slidebar from "../../admin/components/layout/Slidebar";
 import Topbar   from "../../admin/components/layout/Topbar";
-import { getResources, createResource, updateResource, deleteResource } from "../../services/lmsApi";
+import { getResources, createResource, updateResource, deleteResource } from "../../services/LmsApi";
 
 const CLASSES = ["","JSS 1","JSS 2","JSS 3","SSS 1","SSS 2","SSS 3","Kindergarten","Nursery 1","Nursery 2"];
 const CATEGORIES = [

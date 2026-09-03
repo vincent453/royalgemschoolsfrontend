@@ -5,7 +5,7 @@ import {
   FaExclamationCircle, FaStar, FaPaperclip, FaUpload,
   FaTimes, FaSave,
 } from "react-icons/fa";
-import { getMyAssignments, submitAssignment } from "../../services/lmsApi";
+import { getMyAssignments, submitAssignment } from "../../services/LmsApi";
 
 const fmt = (d) => d
   ? new Date(d).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })
