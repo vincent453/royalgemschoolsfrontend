@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import signature from "../../assets/img/signature.jpeg";
+import CumulativeAnalysis from "../components/ui/CumulativeAnalysis";
 
 const Cell = ({ children, bold, center, colSpan, rowSpan, className = "" }) => (
   <td
@@ -344,6 +345,8 @@ export default function BellaReportCard() {
         </div>
 
       </div>
+
+      {student?._id && <CumulativeAnalysis studentId={student._id} />}
     </div>
   );
 }
