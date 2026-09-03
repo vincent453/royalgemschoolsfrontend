@@ -9,6 +9,8 @@ import Admissions from "../public/pages/Admission";
 import Portal     from "../public/pages/Portal";
 import Yearbook   from "../public/pages/YearBook";
 import Blog       from "../public/pages/Blog";
+import Privacy    from "../public/pages/Privacy";
+import Safeguarding from "../public/pages/Safeguarding";
 
 // Shared login
 import AdminLogin from "../admin/pages/AdminLogin";
@@ -121,6 +123,8 @@ export default function AppRoutes() {
       <Route path="/admissions" element={<Admissions />} />
       <Route path="/yearbook"   element={<Yearbook />}   />
       <Route path="/blog"       element={<Blog />}       />
+      <Route path="/privacy"   element={<Privacy />}   />
+      <Route path="/safeguarding" element={<Safeguarding />} />
 
       {/* ════════════════════════════════════════════
           PORTAL LOGIN

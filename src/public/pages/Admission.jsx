@@ -76,10 +76,10 @@ export default function Admissions() {
   return (
     <>
       <SEO
-        title="Admissions | Royal Gem School"
-        description="Apply for admission into Royal Gem School. Learn about admission requirements, procedures, and enrollment."
+        title="Admissions | Royal Gem Schools in Ikorodu and Abuja"
+        description="Apply to Royal Gem Schools for Early Years, Primary or Secondary education in Ikorodu and Abuja. Review requirements and contact admissions."
         keywords="school admission, royal gem admission, school registration"
-        url="https://royalgemschool.com/admission"
+        url="https://www.royalgemschools.com/admissions"
       />
 
       {/* ── Navbar ── */}
@@ -107,7 +107,7 @@ export default function Admissions() {
               <svg width="14" height="14" fill="#f056f0" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z" />
               </svg>
-              2025/2026 Admissions — Now Open
+              2026/2027 Admissions — Enquiries Open
             </span>
           </div>
 
@@ -122,8 +122,7 @@ export default function Admissions() {
           {/* Subtext */}
           <div data-aos="fade-up" data-aos-delay="200">
             <p className="text-white text-sm sm:text-base leading-relaxed mb-9 max-w-xl mx-auto">
-              Royal Gem Mathematical School offers a nurturing, academically rich environment
-              where every student is empowered to discover their potential and thrive.
+              Royal Gem Schools offers Early Years, Primary and Secondary education in Ikorodu and Abuja, with academic excellence, strong values, creativity and practical skills at its foundation.
             </p>
           </div>
 
@@ -143,10 +142,10 @@ export default function Admissions() {
           <div data-aos="fade-up" data-aos-delay="400">
             <div className="flex flex-wrap justify-center gap-5 sm:gap-10 mt-14 pt-10 border-t border-[#f056f0]/20 w-full">
               {[
-                { num: '300+', label: 'Happy Students' },
-                { num: '1,200+', label: 'Alumni Network' },
-                { num: '50+', label: 'Expert Teachers' },
-                { num: '10+', label: 'Years of Excellence' },
+                { num: '2005', label: 'Ikorodu Founded' },
+                { num: '2021', label: 'Abuja Established' },
+                { num: '2025', label: 'Exam Centre Accredited' },
+                { num: '2026', label: 'Ikorodu Secondary Planned' },
               ].map((s, i) => (
                 <div className="text-center min-w-[80px]" key={s.label} data-aos="zoom-in" data-aos-delay={450 + i * 80}>
                   <span className="block font-extrabold text-2xl sm:text-3xl text-[#f056f0]" style={{ fontFamily: "'Poppins', sans-serif" }}>{s.num}</span>
@@ -220,14 +219,14 @@ export default function Admissions() {
       </section>
 
       {/* ── Important Dates banner ── */}
-      <div className="py-12 sm:py-16 bg-white overflow-hidden">
+      <div id="prospectus" className="py-12 sm:py-16 bg-white overflow-hidden scroll-mt-24">
         <div
           className="bg-gradient-to-r from-[#f056f0] to-[#7b1fa2] rounded-none sm:rounded-3xl mx-0 sm:mx-[5%] px-[5%] py-12 flex flex-col lg:flex-row gap-8 items-start lg:items-center justify-between"
           data-aos="zoom-in"
         >
           <div data-aos="fade-right" data-aos-delay="100" className="flex-1">
             <Sparkle size={14} color="#f5c518" style={{ marginBottom: 12 }} />
-            <h2 className="font-extrabold text-2xl sm:text-3xl text-white mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>2025/2026 Key Dates</h2>
+            <h2 className="font-extrabold text-2xl sm:text-3xl text-white mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>2026/2027 Admissions</h2>
             <p className="text-sm text-white/75 max-w-sm leading-relaxed">
               Mark your calendar — don't miss the application windows for each term of the new academic year.
             </p>
@@ -290,7 +289,7 @@ export default function Admissions() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="px-[5%] py-16 md:py-20">
+      <section id="faq" className="px-[5%] py-16 md:py-20 scroll-mt-24">
         <div data-aos="fade-up">
           <span className="block text-center text-xs font-semibold text-[#f056f0] uppercase tracking-widest mb-3">Got Questions?</span>
           <h2 className="text-center font-extrabold text-3xl sm:text-4xl text-[#1a1a2e] leading-tight mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
@@ -346,20 +345,20 @@ export default function Admissions() {
         <div data-aos="fade-up" data-aos-delay="150">
           <div className="flex flex-col sm:flex-row gap-3 flex-wrap justify-center">
             <a
-              href="#"
-              onClick={() => navigate('/')}
+              href="https://wa.me/2347037199498"
+              target="_blank"
+              rel="noreferrer"
               className="bg-[#f056f0] text-white border-2 border-[#f056f0] rounded-full px-8 py-3 font-semibold text-sm hover:bg-[#7b1fa2] hover:border-[#7b1fa2] hover:-translate-y-0.5 transition-all duration-300 text-center"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
-              Download Application Form
+              Chat with Admissions
             </a>
             <a
-              href="#"
-              onClick={() => navigate('/contact')}
+              href="tel:+2349065650959"
               className="bg-transparent text-[#f056f0] border-2 border-[#f056f0] rounded-full px-8 py-3 font-semibold text-sm hover:bg-[#f056f0]/7 hover:-translate-y-0.5 transition-all duration-300 text-center"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
-              Contact Admissions Office
+              Call Admissions
             </a>
           </div>
         </div>
@@ -370,9 +369,9 @@ export default function Admissions() {
           className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-7 justify-center items-center flex-wrap"
         >
           {[
-            { icon: '📞', text: '08012345678' },
-            { icon: '📧', text: 'admissions@royalgem.edu.ng' },
-            { icon: '📍', text: '123 School Road, Lagos, Nigeria' },
+            { icon: '📞', text: '+234 906 565 0959' },
+            { icon: '✉️', text: 'school.royalgem@gmail.com' },
+            { icon: '📍', text: 'Ikorodu, Lagos | Abuja, FCT' },
           ].map(c => (
             <span key={c.text} className="flex items-center gap-2 text-sm text-[#666]">
               <span>{c.icon}</span>{c.text}

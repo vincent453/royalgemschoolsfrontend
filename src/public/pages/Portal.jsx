@@ -6,6 +6,7 @@ import family         from "../../assets/img/family.png";
 import student        from "../../assets/img/graduate.png";
 import { BookOpen, ClipboardList, EyeClosed, EyeIcon } from "lucide-react";
 import Navbar from "../components/layout/Navbar";
+import SEO from "../components/layout/SEO";
 
 const API = "https://royalgemschoolsbackend.vercel.app";
 
@@ -49,10 +50,11 @@ const STATS = [
 ];
 
 const INFO = [
-  { icon: "📍", text: "Plot 45, Royal Gem Avenue, Abuja"  },
-  { icon: "📞", text: "+234 800 123 4567"                 },
-  { icon: "✉️", text: "info@royalgem.edu.ng"             },
-  { icon: "🌐", text: "www.royalgem.edu.ng"              },
+  { icon: "📍", text: "15, Royal Gem Avenue, Ayonnusi Estate, off Sagamu Road, Ikorodu" },
+  { icon: "📍", text: "6, Main Street, Suncity Estate, around Galadimawa, Abuja" },
+  { icon: "📞", text: "+234 906 565 0959 | +234 703 719 9498 | +234 803 409 1055" },
+  { icon: "✉️", text: "school.royalgem@gmail.com" },
+  { icon: "🌐", text: "www.royalgemschools.com" },
 ];
 
 export default function Portal() {
@@ -136,6 +138,14 @@ export default function Portal() {
   const isStudent = tab === "student";
 
   return (
+    <>
+      <SEO
+        title="Parents and Students Portal | Royal Gem Schools"
+        description="Secure portal login for Royal Gem Schools parents and students."
+        keywords=""
+        url="https://www.royalgemschools.com/portal"
+        noIndex
+      />
     <div className="pt-[6rem]">
       <Navbar />
       <div className="min-h-screen bg-gradient-to-br from-[#c4a7c4] via-[#fff7ff] to-[#e8cfe8] flex items-center justify-center p-6 relative overflow-hidden font-sans">
@@ -341,5 +351,6 @@ export default function Portal() {
         `}</style>
       </div>
     </div>
+    </>
   );
 }

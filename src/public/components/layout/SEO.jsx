@@ -5,7 +5,8 @@ const SEO = ({
   description,
   keywords,
   image,
-  url
+  url,
+  noIndex = false
 }) => {
   return (
     <Helmet>
@@ -13,6 +14,7 @@ const SEO = ({
 
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
+      {noIndex && <meta name="robots" content="noindex, nofollow, noarchive" />}
 
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

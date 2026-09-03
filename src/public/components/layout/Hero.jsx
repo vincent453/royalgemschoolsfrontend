@@ -1,30 +1,5 @@
 import home from '../../../assets/img/homebg.png'
-import StatCard from '../ui/RatingCard'
-import { FaUserGraduate } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-const stats = [
-  {
-    icon: <FaUserGraduate className="text-[#f26b65]" />,
-    count: "300+",
-    label: "Academic Programs",
-  },
-  {
-    icon: <FaUserGraduate className="text-[#f26b65]" />,
-    count: "1200+",
-    label: "Students",
-  },
-  {
-    icon: <FaUserGraduate className="text-[#f26b65]" />,
-    count: "50+",
-    label: "Teachers",
-  },
-  {
-    icon: <FaUserGraduate className="text-[#f26b65]" />,
-    count: "20+",
-    label: "Years of Excellence",
-  },
-];
-
 
 
 const Hero = () => {
@@ -45,17 +20,12 @@ const Hero = () => {
     {/* Text side */}
     <div className="flex-1 max-w-lg text-center lg:text-left">
       <h1 className="font-jost font-bold text-4xl md:text-5xl lg:text-[4rem] leading-tight text-white">
-        <span className="text-[#f056f0]">
-          Royal Gem Mathematical School
-        </span>
-
-        <h1 className="text-white">
-          Nurturing to flourish
-        </h1>
+        <span className="text-[#f056f0]">Royal Gem Schools</span>
+        <span className="block text-white">Nurturing Confident, Excellent and Future-Ready Learners</span>
       </h1>
 
       <p className="mt-6 text-gray-200 text-lg font-dm-sans">
-        Your description or subtitle goes here.
+        Early Years, Primary and Secondary Education in Ikorodu and Abuja, built on academic excellence, strong moral values, creativity and practical skills.
       </p>
 
    <div className="mt-8 flex gap-4 justify-center lg:justify-start">
@@ -63,16 +33,25 @@ const Hero = () => {
     onClick={() => navigate("/admissions")}
     className="bg-[#f056f0] hover:bg-[#525fe1] text-white font-jost font-semibold py-3 px-8 transition-all duration-500"
   >
-    Get Started
+    Apply for 2026/2027 Admission
   </button>
 
   <button
-    onClick={() => navigate("/about")}
+    onClick={() => navigate("/contact")}
     className="border border-white text-white font-jost font-semibold py-3 px-8 hover:border-[#f056f0] hover:text-[#f056f0] transition-all duration-300"
   >
-    Learn More
+    Book a School Tour
   </button>
 </div>
+
+      <div className="mt-4 flex flex-wrap justify-center gap-4 lg:justify-start">
+        <button onClick={() => navigate("/admissions#prospectus")} className="text-sm font-semibold text-white underline underline-offset-4 hover:text-[#f056f0]">
+          Download Prospectus
+        </button>
+        <a href="https://wa.me/2347037199498" target="_blank" rel="noreferrer" className="text-sm font-semibold text-white underline underline-offset-4 hover:text-[#f056f0]">
+          Chat with Admissions on WhatsApp
+        </a>
+      </div>
     </div>
 
 
@@ -89,16 +68,6 @@ const Hero = () => {
 </div>
 
         </section>
-   <div className="grid grid-cols-1 mt-14 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:-mt-12 z-10 relative px-6 md:px-14">
-  {stats.map((item, index) => (
-    <StatCard
-      key={index}
-      icon={item.icon}
-      count={item.count}
-      label={item.label}
-    />
-  ))}
-</div>
     </div>
   )
 }

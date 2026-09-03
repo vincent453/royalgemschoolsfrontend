@@ -73,7 +73,7 @@ const Home = () => {
       </div>
 
       {/* Popular Category: zoom in from center */}
-      <div data-aos="zoom-in" data-aos-delay="100">
+      <div id="academics" data-aos="zoom-in" data-aos-delay="100" className="scroll-mt-24">
         <PopularCategory />
       </div>
 

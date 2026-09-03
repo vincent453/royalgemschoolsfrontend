@@ -1,24 +1,28 @@
-import { FaTwitter, FaFacebookF, FaInstagram, FaLinkedinIn, FaMapMarkerAlt, FaPhone, FaWhatsapp, FaEnvelope, FaYoutube } from 'react-icons/fa'
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaMapMarkerAlt, FaPhone, FaWhatsapp, FaEnvelope, FaYoutube } from 'react-icons/fa'
 import { FiArrowUp } from 'react-icons/fi'
 import logo from '../../../assets/img/logo.png'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const aboutLinks = [
-  { label: "About Us",               href: "#" },
-  { label: "Instructor Registration",href: "#" },
-  { label: "Become A Teacher",       href: "#" },
-  { label: "All Instructors",        href: "#" },
-  { label: "Asked Question",         href: "#" },
-  { label: "Contact Us",             href: "#" },
+  { label: "About Royal Gem Schools", href: "/about" },
+  { label: "Educational Services",    href: "/educational-services" },
+  { label: "Admissions",              href: "/admissions" },
+  { label: "Academics",               href: "/#academics" },
+  { label: "Frequently Asked Questions", href: "/admissions#faq" },
+  { label: "Privacy Policy",           href: "/privacy" },
+  { label: "Safeguarding",             href: "/safeguarding" },
+  { label: "Contact",                 href: "/contact" },
 ]
 
 
 
 const contactInfo = [
-  { icon: <FaMapMarkerAlt />, text: "Main address: 15, Royal Gem Avenue, Ayonnusi Estate, off Sagamu Road, Ikorudu, Lagos State", href: null },
-  { icon: <FaMapMarkerAlt />, text: "Annex: 6, Main Street, Suncity Estate, Galadimawa Distict, Abuja, 15, Royal Gem Avenue, Ayok", href: null },
-  { icon: <FaPhone />,        text: "+234 906 565 0959",                           href: "tel:+23407037199498" },
-  { icon: <FaPhone />,        text: "+234 703 719 9498",                           href: "tel:+23407037199498" },
+  { icon: <FaMapMarkerAlt />, text: "Ikorodu: 15, Royal Gem Avenue, Ayonnusi Estate, off Sagamu Road, Lagos State", href: null },
+  { icon: <FaMapMarkerAlt />, text: "Abuja: 6, Main Street, Suncity Estate, around Galadimawa, Abuja", href: null },
+  { icon: <FaPhone />,        text: "+234 906 565 0959",                           href: "tel:+2349065650959" },
+  { icon: <FaPhone />,        text: "+234 703 719 9498",                           href: "tel:+2347037199498" },
+  { icon: <FaPhone />,        text: "+234 803 409 1055",                           href: "tel:+2348034091055" },
   { icon: <FaWhatsapp />,     text: "Contact Whatsapp",                            href: "https://wa.me/2347037199498", colored: true },
   { icon: <FaEnvelope />,     text: "school.royalgem@gmail.com",                    href: "mailto:school.royalgem@gmail.com" },
 ]
@@ -80,12 +84,12 @@ const Footer = () => {
             <ul className="flex flex-col gap-2">
               {aboutLinks.map(({ label, href }, i) => (
                 <li key={i}>
-                  <a
-                    href={href}
+                  <Link
+                    to={href}
                     className="font-dm-sans text-gray-500 text-sm hover:text-[#f056f0] transition-colors duration-300"
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -118,39 +122,22 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Col 5 — Download App */}
+          {/* Col 5 — Admissions */}
           <div className="flex flex-col gap-4">
-            <h4 className="font-jost text-[1.5rem] font-bold text-gray-900  ">Download App</h4>
+            <h4 className="font-jost text-[1.5rem] font-bold text-gray-900">Start Your Journey</h4>
             <p className="font-dm-sans text-gray-500 text-md leading-relaxed">
-              Download our app from the App Store and Google Play Store.
+              Discover a strong foundation in academics, character, creativity and practical skills.
             </p>
-            {/* Google Play */}
-            <a
-              href="#"
+            <Link
+              to="/admissions#apply"
               className="flex items-center gap-3 bg-[#525fe1] hover:bg-[#f056f0] text-white
                          px-4 py-2.5 rounded-lg transition-colors duration-300 w-fit"
             >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3.18 23.76a2 2 0 0 0 2.07-.22l11.37-6.57-2.84-2.84zM1 2.46v19.08l8.56-9.54zM20.4 10.1l-2.53-1.46-3.17 3.17 3.17 3.17 2.56-1.48a2 2 0 0 0 0-3.4zM5.25.46a2 2 0 0 0-2.07-.22L13.73 10.7l2.84-2.84z"/>
-              </svg>
-              <div>
-                <p className="text-[10px] opacity-80 leading-none">Download on</p>
-                <p className="text-sm font-jost font-bold leading-tight">Google Play</p>
-              </div>
-            </a>
-            {/* App Store */}
-            <a
-              href="#"
-              className="flex items-center gap-3 bg-gray-900 hover:bg-[#f056f0] text-white
-                         px-4 py-2.5 rounded-lg transition-colors duration-300 w-fit"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-              </svg>
-              <div>
-                <p className="text-[10px] opacity-80 leading-none">Download on</p>
-                <p className="text-sm font-jost font-bold leading-tight">App Store</p>
-              </div>
+              <span className="text-sm font-jost font-bold">Apply for Admission</span>
+            </Link>
+            <a href="https://wa.me/2347037199498" target="_blank" rel="noreferrer"
+              className="flex items-center gap-3 bg-[#25D366] hover:bg-[#1da851] text-white px-4 py-2.5 rounded-lg transition-colors duration-300 w-fit">
+              <FaWhatsapp /> <span className="text-sm font-jost font-bold">Chat on WhatsApp</span>
             </a>
           </div>
 
