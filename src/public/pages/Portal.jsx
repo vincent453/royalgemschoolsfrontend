@@ -4,7 +4,7 @@ import logo           from "../../assets/img/logo.png";
 import checkresultimg from "../../assets/img/checkresultimg.jpg";
 import family         from "../../assets/img/family.png";
 import student        from "../../assets/img/graduate.png";
-import { EyeClosed, EyeIcon } from "lucide-react";
+import { BookOpen, ClipboardList, EyeClosed, EyeIcon } from "lucide-react";
 import Navbar from "../components/layout/Navbar";
 
 const API = "https://royalgemschoolsbackend.vercel.app";
@@ -304,6 +304,21 @@ export default function Portal() {
                 </p>
               </div>
             </div>
+
+            {isStudent && (
+              <div className="grid grid-cols-2 gap-3">
+                <div className="rounded-2xl border border-[#f056f0]/15 bg-white/80 p-4 shadow-sm">
+                  <ClipboardList className="mb-2 text-[#f056f0]" size={20} />
+                  <p className="text-sm font-bold text-gray-700">Assignments</p>
+                  <p className="mt-1 text-xs leading-5 text-gray-400">Receive class work, submit files, and view grades.</p>
+                </div>
+                <div className="rounded-2xl border border-[#525fe1]/15 bg-white/80 p-4 shadow-sm">
+                  <BookOpen className="mb-2 text-[#525fe1]" size={20} />
+                  <p className="text-sm font-bold text-gray-700">Learning Resources</p>
+                  <p className="mt-1 text-xs leading-5 text-gray-400">Explore study materials for your class.</p>
+                </div>
+              </div>
+            )}
 
             <div className="flex gap-2 flex-wrap justify-center">
               {["🔒 Secure Login", "📋 WAEC Verified", "🏅 Award-Winning School"].map(t => (

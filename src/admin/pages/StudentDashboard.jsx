@@ -227,6 +227,25 @@ export default function StudentDashboard() {
           </div>
         )}
 
+        <section className="bg-white rounded-2xl shadow-sm p-6">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h3 className="font-jost font-bold text-gray-800 text-lg">Learning</h3>
+              <p className="text-sm text-gray-500 mt-1">Access your assignments and class learning resources.</p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <button onClick={() => navigate("/student/assignments")}
+                className="rounded-xl bg-[#f056f0] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#525fe1]">
+                Assignments
+              </button>
+              <button onClick={() => navigate("/student/resources")}
+                className="rounded-xl border border-[#f056f0]/30 px-4 py-2.5 text-sm font-semibold text-[#a13ea1] transition hover:bg-[#f5eaf5]">
+                Learning Resources
+              </button>
+            </div>
+          </div>
+        </section>
+
         {/* ── School Fees ── */}
         <div id="fees" className="scroll-mt-24">
           <SchoolFees />
