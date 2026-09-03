@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <div>
 <section
-  className="relative w-full min-h-screen bg-cover bg-center flex items-center justify-evenly overflow-hidden mt-[2rem]"
+  className="relative w-full min-h-screen bg-cover bg-center flex items-center justify-evenly overflow-hidden mt-[7rem]"
   style={{ backgroundImage: `url(${home})` }}
 >
 
