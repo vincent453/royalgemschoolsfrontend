@@ -223,7 +223,7 @@ export default function BellaReportCard() {
             <thead>
               <tr>
                 <Th rowSpan={2} className="text-left px-2 w-40">SUBJECT</Th>
-                <Th rowSpan={2}>CWK<br />10%</Th>
+                <Th rowSpan={2}>CF<br />10%</Th>
                 <Th rowSpan={2}>HWK<br />10%</Th>
                 <Th rowSpan={2}>CA1<br />10%</Th>
                 <Th rowSpan={2}>CA 2<br />10%</Th>
@@ -244,7 +244,7 @@ export default function BellaReportCard() {
                 ) : (
                   <tr key={i}>
                     <Cell bold>{sub.name}</Cell>
-                    <Cell center>{sub.cwk}</Cell>
+                    <Cell center>{sub.cf}</Cell>
                     <Cell center>{sub.hwk}</Cell>
                     <Cell center>{sub.ca1}</Cell>
                     <Cell center>{sub.ca2}</Cell>

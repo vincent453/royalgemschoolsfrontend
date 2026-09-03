@@ -15,34 +15,37 @@ const sortOptions = [
   { value: "reg",       label: "Reg No."     },
 ];
 
-// ── Score fields per term (cwk removed) ──────────────────────
+// ── Score fields per term ──────────────────────────────────
 const TERM_FIELDS = {
   "1st Term": [
     { key: "hwk",  label: "HWK",  max: 10, placeholder: "0–10" },
+    { key: "cf",   label: "CF",   max: 10, placeholder: "0–10" },
     { key: "ca1",  label: "CA1",  max: 10, placeholder: "0–10" },
     { key: "ca2",  label: "CA2",  max: 10, placeholder: "0–10" },
     { key: "exam", label: "Exam", max: 60, placeholder: "0–60" },
   ],
   "2nd Term": [
     { key: "hwk",  label: "HWK",  max: 10, placeholder: "0–10" },
+    { key: "cf",   label: "CF",   max: 10, placeholder: "0–10" },
     { key: "ca1",  label: "CA1",  max: 10, placeholder: "0–10" },
     { key: "ca2",  label: "CA2",  max: 10, placeholder: "0–10" },
     { key: "exam", label: "Exam", max: 60, placeholder: "0–60" },
   ],
   "3rd Term": [
     { key: "hwk",  label: "HWK",  max: 10, placeholder: "0–10" },
+    { key: "cf",   label: "CF",   max: 10, placeholder: "0–10" },
     { key: "ca1",  label: "CA1",  max: 10, placeholder: "0–10" },
     { key: "ca2",  label: "CA2",  max: 10, placeholder: "0–10" },
     { key: "exam", label: "Exam", max: 60, placeholder: "0–60" },
   ],
 };
 
-const MAX_TOTAL = 90;
+const MAX_TOTAL = 100;
 
-const makeDefaultSubject = () => ({ name: "", hwk: "", ca1: "", ca2: "", exam: "" });
+const makeDefaultSubject = () => ({ name: "", hwk: "", cf: "", ca1: "", ca2: "", exam: "" });
 
 const getSubjectTotal = (sub) =>
-  (Number(sub.hwk) || 0) + (Number(sub.ca1) || 0) + (Number(sub.ca2) || 0) + (Number(sub.exam) || 0);
+  (Number(sub.hwk) || 0) + (Number(sub.cf) || 0) + (Number(sub.ca1) || 0) + (Number(sub.ca2) || 0) + (Number(sub.exam) || 0);
 
 const getGrade = (total) => {
   const pct = (total / MAX_TOTAL) * 100;
@@ -247,10 +250,10 @@ const UploadResult = () => {
         studentId: student,
         term,
         session,
-        // Send only the fields for this term — no cwk
         subjects: subjects.map(s => ({
           name: s.name,
           hwk:  Number(s.hwk)  || 0,
+          cf:   Number(s.cf)   || 0,
           ca1:  Number(s.ca1)  || 0,
           ca2:  Number(s.ca2)  || 0,
           exam: Number(s.exam) || 0,
@@ -382,7 +385,7 @@ const UploadResult = () => {
               {term && (
                 <div className="px-4 py-2.5 bg-[#f056f0]/5 border border-[#f056f0]/20 rounded-xl">
                   <p className="font-dm-sans text-xs text-[#f056f0] font-semibold">
-                    {term} scoring: HWK (10) + CA1 (10) + CA2 (10) + Exam (60) = 90
+                    {term} scoring: HWK (10) + CF (10) + CA1 (10) + CA2 (10) + Exam (60) = 100
                     {term === "2nd Term" && " · 1st Term average shown below"}
                     {term === "3rd Term" && " · 1st & 2nd Term averages shown below"}
                   </p>
@@ -509,7 +512,7 @@ const UploadResult = () => {
                   <p className="font-dm-sans text-xs text-gray-400">out of {subjects.length * MAX_TOTAL}</p>
                 </div>
                 <div className="bg-gray-50 p-4 rounded-xl text-center">
-                  <p className="font-dm-sans text-xs text-gray-400 mb-1">Average /90</p>
+                  <p className="font-dm-sans text-xs text-gray-400 mb-1">Average /100</p>
                   <p className="font-jost font-bold text-2xl text-[#525fe1]">{average.toFixed(2)}</p>
                 </div>
                 <div className="bg-gray-50 p-4 rounded-xl text-center">
