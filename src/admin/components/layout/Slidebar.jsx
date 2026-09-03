@@ -291,8 +291,9 @@ const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
       <aside
         className={`
           fixed md:static top-0 mt-[3.5rem] left-0 z-50
-          w-[240px] min-h-screen bg-white border-r border-gray-100
-          flex flex-col transition-transform duration-300 ease-in-out
+          w-[240px] h-[calc(100dvh-3.5rem)] max-h-[calc(100dvh-3.5rem)]
+          overflow-hidden bg-white border-r border-gray-100
+          flex min-h-0 flex-col transition-transform duration-300 ease-in-out
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0
         `}
@@ -313,7 +314,7 @@ const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+        <nav className="flex-1 min-h-0 overflow-y-auto px-3 py-4 space-y-1">
           <p className="text-[10px] font-bold tracking-widest uppercase text-gray-400 px-2 pb-2">
             Main Menu
           </p>
