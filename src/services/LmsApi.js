@@ -1,6 +1,6 @@
 const BASE = import.meta.env.VITE_API_URL
   ? `${import.meta.env.VITE_API_URL}/api/lms`
-  : "https://royalgemschoolsbackend.onrender.com/api/lms";
+  : "https://royalgemschoolsbackend.https://royalgemschoolsbackend/api/lms";
 
 // Staff token (teacher / admin)
 const h = () => ({
