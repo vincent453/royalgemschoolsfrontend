@@ -1,80 +1,106 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import Home                  from "../public/pages/Home";
+import About                 from "../public/pages/About";
+import EducationalServices   from "../public/pages/EducationalServices";
+import Contact               from "../public/pages/Contact";
+import Admissions            from "../public/pages/Admission";
+import Portal                from "../public/pages/Portal";
+import Yearbook              from "../public/pages/YearBook";
+import Blog                  from "../public/pages/Blog";
+import Privacy               from "../public/pages/Privacy";
+import Safeguarding          from "../public/pages/Safeguarding";
 
-// Public
-import Home       from "../public/pages/Home";
-import About      from "../public/pages/About";
-import EducationalServices from "../public/pages/EducationalServices";
-import Contact    from "../public/pages/Contact";
-import Admissions from "../public/pages/Admission";
-import Portal     from "../public/pages/Portal";
-import Yearbook   from "../public/pages/YearBook";
-import Blog       from "../public/pages/Blog";
-import Privacy    from "../public/pages/Privacy";
-import Safeguarding from "../public/pages/Safeguarding";
-
-// Shared login
-import AdminLogin from "../admin/pages/AdminLogin";
+// Shared staff login
+import AdminLogin            from "../admin/pages/AdminLogin";
 
 // Admin pages
-import AdminDashboard      from "../admin/pages/AdminDashboard";
-import Student             from "../admin/pages/Student";
-import AddStudent          from "../admin/pages/AddStudent";
-import AddTeachers         from "../admin/pages/AddTeachers";
-import UploadResult        from "../admin/pages/UploadResult";
-import Teacher             from "../admin/pages/Teacher";
-import Result              from "../admin/pages/Results";
-import EditStudent         from "../admin/pages/EditStudent";
-import Settings            from "../admin/pages/Sethings";
-import GeneratePin         from "../admin/pages/PinGenatration";
-import Users               from "../admin/pages/Users";
-import AddUser             from "../admin/pages/AddUsers";
-import ResultCard          from "../admin/pages/ResultCard";
-import UploadSubjectResult from "../admin/pages/UploadSubjectResult";
-import FinalizeResult      from "../admin/pages/FinalizeResult";
-import AddYearbookEntry    from "../admin/pages/AddYearBookEntry";
-import ScholarshipDashboard from "../admin/pages/ScholarshipDashboard";
-import ScholarshipList      from "../admin/pages/ScholarshipList";
-import ScholarshipForm      from "../admin/pages/ScholarshipForm";
-import ScholarshipDetails   from "../admin/pages/Scholarshipdetails";
-import AwardScholarship     from "../admin/pages/AwardScholarship";
-import Beneficiaries        from "../admin/pages/Beneficiaries";
-import ScholarshipReports   from "../admin/pages/ScholarshipReports";
-import StudentScholarshipProfile from "../admin/pages/StudentScholarshipProfile";
-import LearningDashboard from "../admin/pages/LearningDashboard";
-import StudentLearningPortal from "../admin/pages/StudentLearningPortal";
-import StudentAssignments from "../admin/pages/StudentAssignments";
-import StudentResources from "../admin/pages/StudentResources";
+import AdminDashboard        from "../admin/pages/AdminDashboard";
+import Student               from "../admin/pages/Student";
+import AddStudent            from "../admin/pages/AddStudent";
+import AddTeachers           from "../admin/pages/AddTeachers";
+import UploadResult          from "../admin/pages/UploadResult";
+import Teacher               from "../admin/pages/Teacher";
+import Result                from "../admin/pages/Results";
+import EditStudent           from "../admin/pages/EditStudent";
+import Settings              from "../admin/pages/Sethings";
+import GeneratePin           from "../admin/pages/PinGenatration";
+import Users                 from "../admin/pages/Users";
+import AddUser               from "../admin/pages/AddUsers";
+import EditUser              from "../admin/pages/EditUser";
+import ResultCard            from "../admin/pages/ResultCard";
+import UploadSubjectResult   from "../admin/pages/UploadSubjectResult";
+import FinalizeResult        from "../admin/pages/FinalizeResult";
+import AddYearbookEntry      from "../admin/pages/AddYearBookEntry";
 
-// Teacher dashboard
-import TeacherDashboard from "../admin/pages/TeacherDashboard";
+// Scholarship
+import ScholarshipDashboard        from "../admin/pages/ScholarshipDashboard";
+import ScholarshipList             from "../admin/pages/ScholarshipList";
+import ScholarshipForm             from "../admin/pages/ScholarshipForm";
+import ScholarshipDetails          from "../admin/pages/Scholarshipdetails";
+import AwardScholarship            from "../admin/pages/AwardScholarship";
+import Beneficiaries               from "../admin/pages/Beneficiaries";
+import ScholarshipReports          from "../admin/pages/ScholarshipReports";
+import StudentScholarshipProfile   from "../admin/pages/StudentScholarshipProfile";
+
+// Learning (LMS)
+import LearningDashboard     from "../admin/pages/LearningDashboard";
+import StudentLearningPortal from "../admin/pages/StudentLearningPortal";
+import StudentAssignments    from "../admin/pages/StudentAssignments";
+import StudentResources      from "../admin/pages/StudentResources";
+import TeacherAssignments    from "../admin/pages/TeacherAssignments";
+import TeacherSubmissions    from "../admin/pages/TeacherSubmissions";
+import TeacherResources      from "../admin/pages/TeacherResources";
+
+// Teacher
+import TeacherDashboard      from "../admin/pages/TeacherDashboard";
 
 // Accounting
-import AccountingDashboard from "../pages/accounting/Dashboard";
-import Income from "../pages/accounting/Income";
-import Expenses from "../pages/accounting/Expenses";
-import Ledger from "../pages/accounting/Ledger";
-import Receipts from "../pages/accounting/Receipts";
+import AccountingDashboard   from "../pages/accounting/Dashboard";
+import Income                from "../pages/accounting/Income";
+import Expenses              from "../pages/accounting/Expenses";
+import Ledger                from "../pages/accounting/Ledger";
+import Receipts              from "../pages/accounting/Receipts";
 
 // Fees & Billing
-import Fees from "../admin/pages/Fees";
-import StudentFees from "../admin/pages/StudentFees";
-import CollectPayment from "../admin/pages/CollectPayment";
-import PaymentHistory from "../admin/pages/PaymentHistory";
-import OutstandingBalances from "../admin/pages/OutstandingBalances";
-import ReceiptDetails from "../admin/pages/ReceiptDetails";
-
-// Student / Parent dashboards
-import StudentDashboard from "../admin/pages/StudentDashboard";
-import ParentDashboard  from "../admin/pages/ParentDashboard";
+import Fees                  from "../admin/pages/Fees";
+import StudentFees           from "../admin/pages/StudentFees";
+import CollectPayment        from "../admin/pages/CollectPayment";
+import PaymentHistory        from "../admin/pages/PaymentHistory";
+import OutstandingBalances   from "../admin/pages/OutstandingBalances";
+import ReceiptDetails        from "../admin/pages/ReceiptDetails";
 
 // Attendance
-import AttendanceDashboard from "../admin/pages/AttendanceDashboard";
-import MarkAttendance from "../admin/pages/MarkAttendance";
-import AttendanceReport from "../admin/pages/AttendanceReport";
-import StudentAttendanceHistory from "../admin/pages/StudentAttendanceHistory";
-import StudentAttendancePortal from "../admin/pages/StudentAttendancePortal";
+import AttendanceDashboard        from "../admin/pages/AttendanceDashboard";
+import MarkAttendance             from "../admin/pages/MarkAttendance";
+import AttendanceReport           from "../admin/pages/AttendanceReport";
+import StudentAttendanceHistory   from "../admin/pages/StudentAttendanceHistory";
+import StudentAttendancePortal    from "../admin/pages/StudentAttendancePortal";
 
-// Guards
+// Inventory
+import InventoryDashboard    from "../admin/pages/InventoryDashboard";
+import InventoryItems        from "../admin/pages/InventoryItems";
+import InventoryItemDetails  from "../admin/pages/InventoryItemDetails";
+import Suppliers             from "../admin/pages/Suppliers";
+import Purchases             from "../admin/pages/Purchases";
+import StockMovements        from "../admin/pages/StockMovement";
+import LowStock              from "../admin/pages/LowStock";
+
+// Shop
+import ShopDashboard         from "../admin/pages/ShopDashboard";
+import ShopProducts          from "../admin/pages/ShopProduct";
+import ProductForm           from "../admin/pages/ProductForm";
+import ShopOrders            from "../admin/pages/ShopOrders";
+import OrderDetails          from "../admin/pages/OderDetail";
+import ShopCategories        from "../admin/pages/ShopCategories";
+import ShopCustomers         from "../admin/pages/ShopCustomers";
+import SalesReport           from "../admin/pages/SalesReport";
+import PortalShop            from "../admin/pages/PortalShop";
+import MyOrders              from "../admin/pages/MyOrders";
+
+// Student / Parent portals
+import StudentDashboard      from "../admin/pages/StudentDashboard";
+import ParentDashboard       from "../admin/pages/ParentDashboard";
+
+// Route guards
 import {
   AdminRoute,
   TeacherRoute,
@@ -85,55 +111,49 @@ import {
   StudentPortalRoute,
   ParentPortalRoute,
 } from "./ProtectedRoutes";
-import InventoryDashboard from "../admin/pages/InventoryDashboard";
-import InventoryItems from "../admin/pages/InventoryItems";
-import InventoryItemDetails from "../admin/pages/InventoryItemDetails";
-import Suppliers from "../admin/pages/Suppliers";
-import Purchases from "../admin/pages/Purchases";
-import StockMovements from "../admin/pages/StockMovement";
-import LowStock from "../admin/pages/LowStock";
-import EditUser from "../admin/pages/EditUser";
-import ShopDashboard from "../admin/pages/ShopDashboard";
-import ShopProducts from "../admin/pages/ShopProduct";
-import ProductForm from "../admin/pages/ProductForm";
-import OrderDetails from "../admin/pages/OderDetail";
-import ShopOrders from "../admin/pages/ShopOrders";
-import PortalShop from "../admin/pages/PortalShop";
-import MyOrders from "../admin/pages/MyOrders";
-import ShopCategories from "../admin/pages/ShopCategories";
-import ShopCustomers from "../admin/pages/ShopCustomers";
-import SalesReport from "../admin/pages/SalesReport";
-import TeacherAssignments from "../admin/pages/TeacherAssignments";
-import TeacherSubmissions from "../admin/pages/TeacherSubmissions";
-import TeacherResources from "../admin/pages/TeacherResources";
+import { Route } from "react-router-dom";
 
-
+// ── Helper: shop routes reused for both admin and accountant ──
+// We render the same pages but with different guards
+const ShopRoutes = ({ Guard }) => (
+  <>
+    <Route path="/admin/shop"                element={<Guard><ShopDashboard  /></Guard>} />
+    <Route path="/admin/shop/products"       element={<Guard><ShopProducts   /></Guard>} />
+    <Route path="/admin/shop/products/new"   element={<Guard><ProductForm    /></Guard>} />
+    <Route path="/admin/shop/products/:id"   element={<Guard><ProductForm    /></Guard>} />
+    <Route path="/admin/shop/orders"         element={<Guard><ShopOrders     /></Guard>} />
+    <Route path="/admin/shop/orders/:id"     element={<Guard><OrderDetails   /></Guard>} />
+    <Route path="/admin/shop/categories"     element={<Guard><ShopCategories /></Guard>} />
+    <Route path="/admin/shop/customers"      element={<Guard><ShopCustomers  /></Guard>} />
+    <Route path="/admin/shop/report"         element={<Guard><SalesReport    /></Guard>} />
+  </>
+);
 
 export default function AppRoutes() {
   return (
     <Routes>
 
-      {/* ════════════════════════════════════════════
+      {/* ════════════════════════════════════
           PUBLIC
-      ════════════════════════════════════════════ */}
-      <Route path="/"           element={<Home />}       />
-      <Route path="/about"      element={<About />}      />
+      ════════════════════════════════════ */}
+      <Route path="/"                     element={<Home />}                />
+      <Route path="/about"                element={<About />}               />
       <Route path="/educational-services" element={<EducationalServices />} />
-      <Route path="/contact"    element={<Contact />}    />
-      <Route path="/admissions" element={<Admissions />} />
-      <Route path="/yearbook"   element={<Yearbook />}   />
-      <Route path="/blog"       element={<Blog />}       />
-      <Route path="/privacy"   element={<Privacy />}   />
-      <Route path="/safeguarding" element={<Safeguarding />} />
+      <Route path="/contact"              element={<Contact />}             />
+      <Route path="/admissions"           element={<Admissions />}          />
+      <Route path="/yearbook"             element={<Yearbook />}            />
+      <Route path="/blog"                 element={<Blog />}                />
+      <Route path="/privacy"              element={<Privacy />}             />
+      <Route path="/safeguarding"         element={<Safeguarding />}        />
 
-      {/* ════════════════════════════════════════════
+      {/* ════════════════════════════════════
           PORTAL LOGIN
-      ════════════════════════════════════════════ */}
+      ════════════════════════════════════ */}
       <Route path="/portal" element={<Portal />} />
 
-      {/* ════════════════════════════════════════════
+      {/* ════════════════════════════════════
           STUDENT PORTAL
-      ════════════════════════════════════════════ */}
+      ════════════════════════════════════ */}
       <Route path="/student/dashboard"
         element={<StudentPortalRoute><StudentDashboard /></StudentPortalRoute>} />
       <Route path="/student/learning"
@@ -143,32 +163,28 @@ export default function AppRoutes() {
       <Route path="/student/resources"
         element={<StudentPortalRoute><StudentResources /></StudentPortalRoute>} />
 
-      {/* ════════════════════════════════════════════
+      {/* ════════════════════════════════════
           PARENT PORTAL
-      ════════════════════════════════════════════ */}
+      ════════════════════════════════════ */}
       <Route path="/parent/dashboard"
         element={<ParentPortalRoute><ParentDashboard /></ParentPortalRoute>} />
       <Route path="/parent/attendance"
         element={<ParentPortalRoute><StudentAttendancePortal /></ParentPortalRoute>} />
 
-      {/* ── Portal: shop ── */}
-      <Route path="/portal/shop"
-        element={<PortalShop />} />
-      <Route path="/portal/shop/orders"
-        element={<MyOrders />} />
+      {/* Portal shop — public (no role gate, anyone logged into portal) */}
+      <Route path="/portal/shop"          element={<PortalShop />}    />
+      <Route path="/portal/shop/orders"   element={<MyOrders />}      />
+      <Route path="/portal/results/:id"   element={<ResultCard />}    />
+      <Route path="/portal/receipt/:id"   element={<ReceiptDetails />}/>
 
-      {/* ── Portal: shared pages (no role gate needed) ── */}
-      <Route path="/portal/results/:id" element={<ResultCard />}    />
-      <Route path="/portal/receipt/:id" element={<ReceiptDetails />} />
-
-      {/* ════════════════════════════════════════════
+      {/* ════════════════════════════════════
           STAFF LOGIN
-      ════════════════════════════════════════════ */}
+      ════════════════════════════════════ */}
       <Route path="/admin/portal" element={<AdminLogin />} />
 
-      {/* ════════════════════════════════════════════
-          ADMIN — Core
-      ════════════════════════════════════════════ */}
+      {/* ════════════════════════════════════
+          ADMIN — core
+      ════════════════════════════════════ */}
       <Route path="/admin/dashboard"
         element={<AdminRoute><AdminDashboard /></AdminRoute>} />
 
@@ -206,16 +222,12 @@ export default function AppRoutes() {
       <Route path="/admin/finalizeresults"
         element={<AdminRoute><FinalizeResult /></AdminRoute>} />
 
-      {/* Scholarship module */}
+      {/* Scholarships */}
       <Route path="/admin/scholarships"
         element={<AdminRoute><ScholarshipList /></AdminRoute>} />
       <Route path="/admin/scholarships/dashboard"
         element={<AdminRoute><ScholarshipDashboard /></AdminRoute>} />
       <Route path="/admin/scholarships/new"
-        element={<AdminRoute><ScholarshipForm /></AdminRoute>} />
-      <Route path="/admin/scholarships/:id"
-        element={<AdminRoute><ScholarshipDetails /></AdminRoute>} />
-      <Route path="/admin/scholarships/:id/edit"
         element={<AdminRoute><ScholarshipForm /></AdminRoute>} />
       <Route path="/admin/scholarships/award"
         element={<AdminRoute><AwardScholarship /></AdminRoute>} />
@@ -225,8 +237,12 @@ export default function AppRoutes() {
         element={<AdminRoute><ScholarshipReports /></AdminRoute>} />
       <Route path="/admin/scholarships/student/:id"
         element={<AdminRoute><StudentScholarshipProfile /></AdminRoute>} />
+      <Route path="/admin/scholarships/:id"
+        element={<AdminRoute><ScholarshipDetails /></AdminRoute>} />
+      <Route path="/admin/scholarships/:id/edit"
+        element={<AdminRoute><ScholarshipForm /></AdminRoute>} />
 
-      {/* Learning module */}
+      {/* Learning */}
       <Route path="/admin/learning"
         element={<AdminRoute><LearningDashboard /></AdminRoute>} />
       <Route path="/admin/learning/assignments"
@@ -236,7 +252,7 @@ export default function AppRoutes() {
       <Route path="/admin/learning/submissions/:id"
         element={<AdminRoute><TeacherSubmissions /></AdminRoute>} />
 
-      {/* Misc admin */}
+      {/* Misc */}
       <Route path="/admin/generatepin"
         element={<AdminRoute><GeneratePin /></AdminRoute>} />
       <Route path="/admin/addyearbookentry"
@@ -244,9 +260,83 @@ export default function AppRoutes() {
       <Route path="/admin/settings"
         element={<AdminRoute><Settings /></AdminRoute>} />
 
-      {/* ════════════════════════════════════════════
+      {/* Attendance */}
+      <Route path="/admin/attendance"
+        element={<AdminRoute><AttendanceDashboard /></AdminRoute>} />
+      <Route path="/admin/attendance/mark"
+        element={<AdminRoute><MarkAttendance /></AdminRoute>} />
+      <Route path="/admin/attendance/report"
+        element={<AdminRoute><AttendanceReport /></AdminRoute>} />
+      <Route path="/admin/attendance/student"
+        element={<AdminRoute><StudentAttendanceHistory /></AdminRoute>} />
+
+      {/* Accounting (admin access) */}
+      <Route path="/admin/accounting"
+        element={<FinanceRoute><AccountingDashboard /></FinanceRoute>} />
+      <Route path="/admin/accounting/income"
+        element={<FinanceRoute><Income /></FinanceRoute>} />
+      <Route path="/admin/accounting/expenses"
+        element={<FinanceRoute><Expenses /></FinanceRoute>} />
+      <Route path="/admin/accounting/ledger"
+        element={<FinanceRoute><Ledger /></FinanceRoute>} />
+
+      {/* Fees & Billing */}
+      <Route path="/admin/fees"
+        element={<FinanceRoute><Fees /></FinanceRoute>} />
+      <Route path="/admin/fees/students"
+        element={<AdminRoute><StudentFees /></AdminRoute>} />
+      <Route path="/admin/fees/collect/:id"
+        element={<AdminRoute><CollectPayment /></AdminRoute>} />
+      <Route path="/admin/fees/history"
+        element={<FinanceRoute><PaymentHistory /></FinanceRoute>} />
+      <Route path="/admin/fees/outstanding"
+        element={<AdminRoute><OutstandingBalances /></AdminRoute>} />
+      <Route path="/admin/fees/receipt/:id"
+        element={<FinanceRoute><ReceiptDetails /></FinanceRoute>} />
+      <Route path="/admin/receipts"
+        element={<FinanceRoute><Receipts /></FinanceRoute>} />
+      <Route path="/admin/receipts/:id"
+        element={<FinanceRoute><ReceiptDetails /></FinanceRoute>} />
+
+      {/* Inventory (admin + inventory manager via InventoryRoute) */}
+      <Route path="/admin/inventory"
+        element={<InventoryRoute><InventoryDashboard /></InventoryRoute>} />
+      <Route path="/admin/inventory/items"
+        element={<InventoryRoute><InventoryItems /></InventoryRoute>} />
+      <Route path="/admin/inventory/items/:id"
+        element={<InventoryRoute><InventoryItemDetails /></InventoryRoute>} />
+      <Route path="/admin/inventory/suppliers"
+        element={<InventoryRoute><Suppliers /></InventoryRoute>} />
+      <Route path="/admin/inventory/purchases"
+        element={<InventoryRoute><Purchases /></InventoryRoute>} />
+      <Route path="/admin/inventory/stock-movement"
+        element={<InventoryRoute><StockMovements /></InventoryRoute>} />
+      <Route path="/admin/inventory/low-stock"
+        element={<InventoryRoute><LowStock /></InventoryRoute>} />
+
+      {/* Shop — admin AND accountant can access */}
+      <Route path="/admin/shop"
+        element={<FinanceRoute><ShopDashboard /></FinanceRoute>} />
+      <Route path="/admin/shop/products"
+        element={<FinanceRoute><ShopProducts /></FinanceRoute>} />
+      <Route path="/admin/shop/products/new"
+        element={<AdminRoute><ProductForm /></AdminRoute>} />
+      <Route path="/admin/shop/products/:id"
+        element={<AdminRoute><ProductForm /></AdminRoute>} />
+      <Route path="/admin/shop/orders"
+        element={<FinanceRoute><ShopOrders /></FinanceRoute>} />
+      <Route path="/admin/shop/orders/:id"
+        element={<FinanceRoute><OrderDetails /></FinanceRoute>} />
+      <Route path="/admin/shop/categories"
+        element={<AdminRoute><ShopCategories /></AdminRoute>} />
+      <Route path="/admin/shop/customers"
+        element={<FinanceRoute><ShopCustomers /></FinanceRoute>} />
+      <Route path="/admin/shop/report"
+        element={<FinanceRoute><SalesReport /></FinanceRoute>} />
+
+      {/* ════════════════════════════════════
           TEACHER
-      ════════════════════════════════════════════ */}
+      ════════════════════════════════════ */}
       <Route path="/teacher/dashboard"
         element={<TeacherRoute><TeacherDashboard /></TeacherRoute>} />
       <Route path="/teacher/students"
@@ -268,116 +358,53 @@ export default function AppRoutes() {
       <Route path="/teacher/lms/resources"
         element={<TeacherRoute><TeacherResources /></TeacherRoute>} />
 
-      {/* ════════════════════════════════════════════
-          ACCOUNTANT
-      ════════════════════════════════════════════ */}
-      <Route path="/accountant" element={<AccountantRoute><AccountingDashboard /></AccountantRoute>} />
-      <Route path="/accountant/fees" element={<AccountantRoute><Fees /></AccountantRoute>} />
-      <Route path="/accountant/payments" element={<AccountantRoute><PaymentHistory /></AccountantRoute>} />
-      <Route path="/accountant/receipts" element={<AccountantRoute><Receipts /></AccountantRoute>} />
-      <Route path="/accountant/expenses" element={<AccountantRoute><Expenses /></AccountantRoute>} />
-      <Route path="/accountant/reports" element={<AccountantRoute><Ledger /></AccountantRoute>} />
-      <Route path="/accountant/fees/collect/:id" element={<AccountantRoute><CollectPayment /></AccountantRoute>} />
-      <Route path="/accountant/fees/receipt/:id" element={<AccountantRoute><ReceiptDetails /></AccountantRoute>} />
-      <Route path="/accountant/receipts/:id" element={<AccountantRoute><ReceiptDetails /></AccountantRoute>} />
+      {/* ════════════════════════════════════
+          ACCOUNTANT (standalone routes)
+      ════════════════════════════════════ */}
+      <Route path="/accountant"
+        element={<AccountantRoute><AccountingDashboard /></AccountantRoute>} />
+      <Route path="/accountant/fees"
+        element={<AccountantRoute><Fees /></AccountantRoute>} />
+      <Route path="/accountant/payments"
+        element={<AccountantRoute><PaymentHistory /></AccountantRoute>} />
+      <Route path="/accountant/receipts"
+        element={<AccountantRoute><Receipts /></AccountantRoute>} />
+      <Route path="/accountant/expenses"
+        element={<AccountantRoute><Expenses /></AccountantRoute>} />
+      <Route path="/accountant/reports"
+        element={<AccountantRoute><Ledger /></AccountantRoute>} />
+      <Route path="/accountant/fees/collect/:id"
+        element={<AccountantRoute><CollectPayment /></AccountantRoute>} />
+      <Route path="/accountant/fees/receipt/:id"
+        element={<AccountantRoute><ReceiptDetails /></AccountantRoute>} />
+      <Route path="/accountant/receipts/:id"
+        element={<AccountantRoute><ReceiptDetails /></AccountantRoute>} />
 
-      {/* ════════════════════════════════════════════
-          INVENTORY MANAGER
-      ════════════════════════════════════════════ */}
-      <Route path="/inventory" element={<InventoryManagerRoute><InventoryDashboard /></InventoryManagerRoute>} />
-      <Route path="/inventory/items" element={<InventoryManagerRoute><InventoryItems /></InventoryManagerRoute>} />
-      <Route path="/inventory/purchases" element={<InventoryManagerRoute><Purchases /></InventoryManagerRoute>} />
-      <Route path="/inventory/usage" element={<InventoryManagerRoute><StockMovements /></InventoryManagerRoute>} />
-      <Route path="/inventory/history" element={<InventoryManagerRoute><StockMovements /></InventoryManagerRoute>} />
-      <Route path="/inventory/reports" element={<InventoryManagerRoute><LowStock /></InventoryManagerRoute>} />
-      <Route path="/inventory/items/:id" element={<InventoryManagerRoute><InventoryItemDetails /></InventoryManagerRoute>} />
-      <Route path="/inventory/suppliers" element={<InventoryManagerRoute><Suppliers /></InventoryManagerRoute>} />
-      <Route path="/inventory/stock-movement" element={<InventoryManagerRoute><StockMovements /></InventoryManagerRoute>} />
-      <Route path="/inventory/alerts" element={<InventoryManagerRoute><LowStock /></InventoryManagerRoute>} />
-
-      {/* ════════════════════════════════════════════
-          ACCOUNTING
-      ════════════════════════════════════════════ */}
-      <Route path="/admin/accounting"
-        element={<FinanceRoute><AccountingDashboard /></FinanceRoute>} />
-      <Route path="/admin/accounting/income"
-        element={<FinanceRoute><Income /></FinanceRoute>} />
-      <Route path="/admin/accounting/expenses"
-        element={<FinanceRoute><Expenses /></FinanceRoute>} />
-      <Route path="/admin/accounting/ledger"
-        element={<FinanceRoute><Ledger /></FinanceRoute>} />
-
-      {/* ════════════════════════════════════════════
-          FEES & BILLING
-      ════════════════════════════════════════════ */}
-      <Route path="/admin/fees"
-        element={<FinanceRoute><Fees /></FinanceRoute>} />
-      <Route path="/admin/fees/students"
-        element={<AdminRoute><StudentFees /></AdminRoute>} />
-      <Route path="/admin/fees/collect/:id"
-        element={<AdminRoute><CollectPayment /></AdminRoute>} />
-      <Route path="/admin/fees/history"
-        element={<FinanceRoute><PaymentHistory /></FinanceRoute>} />
-      <Route path="/admin/fees/outstanding"
-        element={<AdminRoute><OutstandingBalances /></AdminRoute>} />
-      <Route path="/admin/fees/receipt/:id"
-        element={<FinanceRoute><ReceiptDetails /></FinanceRoute>} />
-      <Route path="/admin/receipts"
-        element={<FinanceRoute><Receipts /></FinanceRoute>} />
-      <Route path="/admin/receipts/:id"
-        element={<FinanceRoute><ReceiptDetails /></FinanceRoute>} />
-
-      {/* ════════════════════════════════════════════
-          ATTENDANCE
-      ════════════════════════════════════════════ */}
-      <Route path="/admin/attendance"
-        element={<AdminRoute><AttendanceDashboard /></AdminRoute>} />
-      <Route path="/admin/attendance/mark"
-        element={<AdminRoute><MarkAttendance /></AdminRoute>} />
-      <Route path="/admin/attendance/report"
-        element={<AdminRoute><AttendanceReport /></AdminRoute>} />
-      <Route path="/admin/attendance/student"
-        element={<AdminRoute><StudentAttendanceHistory /></AdminRoute>} />
-
-      {/* ════════════════════════════════════════════
-          INVENTORY
-      ════════════════════════════════════════════ */}
-      <Route path="/admin/inventory"
-        element={<InventoryRoute><InventoryDashboard /></InventoryRoute>} />
-      <Route path="/admin/inventory/items"
-        element={<InventoryRoute><InventoryItems /></InventoryRoute>} />
-      <Route path="/admin/inventory/items/:id"
-        element={<InventoryRoute><InventoryItemDetails /></InventoryRoute>} />
-      <Route path="/admin/inventory/suppliers"
-        element={<InventoryRoute><Suppliers /></InventoryRoute>} />
-      <Route path="/admin/inventory/purchases"
-        element={<InventoryRoute><Purchases /></InventoryRoute>} />
-      <Route path="/admin/inventory/stock-movement"
-        element={<InventoryRoute><StockMovements /></InventoryRoute>} />
-      <Route path="/admin/inventory/low-stock"
-        element={<InventoryRoute><LowStock /></InventoryRoute>} />
-
-      {/* ════════════════════════════════════════════
-          ONLINE SHOP — Admin
-      ════════════════════════════════════════════ */}
-      <Route path="/admin/shop"
-        element={<AdminRoute><ShopDashboard /></AdminRoute>} />
-      <Route path="/admin/shop/products"
-        element={<AdminRoute><ShopProducts /></AdminRoute>} />
-      <Route path="/admin/shop/products/new"
-        element={<AdminRoute><ProductForm /></AdminRoute>} />
-      <Route path="/admin/shop/products/:id"
-        element={<AdminRoute><ProductForm /></AdminRoute>} />
-      <Route path="/admin/shop/orders"
-        element={<AdminRoute><ShopOrders /></AdminRoute>} />
-      <Route path="/admin/shop/orders/:id"
-        element={<AdminRoute><OrderDetails /></AdminRoute>} />
-      <Route path="/admin/shop/categories"
-        element={<AdminRoute><ShopCategories /></AdminRoute>} />
-      <Route path="/admin/shop/customers"
-        element={<AdminRoute><ShopCustomers /></AdminRoute>} />
-      <Route path="/admin/shop/report"
-        element={<AdminRoute><SalesReport /></AdminRoute>} />
+      {/* ════════════════════════════════════
+          INVENTORY MANAGER (standalone routes)
+      ════════════════════════════════════ */}
+      <Route path="/inventory"
+        element={<InventoryManagerRoute><InventoryDashboard /></InventoryManagerRoute>} />
+      <Route path="/inventory/items"
+        element={<InventoryManagerRoute><InventoryItems /></InventoryManagerRoute>} />
+      <Route path="/inventory/items/:id"
+        element={<InventoryManagerRoute><InventoryItemDetails /></InventoryManagerRoute>} />
+      <Route path="/inventory/purchases"
+        element={<InventoryManagerRoute><Purchases /></InventoryManagerRoute>} />
+      <Route path="/inventory/suppliers"
+        element={<InventoryManagerRoute><Suppliers /></InventoryManagerRoute>} />
+      <Route path="/inventory/stock-movement"
+        element={<InventoryManagerRoute><StockMovements /></InventoryManagerRoute>} />
+      <Route path="/inventory/usage"
+        element={<InventoryManagerRoute><StockMovements /></InventoryManagerRoute>} />
+      <Route path="/inventory/history"
+        element={<InventoryManagerRoute><StockMovements /></InventoryManagerRoute>} />
+      <Route path="/inventory/low-stock"
+        element={<InventoryManagerRoute><LowStock /></InventoryManagerRoute>} />
+      <Route path="/inventory/alerts"
+        element={<InventoryManagerRoute><LowStock /></InventoryManagerRoute>} />
+      <Route path="/inventory/reports"
+        element={<InventoryManagerRoute><LowStock /></InventoryManagerRoute>} />
 
       {/* ── Fallback ── */}
       <Route path="*" element={<Navigate to="/" replace />} />
@@ -385,5 +412,3 @@ export default function AppRoutes() {
     </Routes>
   );
 }
-
-
