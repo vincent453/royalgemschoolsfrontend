@@ -8,7 +8,7 @@ import { getBeneficiaries, cancelAssignment, renewAssignment, getScholarships } 
 const fmt     = (n) => `₦${Number(n || 0).toLocaleString("en-NG", { minimumFractionDigits: 2 })}`;
 const fmtDate = (d) => d ? new Date(d).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }) : "—";
 
-const CLASSES  = ["JSS 1","JSS 2","JSS 3","SSS 1","SSS 2","SSS 3","Kindergarten","Nursery 1","Nursery 2"];
+const CLASSES  = ["Reception 1", "Reception 2","Pre-K", "Kindergarten", "Primary 1", "Primary 2", "Primary 3", "Primary 4", "Primary 5", "Primary 6", "JSS 1", "JSS 2", "JSS 3", "SSS 1", "SSS 2", "SSS 3"];
 const STATUSES = ["Active","Expired","Cancelled","Renewed"];
 
 const statusColors = {
