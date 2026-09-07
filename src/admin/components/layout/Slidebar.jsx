@@ -3,67 +3,118 @@ import logo from "../../../assets/img/logo.png";
 import { NavLink, useLocation } from "react-router-dom";
 import useRole from "../../hooks/useRole";
 import {
-  MdDashboard,
-  MdPeople,
-  MdSchool,
-  MdBarChart,
-  MdSettings,
-  MdGroup,
-  MdUpload,
-  MdPin,
-  MdMemory,
-  MdKey,
-  MdCheckCircle,
-  MdAccountBalance,
-  MdReceipt,
-  MdBook,
-  MdExpandMore,
-  MdExpandLess,
-  MdCastForEducation,
-  MdAssignment,
-  MdLibraryBooks,
+  MdDashboard, MdPeople, MdSchool, MdBarChart, MdSettings,
+  MdGroup, MdUpload, MdPin, MdMemory, MdKey, MdCheckCircle,
+  MdAccountBalance, MdReceipt, MdBook, MdExpandMore, MdExpandLess,
+  MdEventNote, MdInventory2, MdSwapHoriz, MdShoppingCart, MdWarning,
+  MdShoppingBag, MdInventory, MdCategory, MdCastForEducation,
+  MdAssignment, MdLibraryBooks,
 } from "react-icons/md";
 
 // ─────────────────────────────────────────────────────────────
-// Nav structure
-// Items with group: true have children[] instead of href
+// Shared nav sections (reused across roles)
 // ─────────────────────────────────────────────────────────────
 
+const inventoryGroup = {
+  id: "inventory",
+  label: "Inventory",
+  icon: <MdInventory2 />,
+  group: true,
+  children: [
+    { id: "inventory-dashboard",  label: "Dashboard",       href: "/admin/inventory",                icon: <MdDashboard />  },
+    { id: "inventory-items",      label: "Inventory Items", href: "/admin/inventory/items",          icon: <MdInventory2 /> },
+    { id: "inventory-movements",  label: "Stock Movements", href: "/admin/inventory/stock-movement", icon: <MdSwapHoriz />  },
+    { id: "inventory-purchases",  label: "Purchases",       href: "/admin/inventory/purchases",      icon: <MdShoppingCart />},
+    { id: "inventory-suppliers",  label: "Suppliers",       href: "/admin/inventory/suppliers",      icon: <MdPeople />     },
+    { id: "inventory-low-stock",  label: "Low Stock",       href: "/admin/inventory/low-stock",      icon: <MdWarning />    },
+  ],
+};
+
+const shopGroup = {
+  id: "shop",
+  label: "Online Shop",
+  icon: <MdShoppingBag />,
+  group: true,
+  children: [
+    { id: "shop-dash",       label: "Dashboard",    href: "/admin/shop",            icon: <MdDashboard />    },
+    { id: "shop-products",   label: "Products",     href: "/admin/shop/products",   icon: <MdInventory />    },
+    { id: "shop-orders",     label: "Orders",       href: "/admin/shop/orders",     icon: <MdShoppingCart /> },
+    { id: "shop-categories", label: "Categories",   href: "/admin/shop/categories", icon: <MdCategory />     },
+    { id: "shop-customers",  label: "Customers",    href: "/admin/shop/customers",  icon: <MdPeople />       },
+    { id: "shop-report",     label: "Sales Report", href: "/admin/shop/report",     icon: <MdBarChart />     },
+  ],
+};
+
+const accountingGroup = {
+  id: "accounting",
+  label: "Accounting",
+  icon: <MdAccountBalance />,
+  group: true,
+  children: [
+    { id: "acc-overview",  label: "Overview",      href: "/admin/accounting",          icon: <MdBarChart />     },
+    { id: "acc-income",    label: "Income",         href: "/admin/accounting/income",   icon: <MdReceipt />      },
+    { id: "acc-expenses",  label: "Expenses",       href: "/admin/accounting/expenses", icon: <MdReceipt />      },
+    { id: "acc-ledger",    label: "Ledger",         href: "/admin/accounting/ledger",   icon: <MdBook />         },
+    { id: "acc-fees",      label: "Fees & Billing", href: "/admin/fees",                icon: <MdPin />          },
+    { id: "acc-receipts",  label: "Receipts",       href: "/admin/receipts",            icon: <MdReceipt />      },
+  ],
+};
+
+// ─────────────────────────────────────────────────────────────
+// Super Admin — sees everything
+// ─────────────────────────────────────────────────────────────
 const adminNavItems = [
+  { id: "dashboard", label: "Dashboard", href: "/admin/dashboard", icon: <MdDashboard /> },
+
+  accountingGroup,
+  inventoryGroup,
+  shopGroup,
+
   {
-    id: "dashboard",
-    label: "Dashboard",
-    href: "/admin/dashboard",
-    icon: <MdDashboard />,
-  },
-  {
-    id: "accounting",
-    label: "Accounting",
-    icon: <MdAccountBalance />,
+    id: "scholarships",
+    label: "Scholarships",
+    icon: <MdSchool />,
     group: true,
     children: [
-      { id: "acc-overview",  label: "Overview",       href: "/admin/accounting",          icon: <MdBarChart />  },
-      { id: "acc-income",    label: "Income",          href: "/admin/accounting/income",   icon: <MdReceipt />   },
-      { id: "acc-expenses",  label: "Expenses",        href: "/admin/accounting/expenses", icon: <MdReceipt />   },
-      { id: "acc-ledger",    label: "Ledger",          href: "/admin/accounting/ledger",   icon: <MdBook />      },
-      { id: "acc-fees",      label: "Fees & Billing",  href: "/admin/fees",                icon: <MdPin />       },
+      { id: "scholarship-dashboard",     label: "Dashboard",       href: "/admin/scholarships/dashboard",    icon: <MdDashboard /> },
+      { id: "scholarship-list",          label: "Scholarship List",href: "/admin/scholarships",              icon: <MdSchool />    },
+      { id: "scholarship-beneficiaries", label: "Beneficiaries",   href: "/admin/scholarships/beneficiaries",icon: <MdGroup />     },
+      { id: "scholarship-reports",       label: "Reports",         href: "/admin/scholarships/reports",      icon: <MdBarChart />  },
     ],
   },
   {
-    id: "students",
-    label: "Students",
-    href: "/admin/students",
-    icon: <MdSchool />,
+    id: "learning",
+    label: "Learning (LMS)",
+    icon: <MdCastForEducation />,
+    group: true,
+    children: [
+      { id: "learning-dashboard",    label: "Overview",     href: "/admin/learning",             icon: <MdDashboard />    },
+      { id: "learning-assignments",  label: "Assignments",  href: "/admin/learning/assignments", icon: <MdAssignment />   },
+      { id: "learning-resources",    label: "Resources",    href: "/admin/learning/resources",   icon: <MdLibraryBooks /> },
+    ],
   },
+  { id: "students", label: "Students", href: "/admin/students", icon: <MdSchool /> },
   {
     id: "results",
     label: "Results",
     icon: <MdBarChart />,
     group: true,
     children: [
-      { id: "results-view",     label: "View Results",          href: "/admin/results",             icon: <MdBarChart />    },
-      { id: "results-upload",   label: "Upload Subject Scores",  href: "/admin/uploadsubjectresult", icon: <MdUpload />      },
-      { id: "results-finalize", label: "Finalize Results",       href: "/admin/finalizeresults",     icon: <MdCheckCircle /> },
+      { id: "results-view",     label: "View Results",         href: "/admin/results",             icon: <MdBarChart />    },
+      { id: "results-upload",   label: "Upload Subject Scores", href: "/admin/uploadsubjectresult", icon: <MdUpload />      },
+      { id: "results-finalize", label: "Finalize Results",      href: "/admin/finalizeresults",     icon: <MdCheckCircle /> },
+    ],
+  },
+  {
+    id: "attendance",
+    label: "Attendance",
+    icon: <MdEventNote />,
+    group: true,
+    children: [
+      { id: "attendance-dashboard", label: "Dashboard",      href: "/admin/attendance",         icon: <MdBarChart />    },
+      { id: "attendance-mark",      label: "Mark Attendance",href: "/admin/attendance/mark",    icon: <MdCheckCircle /> },
+      { id: "attendance-report",    label: "Reports",        href: "/admin/attendance/report",  icon: <MdBook />        },
+      { id: "attendance-student",   label: "Student History",href: "/admin/attendance/student", icon: <MdSchool />      },
     ],
   },
   {
@@ -86,68 +137,77 @@ const adminNavItems = [
       { id: "other-pin",      label: "Generate PIN",   href: "/admin/generatepin",      icon: <MdKey />    },
     ],
   },
+  { id: "settings", label: "Settings", href: "/admin/settings", icon: <MdSettings /> },
+];
+
+// ─────────────────────────────────────────────────────────────
+// Accountant — accounting + shop access
+// ─────────────────────────────────────────────────────────────
+const accountantNavItems = [
+  { id: "dashboard", label: "Dashboard", href: "/accountant", icon: <MdDashboard /> },
+  accountingGroup,
+  shopGroup,   // ← accountants can access shop too
+];
+
+// ─────────────────────────────────────────────────────────────
+// Inventory Manager
+// ─────────────────────────────────────────────────────────────
+const inventoryManagerNavItems = [
+  { id: "dashboard", label: "Dashboard", href: "/inventory", icon: <MdDashboard /> },
+  inventoryGroup,
+  shopGroup,
+];
+
+// ─────────────────────────────────────────────────────────────
+// Teachers
+// ─────────────────────────────────────────────────────────────
+const subjectTeacherNavItems = [
+  { id: "dashboard", label: "Dashboard",            href: "/teacher/dashboard",             icon: <MdDashboard /> },
+  { id: "students",  label: "Students",             href: "/teacher/students",              icon: <MdSchool />    },
+  { id: "upload",    label: "Upload Subject Scores", href: "/teacher/upload-subject-result", icon: <MdUpload />   },
+  { id: "results",   label: "Results",               href: "/teacher/results",               icon: <MdBarChart /> },
   {
     id: "lms",
     label: "Learning (LMS)",
     icon: <MdCastForEducation />,
     group: true,
     children: [
-      { id: "lms-assignments", label: "Assignments",        href: "/admin/learning/assignments", icon: <MdAssignment />      },
-      { id: "lms-resources",   label: "Learning Resources", href: "/admin/learning/resources",   icon: <MdLibraryBooks />    },
+      { id: "lms-assignments", label: "Assignments",       href: "/teacher/lms/assignments", icon: <MdAssignment />   },
+      { id: "lms-resources",   label: "Learning Resources",href: "/teacher/lms/resources",   icon: <MdLibraryBooks /> },
     ],
   },
-  {
-    id: "settings",
-    label: "Settings",
-    href: "/admin/settings",
-    icon: <MdSettings />,
-  },
 ];
 
-// ── Subject teacher — can only upload scores ──
-const subjectTeacherNavItems = [
-  { id: "dashboard", label: "Dashboard",             href: "/teacher/dashboard",             icon: <MdDashboard />       },
-  { id: "students",  label: "Students",              href: "/teacher/students",              icon: <MdSchool />          },
-  { id: "upload",    label: "Upload Subject Scores",  href: "/teacher/upload-subject-result", icon: <MdUpload />         },
-  { id: "results",   label: "Results",                href: "/teacher/results",               icon: <MdBarChart />       },
-  { id: "lms-a",     label: "Assignments",            href: "/teacher/lms/assignments",       icon: <MdAssignment />     },
-  { id: "lms-r",     label: "Learning Resources",     href: "/teacher/lms/resources",         icon: <MdLibraryBooks />   },
-];
-
-// ── Class teacher — can finalize results ──
 const classTeacherNavItems = [
-  { id: "dashboard", label: "Dashboard",        href: "/teacher/dashboard",       icon: <MdDashboard />  },
-  { id: "students",  label: "Students",         href: "/teacher/students",        icon: <MdSchool />     },
-  { id: "finalize",  label: "Finalize Results", href: "/teacher/finalize-result", icon: <MdCheckCircle />},
-  { id: "results",   label: "Results",          href: "/teacher/results",         icon: <MdBarChart />   },
-  { id: "lms-a",     label: "Assignments",      href: "/teacher/lms/assignments", icon: <MdAssignment /> },
-  { id: "lms-r",     label: "Learning Resources",href: "/teacher/lms/resources",  icon: <MdLibraryBooks />},
+  { id: "dashboard", label: "Dashboard",       href: "/teacher/dashboard",       icon: <MdDashboard />  },
+  { id: "students",  label: "Students",        href: "/teacher/students",        icon: <MdSchool />     },
+  { id: "finalize",  label: "Finalize Results",href: "/teacher/finalize-result", icon: <MdCheckCircle />},
+  { id: "results",   label: "Results",         href: "/teacher/results",         icon: <MdBarChart />   },
+  {
+    id: "lms",
+    label: "Learning (LMS)",
+    icon: <MdCastForEducation />,
+    group: true,
+    children: [
+      { id: "lms-assignments", label: "Assignments",       href: "/teacher/lms/assignments", icon: <MdAssignment />   },
+      { id: "lms-resources",   label: "Learning Resources",href: "/teacher/lms/resources",   icon: <MdLibraryBooks /> },
+    ],
+  },
 ];
 
-// ── General teacher — legacy / upload old flow ──
 const teacherNavItems = [
-  {
-    id: "dashboard",
-    label: "Dashboard",
-    href: "/teacher/dashboard",
-    icon: <MdDashboard />,
-  },
-  {
-    id: "students",
-    label: "Students",
-    href: "/teacher/students",
-    icon: <MdSchool />,
-  },
+  { id: "dashboard", label: "Dashboard", href: "/teacher/dashboard", icon: <MdDashboard /> },
+  { id: "students",  label: "Students",  href: "/teacher/students",  icon: <MdSchool />    },
   {
     id: "results",
     label: "Results",
     icon: <MdBarChart />,
     group: true,
     children: [
-      { id: "results-view",     label: "View Results",          href: "/teacher/results",               icon: <MdBarChart />    },
-      { id: "results-upload",   label: "Upload Result",         href: "/teacher/upload",                icon: <MdUpload />      },
-      { id: "results-subject",  label: "Upload Subject Scores", href: "/teacher/upload-subject-result", icon: <MdUpload />      },
-      { id: "results-finalize", label: "Finalize Results",      href: "/teacher/finalize-result",       icon: <MdCheckCircle /> },
+      { id: "results-view",     label: "View Results",         href: "/teacher/results",               icon: <MdBarChart />    },
+      { id: "results-upload",   label: "Upload Result",        href: "/teacher/upload",                icon: <MdUpload />      },
+      { id: "results-subject",  label: "Upload Subject Scores",href: "/teacher/upload-subject-result", icon: <MdUpload />      },
+      { id: "results-finalize", label: "Finalize Results",     href: "/teacher/finalize-result",       icon: <MdCheckCircle /> },
     ],
   },
   {
@@ -156,49 +216,31 @@ const teacherNavItems = [
     icon: <MdCastForEducation />,
     group: true,
     children: [
-      { id: "lms-assignments", label: "Assignments",        href: "/teacher/lms/assignments", icon: <MdAssignment />   },
-      { id: "lms-resources",   label: "Learning Resources", href: "/teacher/lms/resources",   icon: <MdLibraryBooks /> },
+      { id: "lms-assignments", label: "Assignments",       href: "/teacher/lms/assignments", icon: <MdAssignment />   },
+      { id: "lms-resources",   label: "Learning Resources",href: "/teacher/lms/resources",   icon: <MdLibraryBooks /> },
     ],
   },
-];
-
-const accountantNavItems = [
-  { id: "dashboard", label: "Dashboard", href: "/accountant", icon: <MdDashboard /> },
-  { id: "fees", label: "School Fees", href: "/accountant/fees", icon: <MdPin /> },
-  { id: "payments", label: "Payments", href: "/accountant/payments", icon: <MdReceipt /> },
-  { id: "receipts", label: "Receipts", href: "/accountant/receipts", icon: <MdReceipt /> },
-  { id: "expenses", label: "Expenses", href: "/accountant/expenses", icon: <MdAccountBalance /> },
-  { id: "reports", label: "Financial Reports", href: "/accountant/reports", icon: <MdBarChart /> },
-];
-
-const inventoryManagerNavItems = [
-  { id: "dashboard", label: "Dashboard", href: "/inventory", icon: <MdDashboard /> },
-  { id: "items", label: "Inventory Items", href: "/inventory/items", icon: <MdSchool /> },
-  { id: "purchases", label: "Purchases", href: "/inventory/purchases", icon: <MdReceipt /> },
-  { id: "usage", label: "Stock Usage", href: "/inventory/usage", icon: <MdUpload /> },
-  { id: "history", label: "Inventory History", href: "/inventory/history", icon: <MdBook /> },
-  { id: "reports", label: "Reports", href: "/inventory/reports", icon: <MdBarChart /> },
 ];
 
 // ─────────────────────────────────────────────────────────────
 // Role meta
 // ─────────────────────────────────────────────────────────────
 const roleLabel = {
-  admin:           "Admin Portal",
-  accountant:      "Accountant Portal",
+  admin:             "Admin Portal",
+  accountant:        "Accountant Portal",
   inventory_manager: "Inventory Manager",
-  teacher:         "Teacher Portal",
-  subject_teacher: "Subject Teacher",
-  class_teacher:   "Class Teacher",
+  teacher:           "Teacher Portal",
+  subject_teacher:   "Subject Teacher",
+  class_teacher:     "Class Teacher",
 };
 
 const roleBadgeColor = {
-  admin:           "bg-[#a13ea1]/10 text-[#a13ea1]",
-  accountant:      "bg-amber-100 text-amber-700",
+  admin:             "bg-[#a13ea1]/10 text-[#a13ea1]",
+  accountant:        "bg-amber-100 text-amber-700",
   inventory_manager: "bg-emerald-100 text-emerald-700",
-  teacher:         "bg-green-100 text-green-700",
-  subject_teacher: "bg-blue-100 text-blue-700",
-  class_teacher:   "bg-indigo-100 text-indigo-700",
+  teacher:           "bg-green-100 text-green-700",
+  subject_teacher:   "bg-blue-100 text-blue-700",
+  class_teacher:     "bg-indigo-100 text-indigo-700",
 };
 
 // ─────────────────────────────────────────────────────────────
@@ -206,39 +248,31 @@ const roleBadgeColor = {
 // ─────────────────────────────────────────────────────────────
 const GroupItem = ({ item, onClose }) => {
   const location = useLocation();
-  const isGroupActive = item.children.some((c) => location.pathname === c.href);
+  const isGroupActive = item.children.some(c => location.pathname === c.href);
   const [open, setOpen] = useState(isGroupActive);
 
-  // Auto-open when navigating directly into a child route
   useEffect(() => {
     if (isGroupActive) setOpen(true);
   }, [location.pathname]);
 
   return (
     <div>
-      {/* Group header */}
       <button
-        onClick={() => setOpen((prev) => !prev)}
-        className={`
-          w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium
+        onClick={() => setOpen(p => !p)}
+        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium
           transition-all duration-200 text-left
           ${isGroupActive
             ? "text-[#a13ea1] bg-[#a13ea1]/10"
-            : "text-gray-500 hover:text-[#a13ea1] hover:bg-[#a13ea1]/10"
-          }
-        `}
+            : "text-gray-500 hover:text-[#a13ea1] hover:bg-[#a13ea1]/10"}`}
       >
         <span className="w-5 text-center text-base flex-shrink-0">{item.icon}</span>
         <span className="flex-1">{item.label}</span>
-        <span className="text-base opacity-50">
-          {open ? <MdExpandLess /> : <MdExpandMore />}
-        </span>
+        <span className="text-base opacity-50">{open ? <MdExpandLess /> : <MdExpandMore />}</span>
       </button>
 
-      {/* Children */}
       {open && (
         <div className="ml-4 pl-3 border-l-2 border-[#a13ea1]/20 mt-1 space-y-0.5">
-          {item.children.map((child) => (
+          {item.children.map(child => (
             <NavLink
               key={child.id}
               to={child.href}
@@ -247,9 +281,7 @@ const GroupItem = ({ item, onClose }) => {
                 `flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200
                 ${isActive
                   ? "bg-[#a13ea1] text-white shadow-sm"
-                  : "text-gray-500 hover:text-[#a13ea1] hover:bg-[#a13ea1]/10"
-                }`
-              }
+                  : "text-gray-500 hover:text-[#a13ea1] hover:bg-[#a13ea1]/10"}`}
             >
               <span className="w-4 text-center text-sm flex-shrink-0">{child.icon}</span>
               <span className="flex-1">{child.label}</span>
@@ -268,12 +300,12 @@ const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const role = useRole();
 
   const navItems =
-    role === "accountant"        ? accountantNavItems :
-    role === "inventory_manager" ? inventoryManagerNavItems :
-    role === "subject_teacher" ? subjectTeacherNavItems :
-    role === "class_teacher"   ? classTeacherNavItems   :
-    role === "teacher"         ? teacherNavItems        :
-    adminNavItems;
+    role === "accountant"        ? accountantNavItems        :
+    role === "inventory_manager" ? inventoryManagerNavItems  :
+    role === "subject_teacher"   ? subjectTeacherNavItems    :
+    role === "class_teacher"     ? classTeacherNavItems      :
+    role === "teacher"           ? teacherNavItems           :
+    adminNavItems; // default — admin sees everything
 
   const handleClose = () => setSidebarOpen(false);
 
@@ -281,32 +313,28 @@ const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
     <>
       {/* Mobile Overlay */}
       {sidebarOpen && (
-        <div
-          onClick={handleClose}
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
-        />
+        <div onClick={handleClose} className="fixed inset-0 bg-black/50 z-40 md:hidden" />
       )}
 
       {/* Sidebar */}
-      <aside
-        className={`
-          fixed md:static top-0 mt-[3.5rem] left-0 z-50
-          w-[240px] h-[calc(100dvh-3.5rem)] max-h-[calc(100dvh-3.5rem)]
-          overflow-hidden bg-white border-r border-gray-100
-          flex min-h-0 flex-col transition-transform duration-300 ease-in-out
-          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
-          md:translate-x-0
-        `}
-      >
+      <aside className={`
+        fixed md:static top-0 mt-[3.5rem] left-0 z-50
+        w-[240px] h-[calc(100dvh-3.5rem)] max-h-[calc(100dvh-3.5rem)]
+        overflow-hidden bg-white border-r border-gray-100
+        flex min-h-0 flex-col transition-transform duration-300 ease-in-out
+        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+        md:translate-x-0
+      `}>
+
         {/* Logo */}
-        <div className="flex items-center justify-center py-6 border-b border-gray-100">
+        <div className="flex items-center justify-center py-6 border-b border-gray-100 shrink-0">
           <div className="w-[10rem] h-[8rem] rounded-xl bg-[#a13ea1]/10 flex items-center justify-center overflow-hidden">
             <img src={logo} alt="Logo" className="w-[20rem] h-[6rem] object-contain" />
           </div>
         </div>
 
         {/* Role badge */}
-        <div className="px-4 pt-3 pb-1">
+        <div className="px-4 pt-3 pb-1 shrink-0">
           <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full
             ${roleBadgeColor[role] ?? roleBadgeColor.admin}`}>
             {roleLabel[role] ?? "Admin Portal"}
@@ -319,7 +347,7 @@ const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
             Main Menu
           </p>
 
-          {navItems.map((item) =>
+          {navItems.map(item =>
             item.group ? (
               <GroupItem key={item.id} item={item} onClose={handleClose} />
             ) : (
@@ -331,9 +359,7 @@ const Slidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
                   ${isActive
                     ? "bg-[#a13ea1] text-white shadow-sm"
-                    : "text-gray-500 hover:text-[#a13ea1] hover:bg-[#a13ea1]/10"
-                  }`
-                }
+                    : "text-gray-500 hover:text-[#a13ea1] hover:bg-[#a13ea1]/10"}`}
               >
                 <span className="w-5 text-center text-base">{item.icon}</span>
                 <span className="flex-1">{item.label}</span>
