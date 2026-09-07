@@ -111,7 +111,7 @@ import {
   StudentPortalRoute,
   ParentPortalRoute,
 } from "./ProtectedRoutes";
-import { Route } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 // ── Helper: shop routes reused for both admin and accountant ──
 // We render the same pages but with different guards
