@@ -84,6 +84,7 @@ import {
   InventoryRoute,
   StudentPortalRoute,
   ParentPortalRoute,
+  ShopRoute,
 } from "./ProtectedRoutes";
 import InventoryDashboard from "../admin/pages/InventoryDashboard";
 import InventoryItems from "../admin/pages/InventoryItems";
@@ -362,23 +363,23 @@ export default function AppRoutes() {
           ONLINE SHOP — Admin
       ════════════════════════════════════════════ */}
       <Route path="/admin/shop"
-        element={<AdminRoute><ShopDashboard /></AdminRoute>} />
+        element={<ShopRoute><ShopDashboard /></ShopRoute>} />
       <Route path="/admin/shop/products"
-        element={<AdminRoute><ShopProducts /></AdminRoute>} />
+        element={<ShopRoute><ShopProducts /></ShopRoute>} />
       <Route path="/admin/shop/products/new"
-        element={<AdminRoute><ProductForm /></AdminRoute>} />
+        element={<ShopRoute><ProductForm /></ShopRoute>} />
       <Route path="/admin/shop/products/:id"
-        element={<AdminRoute><ProductForm /></AdminRoute>} />
+        element={<ShopRoute><ProductForm /></ShopRoute>} />
       <Route path="/admin/shop/orders"
-        element={<AdminRoute><ShopOrders /></AdminRoute>} />
+        element={<ShopRoute><ShopOrders /></ShopRoute>} />
       <Route path="/admin/shop/orders/:id"
-        element={<AdminRoute><OrderDetails /></AdminRoute>} />
+        element={<ShopRoute><OrderDetails /></ShopRoute>} />
       <Route path="/admin/shop/categories"
-        element={<AdminRoute><ShopCategories /></AdminRoute>} />
+        element={<ShopRoute><ShopCategories /></ShopRoute>} />
       <Route path="/admin/shop/customers"
-        element={<AdminRoute><ShopCustomers /></AdminRoute>} />
+        element={<ShopRoute><ShopCustomers /></ShopRoute>} />
       <Route path="/admin/shop/report"
-        element={<AdminRoute><SalesReport /></AdminRoute>} />
+        element={<ShopRoute><SalesReport /></ShopRoute>} />
 
       {/* ── Fallback ── */}
       <Route path="*" element={<Navigate to="/" replace />} />
