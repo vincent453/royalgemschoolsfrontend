@@ -9,7 +9,7 @@ const TYPES = [
   "Academic","Sports","Government","Private","NGO",
   "Religious","Staff Ward","Merit","Need Based","Full","Partial",
 ];
-const CLASSES = ["JSS 1","JSS 2","JSS 3","SSS 1","SSS 2","SSS 3","Kindergarten","Nursery 1","Nursery 2"];
+const CLASSES = ["Reception 1", "Reception 2","Pre-K", "Kindergarten", "Primary 1", "Primary 2", "Primary 3", "Primary 4", "Primary 5", "Primary 6", "JSS 1", "JSS 2", "JSS 3", "SSS 1", "SSS 2", "SSS 3"];
 const STATUSES = ["Active","Inactive"];
 
 const inputClass = `w-full border border-gray-200 rounded-xl px-4 py-2.5 font-dm-sans text-sm text-gray-700
