@@ -315,24 +315,32 @@ export default function AppRoutes() {
         element={<InventoryRoute><LowStock /></InventoryRoute>} />
 
       {/* Shop — admin AND accountant can access */}
-      <Route path="/admin/shop"
-        element={<FinanceRoute><ShopDashboard /></FinanceRoute>} />
-      <Route path="/admin/shop/products"
-        element={<FinanceRoute><ShopProducts /></FinanceRoute>} />
-      <Route path="/admin/shop/products/new"
-        element={<AdminRoute><ProductForm /></AdminRoute>} />
-      <Route path="/admin/shop/products/:id"
-        element={<AdminRoute><ProductForm /></AdminRoute>} />
-      <Route path="/admin/shop/orders"
-        element={<FinanceRoute><ShopOrders /></FinanceRoute>} />
-      <Route path="/admin/shop/orders/:id"
-        element={<FinanceRoute><OrderDetails /></FinanceRoute>} />
-      <Route path="/admin/shop/categories"
-        element={<AdminRoute><ShopCategories /></AdminRoute>} />
-      <Route path="/admin/shop/customers"
-        element={<FinanceRoute><ShopCustomers /></FinanceRoute>} />
-      <Route path="/admin/shop/report"
-        element={<FinanceRoute><SalesReport /></FinanceRoute>} />
+  <Route path="/admin/shop"
+  element={<InventoryManagerRoute><ShopDashboard /></InventoryManagerRoute>} />
+
+<Route path="/admin/shop/products"
+  element={<InventoryManagerRoute><ShopProducts /></InventoryManagerRoute>} />
+
+<Route path="/admin/shop/products/new"
+  element={<InventoryManagerRoute><ProductForm /></InventoryManagerRoute>} />
+
+<Route path="/admin/shop/products/:id"
+  element={<InventoryManagerRoute><ProductForm /></InventoryManagerRoute>} />
+
+<Route path="/admin/shop/orders"
+  element={<InventoryManagerRoute><ShopOrders /></InventoryManagerRoute>} />
+
+<Route path="/admin/shop/orders/:id"
+  element={<InventoryManagerRoute><OrderDetails /></InventoryManagerRoute>} />
+
+<Route path="/admin/shop/categories"
+  element={<InventoryManagerRoute><ShopCategories /></InventoryManagerRoute>} />
+
+<Route path="/admin/shop/customers"
+  element={<InventoryManagerRoute><ShopCustomers /></InventoryManagerRoute>} />
+
+<Route path="/admin/shop/report"
+  element={<InventoryManagerRoute><SalesReport /></InventoryManagerRoute>} />
 
       {/* ════════════════════════════════════
           TEACHER
