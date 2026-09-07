@@ -108,6 +108,7 @@ import {
   InventoryManagerRoute,
   FinanceRoute,
   InventoryRoute,
+  ShopRoute,
   StudentPortalRoute,
   ParentPortalRoute,
 } from "./ProtectedRoutes";
@@ -318,29 +319,87 @@ export default function AppRoutes() {
   <Route path="/admin/shop"
   element={<InventoryManagerRoute><ShopDashboard /></InventoryManagerRoute>} />
 
-<Route path="/admin/shop/products"
-  element={<InventoryManagerRoute><ShopProducts /></InventoryManagerRoute>} />
+{/* Shop — Admin, Accountant AND Inventory Manager */}
+<Route
+  path="/admin/shop"
+  element={
+    <ShopRoute>
+      <ShopDashboard />
+    </ShopRoute>
+  }
+/>
 
-<Route path="/admin/shop/products/new"
-  element={<InventoryManagerRoute><ProductForm /></InventoryManagerRoute>} />
+<Route
+  path="/admin/shop/products"
+  element={
+    <ShopRoute>
+      <ShopProducts />
+    </ShopRoute>
+  }
+/>
 
-<Route path="/admin/shop/products/:id"
-  element={<InventoryManagerRoute><ProductForm /></InventoryManagerRoute>} />
+<Route
+  path="/admin/shop/products/new"
+  element={
+    <ShopRoute>
+      <ProductForm />
+    </ShopRoute>
+  }
+/>
 
-<Route path="/admin/shop/orders"
-  element={<InventoryManagerRoute><ShopOrders /></InventoryManagerRoute>} />
+<Route
+  path="/admin/shop/products/:id"
+  element={
+    <ShopRoute>
+      <ProductForm />
+    </ShopRoute>
+  }
+/>
 
-<Route path="/admin/shop/orders/:id"
-  element={<InventoryManagerRoute><OrderDetails /></InventoryManagerRoute>} />
+<Route
+  path="/admin/shop/orders"
+  element={
+    <ShopRoute>
+      <ShopOrders />
+    </ShopRoute>
+  }
+/>
 
-<Route path="/admin/shop/categories"
-  element={<InventoryManagerRoute><ShopCategories /></InventoryManagerRoute>} />
+<Route
+  path="/admin/shop/orders/:id"
+  element={
+    <ShopRoute>
+      <OrderDetails />
+    </ShopRoute>
+  }
+/>
 
-<Route path="/admin/shop/customers"
-  element={<InventoryManagerRoute><ShopCustomers /></InventoryManagerRoute>} />
+<Route
+  path="/admin/shop/categories"
+  element={
+    <ShopRoute>
+      <ShopCategories />
+    </ShopRoute>
+  }
+/>
 
-<Route path="/admin/shop/report"
-  element={<InventoryManagerRoute><SalesReport /></InventoryManagerRoute>} />
+<Route
+  path="/admin/shop/customers"
+  element={
+    <ShopRoute>
+      <ShopCustomers />
+    </ShopRoute>
+  }
+/>
+
+<Route
+  path="/admin/shop/report"
+  element={
+    <ShopRoute>
+      <SalesReport />
+    </ShopRoute>
+  }
+/>
 
       {/* ════════════════════════════════════
           TEACHER
