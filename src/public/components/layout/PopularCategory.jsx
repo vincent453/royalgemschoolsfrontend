@@ -19,7 +19,7 @@ const categories = [
   { icon: mathematics, label: "Mathematics Challenge"        },
   { icon: graph,       label: "Canva & Design"                },
   { icon: music,       label: "CapCut & Creative Media"       },
-  { icon: excel,       label: "Literacy"                      },
+  { icon: music,       label: "Music"                      },
   { icon: ches,        label: "Chess Club"                   },
   { icon: training,    label: "Leadership Development"        },
   { icon: event,       label: "After-School Programme"        },
