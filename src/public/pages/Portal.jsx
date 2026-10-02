@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import logo           from "../../assets/img/logo.jpg";
+import logo           from "../../assets/img/logo.png";
 import checkresultimg from "../../assets/img/checkresultimg.jpg";
 import family         from "../../assets/img/family.png";
 import student        from "../../assets/img/graduate.png";
