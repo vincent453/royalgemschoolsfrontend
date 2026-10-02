@@ -1,5 +1,5 @@
 import { FaQuoteLeft } from 'react-icons/fa'
-import logo from '../../../assets/img/logo.png'
+import logo from '../../../assets/img/logo.jpg'
 
 const FounderProfile = ({
   image,
