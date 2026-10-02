@@ -1,4 +1,4 @@
-import { FaChalkboardTeacher, FaFlask, FaMusic, FaFutbol, FaBook, FaLaptop, FaPray, FaUtensils } from 'react-icons/fa'
+import { FaChalkboardTeacher, FaFlask, FaMusic, FaBook, FaLaptop, FaPray } from 'react-icons/fa'
 
 const facilities = [
   {
@@ -37,25 +37,11 @@ const facilities = [
     border: "border-pink-100",
   },
   {
-    icon: <FaFutbol />,
-    title: "Sports Grounds",
-    description: "Open sports facilities that promote physical fitness, teamwork, and healthy competition among students.",
-    color: "bg-orange-50 text-orange-400",
-    border: "border-orange-100",
-  },
-  {
     icon: <FaPray />,
     title: "Assembly Hall",
     description: "A large multipurpose hall used for morning assemblies, school events, graduations, and special programmes.",
     color: "bg-teal-50 text-teal-500",
     border: "border-teal-100",
-  },
-  {
-    icon: <FaUtensils />,
-    title: "Cafeteria",
-    description: "A clean and hygienic cafeteria serving nutritious meals to keep students energised and focused throughout the day.",
-    color: "bg-red-50 text-red-400",
-    border: "border-red-100",
   },
 ]
 
