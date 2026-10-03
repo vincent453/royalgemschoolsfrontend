@@ -1,0 +1,27 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rgGradient" x1="160" y1="80" x2="1000" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E857B8"/>
+      <stop offset="1" stop-color="#8E3AAC"/>
+    </linearGradient>
+    <linearGradient id="rgInner" x1="300" y1="120" x2="700" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6C9F3"/>
+      <stop offset="1" stop-color="#F3E3F8"/>
+    </linearGradient>
+  </defs>
+
+  <g>
+    <path d="M314 175L400 100H580L666 175L754 100H840L930 210V420C930 470 890 510 840 510H360C310 510 270 470 270 420V210L314 175Z" fill="url(#rgGradient)" opacity="0.16"/>
+    <path d="M360 170L440 105H560L640 170L720 105H800L670 265H330L360 170Z" fill="url(#rgGradient)"/>
+    <path d="M355 215H845L800 430H400L355 215Z" fill="url(#rgGradient)"/>
+    <path d="M430 225H770V360C770 397 741 426 704 426H496C459 426 430 397 430 360V225Z" fill="url(#rgInner)"/>
+    <path d="M458 135L600 55L742 135" stroke="#F4E9F7" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M600 55V135" stroke="#F4E9F7" stroke-width="18" stroke-linecap="round"/>
+    <path d="M520 230H680L652 392H548L520 230Z" fill="#F8F0FB" opacity="0.9"/>
+    <text x="600" y="366" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="180" font-weight="900" letter-spacing="-12" fill="#A63CA3">RG</text>
+    <path d="M610 110L626 134L652 120L636 146L664 162L634 170L638 198L610 180L582 198L586 170L556 162L584 146L568 120L594 134L610 110Z" fill="#F7E9FB"/>
+  </g>
+
+  <text x="600" y="505" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="700" fill="#8D2FA9" letter-spacing="2">Royal Gem</text>
+  <text x="600" y="560" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#C55DAC" letter-spacing="8">NURTURING TO FLOURISH</text>
+</svg>

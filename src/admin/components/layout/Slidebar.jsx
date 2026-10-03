@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import logo from "../../../assets/img/logo.png";
+import logo from "../../../assets/img/logo.svg";
 import { NavLink, useLocation } from "react-router-dom";
 import useRole from "../../hooks/useRole";
 import {

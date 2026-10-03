@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../../../assets/img/logo.png";
+import logo from "../../../assets/img/logo.svg";
 import { FaSearch } from "react-icons/fa";
 
 const navLinks = [
