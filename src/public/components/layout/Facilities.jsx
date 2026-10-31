@@ -10,8 +10,24 @@ const facilities = [
   },
   {
     icon: <FaFlask />,
-    title: "Science Laboratory",
-    description: "A fully equipped science lab where students explore practical experiments that bring classroom concepts to life.",
+    title: "Learning Resource Room",
+    description: (
+      <>
+        <p className="font-dm-sans text-gray-400 text-sm leading-relaxed">
+          A well equipped Montessori & STREAM Learning Resource Room that contain equipment and concrete learning materials that create opportunities for learners to use knowledge, connect disciplines and produce evidence of learning.
+        </p>
+        <ul className="mt-3 list-disc pl-5 space-y-1 font-dm-sans text-gray-400 text-sm leading-relaxed">
+          <li>Hands-on learning</li>
+          <li>Integrated learning: A single project can involve all six STREAM disciplines.</li>
+          <li>Inquiry-based learning: Learners ask questions, investigate, test ideas and draw conclusions.</li>
+          <li>Collaborative learning</li>
+          <li>Creativity and innovation</li>
+          <li>Real-life problem-solving</li>
+          <li>Inclusive learning</li>
+          <li>Assessment through performance</li>
+        </ul>
+      </>
+    ),
     color: "bg-blue-50 text-[#525fe1]",
     border: "border-blue-100",
   },
@@ -36,13 +52,6 @@ const facilities = [
     color: "bg-pink-50 text-pink-500",
     border: "border-pink-100",
   },
-  {
-    icon: <FaPray />,
-    title: "Assembly Hall",
-    description: "A large multipurpose hall used for morning assemblies, school events, graduations, and special programmes.",
-    color: "bg-teal-50 text-teal-500",
-    border: "border-teal-100",
-  },
 ]
 
 const FacilityCard = ({ icon, title, description, color, border }) => (
@@ -62,7 +71,7 @@ const FacilityCard = ({ icon, title, description, color, border }) => (
     <div className="w-10 h-0.5 bg-[#f056f0] group-hover:w-full transition-all duration-500" />
 
     {/* Description */}
-    <p className="font-dm-sans text-gray-400 text-sm leading-relaxed">{description}</p>
+    <div className="font-dm-sans text-gray-400 text-sm leading-relaxed">{description}</div>
   </div>
 )
 

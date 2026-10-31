@@ -239,11 +239,11 @@ export default function Admissions() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full lg:w-auto">
             {[
-              { label: 'Term 1 Opens', val: '1 July 2025' },
-              { label: 'Term 1 Closes', val: '15 Aug 2025' },
-              { label: 'Term 2 Opens', val: '3 Nov 2025' },
-              { label: 'Term 2 Closes', val: '10 Dec 2025' },
-              { label: 'Resumption', val: '8 Sep 2025' },
+              { label: 'Term 1 Opens', val: '1 July 2026' },
+              { label: 'Term 1 Closes', val: '15 Aug 2026' },
+              { label: 'Term 2 Opens', val: '3 Nov 2026' },
+              { label: 'Term 2 Closes', val: '10 Dec 2026' },
+              { label: 'Resumption', val: '8 Sep 2026' },
             ].map((d, i) => (
               <div
                 key={d.label}

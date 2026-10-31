@@ -5,14 +5,10 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const aboutLinks = [
-  { label: "About Royal Gem Schools", href: "/about" },
-  { label: "Educational Services",    href: "/educational-services" },
-  { label: "Admissions",              href: "/admissions" },
-  { label: "Academics",               href: "/#academics" },
-  { label: "Frequently Asked Questions", href: "/admissions#faq" },
-  { label: "Privacy Policy",           href: "/privacy" },
-  { label: "Safeguarding",             href: "/safeguarding" },
-  { label: "Contact",                 href: "/contact" },
+  { label: "Royal gem nusery/prmary school", href: "/about" },
+  { label: "Royal gem mathematcal schools iorodu and abuja", href: "/about" },
+  { label: "Royal gem educational servces", href: "/educational-services" },
+  { label: "royal gem mathematcal foundaton", href: "/about" },
 ]
 
 
