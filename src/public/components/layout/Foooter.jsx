@@ -5,10 +5,10 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const aboutLinks = [
-  { label: "Royal gem nusery/prmary school", href: "/about" },
-  { label: "Royal gem mathematcal schools iorodu and abuja", href: "/about" },
-  { label: "Royal gem educational servces", href: "/educational-services" },
-  { label: "royal gem mathematcal foundaton", href: "/about" },
+  { label: "Royal Gem Nusery/Prmary School, Ikorodu", href: "/about" },
+  { label: "Royal Gem Mathematical Schools Ikorodu and abuja", href: "/about" },
+  { label: "Royal Gem Educational Services", href: "/educational-services" },
+  { label: "Royal Gem Mathematical Foundaton", href: "/about" },
 ]
 
 
