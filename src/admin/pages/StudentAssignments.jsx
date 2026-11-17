@@ -97,6 +97,24 @@ export default function StudentAssignments() {
     setTimeout(() => setToast(null), 4000);
   };
 
+  const downloadAttachment = async (url, filename) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Failed to download the attachment.");
+
+      const objectUrl = URL.createObjectURL(await response.blob());
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = filename || "assignment-attachment";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+    } catch (e) {
+      showToast("error", e.message || "Failed to download the attachment.");
+    }
+  };
+
   const filtered = assignments.filter(({ assignment, submission }) => {
     if (filter === "all")       return true;
     if (filter === "pending")   return !submission || submission.status === "pending";
@@ -225,11 +243,12 @@ export default function StudentAssignments() {
 
                     {/* Assignment attachment */}
                     {assignment.attachment && (
-                      <a href={assignment.attachment} target="_blank" rel="noreferrer"
+                      <button type="button"
+                        onClick={() => downloadAttachment(assignment.attachment, assignment.attachmentName)}
                         className="inline-flex items-center gap-1.5 mt-2 font-dm-sans text-xs text-[#f056f0] hover:underline">
                         <FaPaperclip className="text-[10px]" />
                         {assignment.attachmentName ?? "Download Attachment"}
-                      </a>
+                      </button>
                     )}
 
                     {/* Grade result */}
