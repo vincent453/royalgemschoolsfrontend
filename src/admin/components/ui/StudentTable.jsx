@@ -23,6 +23,7 @@ const classSegments = [
   
 ]
 const itemsPerPage = 8
+const normalizeClassLevel = (value) => value?.trim().toLowerCase()
 
 const StudentTable = () => {
   const navigate = useNavigate()
@@ -79,7 +80,7 @@ const StudentTable = () => {
   // ── Filter + paginate ──
   const filtered = activeClass === "all"
     ? students
-    : students.filter(s => s.classLevel === activeClass)
+    : students.filter(s => normalizeClassLevel(s.classLevel) === normalizeClassLevel(activeClass))
 
   const totalItems  = filtered.length
   const totalPages  = Math.ceil(totalItems / itemsPerPage)
@@ -135,7 +136,7 @@ const StudentTable = () => {
         {classSegments.map(({ label, value }) => {
           const count = value === "all"
             ? students.length
-            : students.filter(s => s.classLevel === value).length
+            : students.filter(s => normalizeClassLevel(s.classLevel) === normalizeClassLevel(value)).length
           return (
             <button
               key={value}
