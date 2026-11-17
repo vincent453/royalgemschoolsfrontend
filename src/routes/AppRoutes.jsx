@@ -9,6 +9,7 @@ import Admissions from "../public/pages/Admission";
 import Portal     from "../public/pages/Portal";
 import Yearbook   from "../public/pages/YearBook";
 import Blog       from "../public/pages/Blog";
+import BlogPost   from "../public/pages/BlogPost";
 import Privacy    from "../public/pages/Privacy";
 import Safeguarding from "../public/pages/Safeguarding";
 
@@ -25,6 +26,7 @@ import Teacher             from "../admin/pages/Teacher";
 import Result              from "../admin/pages/Results";
 import EditStudent         from "../admin/pages/EditStudent";
 import Settings            from "../admin/pages/Sethings";
+import BlogManagement      from "../admin/pages/BlogManagement";
 import GeneratePin         from "../admin/pages/PinGenatration";
 import Users               from "../admin/pages/Users";
 import AddUser             from "../admin/pages/AddUsers";
@@ -124,6 +126,7 @@ export default function AppRoutes() {
       <Route path="/admissions" element={<Admissions />} />
       <Route path="/yearbook"   element={<Yearbook />}   />
       <Route path="/blog"       element={<Blog />}       />
+      <Route path="/blog/:slugOrId" element={<BlogPost />} />
       <Route path="/privacy"   element={<Privacy />}   />
       <Route path="/safeguarding" element={<Safeguarding />} />
 
@@ -244,6 +247,8 @@ export default function AppRoutes() {
         element={<AdminRoute><AddYearbookEntry /></AdminRoute>} />
       <Route path="/admin/settings"
         element={<AdminRoute><Settings /></AdminRoute>} />
+      <Route path="/admin/blogs"
+        element={<AdminRoute><BlogManagement /></AdminRoute>} />
 
       {/* ════════════════════════════════════════════
           TEACHER

@@ -1,5 +1,6 @@
 import { FiArrowUpRight } from 'react-icons/fi'
 import { FiX } from 'react-icons/fi'
+import { Link } from "react-router-dom";
 
 const BlogCard = ({
   image,
@@ -51,15 +52,15 @@ const BlogCard = ({
         </p>
 
         {/* Read More Button */}
-        <a
-          href={href || '#'}
+        <Link
+          to={href || '/blog'}
           className="inline-flex items-center gap-2 bg-[#f056f0] hover:bg-[#525fe1]
                      text-white font-jost font-semibold text-sm
                      px-5 py-5 w-fit transition-colors duration-300"
         >
           Read More
           <FiArrowUpRight className="text-base" />
-        </a>
+        </Link>
 
       </div>
     </div>

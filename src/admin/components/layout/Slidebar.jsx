@@ -138,6 +138,7 @@ const adminNavItems = [
     ],
   },
   { id: "settings", label: "Settings", href: "/admin/settings", icon: <MdSettings /> },
+  { id: "blogs", label: "Blogs", href: "/admin/blogs", icon: <MdLibraryBooks /> },
 ];
 
 // ─────────────────────────────────────────────────────────────
