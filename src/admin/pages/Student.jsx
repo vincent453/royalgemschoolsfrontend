@@ -24,9 +24,11 @@ const Student = () => {
         <main className="w-full overflow-y-auto">
           <div className="flex flex-col gap-6 p-6 max-w-6xl mx-auto">
 
-            {/* Only admins see the Add Student button */}
-            {role === "admin" ? (
-              <SearchHeader buttonText="+ New Student" href="/admin/students/add" />
+            {["admin", "teacher", "class_teacher"].includes(role) ? (
+              <SearchHeader
+                buttonText="+ New Student"
+                href={role === "admin" ? "/admin/students/add" : "/teacher/students/add"}
+              />
             ) : (
               <div className="bg-white p-4 rounded-xl shadow-sm">
                 <h2 className="font-jost font-bold text-gray-800 text-lg">Students</h2>

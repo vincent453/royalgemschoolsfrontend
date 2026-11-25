@@ -49,7 +49,7 @@ export const TeacherRoute = ({ children }) => {
   return children;
 };
 
-export const TeacherStudentEditRoute = ({ children }) => {
+export const TeacherStudentProfileRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   if (!token) return <Navigate to="/admin/portal" replace />;
   if (!["teacher", "class_teacher"].includes(getRole())) {

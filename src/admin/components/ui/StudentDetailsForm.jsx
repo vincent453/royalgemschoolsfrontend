@@ -4,6 +4,7 @@ export default function StudentDetailsForm({
   title = "Student Details",
   form,
   setForm,
+  allowedClasses,
 }) {
   const fileInputRef = useRef(null);
   const [photo, setPhoto] = useState(null);
@@ -136,22 +137,13 @@ export default function StudentDetailsForm({
               className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#A13EA1] focus:border-transparent transition"
             >
               <option value="">Select class</option>
-              <option value="Reception 1">Reception 1</option>
-              <option value="Reception 2">Reception 2</option>
-              <option value="Pre-K">Pre-K</option>
-              <option value="Kindergarten">Kindergarten</option>
-              <option value="Primary 1">Primary 1</option>
-              <option value="Primary 2">Primary 2</option>
-              <option value="Primary 3">Primary 3</option>
-              <option value="Primary 4">Primary 4</option>
-              <option value="Primary 5">Primary 5</option>
-              <option value="Primary 6">Primary 6</option>
-              <option value="JSS 1">JSS 1</option>
-              <option value="JSS 2">JSS 2</option>
-              <option value="JSS 3">JSS 3</option>
-              <option value="SSS 1">SSS 1</option>
-              <option value="SSS 2">SSS 2</option>
-              <option value="SSS 3">SSS 3</option>
+              {(allowedClasses ?? [
+                "Reception 1", "Reception 2", "Pre-K", "Kindergarten",
+                "Primary 1", "Primary 2", "Primary 3", "Primary 4", "Primary 5", "Primary 6",
+                "JSS 1", "JSS 2", "JSS 3", "SSS 1", "SSS 2", "SSS 3",
+              ]).map((classLevel) => (
+                <option key={classLevel} value={classLevel}>{classLevel}</option>
+              ))}
             </select>
           </Field>
 
