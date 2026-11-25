@@ -35,8 +35,11 @@ const Student = () => {
             )}
 
             <div className="mt-5">
-              {/* Pass isReadOnly so StudentTable hides delete/edit for teachers */}
-              <StudentTable isReadOnly={role === "teacher"} />
+              <StudentTable
+                canEdit={["admin", "teacher", "class_teacher"].includes(role)}
+                canDelete={role === "admin"}
+                editBasePath={role === "admin" ? "/admin/students/edit" : "/teacher/students/edit"}
+              />
             </div>
 
           </div>

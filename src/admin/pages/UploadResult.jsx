@@ -1,5 +1,6 @@
 import Slidebar from "../components/layout/Slidebar";
 import Topbar   from "../components/layout/Topbar";
+import { getDispositionRatingLabel } from "../utils/dispositionRatings";
 import { useState, useEffect } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa";
 
@@ -295,7 +296,9 @@ const UploadResult = () => {
   const RatingInput = ({ value, onChange }) => (
     <select value={value} onChange={e => onChange(e.target.value)} className={inputClass}>
       <option value="">—</option>
-      {[1,2,3,4,5].map(n => <option key={n} value={n}>{n}</option>)}
+      {[1,2,3,4,5].map(n => (
+        <option key={n} value={n}>{n} - {getDispositionRatingLabel(n)}</option>
+      ))}
     </select>
   );
 

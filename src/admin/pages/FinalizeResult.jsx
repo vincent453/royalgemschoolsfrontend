@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { FiCheck, FiAlertCircle, FiChevronDown, FiUser, FiAlertTriangle } from "react-icons/fi";
 import Slidebar from "../components/layout/Slidebar";
 import Topbar from "../components/layout/Topbar";
+import { getDispositionRatingLabel } from "../utils/dispositionRatings";
 
 const API = "https://royalgemschoolsbackend.vercel.app";
 
@@ -18,7 +19,6 @@ const INCLUSIVE = [
   "Practical Life Exercise", "Reading", "Circle Time",
 ];
 
-const ratingLabel = (r) => ["", "Poor", "Below Avg", "Average", "Good", "Excellent"][r] ?? "";
 const ratingColor = (r) => {
   if (r >= 5) return "bg-emerald-500";
   if (r >= 4) return "bg-blue-500";
@@ -480,7 +480,7 @@ export default function FinalizeResult() {
                             ))}
                           </div>
                           <span className="font-dm-sans text-xs text-gray-400 w-20 text-right">
-                            {item.rating ? ratingLabel(item.rating) : "—"}
+                            {item.rating ? getDispositionRatingLabel(item.rating) : "—"}
                           </span>
                         </div>
                       ))}

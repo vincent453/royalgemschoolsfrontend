@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Slidebar from "../components/layout/Slidebar";
 import Topbar from "../components/layout/Topbar";
 import { FaUser, FaCamera } from "react-icons/fa";
+import useRole from "../hooks/useRole";
 
 const classes = [
   { label: "All", value: "all" },
@@ -30,6 +31,8 @@ const EditStudent = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
   const { id }     = useParams();
   const navigate   = useNavigate();
+  const role       = useRole();
+  const studentsPath = role === "admin" ? "/admin/students" : "/teacher/students";
 
   const [photo,   setPhoto]   = useState(null);
   const [preview, setPreview] = useState(null);
@@ -155,7 +158,7 @@ const EditStudent = () => {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Update failed");
 
-      navigate("/admin/students");
+      navigate(studentsPath);
     } catch (err) {
       setSubmitError(err.message);
     } finally {
@@ -186,7 +189,7 @@ const EditStudent = () => {
         <div className="text-center">
           <p className="font-dm-sans text-red-400 text-sm mb-3">{fetchError}</p>
           <button
-            onClick={() => navigate("/admin/students")}
+            onClick={() => navigate(studentsPath)}
             className="font-dm-sans text-sm text-[#f056f0] underline"
           >
             ← Back to Students
@@ -356,6 +359,7 @@ const EditStudent = () => {
                 <div>
                   <label className={labelClass}>Class *</label>
                   <select name="grade" value={form.grade} onChange={handleChange}
+                    disabled={["teacher", "class_teacher"].includes(role)}
                     className={inputClass} required>
                     <option value="">Select Class</option>
                     {classes.map((c) => (
@@ -363,6 +367,11 @@ const EditStudent = () => {
                     ))}
                   </select>
                 </div>
+                {["teacher", "class_teacher"].includes(role) && (
+                  <p className="sm:col-span-2 font-dm-sans text-xs text-gray-400">
+                    Class changes must be made by an admin.
+                  </p>
+                )}
                 <div>
                   <label className={labelClass}>Session</label>
                   <input name="session" value={form.session} onChange={handleChange}
@@ -406,7 +415,7 @@ const EditStudent = () => {
             <div className="flex items-center justify-end gap-4 pb-6">
               <button
                 type="button"
-                onClick={() => navigate("/admin/students")}
+                onClick={() => navigate(studentsPath)}
                 className="font-jost font-semibold px-8 py-2.5 rounded-full border
                            border-gray-300 text-gray-600 hover:border-[#f056f0]
                            hover:text-[#f056f0] transition-all duration-300"

@@ -42,6 +42,12 @@ export const uploadSchoolLogo = (file) => {
   return request("/settings/school/logo", { method: "POST", body: fd });
 };
 
+export const uploadSchoolStampSignature = (file) => {
+  const fd = new FormData();
+  fd.append("stampSignature", file);
+  return request("/settings/school/stamp-signature", { method: "POST", body: fd });
+};
+
 // ── Account ──────────────────────────────────
 
 /** GET /settings/account  → { adminName, adminEmail, role } */

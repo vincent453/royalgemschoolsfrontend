@@ -8,7 +8,7 @@ import {
   FaBlog,
 } from "react-icons/fa";
 import {
-  fetchSchoolInfo, updateSchoolInfo, uploadSchoolLogo,
+  fetchSchoolInfo, updateSchoolInfo, uploadSchoolLogo, uploadSchoolStampSignature,
   fetchAccount, updateAccount, changePassword, uploadAvatar,
 } from "../services/sethingsApi";
 
@@ -77,9 +77,11 @@ const SchoolInfoTab = () => {
   const fetchAsync = useAsync();
   const saveAsync  = useAsync();
   const logoAsync  = useAsync();
+  const stampAsync = useAsync();
 
   const [school, setSchool]   = useState(null);
   const [preview, setPreview] = useState(null);
+  const [stampPreview, setStampPreview] = useState(null);
   const [toast, setToast]     = useState("");
 
   useEffect(() => {
@@ -87,6 +89,7 @@ const SchoolInfoTab = () => {
       const data = await fetchSchoolInfo();
       setSchool(data);
       if (data.logo) setPreview(data.logo);
+      if (data.stampSignature) setStampPreview(data.stampSignature);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -104,6 +107,20 @@ const SchoolInfoTab = () => {
       showToast("Logo updated!");
     } catch {
       setPreview(school?.logo ?? null);
+    }
+  };
+
+  const handleStampSignature = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setStampPreview(URL.createObjectURL(file));
+    try {
+      const { stampSignatureUrl } = await stampAsync.run(() => uploadSchoolStampSignature(file));
+      setSchool((prev) => ({ ...prev, stampSignature: stampSignatureUrl }));
+      setStampPreview(stampSignatureUrl);
+      showToast("Stamp and signature updated!");
+    } catch {
+      setStampPreview(school?.stampSignature ?? null);
     }
   };
 
@@ -143,7 +160,7 @@ const SchoolInfoTab = () => {
         School Information
       </h2>
       <SuccessBanner message={toast} />
-      <ErrorBanner   message={fetchAsync.error ?? saveAsync.error} />
+      <ErrorBanner   message={fetchAsync.error ?? saveAsync.error ?? logoAsync.error ?? stampAsync.error} />
 
       <div className="flex items-center gap-5">
         <div className="relative w-20 h-20 rounded-full bg-gray-100
@@ -168,6 +185,33 @@ const SchoolInfoTab = () => {
             {logoAsync.loading ? "Uploading…" : "Upload Logo"}
           </label>
           {logoAsync.error && <p className="font-dm-sans text-xs text-red-500 mt-1">{logoAsync.error}</p>}
+          <p className="font-dm-sans text-xs text-gray-400 mt-2">PNG, JPG up to 2 MB</p>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-5">
+        <div className="w-40 h-20 rounded-lg bg-gray-50 border border-gray-200
+                        flex items-center justify-center overflow-hidden shrink-0">
+          {stampPreview
+            ? <img src={stampPreview} alt="Report-card stamp and signature" className="w-full h-full object-contain" />
+            : <span className="font-dm-sans text-xs text-gray-400 text-center px-2">No stamp or signature uploaded</span>}
+        </div>
+        <div>
+          <input
+            id="stamp-signature"
+            type="file"
+            accept="image/*"
+            onChange={handleStampSignature}
+            className="hidden"
+          />
+          <label
+            htmlFor="stamp-signature"
+            className="font-dm-sans text-xs font-semibold px-4 py-2 rounded-full
+                       bg-[#f056f0] text-white cursor-pointer hover:bg-[#525fe1]
+                       transition-colors duration-300"
+          >
+            {stampAsync.loading ? "Uploading…" : "Upload Stamp & Signature"}
+          </label>
           <p className="font-dm-sans text-xs text-gray-400 mt-2">PNG, JPG up to 2 MB</p>
         </div>
       </div>

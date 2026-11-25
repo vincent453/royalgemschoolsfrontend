@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import signature from "../../assets/img/signature.jpeg";
 import CumulativeAnalysis from "../components/ui/CumulativeAnalysis";
+import { getDispositionRatingLabel } from "../utils/dispositionRatings";
 
 const Cell = ({ children, bold, center, colSpan, rowSpan, className = "" }) => (
   <td
@@ -63,6 +64,9 @@ export default function BellaReportCard() {
   const [data, setData]       = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState(null);
+  const [stampSignature, setStampSignature] = useState("");
+  const [brandingLoading, setBrandingLoading] = useState(true);
+  const [brandingError, setBrandingError] = useState("");
 
   const loadData = () => {
     setLoading(true);
@@ -85,7 +89,26 @@ export default function BellaReportCard() {
 
   useEffect(() => { loadData(); }, [id]);
 
-  if (loading) {
+  useEffect(() => {
+    let active = true;
+    fetch("https://royalgemschoolsbackend.vercel.app/api/settings/school/report-card")
+      .then((res) => {
+        if (!res.ok) throw new Error(`Failed to load report-card branding (${res.status})`);
+        return res.json();
+      })
+      .then((settings) => {
+        if (active) setStampSignature(settings.stampSignature ?? "");
+      })
+      .catch((err) => {
+        if (active) setBrandingError(err.message);
+      })
+      .finally(() => {
+        if (active) setBrandingLoading(false);
+      });
+    return () => { active = false; };
+  }, []);
+
+  if (loading || brandingLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
@@ -157,6 +180,11 @@ export default function BellaReportCard() {
           Print / Save PDF
         </button>
       </div>
+      {brandingError && (
+        <p className="text-center text-xs text-amber-700 mb-2 print:hidden">
+          Report-card stamp/signature could not be loaded: {brandingError}
+        </p>
+      )}
 
       <div className="bg-white mx-auto shadow-lg print:shadow-none" style={{ width: "720px", fontFamily: "Arial, sans-serif" }}>
 
@@ -175,7 +203,7 @@ export default function BellaReportCard() {
               Main address: 15, Royal Gem Avenue, Ayonnusi Estate, off Sagamu Road, Ikorudu, Lagos State
             </p>
             <p className="text-[10px] text-black mt-0.5">
-              Annex: 6, Main Street, Suncity Estate, Galadimawa Distict, Abuja, 15, Royal Gem Avenue, Ayok
+              Annex: 6, Main Street, Suncity Estate, Galadimawa District, Abuja, 15, Royal Gem Avenue, Ayok
             </p>
             <p className="text-[10px] text-black">
               Http/:royalgemmathsschool.org. Tel No: 07037199498, 08034091055
@@ -278,12 +306,12 @@ export default function BellaReportCard() {
           <table className="w-full border-collapse border border-black text-[10px]">
             <thead>
               <tr>
-                <Th className="w-1/3">AFFECTIVE DISPOSITIONS</Th>
-                <Th className="w-12">RATING</Th>
-                <Th className="w-1/3">PSYCHOMOTOR<br />DISPOSITIONS</Th>
-                <Th className="w-12">RATING</Th>
-                <Th className="w-1/3">INCLUSIVE LEARNING<br />ACTIVITIES</Th>
-                <Th className="w-12">RATING</Th>
+                <Th className="w-[24%]">AFFECTIVE DISPOSITIONS</Th>
+                <Th className="w-[9%]">RATING</Th>
+                <Th className="w-[24%]">PSYCHOMOTOR<br />DISPOSITIONS</Th>
+                <Th className="w-[9%]">RATING</Th>
+                <Th className="w-[24%]">INCLUSIVE LEARNING<br />ACTIVITIES</Th>
+                <Th className="w-[9%]">RATING</Th>
               </tr>
             </thead>
             <tbody>
@@ -297,11 +325,11 @@ export default function BellaReportCard() {
                   <tr key={i}>
                     {/* Backend shape: { label, rating } */}
                     <Cell bold={!!a}>{a?.label ?? ""}</Cell>
-                    <Cell center bold={!!a}>{a?.rating ?? ""}</Cell>
+                    <Cell center bold={!!a} className="text-[8px]">{a?.rating ? `${getDispositionRatingLabel(a.rating)} ${a.rating}` : ""}</Cell>
                     <Cell bold={!!p}>{p?.label ?? ""}</Cell>
-                    <Cell center bold={!!p}>{p?.rating ?? ""}</Cell>
+                    <Cell center bold={!!p} className="text-[8px]">{p?.rating ? `${getDispositionRatingLabel(p.rating)} ${p.rating}` : ""}</Cell>
                     <Cell bold={!!inc}>{inc?.label ?? ""}</Cell>
-                    <Cell center bold={!!inc}>{inc?.rating ?? ""}</Cell>
+                    <Cell center bold={!!inc} className="text-[8px]">{inc?.rating ? `${getDispositionRatingLabel(inc.rating)} ${inc.rating}` : ""}</Cell>
                   </tr>
                 );
               })}
@@ -320,7 +348,7 @@ export default function BellaReportCard() {
                   {result.teacherRemark ?? ""}
                 </td>
                 <td className="border border-black text-center align-middle" rowSpan={4} style={{ width: "9rem" }}>
-                  <img src={signature} alt="signature" className="w-full h-full object-contain" />
+                  <img src={stampSignature || signature} alt="stamp and signature" className="w-full h-full object-contain" />
                 </td>
               </tr>
               <tr>

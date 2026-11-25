@@ -25,7 +25,11 @@ const classSegments = [
 const itemsPerPage = 8
 const normalizeClassLevel = (value) => value?.trim().toLowerCase()
 
-const StudentTable = () => {
+const StudentTable = ({
+  canEdit = true,
+  canDelete = true,
+  editBasePath = "/admin/students/edit",
+}) => {
   const navigate = useNavigate()
 
   // ── Data state ──
@@ -182,7 +186,7 @@ const StudentTable = () => {
               <th className="py-3 pr-4">Contact</th>
               <th className="py-3 pr-4">Class</th>
               <th className="py-3 pr-4">Session</th>
-              <th className="py-3">Action</th>
+              {(canEdit || canDelete) && <th className="py-3">Action</th>}
             </tr>
           </thead>
 
@@ -270,35 +274,40 @@ const StudentTable = () => {
                   {/* Session */}
                   <td className="pr-4 text-gray-500 whitespace-nowrap">{student.session}</td>
 
-                  {/* Action menu */}
-                  <td className="relative">
-                    <button onClick={() => toggleMenu(student._id)}>
-                      <MoreHorizontal className="text-gray-400 cursor-pointer hover:text-[#f056f0]" />
-                    </button>
+                  {(canEdit || canDelete) && (
+                    <td className="relative">
+                      <button onClick={() => toggleMenu(student._id)}>
+                        <MoreHorizontal className="text-gray-400 cursor-pointer hover:text-[#f056f0]" />
+                      </button>
 
-                    {openMenuId === student._id && (
-                      <div className="absolute right-0 mt-2 w-36 bg-white border border-gray-100 rounded-lg shadow-lg z-50">
-                        <button
-                          onClick={() => { navigate(`/admin/students/edit/${student._id}`); setOpenMenuId(null) }}
-                          className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => handleDelete(student._id, `${student.firstName} ${student.lastName}`)}
-                          className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-50"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    )}
-                  </td>
+                      {openMenuId === student._id && (
+                        <div className="absolute right-0 mt-2 w-36 bg-white border border-gray-100 rounded-lg shadow-lg z-50">
+                          {canEdit && (
+                            <button
+                              onClick={() => { navigate(`${editBasePath}/${student._id}`); setOpenMenuId(null) }}
+                              className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-50"
+                            >
+                              Edit
+                            </button>
+                          )}
+                          {canDelete && (
+                            <button
+                              onClick={() => handleDelete(student._id, `${student.firstName} ${student.lastName}`)}
+                              className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-50"
+                            >
+                              Delete
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </td>
+                  )}
 
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={9} className="py-12 text-center font-dm-sans text-gray-400">
+                <td colSpan={canEdit || canDelete ? 9 : 8} className="py-12 text-center font-dm-sans text-gray-400">
                   No students found{activeClass !== "all" ? ` in ${activeClass}` : ""}
                 </td>
               </tr>

@@ -49,6 +49,15 @@ export const TeacherRoute = ({ children }) => {
   return children;
 };
 
+export const TeacherStudentEditRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  if (!token) return <Navigate to="/admin/portal" replace />;
+  if (!["teacher", "class_teacher"].includes(getRole())) {
+    return <Navigate to={getRoleHome(getRole())} replace />;
+  }
+  return children;
+};
+
 export const AccountantRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   if (!token) return <Navigate to="/admin/portal" replace />;

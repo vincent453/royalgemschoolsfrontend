@@ -80,6 +80,7 @@ import StudentAttendancePortal from "../admin/pages/StudentAttendancePortal";
 import {
   AdminRoute,
   TeacherRoute,
+  TeacherStudentEditRoute,
   AccountantRoute,
   InventoryManagerRoute,
   FinanceRoute,
@@ -257,6 +258,8 @@ export default function AppRoutes() {
         element={<TeacherRoute><TeacherDashboard /></TeacherRoute>} />
       <Route path="/teacher/students"
         element={<TeacherRoute><Student /></TeacherRoute>} />
+      <Route path="/teacher/students/edit/:id"
+        element={<TeacherStudentEditRoute><EditStudent /></TeacherStudentEditRoute>} />
       <Route path="/teacher/results"
         element={<TeacherRoute><Result /></TeacherRoute>} />
       <Route path="/teacher/results/view/:id"
